@@ -251,21 +251,6 @@ public class UnparsedTextList implements Serializable {
      * removes an unparsed text
      *
      * @param index the index of the text to remove
-     * @throws IllegalArgumentException  if parameter index is null
-     * @throws IndexOutOfBoundsException if parameter index is out of bounds
-     */
-    public void removeText(final Integer index) {
-        // sanity check
-        Objects.requireNonNull(index, WRITER_MESSAGE);
-
-        // remove the text
-        this.texts.remove(index.intValue());
-    }
-
-    /**
-     * removes an unparsed text
-     *
-     * @param index the index of the text to remove
      * @throws IndexOutOfBoundsException if parameter index is out of bounds
      */
     public void removeText(final int index) {

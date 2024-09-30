@@ -21,8 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import com.prowidesoftware.swift.io.RJEReader;
 import com.prowidesoftware.swift.model.field.Field86;
 import com.prowidesoftware.swift.model.mt.mt9xx.MT940;
-import com.prowidesoftware.swift.utils.Lib;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.Test;
 
@@ -33,33 +33,40 @@ public class JapaneseCharactersTest {
 
     @Test
     public void testRJEFromFile() throws IOException {
-        RJEReader reader =
-                new RJEReader(this.getClass().getResourceAsStream("/sample_JPchar.txt"), StandardCharsets.UTF_8);
-        MT940 mt = (MT940) reader.nextMT();
-        assertNotNull(mt);
-        Field86 field86 = mt.getField86().get(0);
-        // System.out.println(mt.message());
-        assertEquals("ﾞｱﾀｲﾍｲﾖｳｾﾝﾀ- AFEISEOHFIOSEIOIRT", field86.getComponent2());
+        try (InputStream inputStream = JapaneseCharactersTest.class.getResourceAsStream("/sample_JPchar.txt")) {
+            RJEReader reader = new RJEReader(inputStream, StandardCharsets.UTF_8);
+            MT940 mt = (MT940) reader.nextMT();
+            assertNotNull(mt);
+            Field86 field86 = mt.getField86().get(0);
+            // System.out.println(mt.message());
+            assertEquals("ﾞｱﾀｲﾍｲﾖｳｾﾝﾀ- AFEISEOHFIOSEIOIRT", field86.getComponent2());
+        }
     }
 
     @Test
     public void testRJEFromFile2() throws IOException {
-        RJEReader reader = new RJEReader(
-                Lib.readStream(this.getClass().getResourceAsStream("/sample_JPchar.txt"), StandardCharsets.UTF_8));
-        MT940 mt = (MT940) reader.nextMT();
-        assertNotNull(mt);
-        Field86 field86 = mt.getField86().get(0);
-        // System.out.println(mt.message());
-        assertEquals("ﾞｱﾀｲﾍｲﾖｳｾﾝﾀ- AFEISEOHFIOSEIOIRT", field86.getComponent2());
+        try (InputStream inputStream = JapaneseCharactersTest.class.getResourceAsStream("/sample_JPchar.txt")) {
+            RJEReader reader = new RJEReader(inputStream, StandardCharsets.UTF_8);
+            MT940 mt = (MT940) reader.nextMT();
+            assertNotNull(mt);
+            Field86 field86 = mt.getField86().get(0);
+            // System.out.println(mt.message());
+            assertEquals("ﾞｱﾀｲﾍｲﾖｳｾﾝﾀ- AFEISEOHFIOSEIOIRT", field86.getComponent2());
+        }
     }
 
     @Test
     public void testMTFromFile() throws IOException {
-        MT940 mt = new MT940(this.getClass().getResourceAsStream("/sample_JPchar.txt"));
-        assertNotNull(mt);
-        Field86 field86 = mt.getField86().get(0);
-        // System.out.println(mt.message());
-        assertEquals("ﾞｱﾀｲﾍｲﾖｳｾﾝﾀ- AFEISEOHFIOSEIOIRT", field86.getComponent2());
+        try (InputStream resourceStream = JapaneseCharactersTest.class.getResourceAsStream("/sample_JPchar.txt")) {
+            if (resourceStream == null) {
+                throw new IOException("Resource not found: MT101.fin");
+            }
+            MT940 mt = new MT940(resourceStream);
+            assertNotNull(mt);
+            Field86 field86 = mt.getField86().get(0);
+            // System.out.println(mt.message());
+            assertEquals("ﾞｱﾀｲﾍｲﾖｳｾﾝﾀ- AFEISEOHFIOSEIOIRT", field86.getComponent2());
+        }
     }
 
     @Test

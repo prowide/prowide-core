@@ -56,7 +56,7 @@ public final class IsoUtils {
     }
 
     public Set<String> getCurrencies() {
-        return currencies;
+        return Collections.unmodifiableSet(currencies);
     }
 
     public void setCurrencies(Set<String> currencies) {
@@ -64,7 +64,7 @@ public final class IsoUtils {
     }
 
     public Set<String> getCountries() {
-        return countries;
+        return Collections.unmodifiableSet(countries);
     }
 
     public void setCountries(Set<String> countries) {
@@ -116,6 +116,20 @@ public final class IsoUtils {
     }
 
     /**
+     * Removes the given country code from the current list of codes.
+     *
+     * @param countryCode a two capital letters country code, for example: XK
+     * @throws IllegalArgumentException if the parameter code is null or not two uppercase letters
+     * @since 9.4.18
+     */
+    public void removeCountry(final String countryCode) {
+        Validate.isTrue(
+                countryCode != null && countryCode.length() == 2 && countryCode.matches("[A-Z]*"),
+                "The country code must be indicated with two uppercase letters");
+        countries.remove(countryCode);
+    }
+
+    /**
      * Adds the given currency code to the current list of codes, verifying that it does not exist previously.
      *
      * @param currencyCode a three capital letters currency code, for example: ARS
@@ -127,5 +141,19 @@ public final class IsoUtils {
                 currencyCode != null && currencyCode.length() == 3 && currencyCode.matches("[A-Z]*"),
                 "The currency code must by indicated with three uppercase letters");
         currencies.add(currencyCode);
+    }
+
+    /**
+     * Removes the given currency code from the current list of codes.
+     *
+     * @param currencyCode a three capital letters currency code, for example: ARS
+     * @throws IllegalArgumentException if the parameter code is null or not three uppercase letters
+     * @since 9.4.18
+     */
+    public void removeCurrency(final String currencyCode) {
+        Validate.isTrue(
+                currencyCode != null && currencyCode.length() == 3 && currencyCode.matches("[A-Z]*"),
+                "The currency code must be indicated with three uppercase letters");
+        currencies.remove(currencyCode);
     }
 }

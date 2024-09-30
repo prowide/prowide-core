@@ -119,7 +119,7 @@ public class SwiftParser {
         if (i >= 0 && i + 1 < s.length()) {
             // check for input mark after ':'
             ch = s.charAt(i + 1);
-        } else if (s.length() > 0) {
+        } else if (!s.isEmpty()) {
             // check start
             ch = s.charAt(0);
         }
@@ -326,9 +326,9 @@ public class SwiftParser {
 
         // read the block contents
         final String s = readUntilBlockEnds();
-        if ("".equals(s)) {
+        if (StringUtils.isEmpty(s)) {
             /* if we have an unparsed text add it to last block */
-            if (unparsed.length() > 0) {
+            if (!unparsed.isEmpty()) {
                 if (unparsedReceiver == null) {
                     log.warning("Unparsed text '" + unparsed + "' can not be reported since unparsedReceiver is null");
                 } else {
@@ -391,7 +391,7 @@ public class SwiftParser {
         // create the block object
         b = createBlock(blockId, s);
 
-        if (unparsed.length() > 0) {
+        if (!unparsed.isEmpty()) {
             if (unparsedReceiver == null) {
                 log.warning("Unparsed text '" + unparsed + "' can not be reported since unparsedReceiver is null");
             } else {
@@ -562,7 +562,7 @@ public class SwiftParser {
                     int end;
                     for (end = i; end < data.length() && data.charAt(end) != '{'; end++) {}
                     final String unparsedText = data.substring(i, end).trim();
-                    if (!"".equals(unparsedText)) {
+                    if (!StringUtils.isEmpty(unparsedText)) {
                         b.unparsedTextAddText(unparsedText);
                     }
                     i = end - 1;
@@ -629,7 +629,7 @@ public class SwiftParser {
 
             // check if we skipped a block unparsed text
             String unparsedText = s.substring(begin, start - ignore - 1).trim();
-            if (!"".equals(unparsedText)) {
+            if (!StringUtils.isEmpty(unparsedText)) {
                 b.unparsedTextAddText(unparsedText);
             }
 
@@ -978,7 +978,7 @@ public class SwiftParser {
 
             // separate a text
             final String text = unparsedText.substring(start, end).trim();
-            if (!"".equals(text)) {
+            if (!StringUtils.isEmpty(text)) {
 
                 // add it to the list (create it if needed)
                 if (list == null) {

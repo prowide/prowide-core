@@ -21,13 +21,14 @@ import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.field.Field16R;
 import com.prowidesoftware.swift.model.field.Field16S;
 import com.prowidesoftware.swift.model.field.GenericField;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+
 import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
 
 /**
  * Base class for SWIFT blocks that contain and arbitrary <b>set of fields</b> (3, 4, 5 and user blocks).<br>
@@ -1828,21 +1829,20 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @return a new block with the trimmed content
      */
     public SwiftTagListBlock removeAfterFirstStartsWith(final String name, final String startsWith) {
-        if (this.tags == null || !this.tags.isEmpty()) {
+        if (this.tags == null || this.tags.isEmpty()) {
             return new SwiftTagListBlock();
         }
 
-        final List<Tag> tags = new ArrayList<>();
-        boolean done = false;
-        for (int i = 0; i < this.tags.size() && !done; i++) {
-            final Tag t = this.tags.get(i);
-            if (StringUtils.equals(t.getName(), name) && t.startsWith(startsWith)) {
-                done = true;
+        final List<Tag> updatedTags = new ArrayList<>();
+
+        for (Tag t : this.tags) {
+            if (StringUtils.equals(t.getName(), name) && StringUtils.startsWith(t.getValue(), startsWith)) {
+                break;
             } else {
-                tags.add(t);
+                updatedTags.add(t);
             }
         }
-        return new SwiftTagListBlock(tags);
+        return new SwiftTagListBlock(updatedTags);
     }
 
     /**
@@ -1910,7 +1910,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 7.7
      */
     public SwiftTagListBlock append(final Tag tag) {
-        Validate.notNull(tag);
+        Validate.isTrue(tag != null);
         this.tags.add(tag);
         return this;
     }
@@ -1941,7 +1941,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 7.7
      */
     public SwiftTagListBlock append(final Field field) {
-        Validate.notNull(field);
+        Validate.isTrue(field != null);
         this.tags.add(field.asTag());
         return this;
     }
@@ -1954,7 +1954,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 7.8
      */
     public SwiftTagListBlock append(final Field... fields) {
-        if (fields != null && fields.length > 0) {
+        if (fields != null) {
             for (final Field f : fields) {
                 append(f);
             }

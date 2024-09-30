@@ -31,12 +31,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -226,16 +223,14 @@ public class Field38H extends Field implements Serializable {
             //default format (as is)
             return getComponent(3);
         }
-        if (component == 4) {
-            //default format (as is)
-            return getComponent(4);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(4);
     }
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -458,32 +453,14 @@ public class Field38H extends Field implements Serializable {
         return this;
     }
 
-    /**
-     * Set the component1 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent1(String)
-     * method.
-     *
-     * @see #setComponent1(String)
-     * @since 9.2.7
-     *
-     * @param component1 the Long with the Number From content to set
-     * @return the field object to enable build pattern
-     */
-    public Field38H setComponent1(java.lang.Long component1) {
-        setComponent(1, SwiftFormatUtils.getLong(component1));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Number From (component 1) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Number From content to set
      * @return the field object to enable build pattern
-     * @see #setNumberFrom(java.lang.Long)
      */
     public Field38H setComponent1(java.lang.Number component1) {
 
@@ -514,26 +491,12 @@ public class Field38H extends Field implements Serializable {
     }
 
     /**
-     * Set the Number From (component 1) from a Long object.
-     *
-     * @see #setComponent1(java.lang.Long)
-     *
-     * @param component1 Long with the Number From content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field38H setNumberFrom(java.lang.Long component1) {
-        return setComponent1(component1);
-    }
-
-    /**
      * Alternative method setter for field's Number From (component 1) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Number From content to set
      * @return the field object to enable build pattern
-     * @see #setNumberFrom(java.lang.Long)
      */
     public Field38H setNumberFrom(java.lang.Number component1) {
         return setComponent1(component1);
@@ -571,32 +534,14 @@ public class Field38H extends Field implements Serializable {
         return this;
     }
 
-    /**
-     * Set the component3 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent3(String)
-     * method.
-     *
-     * @see #setComponent3(String)
-     * @since 9.2.7
-     *
-     * @param component3 the Long with the Number To content to set
-     * @return the field object to enable build pattern
-     */
-    public Field38H setComponent3(java.lang.Long component3) {
-        setComponent(3, SwiftFormatUtils.getLong(component3));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Number To (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the Number To content to set
      * @return the field object to enable build pattern
-     * @see #setNumberTo(java.lang.Long)
      */
     public Field38H setComponent3(java.lang.Number component3) {
 
@@ -627,26 +572,12 @@ public class Field38H extends Field implements Serializable {
     }
 
     /**
-     * Set the Number To (component 3) from a Long object.
-     *
-     * @see #setComponent3(java.lang.Long)
-     *
-     * @param component3 Long with the Number To content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field38H setNumberTo(java.lang.Long component3) {
-        return setComponent3(component3);
-    }
-
-    /**
      * Alternative method setter for field's Number To (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the Number To content to set
      * @return the field object to enable build pattern
-     * @see #setNumberTo(java.lang.Long)
      */
     public Field38H setNumberTo(java.lang.Number component3) {
         return setComponent3(component3);
@@ -738,7 +669,7 @@ public class Field38H extends Field implements Serializable {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field38H(f));
             }

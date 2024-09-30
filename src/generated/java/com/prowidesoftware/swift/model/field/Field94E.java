@@ -31,12 +31,9 @@ import java.util.HashMap;
 import com.prowidesoftware.swift.model.field.GenericField;
 import com.prowidesoftware.swift.model.field.MultiLineField;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -252,16 +249,14 @@ public class Field94E extends Field implements Serializable, GenericField, Multi
             //default format (as is)
             return getComponent(10);
         }
-        if (component == 11) {
-            //default format (as is)
-            return getComponent(11);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(11);
     }
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -874,6 +869,7 @@ public class Field94E extends Field implements Serializable, GenericField, Multi
      *
      * @return DSS component value or null if the DSS is not set or not available for this field.
      */
+    @Override
     public String getDSS() {
         return null;
     }
@@ -884,6 +880,7 @@ public class Field94E extends Field implements Serializable, GenericField, Multi
      * @see #getDSS()
      * @return true if DSS is present, false otherwise.
      */
+    @Override
     public boolean isDSSPresent() {
         return false;
     }
@@ -898,6 +895,7 @@ public class Field94E extends Field implements Serializable, GenericField, Multi
      *
      * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
      */
+    @Override
     public String getConditionalQualifier() {
         return getComponent(CONDITIONAL_QUALIFIER);
     }
@@ -965,7 +963,7 @@ public class Field94E extends Field implements Serializable, GenericField, Multi
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field94E(f));
             }
@@ -981,6 +979,7 @@ public class Field94E extends Field implements Serializable, GenericField, Multi
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line) {
         return getLine(line, 0);
     }
@@ -994,6 +993,7 @@ public class Field94E extends Field implements Serializable, GenericField, Multi
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line, int offset) {
         Field94E cp = newInstance(this);
         return getLine(cp, line, null, offset);
@@ -1006,6 +1006,7 @@ public class Field94E extends Field implements Serializable, GenericField, Multi
      * @return lines content or empty list if field's value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLines() {
         return SwiftParseUtils.getLines(getValue());
     }
@@ -1018,6 +1019,7 @@ public class Field94E extends Field implements Serializable, GenericField, Multi
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLines(int offset) {
         Field94E cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
@@ -1032,6 +1034,7 @@ public class Field94E extends Field implements Serializable, GenericField, Multi
      * @return found lines or empty list if value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end) {
         return getLinesBetween(start, end, 0);
     }
@@ -1046,6 +1049,7 @@ public class Field94E extends Field implements Serializable, GenericField, Multi
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end, int offset) {
         Field94E cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, start, end, offset));

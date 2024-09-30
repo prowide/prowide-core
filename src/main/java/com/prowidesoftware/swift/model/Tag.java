@@ -401,7 +401,11 @@ public class Tag implements Serializable {
                 }
             }
             if (sb.length() > 0) {
-                return Integer.parseInt(sb.toString());
+                try {
+                    return Integer.parseInt(sb.toString());
+                } catch (NumberFormatException e) {
+                    return null;
+                }
             }
         }
         return null;

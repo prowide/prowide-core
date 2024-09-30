@@ -34,12 +34,9 @@ import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import com.prowidesoftware.swift.model.field.DateResolver;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -338,16 +335,14 @@ public class Field331 extends Field implements Serializable, DateContainer {
             //default format (as is)
             return getComponent(11);
         }
-        if (component == 12) {
-            //default format (as is)
-            return getComponent(12);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(12);
     }
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -904,32 +899,14 @@ public class Field331 extends Field implements Serializable, DateContainer {
         return this;
     }
 
-    /**
-     * Set the component1 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent1(String)
-     * method.
-     *
-     * @see #setComponent1(String)
-     * @since 9.2.7
-     *
-     * @param component1 the Long with the Session Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field331 setComponent1(java.lang.Long component1) {
-        setComponent(1, SwiftFormatUtils.getLong(component1));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Session Number (component 1) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Session Number content to set
      * @return the field object to enable build pattern
-     * @see #setSessionNumber(java.lang.Long)
      */
     public Field331 setComponent1(java.lang.Number component1) {
 
@@ -960,26 +937,12 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the Session Number (component 1) from a Long object.
-     *
-     * @see #setComponent1(java.lang.Long)
-     *
-     * @param component1 Long with the Session Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field331 setSessionNumber(java.lang.Long component1) {
-        return setComponent1(component1);
-    }
-
-    /**
      * Alternative method setter for field's Session Number (component 1) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Session Number content to set
      * @return the field object to enable build pattern
-     * @see #setSessionNumber(java.lang.Long)
      */
     public Field331 setSessionNumber(java.lang.Number component1) {
         return setComponent1(component1);
@@ -1172,32 +1135,14 @@ public class Field331 extends Field implements Serializable, DateContainer {
         return this;
     }
 
-    /**
-     * Set the component6 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent6(String)
-     * method.
-     *
-     * @see #setComponent6(String)
-     * @since 9.2.7
-     *
-     * @param component6 the Long with the Reason For Closure content to set
-     * @return the field object to enable build pattern
-     */
-    public Field331 setComponent6(java.lang.Long component6) {
-        setComponent(6, SwiftFormatUtils.getLong(component6));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Reason For Closure (component 6) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component6 the Number with the Reason For Closure content to set
      * @return the field object to enable build pattern
-     * @see #setReasonForClosure(java.lang.Long)
      */
     public Field331 setComponent6(java.lang.Number component6) {
 
@@ -1228,26 +1173,12 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the Reason For Closure (component 6) from a Long object.
-     *
-     * @see #setComponent6(java.lang.Long)
-     *
-     * @param component6 Long with the Reason For Closure content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field331 setReasonForClosure(java.lang.Long component6) {
-        return setComponent6(component6);
-    }
-
-    /**
      * Alternative method setter for field's Reason For Closure (component 6) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component6 the Number with the Reason For Closure content to set
      * @return the field object to enable build pattern
-     * @see #setReasonForClosure(java.lang.Long)
      */
     public Field331 setReasonForClosure(java.lang.Number component6) {
         return setComponent6(component6);
@@ -1264,32 +1195,14 @@ public class Field331 extends Field implements Serializable, DateContainer {
         return this;
     }
 
-    /**
-     * Set the component7 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent7(String)
-     * method.
-     *
-     * @see #setComponent7(String)
-     * @since 9.2.7
-     *
-     * @param component7 the Long with the Quantity Of Messages Sent content to set
-     * @return the field object to enable build pattern
-     */
-    public Field331 setComponent7(java.lang.Long component7) {
-        setComponent(7, SwiftFormatUtils.getLong(component7));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Quantity Of Messages Sent (component 7) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component7 the Number with the Quantity Of Messages Sent content to set
      * @return the field object to enable build pattern
-     * @see #setQuantityOfMessagesSent(java.lang.Long)
      */
     public Field331 setComponent7(java.lang.Number component7) {
 
@@ -1320,26 +1233,12 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the Quantity Of Messages Sent (component 7) from a Long object.
-     *
-     * @see #setComponent7(java.lang.Long)
-     *
-     * @param component7 Long with the Quantity Of Messages Sent content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field331 setQuantityOfMessagesSent(java.lang.Long component7) {
-        return setComponent7(component7);
-    }
-
-    /**
      * Alternative method setter for field's Quantity Of Messages Sent (component 7) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component7 the Number with the Quantity Of Messages Sent content to set
      * @return the field object to enable build pattern
-     * @see #setQuantityOfMessagesSent(java.lang.Long)
      */
     public Field331 setQuantityOfMessagesSent(java.lang.Number component7) {
         return setComponent7(component7);
@@ -1356,32 +1255,14 @@ public class Field331 extends Field implements Serializable, DateContainer {
         return this;
     }
 
-    /**
-     * Set the component8 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent8(String)
-     * method.
-     *
-     * @see #setComponent8(String)
-     * @since 9.2.7
-     *
-     * @param component8 the Long with the Quantity Of Messages Received content to set
-     * @return the field object to enable build pattern
-     */
-    public Field331 setComponent8(java.lang.Long component8) {
-        setComponent(8, SwiftFormatUtils.getLong(component8));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Quantity Of Messages Received (component 8) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component8 the Number with the Quantity Of Messages Received content to set
      * @return the field object to enable build pattern
-     * @see #setQuantityOfMessagesReceived(java.lang.Long)
      */
     public Field331 setComponent8(java.lang.Number component8) {
 
@@ -1412,26 +1293,12 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the Quantity Of Messages Received (component 8) from a Long object.
-     *
-     * @see #setComponent8(java.lang.Long)
-     *
-     * @param component8 Long with the Quantity Of Messages Received content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field331 setQuantityOfMessagesReceived(java.lang.Long component8) {
-        return setComponent8(component8);
-    }
-
-    /**
      * Alternative method setter for field's Quantity Of Messages Received (component 8) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component8 the Number with the Quantity Of Messages Received content to set
      * @return the field object to enable build pattern
-     * @see #setQuantityOfMessagesReceived(java.lang.Long)
      */
     public Field331 setQuantityOfMessagesReceived(java.lang.Number component8) {
         return setComponent8(component8);
@@ -1448,32 +1315,14 @@ public class Field331 extends Field implements Serializable, DateContainer {
         return this;
     }
 
-    /**
-     * Set the component9 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent9(String)
-     * method.
-     *
-     * @see #setComponent9(String)
-     * @since 9.2.7
-     *
-     * @param component9 the Long with the First Input Sequence Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field331 setComponent9(java.lang.Long component9) {
-        setComponent(9, SwiftFormatUtils.getLong(component9));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's First Input Sequence Number (component 9) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component9 the Number with the First Input Sequence Number content to set
      * @return the field object to enable build pattern
-     * @see #setFirstInputSequenceNumber(java.lang.Long)
      */
     public Field331 setComponent9(java.lang.Number component9) {
 
@@ -1504,26 +1353,12 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the First Input Sequence Number (component 9) from a Long object.
-     *
-     * @see #setComponent9(java.lang.Long)
-     *
-     * @param component9 Long with the First Input Sequence Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field331 setFirstInputSequenceNumber(java.lang.Long component9) {
-        return setComponent9(component9);
-    }
-
-    /**
      * Alternative method setter for field's First Input Sequence Number (component 9) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component9 the Number with the First Input Sequence Number content to set
      * @return the field object to enable build pattern
-     * @see #setFirstInputSequenceNumber(java.lang.Long)
      */
     public Field331 setFirstInputSequenceNumber(java.lang.Number component9) {
         return setComponent9(component9);
@@ -1540,32 +1375,14 @@ public class Field331 extends Field implements Serializable, DateContainer {
         return this;
     }
 
-    /**
-     * Set the component10 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent10(String)
-     * method.
-     *
-     * @see #setComponent10(String)
-     * @since 9.2.7
-     *
-     * @param component10 the Long with the Last Input Sequence Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field331 setComponent10(java.lang.Long component10) {
-        setComponent(10, SwiftFormatUtils.getLong(component10));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Last Input Sequence Number (component 10) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component10 the Number with the Last Input Sequence Number content to set
      * @return the field object to enable build pattern
-     * @see #setLastInputSequenceNumber(java.lang.Long)
      */
     public Field331 setComponent10(java.lang.Number component10) {
 
@@ -1596,26 +1413,12 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the Last Input Sequence Number (component 10) from a Long object.
-     *
-     * @see #setComponent10(java.lang.Long)
-     *
-     * @param component10 Long with the Last Input Sequence Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field331 setLastInputSequenceNumber(java.lang.Long component10) {
-        return setComponent10(component10);
-    }
-
-    /**
      * Alternative method setter for field's Last Input Sequence Number (component 10) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component10 the Number with the Last Input Sequence Number content to set
      * @return the field object to enable build pattern
-     * @see #setLastInputSequenceNumber(java.lang.Long)
      */
     public Field331 setLastInputSequenceNumber(java.lang.Number component10) {
         return setComponent10(component10);
@@ -1632,32 +1435,14 @@ public class Field331 extends Field implements Serializable, DateContainer {
         return this;
     }
 
-    /**
-     * Set the component11 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent11(String)
-     * method.
-     *
-     * @see #setComponent11(String)
-     * @since 9.2.7
-     *
-     * @param component11 the Long with the First Output Sequence Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field331 setComponent11(java.lang.Long component11) {
-        setComponent(11, SwiftFormatUtils.getLong(component11));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's First Output Sequence Number (component 11) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component11 the Number with the First Output Sequence Number content to set
      * @return the field object to enable build pattern
-     * @see #setFirstOutputSequenceNumber(java.lang.Long)
      */
     public Field331 setComponent11(java.lang.Number component11) {
 
@@ -1688,26 +1473,12 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the First Output Sequence Number (component 11) from a Long object.
-     *
-     * @see #setComponent11(java.lang.Long)
-     *
-     * @param component11 Long with the First Output Sequence Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field331 setFirstOutputSequenceNumber(java.lang.Long component11) {
-        return setComponent11(component11);
-    }
-
-    /**
      * Alternative method setter for field's First Output Sequence Number (component 11) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component11 the Number with the First Output Sequence Number content to set
      * @return the field object to enable build pattern
-     * @see #setFirstOutputSequenceNumber(java.lang.Long)
      */
     public Field331 setFirstOutputSequenceNumber(java.lang.Number component11) {
         return setComponent11(component11);
@@ -1724,32 +1495,14 @@ public class Field331 extends Field implements Serializable, DateContainer {
         return this;
     }
 
-    /**
-     * Set the component12 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent12(String)
-     * method.
-     *
-     * @see #setComponent12(String)
-     * @since 9.2.7
-     *
-     * @param component12 the Long with the Last Output Sequence Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field331 setComponent12(java.lang.Long component12) {
-        setComponent(12, SwiftFormatUtils.getLong(component12));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Last Output Sequence Number (component 12) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component12 the Number with the Last Output Sequence Number content to set
      * @return the field object to enable build pattern
-     * @see #setLastOutputSequenceNumber(java.lang.Long)
      */
     public Field331 setComponent12(java.lang.Number component12) {
 
@@ -1780,26 +1533,12 @@ public class Field331 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the Last Output Sequence Number (component 12) from a Long object.
-     *
-     * @see #setComponent12(java.lang.Long)
-     *
-     * @param component12 Long with the Last Output Sequence Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field331 setLastOutputSequenceNumber(java.lang.Long component12) {
-        return setComponent12(component12);
-    }
-
-    /**
      * Alternative method setter for field's Last Output Sequence Number (component 12) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component12 the Number with the Last Output Sequence Number content to set
      * @return the field object to enable build pattern
-     * @see #setLastOutputSequenceNumber(java.lang.Long)
      */
     public Field331 setLastOutputSequenceNumber(java.lang.Number component12) {
         return setComponent12(component12);
@@ -1811,6 +1550,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
      *
      * @return the list of converted components (a Calendar object or null)
      */
+    @Override
     public List<Calendar> dates() {
         return DateResolver.dates(this);
     }
@@ -1888,7 +1628,7 @@ public class Field331 extends Field implements Serializable, DateContainer {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field331(f));
             }

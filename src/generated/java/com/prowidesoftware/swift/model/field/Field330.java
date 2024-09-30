@@ -31,12 +31,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -257,16 +254,14 @@ public class Field330 extends Field implements Serializable {
             //default format (as is)
             return getComponent(5);
         }
-        if (component == 6) {
-            //default format (as is)
-            return getComponent(6);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(6);
     }
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -603,32 +598,14 @@ public class Field330 extends Field implements Serializable {
         return this;
     }
 
-    /**
-     * Set the component1 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent1(String)
-     * method.
-     *
-     * @see #setComponent1(String)
-     * @since 9.2.7
-     *
-     * @param component1 the Long with the Session Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field330 setComponent1(java.lang.Long component1) {
-        setComponent(1, SwiftFormatUtils.getLong(component1));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Session Number (component 1) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Session Number content to set
      * @return the field object to enable build pattern
-     * @see #setSessionNumber(java.lang.Long)
      */
     public Field330 setComponent1(java.lang.Number component1) {
 
@@ -659,26 +636,12 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Set the Session Number (component 1) from a Long object.
-     *
-     * @see #setComponent1(java.lang.Long)
-     *
-     * @param component1 Long with the Session Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field330 setSessionNumber(java.lang.Long component1) {
-        return setComponent1(component1);
-    }
-
-    /**
      * Alternative method setter for field's Session Number (component 1) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Session Number content to set
      * @return the field object to enable build pattern
-     * @see #setSessionNumber(java.lang.Long)
      */
     public Field330 setSessionNumber(java.lang.Number component1) {
         return setComponent1(component1);
@@ -695,32 +658,14 @@ public class Field330 extends Field implements Serializable {
         return this;
     }
 
-    /**
-     * Set the component2 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent2(String)
-     * method.
-     *
-     * @see #setComponent2(String)
-     * @since 9.2.7
-     *
-     * @param component2 the Long with the ISN content to set
-     * @return the field object to enable build pattern
-     */
-    public Field330 setComponent2(java.lang.Long component2) {
-        setComponent(2, SwiftFormatUtils.getLong(component2));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's ISN (component 2) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component2 the Number with the ISN content to set
      * @return the field object to enable build pattern
-     * @see #setISN(java.lang.Long)
      */
     public Field330 setComponent2(java.lang.Number component2) {
 
@@ -751,26 +696,12 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Set the ISN (component 2) from a Long object.
-     *
-     * @see #setComponent2(java.lang.Long)
-     *
-     * @param component2 Long with the ISN content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field330 setISN(java.lang.Long component2) {
-        return setComponent2(component2);
-    }
-
-    /**
      * Alternative method setter for field's ISN (component 2) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component2 the Number with the ISN content to set
      * @return the field object to enable build pattern
-     * @see #setISN(java.lang.Long)
      */
     public Field330 setISN(java.lang.Number component2) {
         return setComponent2(component2);
@@ -787,32 +718,14 @@ public class Field330 extends Field implements Serializable {
         return this;
     }
 
-    /**
-     * Set the component3 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent3(String)
-     * method.
-     *
-     * @see #setComponent3(String)
-     * @since 9.2.7
-     *
-     * @param component3 the Long with the ISN NAK content to set
-     * @return the field object to enable build pattern
-     */
-    public Field330 setComponent3(java.lang.Long component3) {
-        setComponent(3, SwiftFormatUtils.getLong(component3));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's ISN NAK (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the ISN NAK content to set
      * @return the field object to enable build pattern
-     * @see #setISNNAK(java.lang.Long)
      */
     public Field330 setComponent3(java.lang.Number component3) {
 
@@ -843,26 +756,12 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Set the ISN NAK (component 3) from a Long object.
-     *
-     * @see #setComponent3(java.lang.Long)
-     *
-     * @param component3 Long with the ISN NAK content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field330 setISNNAK(java.lang.Long component3) {
-        return setComponent3(component3);
-    }
-
-    /**
      * Alternative method setter for field's ISN NAK (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the ISN NAK content to set
      * @return the field object to enable build pattern
-     * @see #setISNNAK(java.lang.Long)
      */
     public Field330 setISNNAK(java.lang.Number component3) {
         return setComponent3(component3);
@@ -879,32 +778,14 @@ public class Field330 extends Field implements Serializable {
         return this;
     }
 
-    /**
-     * Set the component4 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent4(String)
-     * method.
-     *
-     * @see #setComponent4(String)
-     * @since 9.2.7
-     *
-     * @param component4 the Long with the OSN content to set
-     * @return the field object to enable build pattern
-     */
-    public Field330 setComponent4(java.lang.Long component4) {
-        setComponent(4, SwiftFormatUtils.getLong(component4));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's OSN (component 4) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component4 the Number with the OSN content to set
      * @return the field object to enable build pattern
-     * @see #setOSN(java.lang.Long)
      */
     public Field330 setComponent4(java.lang.Number component4) {
 
@@ -935,26 +816,12 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Set the OSN (component 4) from a Long object.
-     *
-     * @see #setComponent4(java.lang.Long)
-     *
-     * @param component4 Long with the OSN content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field330 setOSN(java.lang.Long component4) {
-        return setComponent4(component4);
-    }
-
-    /**
      * Alternative method setter for field's OSN (component 4) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component4 the Number with the OSN content to set
      * @return the field object to enable build pattern
-     * @see #setOSN(java.lang.Long)
      */
     public Field330 setOSN(java.lang.Number component4) {
         return setComponent4(component4);
@@ -971,32 +838,14 @@ public class Field330 extends Field implements Serializable {
         return this;
     }
 
-    /**
-     * Set the component5 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent5(String)
-     * method.
-     *
-     * @see #setComponent5(String)
-     * @since 9.2.7
-     *
-     * @param component5 the Long with the OSN NAK content to set
-     * @return the field object to enable build pattern
-     */
-    public Field330 setComponent5(java.lang.Long component5) {
-        setComponent(5, SwiftFormatUtils.getLong(component5));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's OSN NAK (component 5) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component5 the Number with the OSN NAK content to set
      * @return the field object to enable build pattern
-     * @see #setOSNNAK(java.lang.Long)
      */
     public Field330 setComponent5(java.lang.Number component5) {
 
@@ -1027,26 +876,12 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Set the OSN NAK (component 5) from a Long object.
-     *
-     * @see #setComponent5(java.lang.Long)
-     *
-     * @param component5 Long with the OSN NAK content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field330 setOSNNAK(java.lang.Long component5) {
-        return setComponent5(component5);
-    }
-
-    /**
      * Alternative method setter for field's OSN NAK (component 5) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component5 the Number with the OSN NAK content to set
      * @return the field object to enable build pattern
-     * @see #setOSNNAK(java.lang.Long)
      */
     public Field330 setOSNNAK(java.lang.Number component5) {
         return setComponent5(component5);
@@ -1063,32 +898,14 @@ public class Field330 extends Field implements Serializable {
         return this;
     }
 
-    /**
-     * Set the component6 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent6(String)
-     * method.
-     *
-     * @see #setComponent6(String)
-     * @since 9.2.7
-     *
-     * @param component6 the Long with the ACK Replay Indicator content to set
-     * @return the field object to enable build pattern
-     */
-    public Field330 setComponent6(java.lang.Long component6) {
-        setComponent(6, SwiftFormatUtils.getLong(component6));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's ACK Replay Indicator (component 6) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component6 the Number with the ACK Replay Indicator content to set
      * @return the field object to enable build pattern
-     * @see #setACKReplayIndicator(java.lang.Long)
      */
     public Field330 setComponent6(java.lang.Number component6) {
 
@@ -1119,26 +936,12 @@ public class Field330 extends Field implements Serializable {
     }
 
     /**
-     * Set the ACK Replay Indicator (component 6) from a Long object.
-     *
-     * @see #setComponent6(java.lang.Long)
-     *
-     * @param component6 Long with the ACK Replay Indicator content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field330 setACKReplayIndicator(java.lang.Long component6) {
-        return setComponent6(component6);
-    }
-
-    /**
      * Alternative method setter for field's ACK Replay Indicator (component 6) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component6 the Number with the ACK Replay Indicator content to set
      * @return the field object to enable build pattern
-     * @see #setACKReplayIndicator(java.lang.Long)
      */
     public Field330 setACKReplayIndicator(java.lang.Number component6) {
         return setComponent6(component6);
@@ -1209,7 +1012,7 @@ public class Field330 extends Field implements Serializable {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field330(f));
             }

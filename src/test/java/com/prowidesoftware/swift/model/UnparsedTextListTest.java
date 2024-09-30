@@ -174,10 +174,7 @@ public class UnparsedTextListTest {
 
         SwiftMessage msg = SwiftMessage.parse(sb.toString());
 
-        @SuppressWarnings("unused")
-        SwiftMessage m2 = SwiftMessage.parse(msg.getUnparsedTexts().getText(0));
-
-        @SuppressWarnings("unused")
-        SwiftMessage m3 = SwiftMessage.parse(msg.getUnparsedTexts().getText(1));
+        assertNotNull(SwiftMessage.parse(msg.getUnparsedTexts().getText(0)));
+        assertNotNull(SwiftMessage.parse(msg.getUnparsedTexts().getText(1)));
     }
 }
