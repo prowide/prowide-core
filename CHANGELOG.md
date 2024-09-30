@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 10.1.17 - SNAPSHOT
+  * Added new `FieldEnum` with all the available field names
+
 #### 10.1.16 - June 2024
   * (PW-1913) Added IBAN validation for Egypt local account structure
 
