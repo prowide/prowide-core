@@ -33,12 +33,9 @@ import com.prowidesoftware.swift.model.field.GenericField;
 import com.prowidesoftware.swift.model.field.BICContainer;
 import com.prowidesoftware.swift.model.field.BICResolver;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -238,10 +235,12 @@ public class Field95P extends OptionPPartyField implements Serializable, BICCont
     }
 
 
+    @Override
     public List<BIC> bics() {
         return BICResolver.bics(this);
     }
 
+    @Override
     public List<String> bicStrings () {
         return BICResolver.bicStrings(this);
     }
@@ -253,6 +252,7 @@ public class Field95P extends OptionPPartyField implements Serializable, BICCont
      *
      * @return DSS component value or null if the DSS is not set or not available for this field.
      */
+    @Override
     public String getDSS() {
         return null;
     }
@@ -263,6 +263,7 @@ public class Field95P extends OptionPPartyField implements Serializable, BICCont
      * @see #getDSS()
      * @return true if DSS is present, false otherwise.
      */
+    @Override
     public boolean isDSSPresent() {
         return false;
     }
@@ -277,6 +278,7 @@ public class Field95P extends OptionPPartyField implements Serializable, BICCont
      *
      * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
      */
+    @Override
     public String getConditionalQualifier() {
         return getComponent(CONDITIONAL_QUALIFIER);
     }
@@ -344,7 +346,7 @@ public class Field95P extends OptionPPartyField implements Serializable, BICCont
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field95P(f));
             }

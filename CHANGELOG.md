@@ -2,6 +2,7 @@
 
 #### 9.4.18 - SNAPSHOT
   * Added new `FieldEnum` with all the available field names
+  * Code security improvements as per CodeQL recommendations
 
 #### 9.4.17 - June 2024
   * (PW-1913) Added IBAN validation for Egypt local account structure

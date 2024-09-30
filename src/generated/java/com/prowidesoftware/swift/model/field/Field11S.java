@@ -35,12 +35,9 @@ import com.prowidesoftware.swift.model.field.MultiLineField;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import com.prowidesoftware.swift.model.field.DateResolver;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -280,11 +277,9 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
             //default format (as is)
             return getComponent(3);
         }
-        if (component == 4) {
-            //default format (as is)
-            return getComponent(4);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(4);
     }
 
     /**
@@ -299,7 +294,7 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -670,32 +665,14 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
         return this;
     }
 
-    /**
-     * Set the component3 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent3(String)
-     * method.
-     *
-     * @see #setComponent3(String)
-     * @since 9.2.7
-     *
-     * @param component3 the Long with the Session Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field11S setComponent3(java.lang.Long component3) {
-        setComponent(3, SwiftFormatUtils.getLong(component3));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Session Number (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the Session Number content to set
      * @return the field object to enable build pattern
-     * @see #setSessionNumber(java.lang.Long)
      */
     public Field11S setComponent3(java.lang.Number component3) {
 
@@ -726,26 +703,12 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Set the Session Number (component 3) from a Long object.
-     *
-     * @see #setComponent3(java.lang.Long)
-     *
-     * @param component3 Long with the Session Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field11S setSessionNumber(java.lang.Long component3) {
-        return setComponent3(component3);
-    }
-
-    /**
      * Alternative method setter for field's Session Number (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the Session Number content to set
      * @return the field object to enable build pattern
-     * @see #setSessionNumber(java.lang.Long)
      */
     public Field11S setSessionNumber(java.lang.Number component3) {
         return setComponent3(component3);
@@ -762,32 +725,14 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
         return this;
     }
 
-    /**
-     * Set the component4 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent4(String)
-     * method.
-     *
-     * @see #setComponent4(String)
-     * @since 9.2.7
-     *
-     * @param component4 the Long with the ISN content to set
-     * @return the field object to enable build pattern
-     */
-    public Field11S setComponent4(java.lang.Long component4) {
-        setComponent(4, SwiftFormatUtils.getLong(component4));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's ISN (component 4) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component4 the Number with the ISN content to set
      * @return the field object to enable build pattern
-     * @see #setISN(java.lang.Long)
      */
     public Field11S setComponent4(java.lang.Number component4) {
 
@@ -818,26 +763,12 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Set the ISN (component 4) from a Long object.
-     *
-     * @see #setComponent4(java.lang.Long)
-     *
-     * @param component4 Long with the ISN content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field11S setISN(java.lang.Long component4) {
-        return setComponent4(component4);
-    }
-
-    /**
      * Alternative method setter for field's ISN (component 4) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component4 the Number with the ISN content to set
      * @return the field object to enable build pattern
-     * @see #setISN(java.lang.Long)
      */
     public Field11S setISN(java.lang.Number component4) {
         return setComponent4(component4);
@@ -849,6 +780,7 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
      *
      * @return the list of converted components (a Calendar object or null)
      */
+    @Override
     public List<Calendar> dates() {
         return DateResolver.dates(this);
     }
@@ -926,7 +858,7 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field11S(f));
             }
@@ -942,6 +874,7 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line) {
         return getLine(line, 0);
     }
@@ -955,6 +888,7 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line, int offset) {
         Field11S cp = newInstance(this);
         return getLine(cp, line, null, offset);
@@ -967,6 +901,7 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
      * @return lines content or empty list if field's value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLines() {
         return SwiftParseUtils.getLines(getValue());
     }
@@ -979,6 +914,7 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLines(int offset) {
         Field11S cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
@@ -993,6 +929,7 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
      * @return found lines or empty list if value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end) {
         return getLinesBetween(start, end, 0);
     }
@@ -1007,6 +944,7 @@ public class Field11S extends Field implements Serializable, DateContainer, Mult
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end, int offset) {
         Field11S cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, start, end, offset));

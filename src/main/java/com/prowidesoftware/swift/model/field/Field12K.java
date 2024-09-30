@@ -206,14 +206,11 @@ public class Field12K extends Field implements Serializable {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 1) {
+        if (component != 1) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 12K");
         }
-        if (component == 1) {
-            // default format (as is)
-            return getComponent(1);
-        }
-        return null;
+        // default format (as is)
+        return getComponent(1);
     }
 
     /**
@@ -445,31 +442,12 @@ public class Field12K extends Field implements Serializable {
     }
 
     /**
-     * Set the component1 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent1(String)
-     * method.
-     *
-     * @see #setComponent1(String)
-     * @since 9.2.7
-     *
-     * @param component1 the Long with the Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field12K setComponent1(java.lang.Long component1) {
-        setComponent(1, SwiftFormatUtils.getLong(component1));
-        return this;
-    }
-
-    /**
      * Alternative method setter for field's Number (component 1) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Number content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
      */
     public Field12K setComponent1(java.lang.Number component1) {
 
@@ -500,32 +478,6 @@ public class Field12K extends Field implements Serializable {
     }
 
     /**
-     * Set the Number (component 1) from a Long object.
-     *
-     * @see #setComponent1(java.lang.Long)
-     *
-     * @param component1 Long with the Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field12K setNumber(java.lang.Long component1) {
-        return setComponent1(component1);
-    }
-
-    /**
-     * Alternative method setter for field's Number (component 1) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component1 the Number with the Number content to set
-     * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
-     */
-    public Field12K setNumber(java.lang.Number component1) {
-        return setComponent1(component1);
-    }
-
-    /**
      * Alternative <em>DEPRECATED</em> method setter for field's Number
      *
      * @see #setNumber(String)
@@ -540,33 +492,15 @@ public class Field12K extends Field implements Serializable {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Number from a Long object.
-     *
-     * @see #setComponent1(java.lang.Long)
-     *
-     * @param component1 Long with the Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field12K setVersion(java.lang.Long component1) {
-        return setNumber(component1);
-    }
-
-    /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Number (component 1) as as Number
+     * Alternative method setter for field's Number (component 1) as as Number
      *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Number content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
      */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field12K setVersion(java.lang.Number component1) {
-        return setNumber(component1);
+    public Field12K setNumber(java.lang.Number component1) {
+        return setComponent1(component1);
     }
 
     /**
@@ -632,7 +566,7 @@ public class Field12K extends Field implements Serializable {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field12K(f));
             }

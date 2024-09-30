@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.Test;
 
@@ -32,16 +33,17 @@ import org.junit.jupiter.api.Test;
 public class RJEReaderTest {
 
     @Test
-    public void testIterator() {
-        RJEReader r =
-                new RJEReader(this.getClass().getResourceAsStream("/MT103-out-ack.rje"), StandardCharsets.US_ASCII);
-        int count = 0;
-        for (String m : r) {
-            assertNotNull(m);
-            // System.out.println("msg "+(count));
-            count++;
+    public void testIterator() throws IOException {
+        try (InputStream inputStream = RJEReaderTest.class.getResourceAsStream("/MT103-out-ack.rje")) {
+            RJEReader r = new RJEReader(inputStream, StandardCharsets.US_ASCII);
+            int count = 0;
+            for (String m : r) {
+                assertNotNull(m);
+                // System.out.println("msg "+(count));
+                count++;
+            }
+            assertEquals(13, count);
         }
-        assertEquals(13, count);
     }
 
     @Test
@@ -69,13 +71,14 @@ public class RJEReaderTest {
 
     @Test
     public void testIterableWithNextMT() throws IOException {
-        RJEReader r =
-                new RJEReader(this.getClass().getResourceAsStream("/MT103-out-ack.rje"), StandardCharsets.US_ASCII);
-        assertTrue(r.hasNext());
-        AbstractMT mt = r.nextMT();
-        assertNotNull(mt);
-        // System.out.println(mt.message());
-        assertEquals("103", mt.getMessageType());
+        try (InputStream inputStream = RJEReaderTest.class.getResourceAsStream("/MT103-out-ack.rje")) {
+            RJEReader r = new RJEReader(inputStream, StandardCharsets.US_ASCII);
+            assertTrue(r.hasNext());
+            AbstractMT mt = r.nextMT();
+            assertNotNull(mt);
+            // System.out.println(mt.message());
+            assertEquals("103", mt.getMessageType());
+        }
     }
 
     @Test
@@ -98,19 +101,23 @@ public class RJEReaderTest {
 
     @Test
     public void testBulkFileWithAcks() throws IOException {
-        RJEReader r = new RJEReader(
-                this.getClass().getResourceAsStream("/MT103-bulk-with-ack.rje"), StandardCharsets.US_ASCII);
-        int count = 0;
-        while (r.hasNext()) {
-            SwiftMessage ack = r.nextSwiftMessage();
-            assertNotNull(ack);
-            assertTrue(ack.isServiceMessage21());
-            SwiftMessage mt = SwiftMessage.parse(ack.getUnparsedTexts().getAsFINString());
-            assertNotNull(mt);
-            assertTrue(mt.isType(103));
-            // System.out.println(mt.getBlock4().getTagValue("20"));
-            count++;
+        try (InputStream inputStream = RJEReaderTest.class.getResourceAsStream("/MT103-bulk-with-ack.rje")) {
+            RJEReader r = new RJEReader(inputStream, StandardCharsets.US_ASCII);
+            assertNotNull(inputStream, "The input stream could not be found");
+
+            int count = 0;
+            while (r.hasNext()) {
+                SwiftMessage ack = r.nextSwiftMessage();
+                assertNotNull(ack);
+                assertTrue(ack.isServiceMessage21());
+
+                SwiftMessage mt = SwiftMessage.parse(ack.getUnparsedTexts().getAsFINString());
+                assertNotNull(mt);
+                assertTrue(mt.isType(103));
+                // System.out.println(mt.getBlock4().getTagValue("20"));
+                count++;
+            }
+            assertEquals(3, count);
         }
-        assertEquals(3, count);
     }
 }

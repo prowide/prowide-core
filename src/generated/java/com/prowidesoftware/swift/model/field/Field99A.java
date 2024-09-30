@@ -32,12 +32,9 @@ import java.math.BigInteger;
 
 import com.prowidesoftware.swift.model.field.GenericField;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -244,11 +241,9 @@ public class Field99A extends Field implements Serializable, GenericField {
             //default format (as is)
             return getComponent(2);
         }
-        if (component == 3) {
-            //default format (as is)
-            return getComponent(3);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(3);
     }
 
     /**
@@ -263,7 +258,7 @@ public class Field99A extends Field implements Serializable, GenericField {
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -543,32 +538,14 @@ public class Field99A extends Field implements Serializable, GenericField {
         return this;
     }
 
-    /**
-     * Set the component3 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent3(String)
-     * method.
-     *
-     * @see #setComponent3(String)
-     * @since 9.2.7
-     *
-     * @param component3 the Long with the Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field99A setComponent3(java.lang.Long component3) {
-        setComponent(3, SwiftFormatUtils.getLong(component3));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Number (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the Number content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
      */
     public Field99A setComponent3(java.lang.Number component3) {
 
@@ -599,26 +576,12 @@ public class Field99A extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the Number (component 3) from a Long object.
-     *
-     * @see #setComponent3(java.lang.Long)
-     *
-     * @param component3 Long with the Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field99A setNumber(java.lang.Long component3) {
-        return setComponent3(component3);
-    }
-
-    /**
      * Alternative method setter for field's Number (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the Number content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
      */
     public Field99A setNumber(java.lang.Number component3) {
         return setComponent3(component3);
@@ -630,16 +593,6 @@ public class Field99A extends Field implements Serializable, GenericField {
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field99A setAmount(String component3) {
-        return setNumber(component3);
-    }
-
-    /**
-     * @deprecated use #setComponent3(java.lang.Long) instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field99A setAmount(java.lang.Long component3) {
         return setNumber(component3);
     }
 
@@ -660,6 +613,7 @@ public class Field99A extends Field implements Serializable, GenericField {
      *
      * @return DSS component value or null if the DSS is not set or not available for this field.
      */
+    @Override
     public String getDSS() {
         return null;
     }
@@ -670,6 +624,7 @@ public class Field99A extends Field implements Serializable, GenericField {
      * @see #getDSS()
      * @return true if DSS is present, false otherwise.
      */
+    @Override
     public boolean isDSSPresent() {
         return false;
     }
@@ -684,6 +639,7 @@ public class Field99A extends Field implements Serializable, GenericField {
      *
      * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
      */
+    @Override
     public String getConditionalQualifier() {
         return getComponent(CONDITIONAL_QUALIFIER);
     }
@@ -751,7 +707,7 @@ public class Field99A extends Field implements Serializable, GenericField {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field99A(f));
             }

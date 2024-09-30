@@ -238,7 +238,6 @@ public class SwiftParserConsumeBlockLenientTest {
         parser.setData("{3:{108:00112233}}");
         final SwiftBlock3 b3 = (SwiftBlock3) parser.consumeBlock(null);
         assertNotNull(b3);
-        assertTrue(b3 instanceof SwiftBlock);
         assertTrue(b3.containsTag("108"));
         assertEquals("00112233", b3.getTagValue("108"));
     }
@@ -248,7 +247,6 @@ public class SwiftParserConsumeBlockLenientTest {
         parser.setData("{3:{108:00112233}{4:foobar}}");
         final SwiftBlock3 b3 = (SwiftBlock3) parser.consumeBlock(null);
         assertNotNull(b3);
-        assertTrue(b3 instanceof SwiftBlock);
         assertTrue(b3.containsTag("108"));
         assertEquals("00112233", b3.getTagValue("108"));
         assertTrue(b3.containsTag("4"));
@@ -260,7 +258,6 @@ public class SwiftParserConsumeBlockLenientTest {
         parser.setData("{5:{108:00112233}}");
         final SwiftBlock5 b = (SwiftBlock5) parser.consumeBlock(null);
         assertNotNull(b);
-        assertTrue(b instanceof SwiftBlock);
         assertTrue(b.containsTag("108"));
         assertEquals("00112233", b.getTagValue("108"));
     }
@@ -270,7 +267,6 @@ public class SwiftParserConsumeBlockLenientTest {
         parser.setData("{5:{108:00112233}{4:foobar}}");
         final SwiftBlock5 b = (SwiftBlock5) parser.consumeBlock(null);
         assertNotNull(b);
-        assertTrue(b instanceof SwiftBlock);
         assertTrue(b.containsTag("108"));
         assertEquals("00112233", b.getTagValue("108"));
         assertTrue(b.containsTag("4"));
@@ -283,8 +279,6 @@ public class SwiftParserConsumeBlockLenientTest {
         parser.setData(fin);
         final SwiftBlock1 b1 = (SwiftBlock1) parser.consumeBlock(null);
         final SwiftBlock3 b3 = (SwiftBlock3) parser.consumeBlock(null);
-        assertTrue(b1 instanceof SwiftBlock1);
-        assertTrue(b3 instanceof SwiftBlock3);
         assertEquals(Constants.B1_DATA, b1.getValue());
         assertEquals(1, b3.countAll());
         assertEquals("n", b3.getTag(0).getName());
@@ -299,12 +293,11 @@ public class SwiftParserConsumeBlockLenientTest {
         parser.setData("{3:blockdata{108:00112233}{4:foobar}}");
         final SwiftBlock3 b = (SwiftBlock3) parser.consumeBlock(null);
         assertNotNull(b);
-        assertTrue(b instanceof SwiftBlock);
         assertTrue(b.containsTag("108"));
         assertEquals("00112233", b.getTagValue("108"));
         assertTrue(b.containsTag("4"));
         assertEquals("foobar", b.getTagValue("4"));
-        assertEquals(b.getUnparsedTextsSize(), new Integer(1));
+        assertEquals(b.getUnparsedTextsSize(), Integer.valueOf(1));
         assertEquals(b.unparsedTextGetText(0), "blockdata");
     }
 
