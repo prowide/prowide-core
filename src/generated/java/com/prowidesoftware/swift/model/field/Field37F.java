@@ -36,12 +36,9 @@ import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import com.prowidesoftware.swift.model.field.DateResolver;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -307,11 +304,9 @@ public class Field37F extends Field implements Serializable, AmountContainer, Da
             //default format (as is)
             return getComponent(4);
         }
-        if (component == 5) {
-            //default format (as is)
-            return getComponent(5);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(5);
     }
 
     /**
@@ -326,7 +321,7 @@ public class Field37F extends Field implements Serializable, AmountContainer, Da
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -701,31 +696,12 @@ public class Field37F extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * Set the component1 from a BigDecimal object.
-     * <br>
-     * Parses the BigDecimal into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-     * <ul>
-     *     <li>Example: 1234.00 -&gt; 1234,</li>
-     *     <li>Example: 1234 -&gt; 1234,</li>
-     *     <li>Example: 1234.56 -&gt; 1234,56</li>
-     * </ul>
-     * @since 9.2.7
-     *
-     * @param component1 the BigDecimal with the Rate content to set
-     * @return the field object to enable build pattern
-     */
-    public Field37F setComponent1(java.math.BigDecimal component1) {
-        setComponent(1, SwiftFormatUtils.getBigDecimal(component1));
-        return this;
-    }
-    /**
      * Alternative method setter for field's Rate (component 1) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
      * @param component1 the Number with the Rate content to set
      * @return the field object to enable build pattern
-     * @see #setRate(java.math.BigDecimal)
      */
     public Field37F setComponent1(java.lang.Number component1) {
 
@@ -758,26 +734,12 @@ public class Field37F extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * Set the Rate (component 1) from a BigDecimal object.
-     *
-     * @see #setComponent1(java.math.BigDecimal)
-     *
-     * @param component1 BigDecimal with the Rate content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field37F setRate(java.math.BigDecimal component1) {
-        return setComponent1(component1);
-    }
-
-    /**
      * Alternative method setter for field's Rate (component 1) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Rate content to set
      * @return the field object to enable build pattern
-     * @see #setRate(java.math.BigDecimal)
      */
     public Field37F setRate(java.lang.Number component1) {
         return setComponent1(component1);
@@ -886,32 +848,14 @@ public class Field37F extends Field implements Serializable, AmountContainer, Da
         return this;
     }
 
-    /**
-     * Set the component4 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent4(String)
-     * method.
-     *
-     * @see #setComponent4(String)
-     * @since 9.2.7
-     *
-     * @param component4 the Long with the Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field37F setComponent4(java.lang.Long component4) {
-        setComponent(4, SwiftFormatUtils.getLong(component4));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Number (component 4) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component4 the Number with the Number content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
      */
     public Field37F setComponent4(java.lang.Number component4) {
 
@@ -942,26 +886,12 @@ public class Field37F extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * Set the Number (component 4) from a Long object.
-     *
-     * @see #setComponent4(java.lang.Long)
-     *
-     * @param component4 Long with the Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field37F setNumber(java.lang.Long component4) {
-        return setComponent4(component4);
-    }
-
-    /**
      * Alternative method setter for field's Number (component 4) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component4 the Number with the Number content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
      */
     public Field37F setNumber(java.lang.Number component4) {
         return setComponent4(component4);
@@ -973,16 +903,6 @@ public class Field37F extends Field implements Serializable, AmountContainer, Da
     @Deprecated
     @ProwideDeprecated(phase4 = TargetYear.SRU2024)
     public Field37F setNumberofDaysMonths(String component4) {
-        return setNumber(component4);
-    }
-
-    /**
-     * @deprecated use #setComponent4(java.lang.Long) instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field37F setNumberofDaysMonths(java.lang.Long component4) {
         return setNumber(component4);
     }
 
@@ -1033,6 +953,7 @@ public class Field37F extends Field implements Serializable, AmountContainer, Da
      * @return the first amount as BigDecimal value. Can be null
      * @see AmountResolver#amount(Field)
      */
+    @Override
     public BigDecimal amount() {
         return AmountResolver.amount(this);
     }
@@ -1042,6 +963,7 @@ public class Field37F extends Field implements Serializable, AmountContainer, Da
      *
      * @return the list of converted components (a Calendar object or null)
      */
+    @Override
     public List<Calendar> dates() {
         return DateResolver.dates(this);
     }
@@ -1119,7 +1041,7 @@ public class Field37F extends Field implements Serializable, AmountContainer, Da
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field37F(f));
             }

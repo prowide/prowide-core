@@ -35,12 +35,9 @@ import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import com.prowidesoftware.swift.model.field.DateResolver;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -295,13 +292,12 @@ public class Field258 extends Field implements Serializable, DateContainer {
                 return f.format(cal.getTime());
             }
         }
-        if (component == 6) {
-            //time: HH[mm]
-            java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
-            java.util.Calendar cal = getComponent6AsCalendar();
-            if (cal != null) {
-                return f.format(cal.getTime());
-            }
+        // This is the last component, return directly without `if`
+        //time: HH[mm]
+        java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
+        java.util.Calendar cal = getComponent6AsCalendar();
+        if (cal != null) {
+            return f.format(cal.getTime());
         }
         return null;
     }
@@ -318,7 +314,7 @@ public class Field258 extends Field implements Serializable, DateContainer {
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -691,32 +687,14 @@ public class Field258 extends Field implements Serializable, DateContainer {
         return this;
     }
 
-    /**
-     * Set the component2 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent2(String)
-     * method.
-     *
-     * @see #setComponent2(String)
-     * @since 9.2.7
-     *
-     * @param component2 the Long with the Session Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field258 setComponent2(java.lang.Long component2) {
-        setComponent(2, SwiftFormatUtils.getLong(component2));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Session Number (component 2) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component2 the Number with the Session Number content to set
      * @return the field object to enable build pattern
-     * @see #setSessionNumber(java.lang.Long)
      */
     public Field258 setComponent2(java.lang.Number component2) {
 
@@ -747,26 +725,12 @@ public class Field258 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the Session Number (component 2) from a Long object.
-     *
-     * @see #setComponent2(java.lang.Long)
-     *
-     * @param component2 Long with the Session Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field258 setSessionNumber(java.lang.Long component2) {
-        return setComponent2(component2);
-    }
-
-    /**
      * Alternative method setter for field's Session Number (component 2) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component2 the Number with the Session Number content to set
      * @return the field object to enable build pattern
-     * @see #setSessionNumber(java.lang.Long)
      */
     public Field258 setSessionNumber(java.lang.Number component2) {
         return setComponent2(component2);
@@ -931,6 +895,7 @@ public class Field258 extends Field implements Serializable, DateContainer {
      *
      * @return the list of converted components (a Calendar object or null)
      */
+    @Override
     public List<Calendar> dates() {
         return DateResolver.dates(this);
     }
@@ -1008,7 +973,7 @@ public class Field258 extends Field implements Serializable, DateContainer {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field258(f));
             }

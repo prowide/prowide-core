@@ -214,11 +214,8 @@ public class Field29D extends Field implements Serializable, MultiLineField {
             // default format (as is)
             return getComponent(3);
         }
-        if (component == 4) {
-            // default format (as is)
-            return getComponent(4);
-        }
-        return null;
+        // default format (as is)
+        return getComponent(4);
     }
 
     /**
@@ -277,10 +274,7 @@ public class Field29D extends Field implements Serializable, MultiLineField {
         if (component == 3) {
             return true;
         }
-        if (component == 4) {
-            return true;
-        }
-        return false;
+        return component == 4;
     }
 
     /**
@@ -603,7 +597,7 @@ public class Field29D extends Field implements Serializable, MultiLineField {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field29D(f));
             }
@@ -619,6 +613,7 @@ public class Field29D extends Field implements Serializable, MultiLineField {
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line) {
         return getLine(line, 0);
     }
@@ -632,6 +627,7 @@ public class Field29D extends Field implements Serializable, MultiLineField {
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line, int offset) {
         Field29D cp = newInstance(this);
         return getLine(cp, line, null, offset);
@@ -644,6 +640,7 @@ public class Field29D extends Field implements Serializable, MultiLineField {
      * @return lines content or empty list if field's value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLines() {
         return SwiftParseUtils.getLines(getValue());
     }
@@ -656,6 +653,7 @@ public class Field29D extends Field implements Serializable, MultiLineField {
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLines(int offset) {
         Field29D cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
@@ -670,6 +668,7 @@ public class Field29D extends Field implements Serializable, MultiLineField {
      * @return found lines or empty list if value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end) {
         return getLinesBetween(start, end, 0);
     }
@@ -684,6 +683,7 @@ public class Field29D extends Field implements Serializable, MultiLineField {
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end, int offset) {
         Field29D cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, start, end, offset));

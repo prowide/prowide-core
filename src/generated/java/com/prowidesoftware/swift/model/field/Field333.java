@@ -34,12 +34,9 @@ import java.util.Calendar;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import com.prowidesoftware.swift.model.field.DateResolver;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -323,11 +320,9 @@ public class Field333 extends Field implements Serializable, DateContainer {
             //default format (as is)
             return getComponent(7);
         }
-        if (component == 8) {
-            //default format (as is)
-            return getComponent(8);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(8);
     }
 
     /**
@@ -342,7 +337,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -911,32 +906,14 @@ public class Field333 extends Field implements Serializable, DateContainer {
         return this;
     }
 
-    /**
-     * Set the component3 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent3(String)
-     * method.
-     *
-     * @see #setComponent3(String)
-     * @since 9.2.7
-     *
-     * @param component3 the Long with the Session Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field333 setComponent3(java.lang.Long component3) {
-        setComponent(3, SwiftFormatUtils.getLong(component3));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Session Number (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the Session Number content to set
      * @return the field object to enable build pattern
-     * @see #setSessionNumber(java.lang.Long)
      */
     public Field333 setComponent3(java.lang.Number component3) {
 
@@ -967,26 +944,12 @@ public class Field333 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the Session Number (component 3) from a Long object.
-     *
-     * @see #setComponent3(java.lang.Long)
-     *
-     * @param component3 Long with the Session Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field333 setSessionNumber(java.lang.Long component3) {
-        return setComponent3(component3);
-    }
-
-    /**
      * Alternative method setter for field's Session Number (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the Session Number content to set
      * @return the field object to enable build pattern
-     * @see #setSessionNumber(java.lang.Long)
      */
     public Field333 setSessionNumber(java.lang.Number component3) {
         return setComponent3(component3);
@@ -1091,32 +1054,14 @@ public class Field333 extends Field implements Serializable, DateContainer {
         return this;
     }
 
-    /**
-     * Set the component6 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent6(String)
-     * method.
-     *
-     * @see #setComponent6(String)
-     * @since 9.2.7
-     *
-     * @param component6 the Long with the Reason For Closure content to set
-     * @return the field object to enable build pattern
-     */
-    public Field333 setComponent6(java.lang.Long component6) {
-        setComponent(6, SwiftFormatUtils.getLong(component6));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Reason For Closure (component 6) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component6 the Number with the Reason For Closure content to set
      * @return the field object to enable build pattern
-     * @see #setReasonForClosure(java.lang.Long)
      */
     public Field333 setComponent6(java.lang.Number component6) {
 
@@ -1147,26 +1092,12 @@ public class Field333 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the Reason For Closure (component 6) from a Long object.
-     *
-     * @see #setComponent6(java.lang.Long)
-     *
-     * @param component6 Long with the Reason For Closure content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field333 setReasonForClosure(java.lang.Long component6) {
-        return setComponent6(component6);
-    }
-
-    /**
      * Alternative method setter for field's Reason For Closure (component 6) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component6 the Number with the Reason For Closure content to set
      * @return the field object to enable build pattern
-     * @see #setReasonForClosure(java.lang.Long)
      */
     public Field333 setReasonForClosure(java.lang.Number component6) {
         return setComponent6(component6);
@@ -1183,32 +1114,14 @@ public class Field333 extends Field implements Serializable, DateContainer {
         return this;
     }
 
-    /**
-     * Set the component7 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent7(String)
-     * method.
-     *
-     * @see #setComponent7(String)
-     * @since 9.2.7
-     *
-     * @param component7 the Long with the Last Input Sequence Number Received content to set
-     * @return the field object to enable build pattern
-     */
-    public Field333 setComponent7(java.lang.Long component7) {
-        setComponent(7, SwiftFormatUtils.getLong(component7));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Last Input Sequence Number Received (component 7) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component7 the Number with the Last Input Sequence Number Received content to set
      * @return the field object to enable build pattern
-     * @see #setLastInputSequenceNumberReceived(java.lang.Long)
      */
     public Field333 setComponent7(java.lang.Number component7) {
 
@@ -1239,26 +1152,12 @@ public class Field333 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the Last Input Sequence Number Received (component 7) from a Long object.
-     *
-     * @see #setComponent7(java.lang.Long)
-     *
-     * @param component7 Long with the Last Input Sequence Number Received content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field333 setLastInputSequenceNumberReceived(java.lang.Long component7) {
-        return setComponent7(component7);
-    }
-
-    /**
      * Alternative method setter for field's Last Input Sequence Number Received (component 7) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component7 the Number with the Last Input Sequence Number Received content to set
      * @return the field object to enable build pattern
-     * @see #setLastInputSequenceNumberReceived(java.lang.Long)
      */
     public Field333 setLastInputSequenceNumberReceived(java.lang.Number component7) {
         return setComponent7(component7);
@@ -1275,32 +1174,14 @@ public class Field333 extends Field implements Serializable, DateContainer {
         return this;
     }
 
-    /**
-     * Set the component8 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent8(String)
-     * method.
-     *
-     * @see #setComponent8(String)
-     * @since 9.2.7
-     *
-     * @param component8 the Long with the Last Output Sequence Number Sent content to set
-     * @return the field object to enable build pattern
-     */
-    public Field333 setComponent8(java.lang.Long component8) {
-        setComponent(8, SwiftFormatUtils.getLong(component8));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Last Output Sequence Number Sent (component 8) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component8 the Number with the Last Output Sequence Number Sent content to set
      * @return the field object to enable build pattern
-     * @see #setLastOutputSequenceNumberSent(java.lang.Long)
      */
     public Field333 setComponent8(java.lang.Number component8) {
 
@@ -1331,26 +1212,12 @@ public class Field333 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Set the Last Output Sequence Number Sent (component 8) from a Long object.
-     *
-     * @see #setComponent8(java.lang.Long)
-     *
-     * @param component8 Long with the Last Output Sequence Number Sent content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field333 setLastOutputSequenceNumberSent(java.lang.Long component8) {
-        return setComponent8(component8);
-    }
-
-    /**
      * Alternative method setter for field's Last Output Sequence Number Sent (component 8) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component8 the Number with the Last Output Sequence Number Sent content to set
      * @return the field object to enable build pattern
-     * @see #setLastOutputSequenceNumberSent(java.lang.Long)
      */
     public Field333 setLastOutputSequenceNumberSent(java.lang.Number component8) {
         return setComponent8(component8);
@@ -1362,6 +1229,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
      *
      * @return the list of converted components (a Calendar object or null)
      */
+    @Override
     public List<Calendar> dates() {
         return DateResolver.dates(this);
     }
@@ -1439,7 +1307,7 @@ public class Field333 extends Field implements Serializable, DateContainer {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field333(f));
             }

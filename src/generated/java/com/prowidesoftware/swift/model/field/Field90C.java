@@ -34,12 +34,9 @@ import java.util.Currency;
 import com.prowidesoftware.swift.model.field.MonetaryAmountContainer;
 import com.prowidesoftware.swift.model.field.MonetaryAmountResolver;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -235,14 +232,13 @@ public class Field90C extends Field implements Serializable, MonetaryAmountConta
             //default format (as is)
             return getComponent(2);
         }
-        if (component == 3) {
-            //amount, rate
-            java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-            f.setMaximumFractionDigits(13);
-            BigDecimal n = getComponent3AsBigDecimal();
-            if (n != null) {
-                return f.format(n);
-            }
+        // This is the last component, return directly without `if`
+        //amount, rate
+        java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
+        f.setMaximumFractionDigits(13);
+        BigDecimal n = getComponent3AsBigDecimal();
+        if (n != null) {
+            return f.format(n);
         }
         return null;
     }
@@ -259,7 +255,7 @@ public class Field90C extends Field implements Serializable, MonetaryAmountConta
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -517,32 +513,14 @@ public class Field90C extends Field implements Serializable, MonetaryAmountConta
         return this;
     }
 
-    /**
-     * Set the component1 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent1(String)
-     * method.
-     *
-     * @see #setComponent1(String)
-     * @since 9.2.7
-     *
-     * @param component1 the Long with the Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field90C setComponent1(java.lang.Long component1) {
-        setComponent(1, SwiftFormatUtils.getLong(component1));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Number (component 1) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Number content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
      */
     public Field90C setComponent1(java.lang.Number component1) {
 
@@ -573,26 +551,12 @@ public class Field90C extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Set the Number (component 1) from a Long object.
-     *
-     * @see #setComponent1(java.lang.Long)
-     *
-     * @param component1 Long with the Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field90C setNumber(java.lang.Long component1) {
-        return setComponent1(component1);
-    }
-
-    /**
      * Alternative method setter for field's Number (component 1) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Number content to set
      * @return the field object to enable build pattern
-     * @see #setNumber(java.lang.Long)
      */
     public Field90C setNumber(java.lang.Number component1) {
         return setComponent1(component1);
@@ -654,31 +618,12 @@ public class Field90C extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Set the component3 from a BigDecimal object.
-     * <br>
-     * Parses the BigDecimal into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-     * <ul>
-     *     <li>Example: 1234.00 -&gt; 1234,</li>
-     *     <li>Example: 1234 -&gt; 1234,</li>
-     *     <li>Example: 1234.56 -&gt; 1234,56</li>
-     * </ul>
-     * @since 9.2.7
-     *
-     * @param component3 the BigDecimal with the Amount content to set
-     * @return the field object to enable build pattern
-     */
-    public Field90C setComponent3(java.math.BigDecimal component3) {
-        setComponent(3, SwiftFormatUtils.getBigDecimal(component3));
-        return this;
-    }
-    /**
      * Alternative method setter for field's Amount (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
      * @param component3 the Number with the Amount content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
      */
     public Field90C setComponent3(java.lang.Number component3) {
 
@@ -711,52 +656,44 @@ public class Field90C extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * Set the Amount (component 3) from a BigDecimal object.
-     *
-     * @see #setComponent3(java.math.BigDecimal)
-     *
-     * @param component3 BigDecimal with the Amount content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field90C setAmount(java.math.BigDecimal component3) {
-        return setComponent3(component3);
-    }
-
-    /**
      * Alternative method setter for field's Amount (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the Amount content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
      */
     public Field90C setAmount(java.lang.Number component3) {
         return setComponent3(component3);
     }
 
 
+    @Override
     public List<String> currencyStrings() {
         return MonetaryAmountResolver.currencyStrings(this);
     }
 
+    @Override
     public List<Currency> currencies() {
         return MonetaryAmountResolver.currencies(this);
     }
 
+    @Override
     public Currency currency() {
         return MonetaryAmountResolver.resolveCurrency(this);
     }
 
+    @Override
     public String currencyString() {
         return MonetaryAmountResolver.resolveCurrencyString(this);
     }
 
+    @Override
     public void initializeCurrencies(String cur) {
         MonetaryAmountResolver.resolveSetCurrency(this, cur);
     }
 
+    @Override
     public void initializeCurrencies(Currency cur) {
         MonetaryAmountResolver.resolveSetCurrency(this, cur);
     }
@@ -777,6 +714,7 @@ public class Field90C extends Field implements Serializable, MonetaryAmountConta
      * @return the first amount as BigDecimal value. Can be null
      * @see MonetaryAmountResolver#amount(Field)
      */
+    @Override
     public BigDecimal amount() {
         return MonetaryAmountResolver.amount(this);
     }
@@ -845,7 +783,7 @@ public class Field90C extends Field implements Serializable, MonetaryAmountConta
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field90C(f));
             }

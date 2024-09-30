@@ -197,17 +197,14 @@ public class Field31K extends Field implements Serializable, DateContainer {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 1) {
+        if (component != 1) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 31K");
         }
-        if (component == 1) {
-            // date: [YY]YYMMDD
-            java.text.DateFormat f =
-                    java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
-            java.util.Calendar cal = getComponent1AsCalendar();
-            if (cal != null) {
-                return f.format(cal.getTime());
-            }
+        // date: [YY]YYMMDD
+        java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+        java.util.Calendar cal = getComponent1AsCalendar();
+        if (cal != null) {
+            return f.format(cal.getTime());
         }
         return null;
     }
@@ -407,6 +404,7 @@ public class Field31K extends Field implements Serializable, DateContainer {
      *
      * @return the list of converted components (a Calendar object or null)
      */
+    @Override
     public List<Calendar> dates() {
         return DateResolver.dates(this);
     }
@@ -483,7 +481,7 @@ public class Field31K extends Field implements Serializable, DateContainer {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field31K(f));
             }

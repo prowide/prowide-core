@@ -46,11 +46,15 @@ public abstract class BaseMessageTestcase {
     }
 
     protected InputStream getInputStream(String filename) {
-        InputStream is = getClass().getResourceAsStream(filename);
-        if (is == null) {
+        try (InputStream is = BaseMessageTestcase.class.getResourceAsStream(filename)) {
+            if (is == null) {
+                fail(filename + " not found in classpath");
+            }
+            return is;
+        } catch (IOException e) {
             fail(filename + " not found in classpath");
+            return null;
         }
-        return is;
     }
 
     protected String readMessageFromInputStream(InputStream is) {

@@ -32,12 +32,9 @@ import java.math.BigInteger;
 
 import com.prowidesoftware.swift.model.field.GenericField;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -241,11 +238,9 @@ public class Field94L extends Field implements Serializable, GenericField {
             //default format (as is)
             return getComponent(2);
         }
-        if (component == 3) {
-            //default format (as is)
-            return getComponent(3);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(3);
     }
 
     /**
@@ -260,7 +255,7 @@ public class Field94L extends Field implements Serializable, GenericField {
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -506,32 +501,14 @@ public class Field94L extends Field implements Serializable, GenericField {
         return this;
     }
 
-    /**
-     * Set the component3 from a Long object.
-     * <br>
-     * <em>If the component being set is a fixed length number, the argument will not be
-     * padded.</em> It is recommended for these cases to use the setComponent3(String)
-     * method.
-     *
-     * @see #setComponent3(String)
-     * @since 9.2.7
-     *
-     * @param component3 the Long with the Legal Entity Identifier Number content to set
-     * @return the field object to enable build pattern
-     */
-    public Field94L setComponent3(java.lang.Long component3) {
-        setComponent(3, SwiftFormatUtils.getLong(component3));
-        return this;
-    }
 
     /**
      * Alternative method setter for field's Legal Entity Identifier Number (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the Legal Entity Identifier Number content to set
      * @return the field object to enable build pattern
-     * @see #setLegalEntityIdentifierNumber(java.lang.Long)
      */
     public Field94L setComponent3(java.lang.Number component3) {
 
@@ -562,26 +539,12 @@ public class Field94L extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the Legal Entity Identifier Number (component 3) from a Long object.
-     *
-     * @see #setComponent3(java.lang.Long)
-     *
-     * @param component3 Long with the Legal Entity Identifier Number content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field94L setLegalEntityIdentifierNumber(java.lang.Long component3) {
-        return setComponent3(component3);
-    }
-
-    /**
      * Alternative method setter for field's Legal Entity Identifier Number (component 3) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component3 the Number with the Legal Entity Identifier Number content to set
      * @return the field object to enable build pattern
-     * @see #setLegalEntityIdentifierNumber(java.lang.Long)
      */
     public Field94L setLegalEntityIdentifierNumber(java.lang.Number component3) {
         return setComponent3(component3);
@@ -595,6 +558,7 @@ public class Field94L extends Field implements Serializable, GenericField {
      *
      * @return DSS component value or null if the DSS is not set or not available for this field.
      */
+    @Override
     public String getDSS() {
         return null;
     }
@@ -605,6 +569,7 @@ public class Field94L extends Field implements Serializable, GenericField {
      * @see #getDSS()
      * @return true if DSS is present, false otherwise.
      */
+    @Override
     public boolean isDSSPresent() {
         return false;
     }
@@ -619,6 +584,7 @@ public class Field94L extends Field implements Serializable, GenericField {
      *
      * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
      */
+    @Override
     public String getConditionalQualifier() {
         return getComponent(CONDITIONAL_QUALIFIER);
     }
@@ -686,7 +652,7 @@ public class Field94L extends Field implements Serializable, GenericField {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field94L(f));
             }

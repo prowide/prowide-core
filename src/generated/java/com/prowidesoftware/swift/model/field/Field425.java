@@ -29,12 +29,9 @@ import java.util.HashMap;
 
 
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -251,7 +248,6 @@ public class Field425 extends Field implements Serializable {
         final StringBuilder result = new StringBuilder();
         //FIXME serialization 20*(S/S)
         // @NotImplemented
-        int notImplemented;
         return result.toString();
     }
 
@@ -425,11 +421,9 @@ public class Field425 extends Field implements Serializable {
             //default format (as is)
             return getComponent(39);
         }
-        if (component == 40) {
-            //default format (as is)
-            return getComponent(40);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(40);
     }
 
     /**
@@ -444,7 +438,7 @@ public class Field425 extends Field implements Serializable {
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -1407,7 +1401,7 @@ public class Field425 extends Field implements Serializable {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field425(f));
             }
@@ -1422,9 +1416,9 @@ public class Field425 extends Field implements Serializable {
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
+    @SuppressWarnings("unused")
     public static Field425 fromJson(final String json) {
 
-        final Field425 field = new Field425();
 
 
 
@@ -1465,9 +1459,7 @@ public class Field425 extends Field implements Serializable {
 
 
 
-
-
-        return field;
+        return new Field425();
     }
 
 

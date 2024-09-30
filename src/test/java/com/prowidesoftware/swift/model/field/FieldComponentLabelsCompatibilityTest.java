@@ -16,6 +16,7 @@
 package com.prowidesoftware.swift.model.field;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -33,14 +34,19 @@ public class FieldComponentLabelsCompatibilityTest {
         String dottedPackage = pack.replaceAll("[/]", ".");
         List<Class> classes = new ArrayList<>();
         URL upackage = cl.getResource(pack);
-        BufferedReader reader = new BufferedReader(new InputStreamReader((InputStream) upackage.getContent()));
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            if (line.endsWith(".class")
-                    && line.startsWith("Field")
-                    && !line.contains("Test")
-                    && !line.equals("Field.class")) {
-                classes.add(Class.forName(dottedPackage + "." + line.substring(0, line.lastIndexOf('.'))));
+        if (upackage == null) {
+            throw new IOException("Package not found: " + pack);
+        }
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader((InputStream) upackage.getContent()))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.endsWith(".class")
+                        && line.startsWith("Field")
+                        && !line.contains("Test")
+                        && !line.equals("Field.class")) {
+                    classes.add(Class.forName(dottedPackage + "." + line.substring(0, line.lastIndexOf('.'))));
+                }
             }
         }
         return classes;

@@ -43,12 +43,7 @@ public class FINWriterVisitorTest {
         this.visitor = new FINWriterVisitor(this.io);
     }
 
-    @SuppressWarnings("unused")
     private String getResult() {
-        return this.getResult("");
-    }
-
-    private String getResult(String testName) {
         return this.io.toString();
     }
 
@@ -60,7 +55,7 @@ public class FINWriterVisitorTest {
         this.visitor.startBlock1(msg.getBlock1());
         this.visitor.value(msg.getBlock1(), msg.getBlock1().getValue());
         this.visitor.endBlock1(msg.getBlock1());
-        assertEquals("{1:" + Constants.B1_DATA + "}", getResult("testWriteBlock1"));
+        assertEquals("{1:" + Constants.B1_DATA + "}", getResult());
     }
 
     /**
@@ -72,7 +67,7 @@ public class FINWriterVisitorTest {
         msg.getBlock1().setValue(Constants.B1_DATA);
 
         msg.visit(this.visitor);
-        assertEquals("{1:" + Constants.B1_DATA + "}{2:IN}{3:}{4:\r\n-}{5:}", getResult("testWriteBlock1_2"));
+        assertEquals("{1:" + Constants.B1_DATA + "}{2:IN}{3:}{4:\r\n-}{5:}", getResult());
     }
 
     @Test
@@ -83,7 +78,7 @@ public class FINWriterVisitorTest {
         msg.setBlock3(null);
 
         msg.visit(this.visitor);
-        assertEquals("{1:" + Constants.B1_DATA + "}{4:\r\n-}{5:}", getResult("testWriteBlock1_3"));
+        assertEquals("{1:" + Constants.B1_DATA + "}{4:\r\n-}{5:}", getResult());
     }
 
     @Test
@@ -95,7 +90,7 @@ public class FINWriterVisitorTest {
         msg.getBlock3().append(new Tag("2:val2"));
 
         msg.visit(this.visitor);
-        assertEquals("{3:{1:val1}{2:val2}}{4:\r\n-}{5:}", getResult("testBug1690027_1"));
+        assertEquals("{3:{1:val1}{2:val2}}{4:\r\n-}{5:}", getResult());
     }
 
     @Test
@@ -110,7 +105,7 @@ public class FINWriterVisitorTest {
         msg.getBlock4().append(new Tag("2:val2"));
 
         msg.visit(this.visitor);
-        assertEquals("{4:\r\n:1:val1\r\n:2:val2\r\n-}", getResult("testWriteBlock4"));
+        assertEquals("{4:\r\n:1:val1\r\n:2:val2\r\n-}", getResult());
     }
 
     @Test
@@ -125,7 +120,7 @@ public class FINWriterVisitorTest {
         msg.getBlock4().append(new Tag("2:val2"));
 
         msg.visit(this.visitor);
-        assertEquals("{2:I028BBBBUSC0XXXXN}{4:{1:val1}{2:val2}}", getResult("testWriteBlock4_2"));
+        assertEquals("{2:I028BBBBUSC0XXXXN}{4:{1:val1}{2:val2}}", getResult());
     }
 
     @Test
@@ -140,9 +135,7 @@ public class FINWriterVisitorTest {
         msg.getBlock4().append(new Tag("2:val2"));
 
         msg.visit(this.visitor);
-        assertEquals(
-                "{1:F01VNDZBET2AXXX0027000580}{2:I028BBBBUSC0XXXXN}{4:{1:val1}{2:val2}}",
-                getResult("testWriteBlock4_3"));
+        assertEquals("{1:F01VNDZBET2AXXX0027000580}{2:I028BBBBUSC0XXXXN}{4:{1:val1}{2:val2}}", getResult());
     }
 
     @Test
@@ -157,6 +150,6 @@ public class FINWriterVisitorTest {
         msg.getBlock5().append(new Tag("CHK:valchk"));
 
         msg.visit(this.visitor);
-        assertEquals("{5:{MAC:valmac}{CHK:valchk}}", getResult("testBug1601122_1"));
+        assertEquals("{5:{MAC:valmac}{CHK:valchk}}", getResult());
     }
 }

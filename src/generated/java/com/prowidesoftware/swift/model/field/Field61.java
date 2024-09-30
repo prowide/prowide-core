@@ -37,12 +37,9 @@ import com.prowidesoftware.swift.model.field.AmountResolver;
 import com.prowidesoftware.swift.model.field.DateContainer;
 import com.prowidesoftware.swift.model.field.DateResolver;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -348,11 +345,9 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
             //default format (as is)
             return getComponent(9);
         }
-        if (component == 10) {
-            //default format (as is)
-            return getComponent(10);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(10);
     }
 
     /**
@@ -367,7 +362,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -935,31 +930,12 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
     }
 
     /**
-     * Set the component5 from a BigDecimal object.
-     * <br>
-     * Parses the BigDecimal into a SWIFT amount with truncated zero decimals and mandatory decimal separator.
-     * <ul>
-     *     <li>Example: 1234.00 -&gt; 1234,</li>
-     *     <li>Example: 1234 -&gt; 1234,</li>
-     *     <li>Example: 1234.56 -&gt; 1234,56</li>
-     * </ul>
-     * @since 9.2.7
-     *
-     * @param component5 the BigDecimal with the Amount content to set
-     * @return the field object to enable build pattern
-     */
-    public Field61 setComponent5(java.math.BigDecimal component5) {
-        setComponent(5, SwiftFormatUtils.getBigDecimal(component5));
-        return this;
-    }
-    /**
      * Alternative method setter for field's Amount (component 5) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
      * @param component5 the Number with the Amount content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
      */
     public Field61 setComponent5(java.lang.Number component5) {
 
@@ -992,26 +968,12 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
     }
 
     /**
-     * Set the Amount (component 5) from a BigDecimal object.
-     *
-     * @see #setComponent5(java.math.BigDecimal)
-     *
-     * @param component5 BigDecimal with the Amount content to set
-     * @return the field object to enable build pattern
-     * @since 9.2.7
-     */
-    public Field61 setAmount(java.math.BigDecimal component5) {
-        return setComponent5(component5);
-    }
-
-    /**
      * Alternative method setter for field's Amount (component 5) as Number
-     *
+     * <p>
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component5 the Number with the Amount content to set
      * @return the field object to enable build pattern
-     * @see #setAmount(java.math.BigDecimal)
      */
     public Field61 setAmount(java.lang.Number component5) {
         return setComponent5(component5);
@@ -1139,6 +1101,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
      * @return the first amount as BigDecimal value. Can be null
      * @see AmountResolver#amount(Field)
      */
+    @Override
     public BigDecimal amount() {
         return AmountResolver.amount(this);
     }
@@ -1149,6 +1112,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
      * @return the list of converted components (a Calendar object or null)
      * @since 9.2.7
      */
+    @Override
     public List<Calendar> dates() {
         return DateResolver.dates(this);
     }
@@ -1227,7 +1191,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field61(f));
             }
@@ -1243,6 +1207,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line) {
         return getLine(line, 0);
     }
@@ -1256,6 +1221,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line, int offset) {
         Field61 cp = newInstance(this);
         return getLine(cp, line, null, offset);
@@ -1268,6 +1234,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
      * @return lines content or empty list if field's value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLines() {
         return SwiftParseUtils.getLines(getValue());
     }
@@ -1280,6 +1247,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLines(int offset) {
         Field61 cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
@@ -1294,6 +1262,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
      * @return found lines or empty list if value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end) {
         return getLinesBetween(start, end, 0);
     }
@@ -1308,6 +1277,7 @@ public class Field61 extends Field implements Serializable, AmountContainer, Dat
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end, int offset) {
         Field61 cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, start, end, offset));

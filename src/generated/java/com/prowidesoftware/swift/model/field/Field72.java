@@ -30,12 +30,9 @@ import java.util.HashMap;
 
 import com.prowidesoftware.swift.model.field.MultiLineField;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.prowidesoftware.swift.model.field.SwiftParseUtils;
-import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -246,7 +243,7 @@ public class Field72 extends StructuredNarrativeField implements Serializable, N
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field72(f));
             }
@@ -262,6 +259,7 @@ public class Field72 extends StructuredNarrativeField implements Serializable, N
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line) {
         return getLine(line, 0);
     }
@@ -275,6 +273,7 @@ public class Field72 extends StructuredNarrativeField implements Serializable, N
      * @return line content or null if not present or if line number is above the expected
      * @since 7.7
      */
+    @Override
     public String getLine(int line, int offset) {
         Field72 cp = newInstance(this);
         return getLine(cp, line, null, offset);
@@ -287,6 +286,7 @@ public class Field72 extends StructuredNarrativeField implements Serializable, N
      * @return lines content or empty list if field's value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLines() {
         return SwiftParseUtils.getLines(getValue());
     }
@@ -299,6 +299,7 @@ public class Field72 extends StructuredNarrativeField implements Serializable, N
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLines(int offset) {
         Field72 cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
@@ -313,6 +314,7 @@ public class Field72 extends StructuredNarrativeField implements Serializable, N
      * @return found lines or empty list if value is empty
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end) {
         return getLinesBetween(start, end, 0);
     }
@@ -327,6 +329,7 @@ public class Field72 extends StructuredNarrativeField implements Serializable, N
      * @return found lines or empty list if lines are not present or the offset is invalid
      * @since 7.7
      */
+    @Override
     public List<String> getLinesBetween(int start, int end, int offset) {
         Field72 cp = newInstance(this);
         return SwiftParseUtils.getLines(getLine(cp, start, end, offset));
