@@ -100,7 +100,7 @@ public abstract class OptionLPartyField extends Field {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 1) {
+        if (component != 1) {
             throw new IllegalArgumentException("invalid component number " + component + " for field " + getName());
         }
         // default format (as is)

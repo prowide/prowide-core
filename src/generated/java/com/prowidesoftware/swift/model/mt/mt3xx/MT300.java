@@ -2794,19 +2794,17 @@ public class MT300 extends AbstractMT implements Serializable {
     public SequenceB1 getSequenceB1(SwiftTagListBlock parentSequence) {
         if (parentSequence != null && !parentSequence.isEmpty()) {
             final SwiftTagListBlock content = parentSequence.getSubBlock(SequenceB1.START, SequenceB1.END);
+            if (content == null) {
+                if (log.isLoggable(java.util.logging.Level.FINE)) {
+                    log.fine("content for sequence SequenceB1: is null");
+                }
+                return new SequenceB1();
+            }
             content.removeTag(SequenceB1.END);
             if (log.isLoggable(java.util.logging.Level.FINE)) {
-                if (content == null) {
-                    log.fine("content for sequence SequenceB1: is null");
-                } else {
-                    log.fine("content for sequence SequenceB1: "+content.tagNamesList());
-                }
+                log.fine("content for sequence SequenceB1: "+content.tagNamesList());
             }
-            if (content == null) {
-                return new SequenceB1();
-            } else {
-                return new SequenceB1(content);
-            }
+            return new SequenceB1(content);
         }
         return null;
     }

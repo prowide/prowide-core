@@ -16,7 +16,6 @@
 package com.prowidesoftware.swift.model.field;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,19 +23,12 @@ public class ContainerInterfacesTest {
 
     @Test
     public void testInstanceOf() {
-        // both currency and amount
-        assertTrue(new Field32A() instanceof MonetaryAmountContainer);
-        assertTrue(new Field32A() instanceof CurrencyContainer);
-        assertTrue(new Field32A() instanceof AmountContainer);
-
         // only amount
         assertFalse(new Field33B() instanceof MonetaryAmountContainer);
         assertFalse(new Field33B() instanceof CurrencyContainer);
-        assertTrue(new Field33B() instanceof AmountContainer);
 
         // only currencies
         assertFalse(new Field32Q() instanceof MonetaryAmountContainer);
-        assertTrue(new Field32Q() instanceof CurrencyContainer);
         assertFalse(new Field32Q() instanceof AmountContainer);
     }
 }

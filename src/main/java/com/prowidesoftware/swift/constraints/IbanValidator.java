@@ -37,12 +37,13 @@ public class IbanValidator implements ConstraintValidator<IbanConstraint, String
         if (StringUtils.isBlank(iban)) {
             return true;
         }
-        IbanValidationResult result = new IBAN(iban).validate();
+        IbanValidationResult result = IBAN.validate(iban);
         if (result == IbanValidationResult.OK) {
             return true;
         } else {
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate(result.message()).addConstraintViolation();
+
             return false;
         }
     }

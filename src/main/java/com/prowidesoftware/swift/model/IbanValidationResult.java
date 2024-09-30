@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.model;
 
+import static com.prowidesoftware.swift.utils.ConstraintUtils.escapeEcmaScript;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -68,7 +70,7 @@ public enum IbanValidationResult {
     public String message() {
         String msg = this.message;
         for (Entry<String, String> e : vars.entrySet()) {
-            msg = msg.replace("${" + e.getKey() + "}", e.getValue());
+            msg = msg.replace("${" + e.getKey() + "}", escapeEcmaScript(e.getValue()));
         }
         return msg;
     }

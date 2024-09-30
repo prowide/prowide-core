@@ -201,13 +201,11 @@ public class Field13E extends Field implements Serializable, DateContainer {
                 return f.format(cal.getTime());
             }
         }
-        if (component == 2) {
-            // time: HH[mm]
-            java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
-            java.util.Calendar cal = getComponent2AsCalendar();
-            if (cal != null) {
-                return f.format(cal.getTime());
-            }
+        // time: HH[mm]
+        java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
+        java.util.Calendar cal = getComponent2AsCalendar();
+        if (cal != null) {
+            return f.format(cal.getTime());
         }
         return null;
     }
@@ -477,6 +475,7 @@ public class Field13E extends Field implements Serializable, DateContainer {
      *
      * @return the list of converted components (a Calendar object or null)
      */
+    @Override
     public List<Calendar> dates() {
         return DateResolver.dates(this);
     }
@@ -553,7 +552,7 @@ public class Field13E extends Field implements Serializable, DateContainer {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null && arr.length > 0) {
+        if (arr != null) {
             for (final Tag f : arr) {
                 result.add(new Field13E(f));
             }
