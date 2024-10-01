@@ -19,17 +19,15 @@ import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.utils.SafeXmlUtils;
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.logging.Level;
+import javax.xml.parsers.DocumentBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import java.io.ByteArrayInputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.logging.Level;
-
-import javax.xml.parsers.DocumentBuilder;
 
 /**
  * This is the main parser for WIFE's XML internal representation.<br>
