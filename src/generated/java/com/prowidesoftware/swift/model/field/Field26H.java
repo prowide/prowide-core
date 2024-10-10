@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -62,7 +62,7 @@ public class Field26H extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -73,27 +73,6 @@ public class Field26H extends Field implements Serializable {
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_26H = "26H";
-
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "S";
 
 	/**
 	 * Component number for the Counterparty Reference subfield.
@@ -106,12 +85,6 @@ public class Field26H extends Field implements Serializable {
      */
     public static final Integer COLLATERAL_TYPE = 1;
 
-	/**
-	 * @deprecated use #COUNTERPARTY_REFERENCE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer REFERENCE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -219,16 +192,6 @@ public class Field26H extends Field implements Serializable {
         }
         //default format (as is)
         return getComponent(1);
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "S";
     }
 
     /**
@@ -356,23 +319,12 @@ public class Field26H extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Counterparty Reference
-     * @deprecated use #getCounterpartyReference() instead
      * @since 9.2.7
      */
     public String getCollateralType() {
         return getCounterpartyReference();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Counterparty Reference
-     * @deprecated use #getCounterpartyReference() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getReference() {
-        return getCounterpartyReference();
-    }
 
     /**
      * Set the component 1 (Counterparty Reference).
@@ -395,19 +347,7 @@ public class Field26H extends Field implements Serializable {
         return setComponent1(component1);
     }
 
-    /**
-     * @deprecated use #setCounterpartyReference(String) instead
-     */
     public Field26H setCollateralType(String component1) {
-        return setCounterpartyReference(component1);
-    }
-
-    /**
-     * @deprecated use #setCounterpartyReference(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field26H setReference(String component1) {
         return setCounterpartyReference(component1);
     }
 

@@ -52,7 +52,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @deprecated This field has been moved to the Prowide Integrator since it is only used in SCORE messages, not in the general MT standard
  */
-@ProwideDeprecated(phase3 = TargetYear.SRU2024)
+@ProwideDeprecated(phase4 = TargetYear.SRU2025)
 public class Field34S extends Field implements Serializable, AmountContainer {
     /**
      * Constant identifying the SRU to which this class belongs to.
@@ -68,27 +68,6 @@ public class Field34S extends Field implements Serializable, AmountContainer {
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_34S = "34S";
-
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String PARSER_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String COMPONENTS_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String TYPES_PATTERN = "SI";
 
     /**
      * Component number for the Currency subfield.
@@ -217,16 +196,6 @@ public class Field34S extends Field implements Serializable, AmountContainer {
             return f.format(n);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SN";
     }
 
     /**
@@ -370,21 +339,6 @@ public class Field34S extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Get the component 2 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent2AsBigDecimal()
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        return getComponent2AsBigDecimal();
-    }
-
-    /**
      * Gets the Amount (component 2).
      * @return the Amount from component 2
      */
@@ -399,21 +353,6 @@ public class Field34S extends Field implements Serializable, AmountContainer {
      */
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getComponent2AsBigDecimal();
-    }
-
-    /**
-     * Get the Amount (component 2) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent2AsBigDecimal()</code> to get the proper value.
-     *
-     * @return the component 2 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getAmountAsBigDecimal()
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**

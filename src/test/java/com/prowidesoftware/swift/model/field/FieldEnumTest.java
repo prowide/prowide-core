@@ -23,7 +23,7 @@ class FieldEnu5mTest {
     @Test
     void testfromFieldNameInvalid() {
         // Validate that fromFieldName returns null when an invalid code is provided
-        assertNull(FieldEnum.fromFieldName("999A"));
+        assertNull(FieldEnum.fromFieldName("930K"));
         assertNull(FieldEnum.fromFieldName("ABC"));
         assertNull(FieldEnum.fromFieldName(""));
     }

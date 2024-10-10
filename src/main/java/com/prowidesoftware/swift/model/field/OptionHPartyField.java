@@ -15,9 +15,6 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import java.util.*;
 import org.apache.commons.lang3.StringUtils;
 
@@ -43,13 +40,6 @@ import org.apache.commons.lang3.StringUtils;
  */
 public abstract class OptionHPartyField extends Field {
     public static final String PARSER_PATTERN = "/S$S[$S]0-3";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String COMPONENTS_PATTERN = "SSSSS";
 
     /**
      * Types pattern
@@ -142,17 +132,6 @@ public abstract class OptionHPartyField extends Field {
         }
         // default format (as is)
         return getComponent(component);
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    @Override
-    public final String componentsPattern() {
-        DeprecationUtils.phase3(getClass(), "componentsPattern()", "Use typesPattern() instead.");
-        return typesPattern();
     }
 
     /**

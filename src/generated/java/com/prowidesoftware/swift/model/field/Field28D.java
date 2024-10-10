@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -65,7 +65,7 @@ public class Field28D extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -77,50 +77,17 @@ public class Field28D extends Field implements Serializable {
      */
     public static final String F_28D = "28D";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S/S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "NN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "NN";
-
 	/**
 	 * Component number for the Message Index subfield.
 	 */
 	public static final Integer MESSAGE_INDEX = 1;
 
-	/**
-	 * @deprecated use #MESSAGE_INDEX instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer STATEMENT_NUMBER = 1;
 
 	/**
 	 * Component number for the Total subfield.
 	 */
 	public static final Integer TOTAL = 2;
 
-	/**
-	 * @deprecated use #TOTAL instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer SEQUENCE_NUMBER = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -236,16 +203,6 @@ public class Field28D extends Field implements Serializable {
         // This is the last component, return directly without `if`
         //default format (as is)
         return getComponent(2);
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "NN";
     }
 
     /**
@@ -377,16 +334,6 @@ public class Field28D extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent1AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        Long l = getComponent1AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Message Index (component 1).
      * @return the Message Index from component 1
      */
@@ -394,16 +341,6 @@ public class Field28D extends Field implements Serializable {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Message Index
-     * @deprecated use #getMessageIndex() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getStatementNumber() {
-        return getMessageIndex();
-    }
 
     /**
      * Get the Message Index (component 1) as Long
@@ -412,33 +349,6 @@ public class Field28D extends Field implements Serializable {
      */
     public java.lang.Long getMessageIndexAsLong() {
         return getComponent1AsLong();
-    }
-
-    /**
-     * @deprecated use #getMessageIndexAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getMessageIndexAsNumber() {
-        return getComponent1AsNumber();
-    }
-
-    /**
-     * @deprecated use #getMessageIndexAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Long getStatementNumberAsLong() {
-        return getMessageIndexAsLong();
-    }
-
-    /**
-     * @deprecated use #getMessageIndexAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getStatementNumberAsNumber() {
-        return getMessageIndexAsNumber();
     }
 
     /**
@@ -460,16 +370,6 @@ public class Field28D extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Total (component 2).
      * @return the Total from component 2
      */
@@ -477,16 +377,6 @@ public class Field28D extends Field implements Serializable {
         return getComponent2();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Total
-     * @deprecated use #getTotal() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getSequenceNumber() {
-        return getTotal();
-    }
 
     /**
      * Get the Total (component 2) as Long
@@ -495,33 +385,6 @@ public class Field28D extends Field implements Serializable {
      */
     public java.lang.Long getTotalAsLong() {
         return getComponent2AsLong();
-    }
-
-    /**
-     * @deprecated use #getTotalAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getTotalAsNumber() {
-        return getComponent2AsNumber();
-    }
-
-    /**
-     * @deprecated use #getTotalAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Long getSequenceNumberAsLong() {
-        return getTotalAsLong();
-    }
-
-    /**
-     * @deprecated use #getTotalAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getSequenceNumberAsNumber() {
-        return getTotalAsNumber();
     }
 
     /**
@@ -585,24 +448,6 @@ public class Field28D extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #setMessageIndex(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field28D setStatementNumber(String component1) {
-        return setMessageIndex(component1);
-    }
-
-    /**
-     * @deprecated use #setMessageIndex(java.lang.Long) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field28D setStatementNumber(java.lang.Number component1) {
-        return setMessageIndex(component1);
-    }
-
-    /**
      * Set the component 2 (Total).
      *
      * @param component2 the Total to set
@@ -660,24 +505,6 @@ public class Field28D extends Field implements Serializable {
      */
     public Field28D setTotal(java.lang.Number component2) {
         return setComponent2(component2);
-    }
-
-    /**
-     * @deprecated use #setTotal(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field28D setSequenceNumber(String component2) {
-        return setTotal(component2);
-    }
-
-    /**
-     * @deprecated use #setTotal(java.lang.Long) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field28D setSequenceNumber(java.lang.Number component2) {
-        return setTotal(component2);
     }
 
 

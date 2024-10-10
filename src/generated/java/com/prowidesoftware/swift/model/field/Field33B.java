@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -67,7 +67,7 @@ public class Field33B extends Field implements Serializable, AmountContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -78,27 +78,6 @@ public class Field33B extends Field implements Serializable, AmountContainer {
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_33B = "33B";
-
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SI";
 
 	/**
 	 * Component number for the Currency subfield.
@@ -234,16 +213,6 @@ public class Field33B extends Field implements Serializable, AmountContainer {
             return f.format(n);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SN";
     }
 
     /**
@@ -389,15 +358,6 @@ public class Field33B extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated use #getComponent2AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        return getComponent2AsBigDecimal();
-    }
-
-    /**
      * Gets the Amount (component 2).
      * @return the Amount from component 2
      */
@@ -407,7 +367,6 @@ public class Field33B extends Field implements Serializable, AmountContainer {
 
     /**
      * Alternative method getter for field's Amount
-     * @deprecated use #getAmount() instead
      * @since 9.2.7
      */
     public String getPrice() {
@@ -424,29 +383,10 @@ public class Field33B extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated use #getAmountAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getComponent2AsNumber();
-    }
-
-    /**
-     * @deprecated use #getAmountAsBigDecimal() instead
      * @since 9.2.7
      */
     public java.math.BigDecimal getPriceAsBigDecimal() {
         return getAmountAsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAmountAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getPriceAsNumber() {
-        return getAmountAsNumber();
     }
 
     /**
@@ -531,16 +471,10 @@ public class Field33B extends Field implements Serializable, AmountContainer {
         return setComponent2(component2);
     }
 
-    /**
-     * @deprecated use #setAmount(String) instead
-     */
     public Field33B setPrice(String component2) {
         return setAmount(component2);
     }
 
-    /**
-     * @deprecated use #setAmount(java.math.BigDecimal) instead
-     */
     public Field33B setPrice(java.lang.Number component2) {
         return setAmount(component2);
     }

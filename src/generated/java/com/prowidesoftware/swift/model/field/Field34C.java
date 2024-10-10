@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -70,7 +70,7 @@ public class Field34C extends Field implements Serializable, MonetaryAmountConta
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -81,27 +81,6 @@ public class Field34C extends Field implements Serializable, MonetaryAmountConta
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_34C = "34C";
-
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S/[c]<CUR>N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSCN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSCI";
 
 	/**
 	 * Component number for the Commission Type subfield.
@@ -118,24 +97,12 @@ public class Field34C extends Field implements Serializable, MonetaryAmountConta
 	 */
 	public static final Integer CURRENCYPERCENT = 3;
 
-	/**
-	 * @deprecated use #CURRENCYPERCENT instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer CURRENCY = 3;
 
 	/**
 	 * Component number for the Amount/Rate subfield.
 	 */
 	public static final Integer AMOUNTRATE = 4;
 
-	/**
-	 * @deprecated use #AMOUNTRATE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer AMOUNT = 4;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -277,16 +244,6 @@ public class Field34C extends Field implements Serializable, MonetaryAmountConta
             return f.format(n);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSCN";
     }
 
     /**
@@ -465,16 +422,6 @@ public class Field34C extends Field implements Serializable, MonetaryAmountConta
         return getComponent3();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Currency/Percent
-     * @deprecated use #getCurrencyPercent() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getCurrency() {
-        return getCurrencyPercent();
-    }
 
     /**
      * Get the Currency/Percent (component 3) as Currency
@@ -482,15 +429,6 @@ public class Field34C extends Field implements Serializable, MonetaryAmountConta
      */
     public java.util.Currency getCurrencyPercentAsCurrency() {
         return getComponent3AsCurrency();
-    }
-
-    /**
-     * @deprecated use #getCurrencyPercentAsCurrency() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.util.Currency getCurrencyAsCurrency() {
-        return getCurrencyPercentAsCurrency();
     }
 
     /**
@@ -512,15 +450,6 @@ public class Field34C extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * @deprecated use #getComponent4AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent4AsNumber() {
-        return getComponent4AsBigDecimal();
-    }
-
-    /**
      * Gets the Amount/Rate (component 4).
      * @return the Amount/Rate from component 4
      */
@@ -528,16 +457,6 @@ public class Field34C extends Field implements Serializable, MonetaryAmountConta
         return getComponent4();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Amount/Rate
-     * @deprecated use #getAmountRate() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getAmount() {
-        return getAmountRate();
-    }
 
     /**
      * Get the Amount/Rate (component 4) as BigDecimal
@@ -546,33 +465,6 @@ public class Field34C extends Field implements Serializable, MonetaryAmountConta
      */
     public java.math.BigDecimal getAmountRateAsBigDecimal() {
         return getComponent4AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAmountRateAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountRateAsNumber() {
-        return getComponent4AsNumber();
-    }
-
-    /**
-     * @deprecated use #getAmountRateAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.math.BigDecimal getAmountAsBigDecimal() {
-        return getAmountRateAsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAmountRateAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getAmountRateAsNumber();
     }
 
     /**
@@ -662,24 +554,6 @@ public class Field34C extends Field implements Serializable, MonetaryAmountConta
     }
 
     /**
-     * @deprecated use #setCurrencyPercent(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field34C setCurrency(String component3) {
-        return setCurrencyPercent(component3);
-    }
-
-    /**
-     * @deprecated use #setComponent3(java.util.Currency) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field34C setCurrency(java.util.Currency component3) {
-        return setCurrencyPercent(component3);
-    }
-
-    /**
      * Set the component 4 (Amount/Rate).
      *
      * @param component4 the Amount/Rate to set
@@ -738,24 +612,6 @@ public class Field34C extends Field implements Serializable, MonetaryAmountConta
      */
     public Field34C setAmountRate(java.lang.Number component4) {
         return setComponent4(component4);
-    }
-
-    /**
-     * @deprecated use #setAmountRate(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field34C setAmount(String component4) {
-        return setAmountRate(component4);
-    }
-
-    /**
-     * @deprecated use #setAmountRate(java.math.BigDecimal) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field34C setAmount(java.lang.Number component4) {
-        return setAmountRate(component4);
     }
 
 

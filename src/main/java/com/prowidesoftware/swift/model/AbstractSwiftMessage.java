@@ -18,8 +18,6 @@ package com.prowidesoftware.swift.model;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.prowidesoftware.JsonSerializable;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.utils.Lib;
 import java.io.File;
 import java.io.IOException;
@@ -163,27 +161,6 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     public AbstractSwiftMessage() {}
 
     /**
-     * @deprecated Use {@link #AbstractSwiftMessage(String, FileFormat, MessageMetadataStrategy)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    protected AbstractSwiftMessage(final String content) {
-        this.message = content;
-        updateFromMessage();
-    }
-
-    /**
-     * @deprecated Use {@link #AbstractSwiftMessage(String, FileFormat, MessageMetadataStrategy)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    protected AbstractSwiftMessage(final String content, final FileFormat fileFormat) {
-        this.message = content;
-        this.fileFormat = fileFormat;
-        updateFromMessage();
-    }
-
-    /**
      * Creates a new message reading the message the content from a string.
      *
      * <p>The complete string content will be read and set as raw message content, but if the string contains
@@ -200,29 +177,6 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
         this.message = StringUtils.trim(content);
         this.fileFormat = fileFormat;
         updateFromMessage(metadataStrategy);
-    }
-
-    /**
-     * @since 7.7
-     * @deprecated Use {@link #AbstractSwiftMessage(InputStream, FileFormat, MessageMetadataStrategy)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    protected AbstractSwiftMessage(final InputStream stream) throws IOException {
-        this.message = Lib.readStream(stream);
-        updateFromMessage();
-    }
-
-    /**
-     * @since 7.8.4
-     * @deprecated Use {@link #AbstractSwiftMessage(InputStream, FileFormat, MessageMetadataStrategy)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    protected AbstractSwiftMessage(final InputStream stream, final FileFormat fileFormat) throws IOException {
-        this.message = Lib.readStream(stream);
-        this.fileFormat = fileFormat;
-        updateFromMessage();
     }
 
     /**
@@ -243,31 +197,6 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
         this.message = Lib.readStream(stream);
         this.fileFormat = fileFormat;
         updateFromMessage(metadataStrategy);
-    }
-
-    /**
-     * @since 7.7
-     * @deprecated Use {@link #AbstractSwiftMessage(File, FileFormat, MessageMetadataStrategy)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    protected AbstractSwiftMessage(final File file) throws IOException {
-        this.message = Lib.readFile(file);
-        this.filename = file.getAbsolutePath();
-        updateFromMessage();
-    }
-
-    /**
-     * @since 7.8.4
-     * @deprecated Use {@link #AbstractSwiftMessage(File, FileFormat, MessageMetadataStrategy)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    protected AbstractSwiftMessage(final File file, final FileFormat fileFormat) throws IOException {
-        this.message = Lib.readFile(file);
-        this.filename = file.getAbsolutePath();
-        this.fileFormat = fileFormat;
-        updateFromMessage();
     }
 
     /**

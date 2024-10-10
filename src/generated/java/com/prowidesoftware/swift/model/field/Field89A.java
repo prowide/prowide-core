@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -68,7 +68,7 @@ public class Field89A extends OptionAPartyField implements Serializable, BICCont
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -236,24 +236,6 @@ public class Field89A extends OptionAPartyField implements Serializable, BICCont
      */
     public Field89A setIdentifierCode(com.prowidesoftware.swift.model.BIC component3) {
         return setComponent3(component3);
-    }
-
-    /**
-     * @deprecated use #setIdentifierCode(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field89A setBIC(String component3) {
-        return setIdentifierCode(component3);
-    }
-
-    /**
-     * @deprecated use #setComponent3(com.prowidesoftware.swift.model.BIC) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field89A setBIC(com.prowidesoftware.swift.model.BIC component3) {
-        return setIdentifierCode(component3);
     }
 
 

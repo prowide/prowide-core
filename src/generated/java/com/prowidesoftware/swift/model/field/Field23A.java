@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -63,7 +63,7 @@ public class Field23A extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -75,50 +75,17 @@ public class Field23A extends Field implements Serializable {
      */
     public static final String F_23A = "23A";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S/S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SS";
-
 	/**
 	 * Component number for the Type Of Swap subfield.
 	 */
 	public static final Integer TYPE_OF_SWAP = 1;
 
-	/**
-	 * @deprecated use #TYPE_OF_SWAP instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer CODE = 1;
 
 	/**
 	 * Component number for the Settlement Method subfield.
 	 */
 	public static final Integer SETTLEMENT_METHOD = 2;
 
-	/**
-	 * @deprecated use #SETTLEMENT_METHOD instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer ADDITIONAL_INFORMATION = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -234,16 +201,6 @@ public class Field23A extends Field implements Serializable {
         // This is the last component, return directly without `if`
         //default format (as is)
         return getComponent(2);
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SS";
     }
 
     /**
@@ -372,16 +329,6 @@ public class Field23A extends Field implements Serializable {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Type Of Swap
-     * @deprecated use #getTypeOfSwap() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getCode() {
-        return getTypeOfSwap();
-    }
 
     /**
      * Gets the component 2 (Settlement Method).
@@ -399,16 +346,6 @@ public class Field23A extends Field implements Serializable {
         return getComponent2();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Settlement Method
-     * @deprecated use #getSettlementMethod() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getAdditionalInformation() {
-        return getSettlementMethod();
-    }
 
     /**
      * Set the component 1 (Type Of Swap).
@@ -432,15 +369,6 @@ public class Field23A extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #setTypeOfSwap(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field23A setCode(String component1) {
-        return setTypeOfSwap(component1);
-    }
-
-    /**
      * Set the component 2 (Settlement Method).
      *
      * @param component2 the Settlement Method to set
@@ -459,15 +387,6 @@ public class Field23A extends Field implements Serializable {
      */
     public Field23A setSettlementMethod(String component2) {
         return setComponent2(component2);
-    }
-
-    /**
-     * @deprecated use #setSettlementMethod(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field23A setAdditionalInformation(String component2) {
-        return setSettlementMethod(component2);
     }
 
 

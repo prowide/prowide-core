@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -62,7 +62,7 @@ public class Field22A extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -73,27 +73,6 @@ public class Field22A extends Field implements Serializable {
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_22A = "22A";
-
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "S";
 
 	/**
 	 * Component number for the Type subfield.
@@ -221,16 +200,6 @@ public class Field22A extends Field implements Serializable {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "S";
-    }
-
-    /**
      * Returns the field component types pattern.
      * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -355,7 +324,6 @@ public class Field22A extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Type
-     * @deprecated use #getType() instead
      * @since 9.2.7
      */
     public String getFunction() {
@@ -364,7 +332,6 @@ public class Field22A extends Field implements Serializable {
 
     /**
      * Alternative method getter for field's Type
-     * @deprecated use #getType() instead
      * @since 9.2.7
      */
     public String getPurpose() {
@@ -392,16 +359,10 @@ public class Field22A extends Field implements Serializable {
         return setComponent1(component1);
     }
 
-    /**
-     * @deprecated use #setType(String) instead
-     */
     public Field22A setFunction(String component1) {
         return setType(component1);
     }
 
-    /**
-     * @deprecated use #setType(String) instead
-     */
     public Field22A setPurpose(String component1) {
         return setType(component1);
     }

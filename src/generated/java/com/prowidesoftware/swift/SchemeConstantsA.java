@@ -28,11 +28,12 @@ public interface SchemeConstantsA {
     String ASET = "ASET";
     String AMEND = "AMEND";
     String AD = "AD";
-    String AVRO = "AVRO";
-    String AVRF = "AVRF";
+    String AVFF = "AVFF";
     String AMER = "AMER";
+    String AVSS = "AVSS";
     String AVSO = "AVSO";
     String AVSF = "AVSF";
+    String ARTH = "ARTH";
     String AFI_365 = "AFI/365";
     String ACT_365 = "ACT/365";
     String ACT_360 = "ACT/360";

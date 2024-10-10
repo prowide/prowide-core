@@ -16,8 +16,6 @@
 package com.prowidesoftware.swift.model;
 
 import com.prowidesoftware.ProwideException;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.writer.SwiftWriter;
 import com.prowidesoftware.swift.model.field.*;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
@@ -39,25 +37,6 @@ import org.apache.commons.lang3.Validate;
  */
 public class SwiftMessageUtils {
     private static final Logger log = Logger.getLogger(SwiftMessageUtils.class.getName());
-    private final SwiftMessage msg;
-
-    /**
-     * @deprecated Use the static API instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public SwiftMessageUtils() {
-        this(null);
-    }
-
-    /**
-     * @deprecated Use the static API instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public SwiftMessageUtils(final SwiftMessage m) {
-        this.msg = m;
-    }
 
     /**
      * Get all message currencies for fields implementing {@link CurrencyContainer}
@@ -781,41 +760,5 @@ public class SwiftMessageUtils {
         }
 
         return null;
-    }
-
-    /**
-     * @deprecated Use the static {@link #currencyStrings(SwiftMessage)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public List<String> currencyStrings() {
-        return currencyStrings(msg);
-    }
-
-    /**
-     * @deprecated Use the static {@link #valueDate(SwiftMessage)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Calendar valueDate() {
-        return valueDate(msg);
-    }
-
-    /**
-     * @deprecated Use the static {@link #reference(SwiftMessage)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public final String reference() {
-        return reference(msg);
-    }
-
-    /**
-     * @deprecated Use the static {@link #money(SwiftMessage)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    protected Money money() {
-        return money(msg);
     }
 }

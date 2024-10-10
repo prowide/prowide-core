@@ -17,9 +17,9 @@
 package com.prowidesoftware.swift.model.field;
 
 /**
-* Enumeration of fields for SRU 2023
+* Enumeration of fields for SRU 2024
 *
-* @since 9.4.18
+* @since 9.5.2
 */
 public enum FieldEnum {
 

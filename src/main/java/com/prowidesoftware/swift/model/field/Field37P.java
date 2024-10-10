@@ -15,99 +15,49 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.Generated;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-
-import java.io.Serializable;
-import java.util.Locale;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
-import com.prowidesoftware.swift.model.field.AmountContainer;
-import com.prowidesoftware.swift.model.field.AmountResolver;
-
-import com.prowidesoftware.swift.model.*;
-import com.prowidesoftware.swift.utils.SwiftFormatUtils;
-import org.apache.commons.lang3.StringUtils;
-
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.SwiftTagListBlock;
+import com.prowidesoftware.swift.model.Tag;
+import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.*;
+import org.apache.commons.lang3.StringUtils;
 
 /**
- * SWIFT MT Field 37U.
- * <p>
- * Model and parser for field 37U of a SWIFT MT message.
- *
- * <p>Subfields (components) Data types
- * <ol>
- * 		<li>Component 1: Rate: <code>BigDecimal</code></li>
- * </ol>
- *
- * <p>Structure definition
- * <ul>
- * 		<li>validation pattern: <code>&lt;AMOUNT&gt;12</code></li>
- * 		<li>parser pattern: <code>N</code></li>
- * 		<li>components pattern: <code>N</code></li>
- * </ul>
- *
- * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * @deprecated This field has been removed since SRU2024
  */
-@SuppressWarnings("unused")
-@Generated
-public class Field37U extends Field implements Serializable, AmountContainer {
-	/**
-	 * Constant identifying the SRU to which this class belongs to.
-	 */
-	public static final int SRU = 2023;
+@ProwideDeprecated(phase2 = TargetYear.SRU2025)
+public class Field37P extends Field implements Serializable, AmountContainer {
+    /**
+     * Constant identifying the SRU to which this class belongs to.
+     */
+    public static final int SRU = 2023;
 
-	private static final long serialVersionUID = 1L;
-	/**
-	 * Constant with the field name 37U.
-	 */
-    public static final String NAME = "37U";
+    private static final long serialVersionUID = 1L;
+    /**
+     * Constant with the field name 37P.
+     */
+    public static final String NAME = "37P";
     /**
      * Same as NAME, intended to be clear when using static imports.
      */
-    public static final String F_37U = "37U";
+    public static final String F_37P = "37P";
 
     /**
-     * @deprecated Use {@link #parserPattern()} method instead.
+     * Component number for the Rate subfield.
      */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "I";
-
-	/**
-	 * Component number for the Rate subfield.
-	 */
-	public static final Integer RATE = 1;
+    public static final Integer RATE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
-    public Field37U() {
+    public Field37P() {
         super(1);
     }
 
@@ -115,7 +65,7 @@ public class Field37U extends Field implements Serializable, AmountContainer {
      * Creates a new field and initializes its components with content from the parameter value.
      * @param value complete field value including separators and CRLF
      */
-    public Field37U(final String value) {
+    public Field37P(final String value) {
         super(value);
     }
 
@@ -125,13 +75,14 @@ public class Field37U extends Field implements Serializable, AmountContainer {
      * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
      * @since 7.8
      */
-    public Field37U(final Tag tag) {
+    public Field37P(final Tag tag) {
         this();
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!StringUtils.equals(tag.getName(), "37U")) {
-            throw new IllegalArgumentException("cannot create field 37U from tag "+tag.getName()+", tagname must match the name of the field.");
+        if (!StringUtils.equals(tag.getName(), "37P")) {
+            throw new IllegalArgumentException("cannot create field 37P from tag " + tag.getName()
+                    + ", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -142,8 +93,8 @@ public class Field37U extends Field implements Serializable, AmountContainer {
      * @param source a field instance to copy
      * @since 7.7
      */
-    public static Field37U newInstance(Field37U source) {
-        Field37U cp = new Field37U();
+    public static Field37P newInstance(Field37P source) {
+        Field37P cp = new Field37P();
         cp.setComponents(new ArrayList<>(source.getComponents()));
         return cp;
     }
@@ -167,7 +118,6 @@ public class Field37U extends Field implements Serializable, AmountContainer {
     public static Tag emptyTag() {
         return new Tag(NAME, "");
     }
-
 
     /**
      * Parses the parameter value into the internal components structure.
@@ -206,9 +156,9 @@ public class Field37U extends Field implements Serializable, AmountContainer {
     @Override
     public String getValueDisplay(int component, Locale locale) {
         if (component != 1) {
-            throw new IllegalArgumentException("invalid component number " + component + " for field 37U");
+            throw new IllegalArgumentException("invalid component number " + component + " for field 37P");
         }
-        //amount, rate
+        // amount, rate
         java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
         f.setMaximumFractionDigits(13);
         BigDecimal n = getComponent1AsBigDecimal();
@@ -219,18 +169,8 @@ public class Field37U extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "N";
-    }
-
-    /**
      * Returns the field component types pattern.
-     * <p>
+     *
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
@@ -350,15 +290,6 @@ public class Field37U extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated use #getComponent1AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        return getComponent1AsBigDecimal();
-    }
-
-    /**
      * Gets the Rate (component 1).
      * @return the Rate from component 1
      */
@@ -376,34 +307,25 @@ public class Field37U extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated use #getRateAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getRateAsNumber() {
-        return getComponent1AsNumber();
-    }
-
-    /**
      * Set the component 1 (Rate).
      *
      * @param component1 the Rate to set
      * @return the field object to enable build pattern
      */
-    public Field37U setComponent1(String component1) {
+    public Field37P setComponent1(String component1) {
         setComponent(1, component1);
         return this;
     }
 
     /**
      * Alternative method setter for field's Rate (component 1) as Number
-     * <p>
+     *
      * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
      *
      * @param component1 the Number with the Rate content to set
      * @return the field object to enable build pattern
      */
-    public Field37U setComponent1(java.lang.Number component1) {
+    public Field37P setComponent1(java.lang.Number component1) {
 
         // NOTE: remember instanceof implicitly checks for non-null
 
@@ -429,22 +351,21 @@ public class Field37U extends Field implements Serializable, AmountContainer {
      * @param component1 the Rate to set
      * @return the field object to enable build pattern
      */
-    public Field37U setRate(String component1) {
+    public Field37P setRate(String component1) {
         return setComponent1(component1);
     }
 
     /**
      * Alternative method setter for field's Rate (component 1) as Number
-     * <p>
+     *
      * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
      *
      * @param component1 the Number with the Rate content to set
      * @return the field object to enable build pattern
      */
-    public Field37U setRate(java.lang.Number component1) {
+    public Field37P setRate(java.lang.Number component1) {
         return setComponent1(component1);
     }
-
 
     /**
      * Returns the list of all NON-NULL amounts as BigDecimal
@@ -467,10 +388,9 @@ public class Field37U extends Field implements Serializable, AmountContainer {
         return AmountResolver.amount(this);
     }
 
-
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
-     * @return the static value of Field37U.NAME
+     * @return the static value of Field37P.NAME
      */
     @Override
     public String getName() {
@@ -482,7 +402,7 @@ public class Field37U extends Field implements Serializable, AmountContainer {
      * @return null if not found o block is null or empty
      * @param block may be null or empty
      */
-    public static Field37U get(final SwiftTagListBlock block) {
+    public static Field37P get(final SwiftTagListBlock block) {
         if (block == null || block.isEmpty()) {
             return null;
         }
@@ -490,16 +410,16 @@ public class Field37U extends Field implements Serializable, AmountContainer {
         if (t == null) {
             return null;
         }
-        return new Field37U(t);
+        return new Field37P(t);
     }
 
     /**
-     * Gets the first instance of Field37U in the given message.
+     * Gets the first instance of Field37P in the given message.
      * @param msg may be empty or null
      * @return null if not found or msg is empty or null
      * @see #get(SwiftTagListBlock)
      */
-    public static Field37U get(final SwiftMessage msg) {
+    public static Field37P get(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
         }
@@ -507,12 +427,12 @@ public class Field37U extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field37U in the given message
+     * Gets a list of all occurrences of the field Field37P in the given message
      * an empty list is returned if none found.
      * @param msg may be empty or null in which case an empty list is returned
      * @see #getAll(SwiftTagListBlock)
      */
-    public static List<Field37U> getAll(final SwiftMessage msg) {
+    public static List<Field37P> getAll(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
         }
@@ -520,35 +440,35 @@ public class Field37U extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field37U from the given block
+     * Gets a list of all occurrences of the field Field37P from the given block
      * an empty list is returned if none found.
      *
      * @param block may be empty or null in which case an empty list is returned
      */
-    public static List<Field37U> getAll(final SwiftTagListBlock block) {
-        final List<Field37U> result = new ArrayList<>();
+    public static List<Field37P> getAll(final SwiftTagListBlock block) {
+        final List<Field37P> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
-        if (arr != null) {
+        if (arr != null && arr.length > 0) {
             for (final Tag f : arr) {
-                result.add(new Field37U(f));
+                result.add(new Field37P(f));
             }
         }
         return result;
     }
 
     /**
-     * This method deserializes the JSON data into a Field37U object.
+     * This method deserializes the JSON data into a Field37P object.
      * @param json JSON structure including tuples with label and value for all field components
      * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
-    public static Field37U fromJson(final String json) {
+    public static Field37P fromJson(final String json) {
 
-        final Field37U field = new Field37U();
+        final Field37P field = new Field37P();
 
         final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
@@ -560,6 +480,4 @@ public class Field37U extends Field implements Serializable, AmountContainer {
 
         return field;
     }
-
-
 }

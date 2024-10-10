@@ -17,9 +17,6 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.model.mt.DefaultMtMetadataStrategy;
@@ -364,16 +361,6 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
         setMessage(fin);
         setFileFormat(FileFormat.FIN);
         updateFromMessage(metadataStrategy);
-    }
-
-    /**
-     * @deprecated Use {@link #updateFromFIN(String)} instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public void updateFromFIN() {
-        DeprecationUtils.phase3(getClass(), "updateFromFIN()", "Use updateFromFIN(String) instead");
-        updateFromMessage();
     }
 
     /**

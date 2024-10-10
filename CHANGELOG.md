@@ -1,11 +1,18 @@
 # Prowide Core - CHANGELOG
 
-#### 9.4.18 - October 2024
+#### 9.5.2 - October 2024
   * Added new `FieldEnum` with all the available field names
   * Code security improvements as per CodeQL recommendations
 
-#### 9.4.17 - June 2024
+#### 9.5.1 - June 2024
   * (PW-1913) Added IBAN validation for Egypt local account structure
+  * Restore deprecated method in MT210 class
+
+#### 9.5.0 - May 2024
+  * SWIFT Standard release update 2024 (live 16 November 2025)
+  * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
+  * Dependency update: commons-lang3 -> 3.14.0'
+  * Dependency update: gson -> 2.11.0'
 
 #### 9.4.16 - May 2024
   * (PW-1862) Added NarrativeFragment class for detailed line information in StructuredNarrative fragments

@@ -27,6 +27,7 @@ public interface SchemeConstantsP {
     String PRUR = "PRUR";
     String PRINCIPAL = "PRINCIPAL";
     String PREC = "PREC";
+    String POST = "POST";
     String PUTO = "PUTO";
     String PC = "PC";
     String PRIN = "PRIN";
@@ -43,7 +44,6 @@ public interface SchemeConstantsP {
     String PUTT = "PUTT";
     String PERSDET = "PERSDET";
     String PBOX = "PBOX";
-    String POST = "POST";
     String PFRE = "PFRE";
     String PERM = "PERM";
     String PAYS = "PAYS";

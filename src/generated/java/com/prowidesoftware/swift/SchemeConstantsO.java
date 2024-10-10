@@ -20,6 +20,7 @@ public interface SchemeConstantsO {
     String OTHR = "OTHR";
     String OUR = "OUR";
     String OTHER = "OTHER";
+    String OMIS = "OMIS";
     String OTHRPRTY = "OTHRPRTY";
     String ORDRPRTY = "ORDRPRTY";
     String ORDR = "ORDR";

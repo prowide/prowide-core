@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -66,7 +66,7 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -78,38 +78,11 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
      */
     public static final String F_19Y = "19Y";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "I";
-
 	/**
 	 * Component number for the Weight subfield.
 	 */
 	public static final Integer WEIGHT = 1;
 
-	/**
-	 * @deprecated use #WEIGHT instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer AMOUNT = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -223,16 +196,6 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
             return f.format(n);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "N";
     }
 
     /**
@@ -359,15 +322,6 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated use #getComponent1AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        return getComponent1AsBigDecimal();
-    }
-
-    /**
      * Gets the Weight (component 1).
      * @return the Weight from component 1
      */
@@ -375,16 +329,6 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Weight
-     * @deprecated use #getWeight() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getAmount() {
-        return getWeight();
-    }
 
     /**
      * Get the Weight (component 1) as BigDecimal
@@ -393,33 +337,6 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
      */
     public java.math.BigDecimal getWeightAsBigDecimal() {
         return getComponent1AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getWeightAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getWeightAsNumber() {
-        return getComponent1AsNumber();
-    }
-
-    /**
-     * @deprecated use #getWeightAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.math.BigDecimal getAmountAsBigDecimal() {
-        return getWeightAsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getWeightAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getWeightAsNumber();
     }
 
     /**
@@ -481,24 +398,6 @@ public class Field19Y extends Field implements Serializable, AmountContainer {
      */
     public Field19Y setWeight(java.lang.Number component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setWeight(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field19Y setAmount(String component1) {
-        return setWeight(component1);
-    }
-
-    /**
-     * @deprecated use #setWeight(java.math.BigDecimal) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field19Y setAmount(java.lang.Number component1) {
-        return setWeight(component1);
     }
 
 

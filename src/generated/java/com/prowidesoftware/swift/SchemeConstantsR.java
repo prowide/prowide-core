@@ -85,6 +85,7 @@ public interface SchemeConstantsR {
     String RMAG = "RMAG";
     String RALA = "RALA";
     String RDTE = "RDTE";
+    String REVR = "REVR";
     String RINR = "RINR";
     String RMDR = "RMDR";
     String RDDT = "RDDT";
@@ -100,7 +101,6 @@ public interface SchemeConstantsR {
     String REDP = "REDP";
     String RESA = "RESA";
     String RDUQ = "RDUQ";
-    String REVR = "REVR";
     String REFU = "REFU";
     String RECDEL = "RECDEL";
     String RELC = "RELC";

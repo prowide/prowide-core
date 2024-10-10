@@ -50,6 +50,7 @@ public interface SchemeConstantsB {
     String BWIT = "BWIT";
     String BOLQ = "BOLQ";
     String BIRI = "BIRI";
+    String BUYU = "BUYU";
     String BASE = "BASE";
     String BIDI = "BIDI";
     String BORD = "BORD";
@@ -109,6 +110,5 @@ public interface SchemeConstantsB {
     String BUTC = "BUTC";
     String BUYA = "BUYA";
     String BUYI = "BUYI";
-    String BUYU = "BUYU";
 
 }

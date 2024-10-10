@@ -53,7 +53,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @deprecated This field has been moved to the Prowide Integrator since it is only used in SCORE messages, not in the general MT standard
  */
-@ProwideDeprecated(phase3 = TargetYear.SRU2024)
+@ProwideDeprecated(phase4 = TargetYear.SRU2025)
 public class Field29U extends Field implements Serializable, BICContainer {
     /**
      * Constant identifying the SRU to which this class belongs to.
@@ -71,38 +71,9 @@ public class Field29U extends Field implements Serializable, BICContainer {
     public static final String F_29U = "29U";
 
     /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String COMPONENTS_PATTERN = "B";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String TYPES_PATTERN = "B";
-
-    /**
      * Component number for the IdentifierCode subfield.
      */
     public static final Integer IDENTIFIERCODE = 1;
-
-    /**
-     * Alternative (<em>DEPRECATED</em>) constant name for field's IdentifierCode Component number.
-     * @see #IDENTIFIERCODE
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer BIC = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -210,16 +181,6 @@ public class Field29U extends Field implements Serializable, BICContainer {
         }
         // default format (as is)
         return getComponent(1);
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "B";
     }
 
     /**
@@ -353,32 +314,11 @@ public class Field29U extends Field implements Serializable, BICContainer {
     }
 
     /**
-     * Alternative <em>DEPRECATED</em> method getter for field's IdentifierCode
-     * @see #getIdentifierCode()
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getBIC() {
-        return getIdentifierCode();
-    }
-
-    /**
      * Get the IdentifierCode (component 1) as BIC
      * @return the IdentifierCode from component 1 converted to BIC or null if cannot be converted
      */
     public com.prowidesoftware.swift.model.BIC getIdentifierCodeAsBIC() {
         return getComponent1AsBIC();
-    }
-
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's IdentifierCode as BIC
-     * @see #getIdentifierCodeAsBIC()
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
-        return getIdentifierCodeAsBIC();
     }
 
     /**
@@ -423,34 +363,6 @@ public class Field29U extends Field implements Serializable, BICContainer {
      */
     public Field29U setIdentifierCode(com.prowidesoftware.swift.model.BIC component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * Alternative <em>DEPRECATED</em> method setter for field's IdentifierCode
-     *
-     * @see #setIdentifierCode(String)
-     *
-     * @param component1 the IdentifierCode to set
-     * @return the field object to enable build pattern
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field29U setBIC(String component1) {
-        return setIdentifierCode(component1);
-    }
-
-    /**
-     * Alternative <em>DEPRECATED</em> method setter for field's IdentifierCode from a BIC object.
-     *
-     * @see #setComponent1(com.prowidesoftware.swift.model.BIC)
-     *
-     * @param component1 BIC with the IdentifierCode content to set
-     * @return the field object to enable build pattern
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field29U setBIC(com.prowidesoftware.swift.model.BIC component1) {
-        return setIdentifierCode(component1);
     }
 
     @Override

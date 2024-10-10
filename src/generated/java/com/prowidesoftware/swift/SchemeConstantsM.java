@@ -18,6 +18,7 @@ public interface SchemeConstantsM {
 
     String MIDE = "MIDE";
     String MODI = "MODI";
+    String MODP = "MODP";
     String M = "M";
     String MATU = "MATU";
     String MICO = "MICO";
