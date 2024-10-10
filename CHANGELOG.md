@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.1.17 - SNAPSHOT
+#### 10.1.17 - October 2024
   * Added new `FieldEnum` with all the available field names
   * Code security improvements as per CodeQL recommendations
 
