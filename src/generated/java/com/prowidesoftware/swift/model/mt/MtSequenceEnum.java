@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 /**
 * Enumeration representing all possible sequence paths for each MT (Message Type) schema.
 * Each constant in this enumeration corresponds to a specific MT schema, identified by its
-* sequence paths as a comma-separated string (CSV) for SRU 2023.
+* sequence paths as a comma-separated string (CSV) for SRU 2024.
 *
 * <p>For example, the MT508 message type may have sequence paths such as "A", "A/A1", "B", "B/B1", and "C",
 * which would be represented as the CSV string "A,A/A1,B,B/B1,C".
@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
 *
 * <p>For example, the MT801 message contains the "Loop1" and "Loop2" sequences, and this are not included in the sequence paths.
 *
-* @since 9.4.18
+* @since 9.5.3
 */
 @Generated
 public enum MtSequenceEnum {
@@ -103,9 +103,9 @@ public enum MtSequenceEnum {
     MT548("A,A/A1,A/A2,A/A2/A2a,B,B/B1,C,C/C1,C/C1/C1a,C/C1/C1a/C1a1,C/C1/C1a/C1a1/C1a1A,C/C1/C1a/C1a1/C1a1A/C1a1A1,C/C1/C1a/C1a1/C1a1B,C/C1/C1a/C1a1/C1a1B/C1a1B1,C/C1/C1a/C1a1/C1a1B/C1a1B1/C1a1B1a,C/C1/C1a/C1a1/C1a1B/C1a1B1/C1a1B1a/C1a1B1a1,D"),
     MT549("A,A/A1,B,C,D"),
     MT558("A,A/A1,A/A2,A/A2/A2a,A/A3,B,B/B1,C,D,E"),
-    MT564("A,A/A1,B,B/B1,B/B2,C,D,E,E/E1,E/E1/E1a,E/E2,F"),
+    MT564("A,A/A1,A/A2,B,B/B1,B/B2,C,D,E,E/E1,E/E1/E1a,E/E2,F"),
     MT565("A,A/A1,B,B/B1,B/B2,C,D,E"),
-    MT566("A,A/A1,B,B/B1,C,D,D/D1,D/D1/D1a,D/D1/D1b,D/D2,D/D2/D2a,D/D2/D2b,E"),
+    MT566("A,A/A1,A/A2,B,B/B1,C,D,D/D1,D/D1/D1a,D/D1/D1b,D/D2,D/D2/D2a,D/D2/D2b,E"),
     MT567("A,A/A1,A/A2,A/A2/A2a,B,C"),
     MT568("A,A/A1,B,B/B1,C"),
     MT569("A,A/A1,A/A2,B,C,C/C1,C/C1/C1a,C/C1/C1a/C1a1,C/C1/C1a/C1a1/C1a1A,D"),
