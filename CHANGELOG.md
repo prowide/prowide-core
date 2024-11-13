@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+#### 9.5.3 - SNAPSHOT
+  * (PW-2006) Fixed `getMUR` and `setMUR` in `SwiftMessage` to prioritize field 108 in block 4 over block 3 for system messages (category 0)
+  * Added `isSystemMessage()` to SwiftMessage to check if the message is a category 0 message (010. 011, etc...)
+
 #### 9.5.2 - October 2024
   * Added new `FieldEnum` with all the available field names
   * Code security improvements as per CodeQL recommendations

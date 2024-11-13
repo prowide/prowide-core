@@ -1298,43 +1298,66 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     }
 
     /**
-     * Gets MUR (Message User Reference) from field 108 in the user header block (block 3) or in the text block
-     * (block 4). Notice for user to user messages this field is located at the user header, however for system messages
-     * (category 0) the field is located at the text block.
-     *
-     * <p>The MUR is the Message User Reference used by applications for reconciliation with ACK. It is a free-format
+     * Gets MUR (Message User Reference) from field 108.
+     * <p>
+     * For user to user messages (category 1 to 9) the MUR is located in the user header block (block 3). Where for
+     * system messages (category 0) the MUR is located in the text block (block 4). Moreover, system messages such as
+     * the MT011 could have the mandatory reconciliation MUR in the block 4, but also another MUR in the optional user
+     * header block (block 3), in such cases the returned MUR is the one in the block 4.
+     * <p>
+     * Order of precedence for MUR extraction is block 4, then block 3.
+     * <p>
+     * The MUR is the Message User Reference used by applications for reconciliation with ACK. It is a free-format
      * field in which users may specify their own reference of up to 16 characters of the permitted character set.
      *
-     * @return the value of field 108 if found, or null when not found neither in block 3 or block 4
+     * @return the value of field 108 if found, or null when not found neither in block 4 o block 3
      * @since 7.0
      */
     public String getMUR() {
-        if (this.block3 != null && this.block3.containsTag(Field108.NAME)) {
-            return this.block3.getTagValue(Field108.NAME);
-        }
+        // we check first the block 4, because system message could contain both MURs.
         if (this.block4 != null && this.block4.containsTag(Field108.NAME)) {
             return this.block4.getTagValue(Field108.NAME);
+        }
+        if (this.block3 != null && this.block3.containsTag(Field108.NAME)) {
+            return this.block3.getTagValue(Field108.NAME);
         }
         return null;
     }
 
     /**
-     * Sets the MUR (Message User Reference) in the user header block.
-     * <p>If a MUR field is present, its value will be overwritten.
-     * <p>The MUR is the Message User Reference used by applications for reconciliation with ACK.
+     * Sets the MUR (Message User Reference) field 108.
+     * <p>
+     * For system messages (category 0) the MUR is located in the text block (block 4). Thus, a field 108 is added to
+     * the block 4, or of the field exist its value is updated. For user to user messages (category 1 to 9) the MUR is
+     * added to the user header block (block 3), or if the field exist its value is updated.
+     * <p>
+     * The MUR is the Message User Reference used by applications for reconciliation with ACK.
      * It is a free-format field in which users may specify their own reference of up to 16 characters
      * of the permitted character set, and it is contained in a 108 field at the message user header (block 3).
      *
-     * @param mur a non blank MUR value to set, if value is blank this method does nothing
+     * @param mur a non-blank MUR value to set, if value is blank this method does nothing
      * @return this
      * @since 7.10.4
      */
     public SwiftMessage setMUR(String mur) {
         if (StringUtils.isNotBlank(mur)) {
-            if (this.block3 == null) {
-                this.block3 = new SwiftBlock3();
+            if (isSystemMessage()) {
+                // for system messages we set or update the MUR in the block 4
+                if (this.block4 == null) {
+                    this.block4 = new SwiftBlock4();
+                    this.block4.append(new Field108(mur));
+                } else if (this.block4.containsTag(Field108.NAME)) {
+                    this.block4.getTagByName(Field108.NAME).setValue(mur);
+                } else {
+                    this.block4.append(new Field108(mur));
+                }
+            } else {
+                // for user to user messages we set or update the MUR in the block 3
+                if (this.block3 == null) {
+                    this.block3 = new SwiftBlock3();
+                }
+                this.block3.builder().setField108(new Field108(mur));
             }
-            this.block3.builder().setField108(new Field108(mur));
         }
         return this;
     }
@@ -1644,7 +1667,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     /**
      * Returns true if message service id is anything but 01 = GPA/FIN Message (system and user-to-user)
      *
-     * @return true if message is a service message, false otherwise
+     * @return true if message is a service message, false if not or cannot be determined (header is null)
      * @since 7.8.8
      */
     public final boolean isServiceMessage() {
@@ -1657,7 +1680,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
     /**
      * Returns true if message service id is 21 = GPA/FIN Message (ACK/NAK/UAK/UNK)
      *
-     * @return true if it is a service message for acknowledgment, false if not or header is null and service id cannot be determined
+     * @return true if it is a service message for acknowledgment, false if not or cannot be determined (header is null)
      * @since 7.8.9
      */
     public boolean isServiceMessage21() {
@@ -1665,6 +1688,20 @@ public class SwiftMessage implements Serializable, JsonSerializable {
             return false;
         }
         return this.block1.getServiceIdType() == ServiceIdType._21;
+    }
+
+    /**
+     * Returns true if this message is a system message.
+     * <p>
+     * System messages are categorized as Category 0 (MT0xx) messages. These messages are primarily used for
+     * administrative communication and system-related interactions between SWIFT users and the SWIFT network itself,
+     * rather than for financial transactions or operational communication.
+     * @return true if system message, false if not or cannot be determined (header is null)
+     * @since 9.5.3
+     */
+    public boolean isSystemMessage() {
+        String type = getType();
+        return type != null && type.startsWith("0");
     }
 
     /**
