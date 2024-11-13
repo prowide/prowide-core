@@ -27,6 +27,7 @@ import com.prowidesoftware.swift.model.field.Field121;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.model.mt.MTVariant;
 import com.prowidesoftware.swift.model.mt.MtCategory;
+import com.prowidesoftware.swift.model.mt.mt0xx.MT011;
 import com.prowidesoftware.swift.model.mt.mt1xx.*;
 import com.prowidesoftware.swift.model.mt.mt2xx.*;
 import com.prowidesoftware.swift.model.mt.mt3xx.MT300;
@@ -468,7 +469,7 @@ public class SwiftMessageTest {
     }
 
     @Test
-    public void testGetMUR() {
+    public void testGetMUR() throws IOException {
         SwiftMessage m = new SwiftMessage();
         assertNull(m.getMUR());
 
@@ -480,6 +481,50 @@ public class SwiftMessageTest {
         m.setBlock4(new SwiftBlock4());
         m.getBlock4().append(Field108.tag("BAR"));
         assertEquals("BAR", m.getMUR());
+
+        // system message having MUR in both block 3 and block 4
+        String systemMessage =
+                "{1:F01AAAAUS30RXXX9999999999}{2:O0111549241112BBBBXXXXHXXX11119553512411121049S}{3:{108:FOOBAR1234}}{4:{175:1049}{106:241112CCCCUS30RXXX0426007639}{108:REF987654}{175:1549}}{5:{CHK:1234567891234}{SYS:}{TNG:}}";
+        m = SwiftMessage.parse(systemMessage);
+        assertEquals("REF987654", m.getMUR());
+    }
+
+    @Test
+    public void testSetMUR() throws IOException {
+        SwiftMessage m = new SwiftMessage();
+        m.setMUR("FOO");
+        assertEquals("FOO", m.getMUR());
+        assertEquals("FOO", m.getBlock3().getTagValue(Field108.NAME));
+        assertEquals(1, m.getBlock3().countByName(Field108.NAME));
+        assertNull(m.getBlock4());
+
+        m.setMUR("BAR");
+        assertNull(m.getBlock4());
+        assertEquals("BAR", m.getBlock3().getTagValue(Field108.NAME));
+        assertEquals(1, m.getBlock3().countByName(Field108.NAME));
+        assertNull(m.getBlock4());
+
+        m = (new MT011()).getSwiftMessage();
+        m.removeEmptyBlocks();
+        m.setMUR("FOO");
+        assertEquals("FOO", m.getBlock4().getTagValue(Field108.NAME));
+        assertEquals(1, m.getBlock4().countByName(Field108.NAME));
+        assertNull(m.getBlock3());
+
+        m.setMUR("BAR");
+        assertEquals("BAR", m.getBlock4().getTagValue(Field108.NAME));
+        assertEquals(1, m.getBlock4().countByName(Field108.NAME));
+        assertNull(m.getBlock3());
+
+        // system message having MUR in both block 3 and block 4
+        String systemMessage =
+                "{1:F01AAAAUS30RXXX9999999999}{2:O0111549241112BBBBXXXXHXXX11119553512411121049S}{3:{108:FOOBAR1234}}{4:{175:1049}{106:241112CCCCUS30RXXX0426007639}{108:REF987654}{175:1549}}{5:{CHK:1234567891234}{SYS:}{TNG:}}";
+        m = SwiftMessage.parse(systemMessage);
+        m.setMUR("TESTMUR");
+        assertEquals("TESTMUR", m.getBlock4().getTagValue(Field108.NAME));
+        assertEquals(1, m.getBlock4().countByName(Field108.NAME));
+        assertEquals("FOOBAR1234", m.getBlock3().getTagValue(Field108.NAME));
+        assertEquals(1, m.getBlock3().countByName(Field108.NAME));
     }
 
     @Test
