@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.4.19 - SNAPSHOT
+  * Added new `MtSequenceEnum` with all the available inner sequences of specific MT schemas
+
 #### 9.4.18 - October 2024
   * Added new `FieldEnum` with all the available field names
   * Code security improvements as per CodeQL recommendations

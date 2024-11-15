@@ -3,20 +3,48 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 
 class FieldEnu5mTest {
 
-    @ParameterizedTest
-    @CsvSource({"F11A,11A", "F22J,22J", "F44H,44H"})
-    void testFieldName(FieldEnum field, String expectedName) {
+    @Test
+    void testFieldName_F11A() {
+        FieldEnum field = FieldEnum.F11A;
+        String expectedName = "11A";
         assertEquals(expectedName, field.fieldName());
     }
 
-    @ParameterizedTest
-    @CsvSource({"11A,F11A", "22J,F22J", "44H,F44H"})
-    void testFromFieldNameValid(String fieldName, FieldEnum expectedEnum) {
+    @Test
+    void testFieldName_F22J() {
+        FieldEnum field = FieldEnum.F22J;
+        String expectedName = "22J";
+        assertEquals(expectedName, field.fieldName());
+    }
+
+    @Test
+    void testFieldName_F44H() {
+        FieldEnum field = FieldEnum.F44H;
+        String expectedName = "44H";
+        assertEquals(expectedName, field.fieldName());
+    }
+
+    @Test
+    void testFromFieldNameValid_11A() {
+        String fieldName = "11A";
+        FieldEnum expectedEnum = FieldEnum.F11A;
+        assertEquals(expectedEnum, FieldEnum.fromFieldName(fieldName));
+    }
+
+    @Test
+    void testFromFieldNameValid_22J() {
+        String fieldName = "22J";
+        FieldEnum expectedEnum = FieldEnum.F22J;
+        assertEquals(expectedEnum, FieldEnum.fromFieldName(fieldName));
+    }
+
+    @Test
+    void testFromFieldNameValid_44H() {
+        String fieldName = "44H";
+        FieldEnum expectedEnum = FieldEnum.F44H;
         assertEquals(expectedEnum, FieldEnum.fromFieldName(fieldName));
     }
 
