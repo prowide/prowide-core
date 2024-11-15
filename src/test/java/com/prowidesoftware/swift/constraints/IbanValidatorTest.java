@@ -118,12 +118,12 @@ public class IbanValidatorTest {
 
     @Test
     public void testMissingBbanConfiguration() {
-        String missingBbanConfigIban = "FK64123456789";
+        String missingBbanConfigIban = "AX64123456789";
         assertEquals(IbanValidationResult.MISSING_BBAN_CONFIGURATION, new IBAN(missingBbanConfigIban).validate());
         assertFalse(validator.isValid(missingBbanConfigIban, context));
         assertTrue(context.isViolationOccurred());
         assertEquals(
-                "Missing custom account number (BBAN) configuration for country FK", context.getViolationMessage());
+                "Missing custom account number (BBAN) configuration for country AX", context.getViolationMessage());
     }
 
     @Test
@@ -181,7 +181,7 @@ public class IbanValidatorTest {
     @Test
     public void testInvalidCheckDigits() {
         String invalidCheckDigitsIban = "ES0012345678901234567890"; // Invalid computed check digits
-        assertEquals(IbanValidationResult.IVALID_CHECK_DIGITS, new IBAN(invalidCheckDigitsIban).validate());
+        assertEquals(IbanValidationResult.INVALID_CHECK_DIGITS, new IBAN(invalidCheckDigitsIban).validate());
         assertFalse(validator.isValid(invalidCheckDigitsIban, context));
         assertTrue(context.isViolationOccurred());
         assertEquals("The expected computed check digit is 98 and 00 was found", context.getViolationMessage());

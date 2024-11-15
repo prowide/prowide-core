@@ -214,7 +214,7 @@ class IbanValidationUtils {
         if (calculateMod(iban) != 1) {
             final String checkDigit = IBAN.getCheckDigits(iban);
             final String expectedCheckDigit = calculateCheckDigit(iban);
-            IbanValidationResult result = IbanValidationResult.IVALID_CHECK_DIGITS;
+            IbanValidationResult result = IbanValidationResult.INVALID_CHECK_DIGITS;
             result.setExpectedCheckDigit(expectedCheckDigit);
             result.setFound(checkDigit);
             return result;

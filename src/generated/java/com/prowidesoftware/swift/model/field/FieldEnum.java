@@ -16,11 +16,14 @@
 
 package com.prowidesoftware.swift.model.field;
 
+import com.prowidesoftware.Generated;
+
 /**
 * Enumeration of fields for SRU 2024
 *
 * @since 9.5.2
 */
+@Generated
 public enum FieldEnum {
 
     F11A,
@@ -61,6 +64,9 @@ public enum FieldEnum {
     F14N,
     F14O,
     F14J,
+    F14P,
+    F14Q,
+    F14R,
     F14S,
     F15A,
     F15B,
@@ -80,8 +86,10 @@ public enum FieldEnum {
     F15P,
     F16A,
     F16C,
+    F16D,
     F16R,
     F16S,
+    F16W,
     F17A,
     F17B,
     F17C,
@@ -142,7 +150,6 @@ public enum FieldEnum {
     F22F,
     F22G,
     F22H,
-    F22J,
     F22K,
     F22L,
     F22M,
@@ -204,7 +211,6 @@ public enum FieldEnum {
     F29H,
     F29I,
     F29J,
-    F29K,
     F29L,
     F29M,
     F29N,
@@ -213,11 +219,14 @@ public enum FieldEnum {
     F29S,
     F29T,
     F29U,
+    F29Q,
+    F29W,
     F30F,
     F30G,
     F30H,
     F30I,
     F30J,
+    F30K,
     F30M,
     F30N,
     F30P,
@@ -320,9 +329,7 @@ public enum FieldEnum {
     F37L,
     F37M,
     F37N,
-    F37P,
     F37R,
-    F37U,
     F37V,
     F38A,
     F38D,
@@ -333,7 +340,6 @@ public enum FieldEnum {
     F39A,
     F39B,
     F39C,
-    F39D,
     F39E,
     F39F,
     F39M,
@@ -360,7 +366,6 @@ public enum FieldEnum {
     F44D,
     F44E,
     F44F,
-    F44H,
     F44J,
     F45A,
     F45B,
