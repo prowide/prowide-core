@@ -42,7 +42,7 @@ public enum IbanValidationResult {
     INVALID_CHARACTERS("Invalid character '${found}' found"),
     MISSING_CHECK_DIGITS("Missing check digits"),
     INVALID_CHECK_DIGITS_FORMAT("Expected 2 check digits and found ${found}"),
-    IVALID_CHECK_DIGITS("The expected computed check digit is ${expectedCheckDigit} and ${found} was found"),
+    INVALID_CHECK_DIGITS("The expected computed check digit is ${expectedCheckDigit} and ${found} was found"),
 
     MISSING_BBAN("Missing custom account number (BBAN)"),
     BBAN_MAX_LENGTH(

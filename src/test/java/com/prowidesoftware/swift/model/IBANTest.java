@@ -262,12 +262,103 @@ public class IBANTest {
         assertIbanOk("  GB06 LOYD 3097 5104 5702 05.");
         assertIbanOk("GB26BOFS80200643721002");
         assertIbanOk("EG389004000100300074201200001");
+        assertIbanOk("IL620108000000099999999");
+
+        assertIbanOk("AD1200012030200359100100"); // Andorra
+        assertIbanOk("AE070331234567890123456"); // United Arab Emirates
+        assertIbanOk("AL7620511021812537CLPRCFUSDP"); // Albania
+        assertIbanOk("AT611904300234573201"); // Austria
+        assertIbanOk("AZ21NABZ00000000137010001944"); // Azerbaijan
+        assertIbanOk("BA391290079401028494"); // Bosnia and Herzegovina
+        assertIbanOk("BE68539007547034"); // Belgium
+        assertIbanOk("BG80BNBG96611020345678"); // Bulgaria
+        assertIbanOk("BH67BMAG00001299123456"); // Bahrain
+        assertIbanOk("BI4210000100010000332045181"); // Burundi
+        assertIbanOk("BR1800360305000010009795493C1"); // Brazil
+        assertIbanOk("BY13NBRB3600900000002Z00AB00"); // Republic of Belarus
+        assertIbanOk("CH9300762011623852957"); // Switzerland
+        assertIbanOk("CR05015202001026284066"); // Costa Rica
+        assertIbanOk("CY17002001280000001200527600"); // Cyprus
+        assertIbanOk("CZ6508000000192000145399"); // Czech Republic
+        assertIbanOk("DE89370400440532013000"); // Germany
+        assertIbanOk("DJ2100010000000154000100186"); // Djibouti
+        assertIbanOk("DK5000400440116243"); // Denmark
+        assertIbanOk("DO28BAGR00000001212453611324"); // Dominican Republic
+        assertIbanOk("EE382200221020145685"); // Estonia
+        assertIbanOk("EG380019000500000000263180002"); // Egypt
+        assertIbanOk("ES9121000418450200051332"); // Spain
+        assertIbanOk("FI2112345600000785"); // Finland
+        assertIbanOk("FK88SC123456789012"); // Falkland Islands
+        assertIbanOk("FO6264600001631634"); // Faroe Islands
+        assertIbanOk("FR1420041010050500013M02606"); // France
+        assertIbanOk("GB29NWBK60161331926819"); // United Kingdom
+        assertIbanOk("GE29NB0000000101904917"); // Georgia
+        assertIbanOk("GI75NWBK000000007099453"); // Gibraltar
+        assertIbanOk("GL8964710001000206"); // Greenland
+        assertIbanOk("GR1601101250000000012300695"); // Greece
+        assertIbanOk("GT82TRAJ01020000001210029690"); // Guatemala
+        assertIbanOk("HR1210010051863000160"); // Croatia
+        assertIbanOk("HU42117730161111101800000000"); // Hungary
+        assertIbanOk("IE29AIBK93115212345678"); // Ireland
+        assertIbanOk("IL620108000000099999999"); // Israel
+        assertIbanOk("IQ98NBIQ850123456789012"); // Iraq
+        assertIbanOk("IS140159260076545510730339"); // Iceland
+        assertIbanOk("IT60X0542811101000000123456"); // Italy
+        assertIbanOk("JO94CBJO0010000000000131000302"); // Jordan
+        assertIbanOk("KW81CBKU0000000000001234560101"); // Kuwait
+        assertIbanOk("KZ86125KZT5004100100"); // Kazakhstan
+        assertIbanOk("LB62099900000001001901229114"); // Lebanon
+        assertIbanOk("LC55HEMM000100010012001200023015"); // Saint Lucia
+        assertIbanOk("LI21088100002324013AA"); // Liechtenstein
+        assertIbanOk("LT121000011101001000"); // Lithuania
+        assertIbanOk("LU280019400644750000"); // Luxembourg
+        assertIbanOk("LV80BANK0000435195001"); // Latvia
+        assertIbanOk("LY83002048000020100120361"); // Libya
+        assertIbanOk("MC5811222000010123456789030"); // Monaco
+        assertIbanOk("MD24AG000225100013104168"); // Moldova
+        assertIbanOk("ME25505000012345678951"); // Montenegro
+        assertIbanOk("MK07200002785123453"); // North Macedonia
+        assertIbanOk("MR1300020001010000123456753"); // Mauritania
+        assertIbanOk("MT84MALT011000012345MTLCAST001S"); // Malta
+        assertIbanOk("MU17BOMM0101101030300200000MUR"); // Mauritius
+        assertIbanOk("NL91ABNA0417164300"); // Netherlands
+        assertIbanOk("NO9386011117947"); // Norway
+        assertIbanOk("PK36SCBL0000001123456702"); // Pakistan
+        assertIbanOk("PL61109010140000071219812874"); // Poland
+        assertIbanOk("PS92PALS000000000400123456702"); // Palestine, State of
+        assertIbanOk("PT50000201231234567890154"); // Portugal
+        assertIbanOk("QA58DOHB00001234567890ABCDEFG"); // Qatar
+        assertIbanOk("RO49AAAA1B31007593840000"); // Romania
+        assertIbanOk("RS35260005601001611379"); // Serbia
+        assertIbanOk("SA0380000000608010167519"); // Saudi Arabia
+        assertIbanOk("SC18SSCB11010000000000001497USD"); // Seychelles
+        assertIbanOk("SE4550000000058398257466"); // Sweden
+        assertIbanOk("SI56263300012039086"); // Slovenia
+        assertIbanOk("SK3112000000198742637541"); // Slovakia
+        assertIbanOk("SM86U0322509800000000270100"); // San Marino
+        assertIbanOk("ST32000200010192194210112"); // Sao Tome and Principe
+        assertIbanOk("SV62CENR00000000000000700025"); // El Salvador
+        assertIbanOk("TL380080012345678910157"); // Timor-Leste
+        assertIbanOk("TN5914207207100707129648"); // Tunisia
+        assertIbanOk("TR330006100519786457841326"); // Turkey
+        assertIbanOk("UA213223130000026007233566001"); // Ukraine
+        assertIbanOk("VG96VPVG0000012345678901"); // Virgin Islands
+        assertIbanOk("XK051212012345678906"); // Kosovo
+        assertIbanOk("YE15CBYE0001018861234567891234"); // Yemen
+
+        assertIbanOk("IQ24TRIQ994005007249002");
+        assertIbanOk("IQ24TRIQ994005007249002");
+        assertIbanOk("LY57009001000000000003093");
+        assertIbanOk("AL7620511021812537CLPRCFUSDP");
+        assertIbanOk("AL9220512046016756CLPRCFEURR");
+        assertIbanOk("BY41PJCB30120730451000000840");
+        assertIbanOk("BY98PJCB30120730451000000978");
     }
 
     private void assertIbanOk(String string) {
         IBAN iban = new IBAN(string);
         IbanValidationResult result = iban.validate();
         // System.out.println(result.message());
-        assertEquals(result, IbanValidationResult.OK);
+        assertEquals(IbanValidationResult.OK, result);
     }
 }
