@@ -13,6 +13,14 @@ import org.junit.jupiter.api.Test;
  */
 class MtSequenceEnumTest {
 
+    /**
+     * Regex pattern for validating SWIFT MT sequence formats.
+     * Valid examples:
+     * - "A"           (simple sequence)
+     * - "B/B1"        (sequence with numeric suffix)
+     * - "E/E1/E1a"    (nested sequence)
+     * - "E/E1a/E1a1"  (complex nested sequence)
+     */
     private static final String SEQUENCE_PATTERN = "^[A-Z](?:/[A-Z][0-9]?(?:[a-z][0-9]?[A-Za-z0-9]*)?)*$";
 
     @Test
