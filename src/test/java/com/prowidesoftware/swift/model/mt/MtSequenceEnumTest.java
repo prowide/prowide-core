@@ -7,6 +7,10 @@ import java.util.HashSet;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Unit tests for {@link MtSequenceEnum} to validate the sequence definitions
+ * and format compliance for different SWIFT MT message types.
+ */
 class MtSequenceEnumTest {
 
     private static final String SEQUENCE_PATTERN = "^[A-Z](?:/[A-Z][0-9]?(?:[a-z][0-9]?[A-Za-z0-9]*)?)*$";
