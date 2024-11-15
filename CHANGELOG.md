@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.4.19 - SNAPSHOT
+  * (PW-2040) Added IBAN validation for the 88 supported countries 
+
 #### 9.4.18 - October 2024
   * Added new `FieldEnum` with all the available field names
   * Code security improvements as per CodeQL recommendations
