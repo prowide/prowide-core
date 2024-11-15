@@ -16,11 +16,14 @@
 
 package com.prowidesoftware.swift.model.field;
 
+import com.prowidesoftware.Generated;
+
 /**
 * Enumeration of fields for SRU 2023
 *
 * @since 9.4.18
 */
+@Generated
 public enum FieldEnum {
 
     F11A,

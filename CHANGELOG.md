@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+#### 10.1.18 - SNAPSHOT
+  * (PW-2040) Updated the BBAN validation data file to the IBAN REGISTRY Jul 2024 release 
+  * Added new `MtSequenceEnum` with all the available inner sequences of specific MT schemas
+
 #### 10.1.17 - October 2024
   * Added new `FieldEnum` with all the available field names
   * Code security improvements as per CodeQL recommendations
