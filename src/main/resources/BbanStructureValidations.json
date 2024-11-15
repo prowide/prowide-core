@@ -1,30 +1,5 @@
 [
   {
-    "country_code": "AL",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 3,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "branch_code",
-        "length": 4,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "national_check_digit",
-        "length": 16,
-        "character_type": "c"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 1,
-        "character_type": "n"
-      }
-    ]
-  },
-  {
     "country_code": "AD",
     "validation_rules": [
       {
@@ -40,6 +15,36 @@
       {
         "entry_type": "account_number",
         "length": 12,
+        "character_type": "c"
+      }
+    ]
+  },
+  {
+    "country_code": "AE",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 3,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 16,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "AL",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 8,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 16,
         "character_type": "c"
       }
     ]
@@ -75,16 +80,26 @@
     ]
   },
   {
-    "country_code": "BH",
+    "country_code": "BA",
     "validation_rules": [
       {
         "entry_type": "bank_code",
-        "length": 4,
-        "character_type": "a"
+        "length": 3,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "branch_code",
+        "length": 3,
+        "character_type": "n"
       },
       {
         "entry_type": "account_number",
-        "length": 14,
+        "length": 8,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "national_check_digit",
+        "length": 2,
         "character_type": "n"
       }
     ]
@@ -110,21 +125,61 @@
     ]
   },
   {
-    "country_code": "BA",
+    "country_code": "BG",
     "validation_rules": [
       {
         "entry_type": "bank_code",
-        "length": 3,
-        "character_type": "n"
+        "length": 4,
+        "character_type": "a"
       },
       {
         "entry_type": "branch_code",
-        "length": 3,
+        "length": 4,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_type",
+        "length": 2,
         "character_type": "n"
       },
       {
         "entry_type": "account_number",
         "length": 8,
+        "character_type": "c"
+      }
+    ]
+  },
+  {
+    "country_code": "BH",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 4,
+        "character_type": "a"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 14,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "BI",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 5,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "branch_code",
+        "length": 5,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 11,
         "character_type": "n"
       },
       {
@@ -165,26 +220,31 @@
     ]
   },
   {
-    "country_code": "BG",
+    "country_code": "BY",
     "validation_rules": [
       {
         "entry_type": "bank_code",
         "length": 4,
-        "character_type": "a"
+        "character_type": "c"
       },
       {
-        "entry_type": "branch_code",
-        "length": 4,
-        "character_type": "n"
-      },
+        "entry_type": "account_number",
+        "length": 20,
+        "character_type": "c"
+      }
+    ]
+  },
+  {
+    "country_code": "CH",
+    "validation_rules": [
       {
-        "entry_type": "account_type",
-        "length": 2,
+        "entry_type": "bank_code",
+        "length": 5,
         "character_type": "n"
       },
       {
         "entry_type": "account_number",
-        "length": 8,
+        "length": 12,
         "character_type": "c"
       }
     ]
@@ -194,62 +254,12 @@
     "validation_rules": [
       {
         "entry_type": "bank_code",
-        "length": 3,
+        "length": 4,
         "character_type": "n"
       },
       {
         "entry_type": "account_number",
         "length": 14,
-        "character_type": "n"
-      }
-    ]
-  },
-  {
-    "country_code": "DE",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 8,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 10,
-        "character_type": "n"
-      }
-    ]
-  },
-  {
-    "country_code": "EG",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 4,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "branch_code",
-        "length": 4,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 17,
-        "character_type": "n"
-      }
-    ]
-  },
-  {
-    "country_code": "HR",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 7,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 10,
         "character_type": "n"
       }
     ]
@@ -290,6 +300,46 @@
     ]
   },
   {
+    "country_code": "DE",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 8,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 10,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "DJ",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 5,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "branch_code",
+        "length": 5,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 11,
+        "character_type": "c"
+      },
+      {
+        "entry_type": "national_check_digit",
+        "length": 2,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
     "country_code": "DK",
     "validation_rules": [
       {
@@ -299,7 +349,12 @@
       },
       {
         "entry_type": "account_number",
-        "length": 10,
+        "length": 9,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "national_check_digit",
+        "length": 1,
         "character_type": "n"
       }
     ]
@@ -345,6 +400,81 @@
     ]
   },
   {
+    "country_code": "EG",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 4,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "branch_code",
+        "length": 4,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 17,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "ES",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 4,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "branch_code",
+        "length": 4,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "national_check_digit",
+        "length": 2,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 10,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "FI",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 3,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 11,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "FK",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 2,
+        "character_type": "a"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 12,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
     "country_code": "FO",
     "validation_rules": [
       {
@@ -355,26 +485,6 @@
       {
         "entry_type": "account_number",
         "length": 9,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "national_check_digit",
-        "length": 1,
-        "character_type": "n"
-      }
-    ]
-  },
-  {
-    "country_code": "FI",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 6,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 7,
         "character_type": "n"
       },
       {
@@ -405,6 +515,26 @@
       {
         "entry_type": "national_check_digit",
         "length": 2,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "GB",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 4,
+        "character_type": "a"
+      },
+      {
+        "entry_type": "branch_code",
+        "length": 6,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 8,
         "character_type": "n"
       }
     ]
@@ -490,6 +620,21 @@
     ]
   },
   {
+    "country_code": "HR",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 7,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 10,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
     "country_code": "HU",
     "validation_rules": [
       {
@@ -510,31 +655,6 @@
       {
         "entry_type": "national_check_digit",
         "length": 1,
-        "character_type": "n"
-      }
-    ]
-  },
-  {
-    "country_code": "IS",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 4,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "branch_code",
-        "length": 2,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 6,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "identification_number",
-        "length": 10,
         "character_type": "n"
       }
     ]
@@ -580,16 +700,46 @@
     ]
   },
   {
-    "country_code": "IR",
+    "country_code": "IQ",
     "validation_rules": [
       {
         "entry_type": "bank_code",
+        "length": 4,
+        "character_type": "a"
+      },
+      {
+        "entry_type": "branch_code",
         "length": 3,
         "character_type": "n"
       },
       {
         "entry_type": "account_number",
-        "length": 19,
+        "length": 12,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "IS",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 4,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "branch_code",
+        "length": 2,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 6,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "identification_number",
+        "length": 10,
         "character_type": "n"
       }
     ]
@@ -640,21 +790,6 @@
     ]
   },
   {
-    "country_code": "KZ",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 3,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 13,
-        "character_type": "c"
-      }
-    ]
-  },
-  {
     "country_code": "KW",
     "validation_rules": [
       {
@@ -670,12 +805,12 @@
     ]
   },
   {
-    "country_code": "LV",
+    "country_code": "KZ",
     "validation_rules": [
       {
         "entry_type": "bank_code",
-        "length": 4,
-        "character_type": "a"
+        "length": 3,
+        "character_type": "n"
       },
       {
         "entry_type": "account_number",
@@ -695,6 +830,21 @@
       {
         "entry_type": "account_number",
         "length": 20,
+        "character_type": "c"
+      }
+    ]
+  },
+  {
+    "country_code": "LC",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 4,
+        "character_type": "a"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 24,
         "character_type": "c"
       }
     ]
@@ -745,27 +895,7 @@
     ]
   },
   {
-    "country_code": "MK",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 3,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 10,
-        "character_type": "c"
-      },
-      {
-        "entry_type": "national_check_digit",
-        "length": 2,
-        "character_type": "n"
-      }
-    ]
-  },
-  {
-    "country_code": "MT",
+    "country_code": "LV",
     "validation_rules": [
       {
         "entry_type": "bank_code",
@@ -773,74 +903,29 @@
         "character_type": "a"
       },
       {
-        "entry_type": "branch_code",
-        "length": 5,
-        "character_type": "n"
-      },
-      {
         "entry_type": "account_number",
-        "length": 18,
+        "length": 13,
         "character_type": "c"
       }
     ]
   },
   {
-    "country_code": "MR",
+    "country_code": "LY",
     "validation_rules": [
       {
         "entry_type": "bank_code",
-        "length": 5,
-        "character_type": "a"
+        "length": 3,
+        "character_type": "n"
       },
       {
         "entry_type": "branch_code",
-        "length": 5,
+        "length": 3,
         "character_type": "n"
       },
       {
         "entry_type": "account_number",
-        "length": 11,
-        "character_type": "c"
-      },
-      {
-        "entry_type": "national_check_digit",
-        "length": 2,
-        "character_type": "c"
-      }
-    ]
-  },
-  {
-    "country_code": "MU",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 6,
-        "character_type": "c"
-      },
-      {
-        "entry_type": "branch_code",
-        "length": 2,
+        "length": 15,
         "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 18,
-        "character_type": "c"
-      }
-    ]
-  },
-  {
-    "country_code": "MD",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 2,
-        "character_type": "c"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 18,
-        "character_type": "c"
       }
     ]
   },
@@ -870,6 +955,21 @@
     ]
   },
   {
+    "country_code": "MD",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 2,
+        "character_type": "c"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 18,
+        "character_type": "c"
+      }
+    ]
+  },
+  {
     "country_code": "ME",
     "validation_rules": [
       {
@@ -885,6 +985,121 @@
       {
         "entry_type": "national_check_digit",
         "length": 2,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "MK",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 3,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 10,
+        "character_type": "c"
+      },
+      {
+        "entry_type": "national_check_digit",
+        "length": 2,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "MN",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 4,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 12,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "MR",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 5,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "branch_code",
+        "length": 5,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 11,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "national_check_digit",
+        "length": 2,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "MT",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 4,
+        "character_type": "a"
+      },
+      {
+        "entry_type": "branch_code",
+        "length": 5,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 18,
+        "character_type": "c"
+      }
+    ]
+  },
+  {
+    "country_code": "MU",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 6,
+        "character_type": "c"
+      },
+      {
+        "entry_type": "branch_code",
+        "length": 2,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 18,
+        "character_type": "c"
+      }
+    ]
+  },
+  {
+    "country_code": "NI",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 4,
+        "character_type": "a"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 20,
         "character_type": "n"
       }
     ]
@@ -925,12 +1140,42 @@
     ]
   },
   {
+    "country_code": "OM",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 3,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 16,
+        "character_type": "c"
+      }
+    ]
+  },
+  {
     "country_code": "PK",
     "validation_rules": [
       {
         "entry_type": "bank_code",
         "length": 4,
+        "character_type": "a"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 16,
         "character_type": "c"
+      }
+    ]
+  },
+  {
+    "country_code": "PL",
+    "validation_rules": [
+      {
+        "entry_type": "branch_code",
+        "length": 8,
+        "character_type": "n"
       },
       {
         "entry_type": "account_number",
@@ -951,31 +1196,6 @@
         "entry_type": "account_number",
         "length": 21,
         "character_type": "c"
-      }
-    ]
-  },
-  {
-    "country_code": "PL",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 3,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "branch_code",
-        "length": 4,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "national_check_digit",
-        "length": 1,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 16,
-        "character_type": "n"
       }
     ]
   },
@@ -1005,6 +1225,21 @@
     ]
   },
   {
+    "country_code": "QA",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 4,
+        "character_type": "a"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 21,
+        "character_type": "c"
+      }
+    ]
+  },
+  {
     "country_code": "RO",
     "validation_rules": [
       {
@@ -1020,17 +1255,152 @@
     ]
   },
   {
-    "country_code": "QA",
+    "country_code": "RS",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 3,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 13,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "national_check_digit",
+        "length": 2,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "RU",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 9,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "branch_code",
+        "length": 5,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 15,
+        "character_type": "c"
+      }
+    ]
+  },
+  {
+    "country_code": "SA",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 2,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 18,
+        "character_type": "c"
+      }
+    ]
+  },
+  {
+    "country_code": "SC",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 6,
+        "character_type": "c"
+      },
+      {
+        "entry_type": "branch_code",
+        "length": 2,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 16,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "currency",
+        "length": 3,
+        "character_type": "a"
+      }
+    ]
+  },
+  {
+    "country_code": "SD",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 2,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 12,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "SE",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 3,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 16,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "national_check_digit",
+        "length": 1,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "SI",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 5,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 8,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "national_check_digit",
+        "length": 2,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "SK",
     "validation_rules": [
       {
         "entry_type": "bank_code",
         "length": 4,
-        "character_type": "a"
+        "character_type": "n"
       },
       {
         "entry_type": "account_number",
-        "length": 21,
-        "character_type": "c"
+        "length": 16,
+        "character_type": "n"
       }
     ]
   },
@@ -1060,82 +1430,7 @@
     ]
   },
   {
-    "country_code": "SA",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 2,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 18,
-        "character_type": "c"
-      }
-    ]
-  },
-  {
-    "country_code": "RS",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 3,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 13,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "national_check_digit",
-        "length": 2,
-        "character_type": "n"
-      }
-    ]
-  },
-  {
-    "country_code": "SK",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 4,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 16,
-        "character_type": "n"
-      }
-    ]
-  },
-  {
-    "country_code": "SI",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 2,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "branch_code",
-        "length": 3,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 8,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "national_check_digit",
-        "length": 2,
-        "character_type": "n"
-      }
-    ]
-  },
-  {
-    "country_code": "ES",
+    "country_code": "SO",
     "validation_rules": [
       {
         "entry_type": "bank_code",
@@ -1144,108 +1439,43 @@
       },
       {
         "entry_type": "branch_code",
-        "length": 4,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "national_check_digit",
-        "length": 2,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 10,
-        "character_type": "n"
-      }
-    ]
-  },
-  {
-    "country_code": "SE",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
         "length": 3,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 17,
-        "character_type": "n"
-      }
-    ]
-  },
-  {
-    "country_code": "CH",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 5,
         "character_type": "n"
       },
       {
         "entry_type": "account_number",
         "length": 12,
-        "character_type": "c"
+        "character_type": "n"
       }
     ]
   },
   {
-    "country_code": "TN",
+    "country_code": "ST",
     "validation_rules": [
       {
         "entry_type": "bank_code",
-        "length": 2,
+        "length": 4,
         "character_type": "n"
       },
       {
         "entry_type": "branch_code",
-        "length": 3,
+        "length": 4,
         "character_type": "n"
       },
       {
         "entry_type": "account_number",
-        "length": 15,
-        "character_type": "c"
-      }
-    ]
-  },
-  {
-    "country_code": "TR",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 5,
+        "length": 11,
         "character_type": "n"
       },
       {
         "entry_type": "national_check_digit",
-        "length": 1,
-        "character_type": "c"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 16,
-        "character_type": "c"
-      }
-    ]
-  },
-  {
-    "country_code": "UA",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 6,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 19,
+        "length": 2,
         "character_type": "n"
       }
     ]
   },
   {
-    "country_code": "GB",
+    "country_code": "SV",
     "validation_rules": [
       {
         "entry_type": "bank_code",
@@ -1253,43 +1483,8 @@
         "character_type": "a"
       },
       {
-        "entry_type": "branch_code",
-        "length": 6,
-        "character_type": "n"
-      },
-      {
         "entry_type": "account_number",
-        "length": 8,
-        "character_type": "n"
-      }
-    ]
-  },
-  {
-    "country_code": "AE",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 3,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 16,
-        "character_type": "c"
-      }
-    ]
-  },
-  {
-    "country_code": "VG",
-    "validation_rules": [
-      {
-        "entry_type": "bank_code",
-        "length": 4,
-        "character_type": "c"
-      },
-      {
-        "entry_type": "account_number",
-        "length": 16,
+        "length": 20,
         "character_type": "n"
       }
     ]
@@ -1315,6 +1510,96 @@
     ]
   },
   {
+    "country_code": "TN",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 2,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "branch_code",
+        "length": 3,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 13,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "national_check_digit",
+        "length": 2,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "TR",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 5,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "national_check_digit",
+        "length": 1,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 16,
+        "character_type": "c"
+      }
+    ]
+  },
+  {
+    "country_code": "UA",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 6,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 19,
+        "character_type": "c"
+      }
+    ]
+  },
+  {
+    "country_code": "VA",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 3,
+        "character_type": "n"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 15,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
+    "country_code": "VG",
+    "validation_rules": [
+      {
+        "entry_type": "bank_code",
+        "length": 4,
+        "character_type": "a"
+      },
+      {
+        "entry_type": "account_number",
+        "length": 16,
+        "character_type": "n"
+      }
+    ]
+  },
+  {
     "country_code": "XK",
     "validation_rules": [
       {
@@ -1324,7 +1609,7 @@
       },
       {
         "entry_type": "branch_code",
-        "length": 12,
+        "length": 2,
         "character_type": "n"
       },
       {
@@ -1340,7 +1625,7 @@
     ]
   },
   {
-    "country_code": "SC",
+    "country_code": "YE",
     "validation_rules": [
       {
         "entry_type": "bank_code",
@@ -1354,13 +1639,8 @@
       },
       {
         "entry_type": "account_number",
-        "length": 16,
-        "character_type": "n"
-      },
-      {
-        "entry_type": "currency",
-        "length": 3,
-        "character_type": "a"
+        "length": 18,
+        "character_type": "c"
       }
     ]
   }
