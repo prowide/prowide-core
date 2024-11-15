@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class FieldEnu5mTest {
+class FieldEnumTest {
 
     @Test
     void testFieldName_F11A() {
