@@ -33,6 +33,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * @deprecated This field has been removed since SRU2024
  */
+@Deprecated
 @ProwideDeprecated(phase2 = TargetYear.SRU2025)
 public class Field29K extends Field implements Serializable {
     /**
