@@ -55,6 +55,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @deprecated This field has been moved to the Prowide Integrator since it is only used in SCORE messages, not in the general MT standard
  */
+@Deprecated
 @ProwideDeprecated(phase4 = TargetYear.SRU2025)
 public class Field34D extends Field implements Serializable, AmountContainer {
     /**
