@@ -16,6 +16,7 @@
 package com.prowidesoftware.swift.utils;
 
 import com.prowidesoftware.ProwideException;
+import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import java.util.logging.Level;
@@ -241,8 +242,12 @@ public class SafeXmlUtils {
      * @deprecated use the default SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI) instead, there is no need to prevent XXE attacks in the schema factory
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2024)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2025)
     public static SchemaFactory schemaFactory() {
+        DeprecationUtils.phase2(
+                SafeXmlUtils.class,
+                "schemaFactory",
+                "use SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI) instead");
         String feature = null;
         try {
             SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -268,8 +273,9 @@ public class SafeXmlUtils {
      * @deprecated use the default schema.newValidator() instead, there is no need to prevent XXE attacks in validation
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2024)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2025)
     public static Validator validator(Schema schema) {
+        DeprecationUtils.phase2(SafeXmlUtils.class, "validator", "use schema.newValidator() instead");
         String feature = null;
         try {
             Validator validator = schema.newValidator();

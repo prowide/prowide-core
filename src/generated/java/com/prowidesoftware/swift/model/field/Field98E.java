@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,7 +65,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -73,7 +73,7 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -84,27 +84,6 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_98E = "98E";
-
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = ":S//<DATE4><TIME2>[,S][/[c]<TIME3>]";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SDTNSW";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SDTNSW";
 
 	/**
 	 * Component number for the Qualifier subfield.
@@ -317,16 +296,6 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
             return f.format(cal.getTime());
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SDTNSW";
     }
 
     /**
@@ -557,16 +526,6 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
     }
 
     /**
-     * @deprecated use #getComponent4AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent4AsNumber() {
-        Long l = getComponent4AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Decimals (component 4).
      * @return the Decimals from component 4
      */
@@ -581,15 +540,6 @@ public class Field98E extends Field implements Serializable, DateContainer, Gene
      */
     public java.lang.Long getDecimalsAsLong() {
         return getComponent4AsLong();
-    }
-
-    /**
-     * @deprecated use #getDecimalsAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getDecimalsAsNumber() {
-        return getComponent4AsNumber();
     }
 
     /**

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -75,7 +75,7 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -87,27 +87,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     public static final String F_24G = "24G";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S[$S]0-12";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSSSSSSSSSSSS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSSSSSSSSSSSS";
-
 	/**
 	 * Component number for the Code subfield.
 	 */
@@ -118,12 +97,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
 	 */
 	public static final Integer NARRATIVE = 2;
 
-	/**
-	 * @deprecated use #NARRATIVE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer NAME_AND_ADDRESS = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -281,16 +254,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         // This is the last component, return directly without `if`
         //default format (as is)
         return getComponent(13);
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSSSSSSSSSSSS";
     }
 
     /**
@@ -524,16 +487,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         return getComponent2();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Narrative
-     * @deprecated use #getNarrativeLine1() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNameandAddressLine1() {
-        return getNarrativeLine1();
-    }
 
     /**
      * Gets the Narrative as a concatenation of component 2 to component 13.
@@ -564,24 +517,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated use #getNarrative() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNameandAddress() {
-        return getNarrative();
-    }
-
-    /**
-     * @deprecated use #getNarrative() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNameandAddress(CharSequence deli) {
-        return getNarrative(deli);
-    }
-
-    /**
      * Gets the component 3 (Narrative 2).
      * @return the component 3
      */
@@ -597,16 +532,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         return getComponent3();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Narrative 2
-     * @deprecated use #getNarrativeLine2() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNameandAddressLine2() {
-        return getNarrativeLine2();
-    }
 
     /**
      * Gets the component 4 (Narrative 3).
@@ -624,16 +549,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         return getComponent4();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Narrative 3
-     * @deprecated use #getNarrativeLine3() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNameandAddressLine3() {
-        return getNarrativeLine3();
-    }
 
     /**
      * Gets the component 5 (Narrative 4).
@@ -651,16 +566,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         return getComponent5();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Narrative 4
-     * @deprecated use #getNarrativeLine4() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNameandAddressLine4() {
-        return getNarrativeLine4();
-    }
 
     /**
      * Gets the component 6 (Narrative 5).
@@ -678,16 +583,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         return getComponent6();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Narrative 5
-     * @deprecated use #getNarrativeLine5() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNameandAddressLine5() {
-        return getNarrativeLine5();
-    }
 
     /**
      * Gets the component 7 (Narrative 6).
@@ -705,16 +600,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         return getComponent7();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Narrative 6
-     * @deprecated use #getNarrativeLine6() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNameandAddressLine6() {
-        return getNarrativeLine6();
-    }
 
     /**
      * Gets the component 8 (Narrative 7).
@@ -732,16 +617,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         return getComponent8();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Narrative 7
-     * @deprecated use #getNarrativeLine7() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNameandAddressLine7() {
-        return getNarrativeLine7();
-    }
 
     /**
      * Gets the component 9 (Narrative 8).
@@ -759,16 +634,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         return getComponent9();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Narrative 8
-     * @deprecated use #getNarrativeLine8() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNameandAddressLine8() {
-        return getNarrativeLine8();
-    }
 
     /**
      * Gets the component 10 (Narrative 9).
@@ -786,16 +651,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         return getComponent10();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Narrative 9
-     * @deprecated use #getNarrativeLine9() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNameandAddressLine9() {
-        return getNarrativeLine9();
-    }
 
     /**
      * Gets the component 11 (Narrative 10).
@@ -813,16 +668,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         return getComponent11();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Narrative 10
-     * @deprecated use #getNarrativeLine10() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNameandAddressLine10() {
-        return getNarrativeLine10();
-    }
 
     /**
      * Gets the component 12 (Narrative 11).
@@ -840,16 +685,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         return getComponent12();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Narrative 11
-     * @deprecated use #getNarrativeLine11() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNameandAddressLine11() {
-        return getNarrativeLine11();
-    }
 
     /**
      * Gets the component 13 (Narrative 12).
@@ -867,16 +702,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         return getComponent13();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Narrative 12
-     * @deprecated use #getNarrativeLine12() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNameandAddressLine12() {
-        return getNarrativeLine12();
-    }
 
     /**
      * Set the component 1 (Code).
@@ -921,15 +746,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated use #setNarrativeLine1(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field24G setNameandAddressLine1(String component2) {
-        return setNarrativeLine1(component2);
-    }
-
-    /**
      * Set the Narrative splitting the parameter lines into components 2 to 13.
      *
      * @param value the Narrative to set, may contain line ends and each line will be set to its correspondent component attribute
@@ -939,15 +755,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
         List<String> lines = SwiftParseUtils.getLines(value);
         SwiftParseUtils.setComponentsFromLines(this, 2, 12, 0, lines);
         return this;
-    }
-
-    /**
-     * @deprecated use #setNarrative(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field24G setNameandAddress(String value) {
-        return setNarrative(value);
     }
 
     /**
@@ -972,15 +779,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated use #setNarrativeLine2(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field24G setNameandAddressLine2(String component3) {
-        return setNarrativeLine2(component3);
-    }
-
-    /**
      * Set the component 4 (Narrative 3).
      *
      * @param component4 the Narrative 3 to set
@@ -999,15 +797,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     public Field24G setNarrativeLine3(String component4) {
         return setComponent4(component4);
-    }
-
-    /**
-     * @deprecated use #setNarrativeLine3(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field24G setNameandAddressLine3(String component4) {
-        return setNarrativeLine3(component4);
     }
 
     /**
@@ -1032,15 +821,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated use #setNarrativeLine4(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field24G setNameandAddressLine4(String component5) {
-        return setNarrativeLine4(component5);
-    }
-
-    /**
      * Set the component 6 (Narrative 5).
      *
      * @param component6 the Narrative 5 to set
@@ -1059,15 +839,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     public Field24G setNarrativeLine5(String component6) {
         return setComponent6(component6);
-    }
-
-    /**
-     * @deprecated use #setNarrativeLine5(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field24G setNameandAddressLine5(String component6) {
-        return setNarrativeLine5(component6);
     }
 
     /**
@@ -1092,15 +863,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated use #setNarrativeLine6(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field24G setNameandAddressLine6(String component7) {
-        return setNarrativeLine6(component7);
-    }
-
-    /**
      * Set the component 8 (Narrative 7).
      *
      * @param component8 the Narrative 7 to set
@@ -1119,15 +881,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     public Field24G setNarrativeLine7(String component8) {
         return setComponent8(component8);
-    }
-
-    /**
-     * @deprecated use #setNarrativeLine7(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field24G setNameandAddressLine7(String component8) {
-        return setNarrativeLine7(component8);
     }
 
     /**
@@ -1152,15 +905,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated use #setNarrativeLine8(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field24G setNameandAddressLine8(String component9) {
-        return setNarrativeLine8(component9);
-    }
-
-    /**
      * Set the component 10 (Narrative 9).
      *
      * @param component10 the Narrative 9 to set
@@ -1179,15 +923,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     public Field24G setNarrativeLine9(String component10) {
         return setComponent10(component10);
-    }
-
-    /**
-     * @deprecated use #setNarrativeLine9(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field24G setNameandAddressLine9(String component10) {
-        return setNarrativeLine9(component10);
     }
 
     /**
@@ -1212,15 +947,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated use #setNarrativeLine10(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field24G setNameandAddressLine10(String component11) {
-        return setNarrativeLine10(component11);
-    }
-
-    /**
      * Set the component 12 (Narrative 11).
      *
      * @param component12 the Narrative 11 to set
@@ -1242,15 +968,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * @deprecated use #setNarrativeLine11(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field24G setNameandAddressLine11(String component12) {
-        return setNarrativeLine11(component12);
-    }
-
-    /**
      * Set the component 13 (Narrative 12).
      *
      * @param component13 the Narrative 12 to set
@@ -1269,15 +986,6 @@ public class Field24G extends Field implements Serializable, MultiLineField {
      */
     public Field24G setNarrativeLine12(String component13) {
         return setComponent13(component13);
-    }
-
-    /**
-     * @deprecated use #setNarrativeLine12(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field24G setNameandAddressLine12(String component13) {
-        return setNarrativeLine12(component13);
     }
 
 

@@ -23,7 +23,6 @@ import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -57,7 +56,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @deprecated This field has been moved to the Prowide Integrator since it is only used in SCORE messages, not in the general MT standard
  */
-@ProwideDeprecated(phase3 = TargetYear.SRU2024)
+@ProwideDeprecated(phase4 = TargetYear.SRU2025)
 public class Field11T extends Field implements Serializable, DateContainer, MultiLineField {
     /**
      * Constant identifying the SRU to which this class belongs to.
@@ -73,27 +72,6 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_11T = "11T";
-
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String PARSER_PATTERN = "S$<DATE4><HHMM>";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String COMPONENTS_PATTERN = "NDH";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String TYPES_PATTERN = "NDH";
 
     /**
      * Component number for the Type subfield.
@@ -253,16 +231,6 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "NDH";
-    }
-
-    /**
      * Returns the field component types pattern.
      *
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -390,22 +358,6 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
     }
 
     /**
-     * Get the component 1 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent1AsLong()
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        Long l = getComponent1AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Type (component 1).
      * @return the Type from component 1
      */
@@ -420,21 +372,6 @@ public class Field11T extends Field implements Serializable, DateContainer, Mult
      */
     public java.lang.Long getTypeAsLong() {
         return getComponent1AsLong();
-    }
-
-    /**
-     * Get the Type (component 1) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getTypeAsLong()
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getTypeAsNumber() {
-        return getComponent1AsNumber();
     }
 
     /**

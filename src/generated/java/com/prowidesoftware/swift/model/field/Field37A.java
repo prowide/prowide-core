@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,7 +65,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -73,7 +73,7 @@ public class Field37A extends Field implements Serializable, AmountContainer, Da
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -85,27 +85,6 @@ public class Field37A extends Field implements Serializable, AmountContainer, Da
      */
     public static final String F_37A = "37A";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "N[//<DATE2>cS][/S]";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "NESNS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "IESNS";
-
 	/**
 	 * Component number for the Rate subfield.
 	 */
@@ -116,36 +95,18 @@ public class Field37A extends Field implements Serializable, AmountContainer, Da
 	 */
 	public static final Integer END_DATE = 2;
 
-	/**
-	 * @deprecated use #END_DATE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer DATE = 2;
 
 	/**
 	 * Component number for the Period subfield.
 	 */
 	public static final Integer PERIOD = 3;
 
-	/**
-	 * @deprecated use #PERIOD instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer DM_MARK = 3;
 
 	/**
 	 * Component number for the Number subfield.
 	 */
 	public static final Integer NUMBER = 4;
 
-	/**
-	 * @deprecated use #NUMBER instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer NUMBER_OF_DAYSMONTHS = 4;
 
 	/**
 	 * Component number for the Information subfield.
@@ -310,16 +271,6 @@ public class Field37A extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "NESNS";
-    }
-
-    /**
      * Returns the field component types pattern.
      * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -471,15 +422,6 @@ public class Field37A extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * @deprecated use #getComponent1AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        return getComponent1AsBigDecimal();
-    }
-
-    /**
      * Gets the Rate (component 1).
      * @return the Rate from component 1
      */
@@ -494,15 +436,6 @@ public class Field37A extends Field implements Serializable, AmountContainer, Da
      */
     public java.math.BigDecimal getRateAsBigDecimal() {
         return getComponent1AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getRateAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getRateAsNumber() {
-        return getComponent1AsNumber();
     }
 
     /**
@@ -530,16 +463,6 @@ public class Field37A extends Field implements Serializable, AmountContainer, Da
         return getComponent2();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's End Date
-     * @deprecated use #getEndDate() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getDate() {
-        return getEndDate();
-    }
 
     /**
      * Get the End Date (component 2) as Calendar
@@ -547,15 +470,6 @@ public class Field37A extends Field implements Serializable, AmountContainer, Da
      */
     public java.util.Calendar getEndDateAsCalendar() {
         return getComponent2AsCalendar();
-    }
-
-    /**
-     * @deprecated use #getEndDateAsCalendar() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.util.Calendar getDateAsCalendar() {
-        return getEndDateAsCalendar();
     }
 
     /**
@@ -574,16 +488,6 @@ public class Field37A extends Field implements Serializable, AmountContainer, Da
         return getComponent3();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Period
-     * @deprecated use #getPeriod() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getDMMark() {
-        return getPeriod();
-    }
 
     /**
      * Gets the component 4 (Number).
@@ -604,16 +508,6 @@ public class Field37A extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * @deprecated use #getComponent4AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent4AsNumber() {
-        Long l = getComponent4AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Number (component 4).
      * @return the Number from component 4
      */
@@ -621,16 +515,6 @@ public class Field37A extends Field implements Serializable, AmountContainer, Da
         return getComponent4();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Number
-     * @deprecated use #getNumber() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNumberofDaysMonths() {
-        return getNumber();
-    }
 
     /**
      * Get the Number (component 4) as Long
@@ -639,33 +523,6 @@ public class Field37A extends Field implements Serializable, AmountContainer, Da
      */
     public java.lang.Long getNumberAsLong() {
         return getComponent4AsLong();
-    }
-
-    /**
-     * @deprecated use #getNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberAsNumber() {
-        return getComponent4AsNumber();
-    }
-
-    /**
-     * @deprecated use #getNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Long getNumberofDaysMonthsAsLong() {
-        return getNumberAsLong();
-    }
-
-    /**
-     * @deprecated use #getNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberofDaysMonthsAsNumber() {
-        return getNumberAsNumber();
     }
 
     /**
@@ -790,24 +647,6 @@ public class Field37A extends Field implements Serializable, AmountContainer, Da
     }
 
     /**
-     * @deprecated use #setEndDate(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field37A setDate(String component2) {
-        return setEndDate(component2);
-    }
-
-    /**
-     * @deprecated use #setComponent2(java.util.Calendar) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field37A setDate(java.util.Calendar component2) {
-        return setEndDate(component2);
-    }
-
-    /**
      * Set the component 3 (Period).
      *
      * @param component3 the Period to set
@@ -826,15 +665,6 @@ public class Field37A extends Field implements Serializable, AmountContainer, Da
      */
     public Field37A setPeriod(String component3) {
         return setComponent3(component3);
-    }
-
-    /**
-     * @deprecated use #setPeriod(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field37A setDMMark(String component3) {
-        return setPeriod(component3);
     }
 
     /**
@@ -895,24 +725,6 @@ public class Field37A extends Field implements Serializable, AmountContainer, Da
      */
     public Field37A setNumber(java.lang.Number component4) {
         return setComponent4(component4);
-    }
-
-    /**
-     * @deprecated use #setNumber(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field37A setNumberofDaysMonths(String component4) {
-        return setNumber(component4);
-    }
-
-    /**
-     * @deprecated use #setNumber(java.lang.Long) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field37A setNumberofDaysMonths(java.lang.Number component4) {
-        return setNumber(component4);
     }
 
     /**

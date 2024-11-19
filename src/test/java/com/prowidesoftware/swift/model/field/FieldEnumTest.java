@@ -14,16 +14,16 @@ class FieldEnumTest {
     }
 
     @Test
-    void testFieldName_F22J() {
-        FieldEnum field = FieldEnum.F22J;
-        String expectedName = "22J";
+    void testFieldName_F29Q() {
+        FieldEnum field = FieldEnum.F29Q;
+        String expectedName = "29Q";
         assertEquals(expectedName, field.fieldName());
     }
 
     @Test
-    void testFieldName_F44H() {
-        FieldEnum field = FieldEnum.F44H;
-        String expectedName = "44H";
+    void testFieldName_F30K() {
+        FieldEnum field = FieldEnum.F30K;
+        String expectedName = "30K";
         assertEquals(expectedName, field.fieldName());
     }
 
@@ -35,23 +35,23 @@ class FieldEnumTest {
     }
 
     @Test
-    void testFromFieldNameValid_22J() {
-        String fieldName = "22J";
-        FieldEnum expectedEnum = FieldEnum.F22J;
+    void testFromFieldNameValid_29Q() {
+        String fieldName = "29Q";
+        FieldEnum expectedEnum = FieldEnum.F29Q;
         assertEquals(expectedEnum, FieldEnum.fromFieldName(fieldName));
     }
 
     @Test
-    void testFromFieldNameValid_44H() {
-        String fieldName = "44H";
-        FieldEnum expectedEnum = FieldEnum.F44H;
+    void testFromFieldNameValid_30K() {
+        String fieldName = "30K";
+        FieldEnum expectedEnum = FieldEnum.F30K;
         assertEquals(expectedEnum, FieldEnum.fromFieldName(fieldName));
     }
 
     @Test
     void testfromFieldNameInvalid() {
         // Validate that fromFieldName returns null when an invalid code is provided
-        assertNull(FieldEnum.fromFieldName("999A"));
+        assertNull(FieldEnum.fromFieldName("930K"));
         assertNull(FieldEnum.fromFieldName("ABC"));
         assertNull(FieldEnum.fromFieldName(""));
     }

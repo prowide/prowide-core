@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -68,7 +68,7 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -79,27 +79,6 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_23 = "23";
-
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S[/S/S[/S]]";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SSSC";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SSSC";
 
 	/**
 	 * Component number for the Code 1 subfield.
@@ -289,16 +268,6 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SSSC";
-    }
-
-    /**
      * Returns the field component types pattern.
      * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -445,7 +414,6 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
 
     /**
      * Alternative method getter for field's Code 1
-     * @deprecated use #getCode1() instead
      * @since 9.2.7
      */
     public String getBuySellIndicator() {
@@ -470,7 +438,6 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
 
     /**
      * Alternative method getter for field's Code 2
-     * @deprecated use #getCode2() instead
      * @since 9.2.7
      */
     public String getCallPutIndicator() {
@@ -495,7 +462,6 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
 
     /**
      * Alternative method getter for field's Code 3
-     * @deprecated use #getCode3() instead
      * @since 9.2.7
      */
     public String getStyleIndicator() {
@@ -529,7 +495,6 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
 
     /**
      * Alternative method getter for field's Currency
-     * @deprecated use #getCurrency() instead
      * @since 9.2.7
      */
     public String getManualAutomaticIndicator() {
@@ -545,7 +510,6 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
     }
 
     /**
-     * @deprecated use #getCurrencyAsCurrency() instead
      * @since 9.2.7
      */
     public java.util.Currency getManualAutomaticIndicatorAsCurrency() {
@@ -573,9 +537,6 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
         return setComponent1(component1);
     }
 
-    /**
-     * @deprecated use #setCode1(String) instead
-     */
     public Field23 setBuySellIndicator(String component1) {
         return setCode1(component1);
     }
@@ -601,9 +562,6 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
         return setComponent2(component2);
     }
 
-    /**
-     * @deprecated use #setCode2(String) instead
-     */
     public Field23 setCallPutIndicator(String component2) {
         return setCode2(component2);
     }
@@ -629,9 +587,6 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
         return setComponent3(component3);
     }
 
-    /**
-     * @deprecated use #setCode3(String) instead
-     */
     public Field23 setStyleIndicator(String component3) {
         return setCode3(component3);
     }
@@ -680,16 +635,10 @@ public class Field23 extends Field implements Serializable, CurrencyContainer {
         return setComponent4(component4);
     }
 
-    /**
-     * @deprecated use #setCurrency(String) instead
-     */
     public Field23 setManualAutomaticIndicator(String component4) {
         return setCurrency(component4);
     }
 
-    /**
-     * @deprecated use #setComponent4(java.util.Currency) instead
-     */
     public Field23 setManualAutomaticIndicator(java.util.Currency component4) {
         return setCurrency(component4);
     }

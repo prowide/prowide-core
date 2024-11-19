@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -65,7 +65,7 @@ public class Field41F extends Field implements Serializable, BICContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -77,38 +77,11 @@ public class Field41F extends Field implements Serializable, BICContainer {
      */
     public static final String F_41F = "41F";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "B";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "B";
-
 	/**
 	 * Component number for the Identifier Code subfield.
 	 */
 	public static final Integer IDENTIFIER_CODE = 1;
 
-	/**
-	 * @deprecated use #IDENTIFIER_CODE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer BIC = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -216,16 +189,6 @@ public class Field41F extends Field implements Serializable, BICContainer {
         }
         //default format (as is)
         return getComponent(1);
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "B";
     }
 
     /**
@@ -358,16 +321,6 @@ public class Field41F extends Field implements Serializable, BICContainer {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Identifier Code
-     * @deprecated use #getIdentifierCode() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getBIC() {
-        return getIdentifierCode();
-    }
 
     /**
      * Get the Identifier Code (component 1) as BIC
@@ -375,15 +328,6 @@ public class Field41F extends Field implements Serializable, BICContainer {
      */
     public com.prowidesoftware.swift.model.BIC getIdentifierCodeAsBIC() {
         return getComponent1AsBIC();
-    }
-
-    /**
-     * @deprecated use #getIdentifierCodeAsBIC() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public com.prowidesoftware.swift.model.BIC getBICAsBIC() {
-        return getIdentifierCodeAsBIC();
     }
 
     /**
@@ -428,24 +372,6 @@ public class Field41F extends Field implements Serializable, BICContainer {
      */
     public Field41F setIdentifierCode(com.prowidesoftware.swift.model.BIC component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setIdentifierCode(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field41F setBIC(String component1) {
-        return setIdentifierCode(component1);
-    }
-
-    /**
-     * @deprecated use #setComponent1(com.prowidesoftware.swift.model.BIC) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field41F setBIC(com.prowidesoftware.swift.model.BIC component1) {
-        return setIdentifierCode(component1);
     }
 
 

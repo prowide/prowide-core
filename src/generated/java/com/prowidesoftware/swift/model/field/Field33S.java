@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -67,7 +67,7 @@ public class Field33S extends Field implements Serializable, AmountContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -79,38 +79,11 @@ public class Field33S extends Field implements Serializable, AmountContainer {
      */
     public static final String F_33S = "33S";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SI";
-
 	/**
 	 * Component number for the Code subfield.
 	 */
 	public static final Integer CODE = 1;
 
-	/**
-	 * @deprecated use #CODE instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer CURRENCY = 1;
 
 	/**
 	 * Component number for the Amount subfield.
@@ -238,16 +211,6 @@ public class Field33S extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SN";
-    }
-
-    /**
      * Returns the field component types pattern.
      * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -371,16 +334,6 @@ public class Field33S extends Field implements Serializable, AmountContainer {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Code
-     * @deprecated use #getCode() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getCurrency() {
-        return getCode();
-    }
 
     /**
      * Gets the component 2 (Amount).
@@ -401,15 +354,6 @@ public class Field33S extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * @deprecated use #getComponent2AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        return getComponent2AsBigDecimal();
-    }
-
-    /**
      * Gets the Amount (component 2).
      * @return the Amount from component 2
      */
@@ -424,15 +368,6 @@ public class Field33S extends Field implements Serializable, AmountContainer {
      */
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getComponent2AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAmountAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**
@@ -454,15 +389,6 @@ public class Field33S extends Field implements Serializable, AmountContainer {
      */
     public Field33S setCode(String component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setCode(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field33S setCurrency(String component1) {
-        return setCode(component1);
     }
 
     /**

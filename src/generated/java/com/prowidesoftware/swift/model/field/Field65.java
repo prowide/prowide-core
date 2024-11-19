@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -72,7 +72,7 @@ public class Field65 extends Field implements Serializable, AmountContainer, Dat
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -83,27 +83,6 @@ public class Field65 extends Field implements Serializable, AmountContainer, Dat
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_65 = "65";
-
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "[c]<DATE2>SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SESN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SESI";
 
 	/**
 	 * Component number for the D/C Mark subfield.
@@ -265,16 +244,6 @@ public class Field65 extends Field implements Serializable, AmountContainer, Dat
             return f.format(n);
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SESN";
     }
 
     /**
@@ -458,7 +427,6 @@ public class Field65 extends Field implements Serializable, AmountContainer, Dat
 
     /**
      * Alternative method getter for field's Currency
-     * @deprecated use #getCurrency() instead
      * @since 9.2.7
      */
     public String getUnit() {
@@ -484,15 +452,6 @@ public class Field65 extends Field implements Serializable, AmountContainer, Dat
     }
 
     /**
-     * @deprecated use #getComponent4AsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent4AsNumber() {
-        return getComponent4AsBigDecimal();
-    }
-
-    /**
      * Gets the Amount (component 4).
      * @return the Amount from component 4
      */
@@ -507,15 +466,6 @@ public class Field65 extends Field implements Serializable, AmountContainer, Dat
      */
     public java.math.BigDecimal getAmountAsBigDecimal() {
         return getComponent4AsBigDecimal();
-    }
-
-    /**
-     * @deprecated use #getAmountAsBigDecimal() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getAmountAsNumber() {
-        return getComponent4AsNumber();
     }
 
     /**
@@ -604,9 +554,6 @@ public class Field65 extends Field implements Serializable, AmountContainer, Dat
         return setComponent3(component3);
     }
 
-    /**
-     * @deprecated use #setCurrency(String) instead
-     */
     public Field65 setUnit(String component3) {
         return setCurrency(component3);
     }

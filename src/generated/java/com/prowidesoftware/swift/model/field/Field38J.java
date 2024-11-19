@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -65,7 +65,7 @@ public class Field38J extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -77,38 +77,11 @@ public class Field38J extends Field implements Serializable {
      */
     public static final String F_38J = "38J";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SN";
-
 	/**
 	 * Component number for the Indicator subfield.
 	 */
 	public static final Integer INDICATOR = 1;
 
-	/**
-	 * @deprecated use #INDICATOR instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer DM_MARK = 1;
 
 	/**
 	 * Component number for the Number subfield.
@@ -227,16 +200,6 @@ public class Field38J extends Field implements Serializable {
         // This is the last component, return directly without `if`
         //default format (as is)
         return getComponent(2);
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SN";
     }
 
     /**
@@ -363,16 +326,6 @@ public class Field38J extends Field implements Serializable {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Indicator
-     * @deprecated use #getIndicator() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getDMMark() {
-        return getIndicator();
-    }
 
     /**
      * Gets the component 2 (Number).
@@ -393,16 +346,6 @@ public class Field38J extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Number (component 2).
      * @return the Number from component 2
      */
@@ -417,15 +360,6 @@ public class Field38J extends Field implements Serializable {
      */
     public java.lang.Long getNumberAsLong() {
         return getComponent2AsLong();
-    }
-
-    /**
-     * @deprecated use #getNumberAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberAsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**
@@ -447,15 +381,6 @@ public class Field38J extends Field implements Serializable {
      */
     public Field38J setIndicator(String component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setIndicator(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field38J setDMMark(String component1) {
-        return setIndicator(component1);
     }
 
     /**

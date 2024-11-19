@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -65,7 +65,7 @@ public class Field39A extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -76,27 +76,6 @@ public class Field39A extends Field implements Serializable {
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_39A = "39A";
-
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S/S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "NN";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "NN";
 
 	/**
 	 * Component number for the Tolerance 1 subfield.
@@ -225,16 +204,6 @@ public class Field39A extends Field implements Serializable {
     }
 
     /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "NN";
-    }
-
-    /**
      * Returns the field component types pattern.
      * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
@@ -359,16 +328,6 @@ public class Field39A extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent1AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        Long l = getComponent1AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Tolerance 1 (component 1).
      * @return the Tolerance 1 from component 1
      */
@@ -383,15 +342,6 @@ public class Field39A extends Field implements Serializable {
      */
     public java.lang.Long getTolerance1AsLong() {
         return getComponent1AsLong();
-    }
-
-    /**
-     * @deprecated use #getTolerance1AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getTolerance1AsNumber() {
-        return getComponent1AsNumber();
     }
 
     /**
@@ -413,16 +363,6 @@ public class Field39A extends Field implements Serializable {
     }
 
     /**
-     * @deprecated use #getComponent2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent2AsNumber() {
-        Long l = getComponent2AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Tolerance 2 (component 2).
      * @return the Tolerance 2 from component 2
      */
@@ -437,15 +377,6 @@ public class Field39A extends Field implements Serializable {
      */
     public java.lang.Long getTolerance2AsLong() {
         return getComponent2AsLong();
-    }
-
-    /**
-     * @deprecated use #getTolerance2AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getTolerance2AsNumber() {
-        return getComponent2AsNumber();
     }
 
     /**

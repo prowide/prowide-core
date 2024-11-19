@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -62,7 +62,7 @@ public class Field23C extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -74,38 +74,11 @@ public class Field23C extends Field implements Serializable {
      */
     public static final String F_23C = "23C";
 
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "S";
-
 	/**
 	 * Component number for the Settlement Calculation subfield.
 	 */
 	public static final Integer SETTLEMENT_CALCULATION = 1;
 
-	/**
-	 * @deprecated use #SETTLEMENT_CALCULATION instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer CODE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -213,16 +186,6 @@ public class Field23C extends Field implements Serializable {
         }
         //default format (as is)
         return getComponent(1);
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "S";
     }
 
     /**
@@ -346,16 +309,6 @@ public class Field23C extends Field implements Serializable {
         return getComponent1();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Settlement Calculation
-     * @deprecated use #getSettlementCalculation() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getCode() {
-        return getSettlementCalculation();
-    }
 
     /**
      * Set the component 1 (Settlement Calculation).
@@ -376,15 +329,6 @@ public class Field23C extends Field implements Serializable {
      */
     public Field23C setSettlementCalculation(String component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setSettlementCalculation(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field23C setCode(String component1) {
-        return setSettlementCalculation(component1);
     }
 
 

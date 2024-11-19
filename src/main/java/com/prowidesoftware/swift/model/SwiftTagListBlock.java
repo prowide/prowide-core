@@ -1909,7 +1909,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * @since 7.7
      */
     public SwiftTagListBlock append(final Tag tag) {
-        Validate.notNull(tag);
+        Validate.isTrue(tag != null);
         this.tags.add(tag);
         return this;
     }

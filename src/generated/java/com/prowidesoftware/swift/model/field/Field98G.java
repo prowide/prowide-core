@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -71,7 +71,7 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -82,27 +82,6 @@ public class Field98G extends Field implements Serializable, DateContainer {
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_98G = "98G";
-
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "<DATE4><TIME2>[,S][/[c]<TIME3>]";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "DTNSW";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "DTNSW";
 
 	/**
 	 * Component number for the Date subfield.
@@ -119,12 +98,6 @@ public class Field98G extends Field implements Serializable, DateContainer {
 	 */
 	public static final Integer DECIMALS = 3;
 
-	/**
-	 * @deprecated use #DECIMALS instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer NUMBER = 3;
 
 	/**
 	 * Component number for the Sign subfield.
@@ -308,16 +281,6 @@ public class Field98G extends Field implements Serializable, DateContainer {
             return f.format(cal.getTime());
         }
         return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "DTNSW";
     }
 
     /**
@@ -531,16 +494,6 @@ public class Field98G extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * @deprecated use #getComponent3AsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent3AsNumber() {
-        Long l = getComponent3AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Decimals (component 3).
      * @return the Decimals from component 3
      */
@@ -548,16 +501,6 @@ public class Field98G extends Field implements Serializable, DateContainer {
         return getComponent3();
     }
 
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Decimals
-     * @deprecated use #getDecimals() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getNumber() {
-        return getDecimals();
-    }
 
     /**
      * Get the Decimals (component 3) as Long
@@ -566,33 +509,6 @@ public class Field98G extends Field implements Serializable, DateContainer {
      */
     public java.lang.Long getDecimalsAsLong() {
         return getComponent3AsLong();
-    }
-
-    /**
-     * @deprecated use #getDecimalsAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getDecimalsAsNumber() {
-        return getComponent3AsNumber();
-    }
-
-    /**
-     * @deprecated use #getDecimalsAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Long getNumberAsLong() {
-        return getDecimalsAsLong();
-    }
-
-    /**
-     * @deprecated use #getDecimalsAsLong() instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberAsNumber() {
-        return getDecimalsAsNumber();
     }
 
     /**
@@ -790,24 +706,6 @@ public class Field98G extends Field implements Serializable, DateContainer {
      */
     public Field98G setDecimals(java.lang.Number component3) {
         return setComponent3(component3);
-    }
-
-    /**
-     * @deprecated use #setDecimals(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field98G setNumber(String component3) {
-        return setDecimals(component3);
-    }
-
-    /**
-     * @deprecated use #setDecimals(java.lang.Long) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field98G setNumber(java.lang.Number component3) {
-        return setDecimals(component3);
     }
 
     /**

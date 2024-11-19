@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-import java.util.Calendar;
 
 
 import com.prowidesoftware.swift.model.*;
@@ -38,87 +37,55 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * SWIFT MT Field 29K.
+ * SWIFT MT Field 14P.
  * <p>
- * Model and parser for field 29K of a SWIFT MT message.
+ * Model and parser for field 14P of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: Location: <code>String</code></li>
- * 		<li>Component 2: Time: <code>Calendar</code></li>
+ * 		<li>Component 1: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>4!c/&lt;HHMM&gt;</code></li>
- * 		<li>parser pattern: <code>S/S</code></li>
- * 		<li>components pattern: <code>SH</code></li>
+ * 		<li>validation pattern: <code>4!c</code></li>
+ * 		<li>parser pattern: <code>S</code></li>
+ * 		<li>components pattern: <code>S</code></li>
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field29K extends Field implements Serializable {
+public class Field14P extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 29K.
+	 * Constant with the field name 14P.
 	 */
-    public static final String NAME = "29K";
+    public static final String NAME = "14P";
     /**
      * Same as NAME, intended to be clear when using static imports.
      */
-    public static final String F_29K = "29K";
-
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S/S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SH";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SH";
-
-	/**
-	 * Component number for the Location subfield.
-	 */
-	public static final Integer LOCATION = 1;
-
-	/**
-	 * Component number for the Time subfield.
-	 */
-	public static final Integer TIME = 2;
+    public static final String F_14P = "14P";
 
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
-    public Field29K() {
-        super(2);
+    public Field14P() {
+        super(1);
     }
 
     /**
      * Creates a new field and initializes its components with content from the parameter value.
      * @param value complete field value including separators and CRLF
      */
-    public Field29K(final String value) {
+    public Field14P(final String value) {
         super(value);
     }
 
@@ -128,13 +95,13 @@ public class Field29K extends Field implements Serializable {
      * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
      * @since 7.8
      */
-    public Field29K(final Tag tag) {
+    public Field14P(final Tag tag) {
         this();
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!StringUtils.equals(tag.getName(), "29K")) {
-            throw new IllegalArgumentException("cannot create field 29K from tag "+tag.getName()+", tagname must match the name of the field.");
+        if (!StringUtils.equals(tag.getName(), "14P")) {
+            throw new IllegalArgumentException("cannot create field 14P from tag "+tag.getName()+", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -145,8 +112,8 @@ public class Field29K extends Field implements Serializable {
      * @param source a field instance to copy
      * @since 7.7
      */
-    public static Field29K newInstance(Field29K source) {
-        Field29K cp = new Field29K();
+    public static Field14P newInstance(Field14P source) {
+        Field14P cp = new Field14P();
         cp.setComponents(new ArrayList<>(source.getComponents()));
         return cp;
     }
@@ -183,9 +150,8 @@ public class Field29K extends Field implements Serializable {
      */
     @Override
     public void parse(final String value) {
-        init(2);
-        setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
-        setComponent2(SwiftParseUtils.getTokenSecondLast(value, "/"));
+        init(1);
+        setComponent1(value);
     }
 
     /**
@@ -195,8 +161,6 @@ public class Field29K extends Field implements Serializable {
     public String getValue() {
         final StringBuilder result = new StringBuilder();
         append(result, 1);
-        result.append("/");
-        append(result, 2);
         return result.toString();
     }
 
@@ -211,31 +175,11 @@ public class Field29K extends Field implements Serializable {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 2) {
-            throw new IllegalArgumentException("invalid component number " + component + " for field 29K");
+        if (component != 1) {
+            throw new IllegalArgumentException("invalid component number " + component + " for field 14P");
         }
-        if (component == 1) {
-            //default format (as is)
-            return getComponent(1);
-        }
-        // This is the last component, return directly without `if`
-        //time: HH[mm]
-        java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
-        java.util.Calendar cal = getComponent2AsCalendar();
-        if (cal != null) {
-            return f.format(cal.getTime());
-        }
-        return null;
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SH";
+        //default format (as is)
+        return getComponent(1);
     }
 
     /**
@@ -247,7 +191,7 @@ public class Field29K extends Field implements Serializable {
      */
     @Override
     public String typesPattern() {
-        return "SH";
+        return "S";
     }
 
     /**
@@ -255,7 +199,7 @@ public class Field29K extends Field implements Serializable {
      */
     @Override
     public String parserPattern() {
-        return "S/S";
+        return "S";
     }
 
     /**
@@ -263,7 +207,7 @@ public class Field29K extends Field implements Serializable {
      */
     @Override
     public String validatorPattern() {
-        return "4!c/<HHMM>";
+        return "4!c";
     }
 
     /**
@@ -298,7 +242,7 @@ public class Field29K extends Field implements Serializable {
      */
     @Override
     public int componentsSize() {
-        return 2;
+        return 1;
     }
 
     /**
@@ -311,8 +255,7 @@ public class Field29K extends Field implements Serializable {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Location");
-        result.add("Time");
+        result.add(null);
         return result;
     }
 
@@ -323,8 +266,6 @@ public class Field29K extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "location");
-        result.put(2, "time");
         return result;
     }
 
@@ -339,13 +280,11 @@ public class Field29K extends Field implements Serializable {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
-        super.labelMap.put("location", 1);
-        super.labelMap.put("time", 2);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 (Location).
+     * Gets the component 1 ($label).
      * @return the component 1
      */
     public String getComponent1() {
@@ -353,116 +292,21 @@ public class Field29K extends Field implements Serializable {
     }
 
     /**
-     * Gets the Location (component 1).
-     * @return the Location from component 1
-     */
-    public String getLocation() {
-        return getComponent1();
-    }
-
-    /**
-     * Gets the component 2 (Time).
-     * @return the component 2
-     */
-    public String getComponent2() {
-        return getComponent(2);
-    }
-
-    /**
-     * Get the component 2 as Calendar
+     * Set the component 1 ($label).
      *
-     * @return the component 2 converted to Calendar or null if cannot be converted
-     */
-    public java.util.Calendar getComponent2AsCalendar() {
-        return SwiftFormatUtils.getTime3(getComponent(2));
-    }
-
-    /**
-     * Gets the Time (component 2).
-     * @return the Time from component 2
-     */
-    public String getTime() {
-        return getComponent2();
-    }
-
-    /**
-     * Get the Time (component 2) as Calendar
-     * @return the Time from component 2 converted to Calendar or null if cannot be converted
-     */
-    public java.util.Calendar getTimeAsCalendar() {
-        return getComponent2AsCalendar();
-    }
-
-    /**
-     * Set the component 1 (Location).
-     *
-     * @param component1 the Location to set
+     * @param component1 the $label to set
      * @return the field object to enable build pattern
      */
-    public Field29K setComponent1(String component1) {
+    public Field14P setComponent1(String component1) {
         setComponent(1, component1);
         return this;
-    }
-
-    /**
-     * Set the Location (component 1).
-     *
-     * @param component1 the Location to set
-     * @return the field object to enable build pattern
-     */
-    public Field29K setLocation(String component1) {
-        return setComponent1(component1);
-    }
-
-    /**
-     * Set the component 2 (Time).
-     *
-     * @param component2 the Time to set
-     * @return the field object to enable build pattern
-     */
-    public Field29K setComponent2(String component2) {
-        setComponent(2, component2);
-        return this;
-    }
-
-    /**
-     * Set the component2 from a Calendar object.
-     *
-     * @param component2 the Calendar with the Time content to set
-     * @return the field object to enable build pattern
-     */
-    public Field29K setComponent2(java.util.Calendar component2) {
-        setComponent(2, SwiftFormatUtils.getTime3(component2));
-        return this;
-    }
-
-    /**
-     * Set the Time (component 2).
-     *
-     * @param component2 the Time to set
-     * @return the field object to enable build pattern
-     */
-    public Field29K setTime(String component2) {
-        return setComponent2(component2);
-    }
-
-    /**
-     * Set the Time (component 2) from a Calendar object.
-     *
-     * @see #setComponent2(java.util.Calendar)
-     *
-     * @param component2 Calendar with the Time content to set
-     * @return the field object to enable build pattern
-     */
-    public Field29K setTime(java.util.Calendar component2) {
-        return setComponent2(component2);
     }
 
 
 
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
-     * @return the static value of Field29K.NAME
+     * @return the static value of Field14P.NAME
      */
     @Override
     public String getName() {
@@ -474,7 +318,7 @@ public class Field29K extends Field implements Serializable {
      * @return null if not found o block is null or empty
      * @param block may be null or empty
      */
-    public static Field29K get(final SwiftTagListBlock block) {
+    public static Field14P get(final SwiftTagListBlock block) {
         if (block == null || block.isEmpty()) {
             return null;
         }
@@ -482,16 +326,16 @@ public class Field29K extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field29K(t);
+        return new Field14P(t);
     }
 
     /**
-     * Gets the first instance of Field29K in the given message.
+     * Gets the first instance of Field14P in the given message.
      * @param msg may be empty or null
      * @return null if not found or msg is empty or null
      * @see #get(SwiftTagListBlock)
      */
-    public static Field29K get(final SwiftMessage msg) {
+    public static Field14P get(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
         }
@@ -499,12 +343,12 @@ public class Field29K extends Field implements Serializable {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field29K in the given message
+     * Gets a list of all occurrences of the field Field14P in the given message
      * an empty list is returned if none found.
      * @param msg may be empty or null in which case an empty list is returned
      * @see #getAll(SwiftTagListBlock)
      */
-    public static List<Field29K> getAll(final SwiftMessage msg) {
+    public static List<Field14P> getAll(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
         }
@@ -512,51 +356,37 @@ public class Field29K extends Field implements Serializable {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field29K from the given block
+     * Gets a list of all occurrences of the field Field14P from the given block
      * an empty list is returned if none found.
      *
      * @param block may be empty or null in which case an empty list is returned
      */
-    public static List<Field29K> getAll(final SwiftTagListBlock block) {
-        final List<Field29K> result = new ArrayList<>();
+    public static List<Field14P> getAll(final SwiftTagListBlock block) {
+        final List<Field14P> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null) {
             for (final Tag f : arr) {
-                result.add(new Field29K(f));
+                result.add(new Field14P(f));
             }
         }
         return result;
     }
 
     /**
-     * This method deserializes the JSON data into a Field29K object.
+     * This method deserializes the JSON data into a Field14P object.
      * @param json JSON structure including tuples with label and value for all field components
      * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
-    public static Field29K fromJson(final String json) {
+    @SuppressWarnings("unused")
+    public static Field14P fromJson(final String json) {
 
-        final Field29K field = new Field29K();
 
-        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
-
-        // **** COMPONENT 1 - Location
-
-        if (jsonObject.get("location") != null) {
-            field.setComponent1(jsonObject.get("location").getAsString());
-        }
-
-        // **** COMPONENT 2 - Time
-
-        if (jsonObject.get("time") != null) {
-            field.setComponent2(jsonObject.get("time").getAsString());
-        }
-
-        return field;
+        return new Field14P();
     }
 
 

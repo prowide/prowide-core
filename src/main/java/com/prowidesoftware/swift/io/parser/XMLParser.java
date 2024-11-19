@@ -59,7 +59,7 @@ public class XMLParser {
      * @see com.prowidesoftware.swift.io.IConversionService#getMessageFromXML(java.lang.String)
      */
     public SwiftMessage parse(final String xml) {
-        Validate.notNull(xml);
+        Validate.isTrue(xml != null);
         try {
             final DocumentBuilder db = SafeXmlUtils.documentBuilder();
             final Document doc = db.parse(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)));

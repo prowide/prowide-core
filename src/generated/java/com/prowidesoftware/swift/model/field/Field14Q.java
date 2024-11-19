@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,13 +37,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * SWIFT MT Field 22J.
+ * SWIFT MT Field 14Q.
  * <p>
- * Model and parser for field 22J of a SWIFT MT message.
+ * Model and parser for field 14Q of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: TypeOfTrigger: <code>String</code></li>
+ * 		<li>Component 1: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -54,63 +54,30 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field22J extends Field implements Serializable {
+public class Field14Q extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 22J.
+	 * Constant with the field name 14Q.
 	 */
-    public static final String NAME = "22J";
+    public static final String NAME = "14Q";
     /**
      * Same as NAME, intended to be clear when using static imports.
      */
-    public static final String F_22J = "22J";
-
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "S";
-
-	/**
-	 * Component number for the Type Of Trigger subfield.
-	 */
-	public static final Integer TYPE_OF_TRIGGER = 1;
-
-	/**
-	 * @deprecated use #TYPE_OF_TRIGGER instead
-	 */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer TYPE_OF_BARRIER = 1;
+    public static final String F_14Q = "14Q";
 
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
-    public Field22J() {
+    public Field14Q() {
         super(1);
     }
 
@@ -118,7 +85,7 @@ public class Field22J extends Field implements Serializable {
      * Creates a new field and initializes its components with content from the parameter value.
      * @param value complete field value including separators and CRLF
      */
-    public Field22J(final String value) {
+    public Field14Q(final String value) {
         super(value);
     }
 
@@ -128,13 +95,13 @@ public class Field22J extends Field implements Serializable {
      * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
      * @since 7.8
      */
-    public Field22J(final Tag tag) {
+    public Field14Q(final Tag tag) {
         this();
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!StringUtils.equals(tag.getName(), "22J")) {
-            throw new IllegalArgumentException("cannot create field 22J from tag "+tag.getName()+", tagname must match the name of the field.");
+        if (!StringUtils.equals(tag.getName(), "14Q")) {
+            throw new IllegalArgumentException("cannot create field 14Q from tag "+tag.getName()+", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -145,8 +112,8 @@ public class Field22J extends Field implements Serializable {
      * @param source a field instance to copy
      * @since 7.7
      */
-    public static Field22J newInstance(Field22J source) {
-        Field22J cp = new Field22J();
+    public static Field14Q newInstance(Field14Q source) {
+        Field14Q cp = new Field14Q();
         cp.setComponents(new ArrayList<>(source.getComponents()));
         return cp;
     }
@@ -209,20 +176,10 @@ public class Field22J extends Field implements Serializable {
     @Override
     public String getValueDisplay(int component, Locale locale) {
         if (component != 1) {
-            throw new IllegalArgumentException("invalid component number " + component + " for field 22J");
+            throw new IllegalArgumentException("invalid component number " + component + " for field 14Q");
         }
         //default format (as is)
         return getComponent(1);
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "S";
     }
 
     /**
@@ -298,7 +255,7 @@ public class Field22J extends Field implements Serializable {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Type Of Trigger");
+        result.add(null);
         return result;
     }
 
@@ -309,7 +266,6 @@ public class Field22J extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "typeOfTrigger");
         return result;
     }
 
@@ -324,14 +280,11 @@ public class Field22J extends Field implements Serializable {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
-        super.labelMap.put("typeoftrigger", 1);
-        // alias name
-        super.labelMap.put("typeofbarrier", 1);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 (Type Of Trigger).
+     * Gets the component 1 ($label).
      * @return the component 1
      */
     public String getComponent1() {
@@ -339,59 +292,21 @@ public class Field22J extends Field implements Serializable {
     }
 
     /**
-     * Gets the Type Of Trigger (component 1).
-     * @return the Type Of Trigger from component 1
-     */
-    public String getTypeOfTrigger() {
-        return getComponent1();
-    }
-
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Type Of Trigger
-     * @deprecated use #getTypeOfTrigger() instead
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getTypeOfBarrier() {
-        return getTypeOfTrigger();
-    }
-
-    /**
-     * Set the component 1 (Type Of Trigger).
+     * Set the component 1 ($label).
      *
-     * @param component1 the Type Of Trigger to set
+     * @param component1 the $label to set
      * @return the field object to enable build pattern
      */
-    public Field22J setComponent1(String component1) {
+    public Field14Q setComponent1(String component1) {
         setComponent(1, component1);
         return this;
-    }
-
-    /**
-     * Set the Type Of Trigger (component 1).
-     *
-     * @param component1 the Type Of Trigger to set
-     * @return the field object to enable build pattern
-     */
-    public Field22J setTypeOfTrigger(String component1) {
-        return setComponent1(component1);
-    }
-
-    /**
-     * @deprecated use #setTypeOfTrigger(String) instead
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field22J setTypeOfBarrier(String component1) {
-        return setTypeOfTrigger(component1);
     }
 
 
 
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
-     * @return the static value of Field22J.NAME
+     * @return the static value of Field14Q.NAME
      */
     @Override
     public String getName() {
@@ -403,7 +318,7 @@ public class Field22J extends Field implements Serializable {
      * @return null if not found o block is null or empty
      * @param block may be null or empty
      */
-    public static Field22J get(final SwiftTagListBlock block) {
+    public static Field14Q get(final SwiftTagListBlock block) {
         if (block == null || block.isEmpty()) {
             return null;
         }
@@ -411,16 +326,16 @@ public class Field22J extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field22J(t);
+        return new Field14Q(t);
     }
 
     /**
-     * Gets the first instance of Field22J in the given message.
+     * Gets the first instance of Field14Q in the given message.
      * @param msg may be empty or null
      * @return null if not found or msg is empty or null
      * @see #get(SwiftTagListBlock)
      */
-    public static Field22J get(final SwiftMessage msg) {
+    public static Field14Q get(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
         }
@@ -428,12 +343,12 @@ public class Field22J extends Field implements Serializable {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field22J in the given message
+     * Gets a list of all occurrences of the field Field14Q in the given message
      * an empty list is returned if none found.
      * @param msg may be empty or null in which case an empty list is returned
      * @see #getAll(SwiftTagListBlock)
      */
-    public static List<Field22J> getAll(final SwiftMessage msg) {
+    public static List<Field14Q> getAll(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
         }
@@ -441,51 +356,37 @@ public class Field22J extends Field implements Serializable {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field22J from the given block
+     * Gets a list of all occurrences of the field Field14Q from the given block
      * an empty list is returned if none found.
      *
      * @param block may be empty or null in which case an empty list is returned
      */
-    public static List<Field22J> getAll(final SwiftTagListBlock block) {
-        final List<Field22J> result = new ArrayList<>();
+    public static List<Field14Q> getAll(final SwiftTagListBlock block) {
+        final List<Field14Q> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null) {
             for (final Tag f : arr) {
-                result.add(new Field22J(f));
+                result.add(new Field14Q(f));
             }
         }
         return result;
     }
 
     /**
-     * This method deserializes the JSON data into a Field22J object.
+     * This method deserializes the JSON data into a Field14Q object.
      * @param json JSON structure including tuples with label and value for all field components
      * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
-    public static Field22J fromJson(final String json) {
+    @SuppressWarnings("unused")
+    public static Field14Q fromJson(final String json) {
 
-        final Field22J field = new Field22J();
 
-        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
-
-        // **** COMPONENT 1 - Type Of Trigger
-
-        // first try using alias's names (including deprecated ones, if any)
-        if (jsonObject.get("typeOfBarrier") != null) {
-            field.setComponent1(jsonObject.get("typeOfBarrier").getAsString());
-        }
-
-        // last try using the official component's name (overwrites alternatives and DEPRECATED)
-        if (jsonObject.get("typeOfTrigger") != null) {
-            field.setComponent1(jsonObject.get("typeOfTrigger").getAsString());
-        }
-
-        return field;
+        return new Field14Q();
     }
 
 

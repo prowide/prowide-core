@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2024 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,10 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
+import java.util.Calendar;
 
+import com.prowidesoftware.swift.model.field.DateContainer;
+import com.prowidesoftware.swift.model.field.DateResolver;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
@@ -37,79 +40,70 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * SWIFT MT Field 44H.
+ * SWIFT MT Field 30K.
  * <p>
- * Model and parser for field 44H of a SWIFT MT message.
+ * Model and parser for field 30K of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: CountryCode: <code>String</code></li>
- * 		<li>Component 2: Narrative: <code>String</code></li>
+ * 		<li>Component 1: StartDate: <code>Calendar</code></li>
+ * 		<li>Component 2: EndDate: <code>Calendar</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>&lt;CC&gt;[/65x]</code></li>
- * 		<li>parser pattern: <code>S[/S]</code></li>
- * 		<li>components pattern: <code>SS</code></li>
+ * 		<li>validation pattern: <code>&lt;DATE4&gt;/&lt;DATE4&gt;</code></li>
+ * 		<li>parser pattern: <code>S/S</code></li>
+ * 		<li>components pattern: <code>DD</code></li>
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2023</strong>
+ * This class complies with standard release <strong>SRU2024</strong>
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field44H extends Field implements Serializable {
+public class Field30K extends Field implements Serializable, DateContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2023;
+	public static final int SRU = 2024;
 
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Constant with the field name 44H.
+	 * Constant with the field name 30K.
 	 */
-    public static final String NAME = "44H";
+    public static final String NAME = "30K";
     /**
      * Same as NAME, intended to be clear when using static imports.
      */
-    public static final String F_44H = "44H";
-
-    /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String PARSER_PATTERN = "S[/S]";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String COMPONENTS_PATTERN = "SS";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-	public static final String TYPES_PATTERN = "SS";
+    public static final String F_30K = "30K";
 
 	/**
-	 * Component number for the Country Code subfield.
+	 * Component number for the Start Date subfield.
 	 */
-	public static final Integer COUNTRY_CODE = 1;
+	public static final Integer START_DATE = 1;
 
 	/**
-	 * Component number for the Narrative subfield.
+     * Alternative constant name for field's Start Date Component number.
+     * @see #START_DATE
+     */
+    public static final Integer PERIOD_START_DATE = 1;
+
+	/**
+	 * Component number for the End Date subfield.
 	 */
-	public static final Integer NARRATIVE = 2;
+	public static final Integer END_DATE = 2;
+
+	/**
+     * Alternative constant name for field's End Date Component number.
+     * @see #END_DATE
+     */
+    public static final Integer PERIOD_END_DATE = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
-    public Field44H() {
+    public Field30K() {
         super(2);
     }
 
@@ -117,7 +111,7 @@ public class Field44H extends Field implements Serializable {
      * Creates a new field and initializes its components with content from the parameter value.
      * @param value complete field value including separators and CRLF
      */
-    public Field44H(final String value) {
+    public Field30K(final String value) {
         super(value);
     }
 
@@ -127,13 +121,13 @@ public class Field44H extends Field implements Serializable {
      * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
      * @since 7.8
      */
-    public Field44H(final Tag tag) {
+    public Field30K(final Tag tag) {
         this();
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!StringUtils.equals(tag.getName(), "44H")) {
-            throw new IllegalArgumentException("cannot create field 44H from tag "+tag.getName()+", tagname must match the name of the field.");
+        if (!StringUtils.equals(tag.getName(), "30K")) {
+            throw new IllegalArgumentException("cannot create field 30K from tag "+tag.getName()+", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -144,8 +138,8 @@ public class Field44H extends Field implements Serializable {
      * @param source a field instance to copy
      * @since 7.7
      */
-    public static Field44H newInstance(Field44H source) {
-        Field44H cp = new Field44H();
+    public static Field30K newInstance(Field30K source) {
+        Field30K cp = new Field30K();
         cp.setComponents(new ArrayList<>(source.getComponents()));
         return cp;
     }
@@ -194,9 +188,8 @@ public class Field44H extends Field implements Serializable {
     public String getValue() {
         final StringBuilder result = new StringBuilder();
         append(result, 1);
-        if (getComponent2() != null) {
-            result.append("/").append(getComponent2());
-        }
+        result.append("/");
+        append(result, 2);
         return result.toString();
     }
 
@@ -212,25 +205,24 @@ public class Field44H extends Field implements Serializable {
     @Override
     public String getValueDisplay(int component, Locale locale) {
         if (component < 1 || component > 2) {
-            throw new IllegalArgumentException("invalid component number " + component + " for field 44H");
+            throw new IllegalArgumentException("invalid component number " + component + " for field 30K");
         }
         if (component == 1) {
-            //default format (as is)
-            return getComponent(1);
+            //date: [YY]YYMMDD
+            java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+            java.util.Calendar cal = getComponent1AsCalendar();
+            if (cal != null) {
+                return f.format(cal.getTime());
+            }
         }
         // This is the last component, return directly without `if`
-        //default format (as is)
-        return getComponent(2);
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "SS";
+        //date: [YY]YYMMDD
+        java.text.DateFormat f = java.text.DateFormat.getDateInstance(java.text.DateFormat.DEFAULT, notNull(locale));
+        java.util.Calendar cal = getComponent2AsCalendar();
+        if (cal != null) {
+            return f.format(cal.getTime());
+        }
+        return null;
     }
 
     /**
@@ -242,7 +234,7 @@ public class Field44H extends Field implements Serializable {
      */
     @Override
     public String typesPattern() {
-        return "SS";
+        return "DD";
     }
 
     /**
@@ -250,7 +242,7 @@ public class Field44H extends Field implements Serializable {
      */
     @Override
     public String parserPattern() {
-        return "S[/S]";
+        return "S/S";
     }
 
     /**
@@ -258,7 +250,7 @@ public class Field44H extends Field implements Serializable {
      */
     @Override
     public String validatorPattern() {
-        return "<CC>[/65x]";
+        return "<DATE4>/<DATE4>";
     }
 
     /**
@@ -273,9 +265,6 @@ public class Field44H extends Field implements Serializable {
      */
     @Override
     public boolean isOptional(int component) {
-        if (component == 2) {
-            return true;
-        }
         return false;
     }
 
@@ -309,8 +298,8 @@ public class Field44H extends Field implements Serializable {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Country Code");
-        result.add("Narrative");
+        result.add("Start Date");
+        result.add("End Date");
         return result;
     }
 
@@ -321,8 +310,8 @@ public class Field44H extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "countryCode");
-        result.put(2, "narrative");
+        result.put(1, "startDate");
+        result.put(2, "endDate");
         return result;
     }
 
@@ -337,13 +326,17 @@ public class Field44H extends Field implements Serializable {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
-        super.labelMap.put("countrycode", 1);
-        super.labelMap.put("narrative", 2);
+        super.labelMap.put("startdate", 1);
+        // alias name
+        super.labelMap.put("periodstartdate", 1);
+        super.labelMap.put("enddate", 2);
+        // alias name
+        super.labelMap.put("periodenddate", 2);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 (Country Code).
+     * Gets the component 1 (Start Date).
      * @return the component 1
      */
     public String getComponent1() {
@@ -351,15 +344,47 @@ public class Field44H extends Field implements Serializable {
     }
 
     /**
-     * Gets the Country Code (component 1).
-     * @return the Country Code from component 1
+     * Get the component 1 as Calendar
+     *
+     * @return the component 1 converted to Calendar or null if cannot be converted
      */
-    public String getCountryCode() {
+    public java.util.Calendar getComponent1AsCalendar() {
+        return SwiftFormatUtils.getDate4(getComponent(1));
+    }
+
+    /**
+     * Gets the Start Date (component 1).
+     * @return the Start Date from component 1
+     */
+    public String getStartDate() {
         return getComponent1();
     }
 
     /**
-     * Gets the component 2 (Narrative).
+     * Alternative method getter for field's Start Date
+     * @since 9.2.7
+     */
+    public String getPeriodStartDate() {
+        return getStartDate();
+    }
+
+    /**
+     * Get the Start Date (component 1) as Calendar
+     * @return the Start Date from component 1 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getStartDateAsCalendar() {
+        return getComponent1AsCalendar();
+    }
+
+    /**
+     * @since 9.2.7
+     */
+    public java.util.Calendar getPeriodStartDateAsCalendar() {
+        return getStartDateAsCalendar();
+    }
+
+    /**
+     * Gets the component 2 (End Date).
      * @return the component 2
      */
     public String getComponent2() {
@@ -367,60 +392,173 @@ public class Field44H extends Field implements Serializable {
     }
 
     /**
-     * Gets the Narrative (component 2).
-     * @return the Narrative from component 2
+     * Get the component 2 as Calendar
+     *
+     * @return the component 2 converted to Calendar or null if cannot be converted
      */
-    public String getNarrative() {
+    public java.util.Calendar getComponent2AsCalendar() {
+        return SwiftFormatUtils.getDate4(getComponent(2));
+    }
+
+    /**
+     * Gets the End Date (component 2).
+     * @return the End Date from component 2
+     */
+    public String getEndDate() {
         return getComponent2();
     }
 
     /**
-     * Set the component 1 (Country Code).
+     * Alternative method getter for field's End Date
+     * @since 9.2.7
+     */
+    public String getPeriodEndDate() {
+        return getEndDate();
+    }
+
+    /**
+     * Get the End Date (component 2) as Calendar
+     * @return the End Date from component 2 converted to Calendar or null if cannot be converted
+     */
+    public java.util.Calendar getEndDateAsCalendar() {
+        return getComponent2AsCalendar();
+    }
+
+    /**
+     * @since 9.2.7
+     */
+    public java.util.Calendar getPeriodEndDateAsCalendar() {
+        return getEndDateAsCalendar();
+    }
+
+    /**
+     * Set the component 1 (Start Date).
      *
-     * @param component1 the Country Code to set
+     * @param component1 the Start Date to set
      * @return the field object to enable build pattern
      */
-    public Field44H setComponent1(String component1) {
+    public Field30K setComponent1(String component1) {
         setComponent(1, component1);
         return this;
     }
 
     /**
-     * Set the Country Code (component 1).
+     * Set the component1 from a Calendar object.
      *
-     * @param component1 the Country Code to set
+     * @param component1 the Calendar with the Start Date content to set
      * @return the field object to enable build pattern
      */
-    public Field44H setCountryCode(String component1) {
+    public Field30K setComponent1(java.util.Calendar component1) {
+        setComponent(1, SwiftFormatUtils.getDate4(component1));
+        return this;
+    }
+
+    /**
+     * Set the Start Date (component 1).
+     *
+     * @param component1 the Start Date to set
+     * @return the field object to enable build pattern
+     */
+    public Field30K setStartDate(String component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Set the component 2 (Narrative).
+     * Set the Start Date (component 1) from a Calendar object.
      *
-     * @param component2 the Narrative to set
+     * @see #setComponent1(java.util.Calendar)
+     *
+     * @param component1 Calendar with the Start Date content to set
      * @return the field object to enable build pattern
      */
-    public Field44H setComponent2(String component2) {
+    public Field30K setStartDate(java.util.Calendar component1) {
+        return setComponent1(component1);
+    }
+
+    public Field30K setPeriodStartDate(String component1) {
+        return setStartDate(component1);
+    }
+
+    public Field30K setPeriodStartDate(java.util.Calendar component1) {
+        return setStartDate(component1);
+    }
+
+    /**
+     * Set the component 2 (End Date).
+     *
+     * @param component2 the End Date to set
+     * @return the field object to enable build pattern
+     */
+    public Field30K setComponent2(String component2) {
         setComponent(2, component2);
         return this;
     }
 
     /**
-     * Set the Narrative (component 2).
+     * Set the component2 from a Calendar object.
      *
-     * @param component2 the Narrative to set
+     * @param component2 the Calendar with the End Date content to set
      * @return the field object to enable build pattern
      */
-    public Field44H setNarrative(String component2) {
+    public Field30K setComponent2(java.util.Calendar component2) {
+        setComponent(2, SwiftFormatUtils.getDate4(component2));
+        return this;
+    }
+
+    /**
+     * Set the End Date (component 2).
+     *
+     * @param component2 the End Date to set
+     * @return the field object to enable build pattern
+     */
+    public Field30K setEndDate(String component2) {
         return setComponent2(component2);
     }
 
+    /**
+     * Set the End Date (component 2) from a Calendar object.
+     *
+     * @see #setComponent2(java.util.Calendar)
+     *
+     * @param component2 Calendar with the End Date content to set
+     * @return the field object to enable build pattern
+     */
+    public Field30K setEndDate(java.util.Calendar component2) {
+        return setComponent2(component2);
+    }
+
+    public Field30K setPeriodEndDate(String component2) {
+        return setEndDate(component2);
+    }
+
+    public Field30K setPeriodEndDate(java.util.Calendar component2) {
+        return setEndDate(component2);
+    }
+
+
+    /**
+     * Returns all components that can be converted to a Calendar
+     *
+     * @return the list of converted components (a Calendar object or null)
+     */
+    @Override
+    public List<Calendar> dates() {
+        return DateResolver.dates(this);
+    }
+
+    /**
+     * Returns the first component that can be converted to a Calendar
+     *
+     * @return the converted components (a Calendar object or null)
+     */
+    public Calendar date() {
+        return DateResolver.date(this);
+    }
 
 
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
-     * @return the static value of Field44H.NAME
+     * @return the static value of Field30K.NAME
      */
     @Override
     public String getName() {
@@ -432,7 +570,7 @@ public class Field44H extends Field implements Serializable {
      * @return null if not found o block is null or empty
      * @param block may be null or empty
      */
-    public static Field44H get(final SwiftTagListBlock block) {
+    public static Field30K get(final SwiftTagListBlock block) {
         if (block == null || block.isEmpty()) {
             return null;
         }
@@ -440,16 +578,16 @@ public class Field44H extends Field implements Serializable {
         if (t == null) {
             return null;
         }
-        return new Field44H(t);
+        return new Field30K(t);
     }
 
     /**
-     * Gets the first instance of Field44H in the given message.
+     * Gets the first instance of Field30K in the given message.
      * @param msg may be empty or null
      * @return null if not found or msg is empty or null
      * @see #get(SwiftTagListBlock)
      */
-    public static Field44H get(final SwiftMessage msg) {
+    public static Field30K get(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
         }
@@ -457,12 +595,12 @@ public class Field44H extends Field implements Serializable {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field44H in the given message
+     * Gets a list of all occurrences of the field Field30K in the given message
      * an empty list is returned if none found.
      * @param msg may be empty or null in which case an empty list is returned
      * @see #getAll(SwiftTagListBlock)
      */
-    public static List<Field44H> getAll(final SwiftMessage msg) {
+    public static List<Field30K> getAll(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
         }
@@ -470,48 +608,60 @@ public class Field44H extends Field implements Serializable {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field44H from the given block
+     * Gets a list of all occurrences of the field Field30K from the given block
      * an empty list is returned if none found.
      *
      * @param block may be empty or null in which case an empty list is returned
      */
-    public static List<Field44H> getAll(final SwiftTagListBlock block) {
-        final List<Field44H> result = new ArrayList<>();
+    public static List<Field30K> getAll(final SwiftTagListBlock block) {
+        final List<Field30K> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null) {
             for (final Tag f : arr) {
-                result.add(new Field44H(f));
+                result.add(new Field30K(f));
             }
         }
         return result;
     }
 
     /**
-     * This method deserializes the JSON data into a Field44H object.
+     * This method deserializes the JSON data into a Field30K object.
      * @param json JSON structure including tuples with label and value for all field components
      * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
-    public static Field44H fromJson(final String json) {
+    public static Field30K fromJson(final String json) {
 
-        final Field44H field = new Field44H();
+        final Field30K field = new Field30K();
 
         final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-        // **** COMPONENT 1 - Country Code
+        // **** COMPONENT 1 - Start Date
 
-        if (jsonObject.get("countryCode") != null) {
-            field.setComponent1(jsonObject.get("countryCode").getAsString());
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("periodStartDate") != null) {
+            field.setComponent1(jsonObject.get("periodStartDate").getAsString());
         }
 
-        // **** COMPONENT 2 - Narrative
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("startDate") != null) {
+            field.setComponent1(jsonObject.get("startDate").getAsString());
+        }
 
-        if (jsonObject.get("narrative") != null) {
-            field.setComponent2(jsonObject.get("narrative").getAsString());
+        // **** COMPONENT 2 - End Date
+
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("periodEndDate") != null) {
+            field.setComponent2(jsonObject.get("periodEndDate").getAsString());
+        }
+
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("endDate") != null) {
+            field.setComponent2(jsonObject.get("endDate").getAsString());
         }
 
         return field;

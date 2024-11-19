@@ -23,7 +23,6 @@ import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,7 +53,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @deprecated This field has been moved to the Prowide Integrator since it is only used in SCORE messages, not in the general MT standard
  */
-@ProwideDeprecated(phase3 = TargetYear.SRU2024)
+@ProwideDeprecated(phase4 = TargetYear.SRU2025)
 public class Field12K extends Field implements Serializable {
     /**
      * Constant identifying the SRU to which this class belongs to.
@@ -72,38 +71,9 @@ public class Field12K extends Field implements Serializable {
     public static final String F_12K = "12K";
 
     /**
-     * @deprecated Use {@link #parserPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String PARSER_PATTERN = "S";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String COMPONENTS_PATTERN = "N";
-
-    /**
-     * @deprecated Use {@link #typesPattern()} method instead.
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final String TYPES_PATTERN = "N";
-
-    /**
      * Component number for the Number subfield.
      */
     public static final Integer NUMBER = 1;
-
-    /**
-     * Alternative (<em>DEPRECATED</em>) constant name for field's Number Component number.
-     * @see #NUMBER
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public static final Integer VERSION = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -211,16 +181,6 @@ public class Field12K extends Field implements Serializable {
         }
         // default format (as is)
         return getComponent(1);
-    }
-
-    /**
-     * @deprecated Use {@link #typesPattern()} instead.
-     */
-    @Override
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String componentsPattern() {
-        return "N";
     }
 
     /**
@@ -347,38 +307,11 @@ public class Field12K extends Field implements Serializable {
     }
 
     /**
-     * Get the component 1 as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getComponent1AsLong()
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getComponent1AsNumber() {
-        Long l = getComponent1AsLong();
-        return l != null ? new BigDecimal(l) : null;
-    }
-
-    /**
      * Gets the Number (component 1).
      * @return the Number from component 1
      */
     public String getNumber() {
         return getComponent1();
-    }
-
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Number
-     * @see #getNumber()
-     * @since 9.2.7
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public String getVersion() {
-        return getNumber();
     }
 
     /**
@@ -388,46 +321,6 @@ public class Field12K extends Field implements Serializable {
      */
     public java.lang.Long getNumberAsLong() {
         return getComponent1AsLong();
-    }
-
-    /**
-     * Get the Number (component 1) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumberAsLong()
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getNumberAsNumber() {
-        return getComponent1AsNumber();
-    }
-
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Number as Long
-     * @see #getNumberAsLong()
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Long getVersionAsLong() {
-        return getNumberAsLong();
-    }
-
-    /**
-     * Alternative <em>DEPRECATED</em> method getter for field's Number (component 1) as as Number (BigDecimal)
-     *
-     * The value is returned as BigDecimal to keep compatibility with previous API. You should
-     * use <code>getComponent1AsLong()</code> to get the proper value.
-     *
-     * @return the component 1 converted to Number (BigDecimal) or null if cannot be converted
-     * @see #getNumberAsLong()
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public java.lang.Number getVersionAsNumber() {
-        return getNumberAsNumber();
     }
 
     /**
@@ -475,20 +368,6 @@ public class Field12K extends Field implements Serializable {
      */
     public Field12K setNumber(String component1) {
         return setComponent1(component1);
-    }
-
-    /**
-     * Alternative <em>DEPRECATED</em> method setter for field's Number
-     *
-     * @see #setNumber(String)
-     *
-     * @param component1 the Number to set
-     * @return the field object to enable build pattern
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2024)
-    public Field12K setVersion(String component1) {
-        return setNumber(component1);
     }
 
     /**
