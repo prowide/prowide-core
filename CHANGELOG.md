@@ -1,7 +1,7 @@
 # Prowide Core - CHANGELOG
 
-#### 9.5.4 - SNAPSHOT
-  * Rolling back SHA-256 checksum algorithm to MD5 
+#### 9.5.4 - November 2024
+  * Rolling back SHA-256 checksum algorithm to MD5 in the MT message model
 
 #### 9.5.3 - November 2024
   * (PW-2040) Updated the BBAN validation data file to the IBAN REGISTRY Jul 2024 release 
