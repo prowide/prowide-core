@@ -332,7 +332,7 @@ public class SwiftMessageUtils {
     /**
      * Proprietary checksum for message integrity verification or duplicates detection.
      * <p>Please notice <strong>this is not the SWIFT trailer CHK field</strong>.
-     * <p>The implementation computes an SHA-256 on the complete message in FIN format. The result hash
+     * <p>The implementation computes an MD5 on the complete message in FIN format. The result hash
      * is a 32 character string, you may consider encoding it with base64 on top to have the same
      * information stored in 22 characters.
      *
@@ -344,7 +344,7 @@ public class SwiftMessageUtils {
             final StringWriter writer = new StringWriter();
             SwiftWriter.writeMessage(model, writer, true);
             final String fin = writer.getBuffer().toString();
-            return sha256(fin);
+            return md5(fin);
         } else {
             return null;
         }
@@ -353,7 +353,7 @@ public class SwiftMessageUtils {
     /**
      * Proprietary checksum for message text block (block 4) integrity verification or duplicates detection
      * <p>Please notice <strong>this is not the SWIFT trailer CHK field</strong>.
-     * <p>The implementation computes an SHA-256 on the complete message in FIN format. The result hash
+     * <p>The implementation computes an MD5 on the complete message in FIN format. The result hash
      * is a 32 character string, you may consider encoding it with base64 on top to have the same
      * information stored in 22 characters.
      *
@@ -366,22 +366,22 @@ public class SwiftMessageUtils {
             final StringWriter writer = new StringWriter();
             SwiftWriter.writeBlock4(b4, writer);
             final String fin = writer.getBuffer().toString();
-            return sha256(fin);
+            return md5(fin);
         } else {
             return null;
         }
     }
 
     /**
-     * Computes a SHA-256 hash on the parameter text
+     * Computes an MD5 hash on the parameter text
      *
      * @param text the text to hash
      * @return computed hash or null if exceptions are thrown reading bytes or processing the digest
      */
-    private static String sha256(final String text) {
+    private static String md5(final String text) {
         try {
             byte[] bytesOfMessage = text.getBytes(StandardCharsets.UTF_8);
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] thedigest = md.digest(bytesOfMessage);
 
             // Converting the bytes to a Hex string
