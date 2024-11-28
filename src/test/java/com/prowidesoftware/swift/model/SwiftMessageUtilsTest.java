@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.model;
 
+import static com.prowidesoftware.swift.model.SwiftMessageUtils.calculateChecksum;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.prowidesoftware.swift.model.field.*;
@@ -301,5 +302,12 @@ public class SwiftMessageUtilsTest {
         MT670 mt3 = new MT670();
         mt3.append(Field20C.tag(":SEME//REF3"));
         assertEquals("REF3", SwiftMessageUtils.reference(mt3.getSwiftMessage()));
+    }
+
+    @Test
+    void testCalculateChecksumLength() throws IOException {
+        SwiftMessage msg = SwiftMessage.parse(Lib.readResource("MT362.fin"));
+        String s = calculateChecksum(msg);
+        assertEquals(s.length(), 32);
     }
 }
