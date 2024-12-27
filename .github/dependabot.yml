@@ -6,3 +6,6 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    ignore:
+      - dependency-name: "com.diffplug.spotless:spotless-plugin-gradle"
+      - dependency-name: "pl.allegro.tech.build:axion-release-plugin"
