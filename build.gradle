@@ -4,7 +4,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath 'ru.vyarus:gradle-quality-plugin:4.7.0'
+        classpath 'ru.vyarus:gradle-quality-plugin:5.0.0'
         classpath 'pl.allegro.tech.build:axion-release-plugin:1.14.5' // starting with version 15.* requires Java 11
         classpath 'io.github.gradle-nexus:publish-plugin:2.0.0'
         classpath 'com.diffplug.spotless:spotless-plugin-gradle:6.13.0' // above this version requires Java 11
