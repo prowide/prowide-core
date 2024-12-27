@@ -62,7 +62,7 @@ dependencies {
 
     testImplementation 'javax.validation:validation-api:2.0.1.Final'
     testImplementation 'javax.persistence:javax.persistence-api:2.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
     testImplementation 'org.assertj:assertj-core:3.27.0'
     testImplementation 'org.xmlunit:xmlunit-core:2.10.0'
     testImplementation 'org.xmlunit:xmlunit-matchers:2.9.0'
