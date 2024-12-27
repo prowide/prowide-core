@@ -9,3 +9,4 @@ updates:
     ignore:
       - dependency-name: "com.diffplug.spotless:spotless-plugin-gradle"
       - dependency-name: "pl.allegro.tech.build:axion-release-plugin"
+      - dependency-name: "org.apache.sshd:sshd-common"
