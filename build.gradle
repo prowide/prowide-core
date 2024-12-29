@@ -36,13 +36,14 @@ scmVersion {
 project.version = "${SRU}-${scmVersion.version}"
 //project.version = "${SRU}-9.5.0"
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-    java {
-        toolchain {
-            languageVersion.set(JavaLanguageVersion.of(8))
-        }
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
     }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
     doFirst {
         println 'Compiling with ' + getJavaCompiler().get().getMetadata().getInstallationPath()
     }
@@ -75,19 +76,19 @@ test {
     useJUnitPlatform()
 }
 
-tasks.withType(Jar) {
+tasks.withType(Jar).configureEach {
     manifest.attributes(
-        'Specification-Title': 'Prowide Core',
-        'Specification-Version': project.version,
-        'Specification-Vendor': "${SRU}",
-        'Implementation-Title': 'Prowide Core',
-        'Implementation-Version': project.version,
-        'Implementation-Vendor': 'www.prowidesoftware.com',
-        'Built-OS': System.getProperty('os.name'),
-        'Source-Compatibility': project.sourceCompatibility,
-        'Target-Compatibility': project.targetCompatibility,
-        'Built-Date': new Date().format("yyyy-MM-dd"),
-        'Automatic-Module-Name': 'com.prowidesoftware.core'
+            'Specification-Title': 'Prowide Core',
+            'Specification-Version': project.version,
+            'Specification-Vendor': "${SRU}",
+            'Implementation-Title': 'Prowide Core',
+            'Implementation-Version': project.version,
+            'Implementation-Vendor': 'www.prowidesoftware.com',
+            'Built-OS': System.getProperty('os.name'),
+            'Source-Compatibility': project.sourceCompatibility,
+            'Target-Compatibility': project.targetCompatibility,
+            'Built-Date': new Date().format("yyyy-MM-dd"),
+            'Automatic-Module-Name': 'com.prowidesoftware.core'
     )
 }
 
@@ -97,7 +98,7 @@ tasks.register('sourcesJar', Jar) {
     from sourceSets.main.allSource
 }
 
-def formattedDate() {
+static def formattedDate() {
     new Date().format('dd MMM yyyy')
 }
 
@@ -150,7 +151,7 @@ publishing {
                 pom {
                     name = 'Prowide Core'
                     description = 'Prowide Library for SWIFT messages'
-                    url = 'http://www.prowidesoftware.com'
+                    url = 'https://www.prowidesoftware.com'
                     scm {
                         url = 'https://github.com/prowide/prowide-core.git'
                         connection = 'git@github.com:prowide/prowide-core.git'
@@ -172,7 +173,7 @@ publishing {
                     }
                     organization {
                         name = 'Prowide'
-                        url = 'http://www.prowidesoftware.com'
+                        url = 'https://www.prowidesoftware.com'
                     }
                 }
             }
@@ -196,7 +197,7 @@ publishing {
 }
 jar.finalizedBy generatePomFileForMavenJavaPublication
 
-tasks.withType(GenerateModuleMetadata) {
+tasks.withType(GenerateModuleMetadata).configureEach {
     // to avoid metadata in the generated pom.xml files
     enabled = false
 }
@@ -260,22 +261,22 @@ tasks.register('bundle', Jar) {
     from ("$buildDir/libs") {
         include '*.asc'
     }
-    archiveName 'bundle.jar'
+    archiveFileName.set('bundle.jar')
 }
 
-tasks.withType(Test) {
+tasks.withType(Test).configureEach {
     doFirst {
         println 'Running test on ' + getJavaLauncher().get().getMetadata().getInstallationPath()
     }
 }
 
-task('testOn11', type: Test) {
+tasks.register('testOn11', Test) {
     javaLauncher = javaToolchains.launcherFor {
         languageVersion = JavaLanguageVersion.of(11)
     }
 }
 
-task('testOn17', type: Test) {
+tasks.register('testOn17', Test) {
     javaLauncher = javaToolchains.launcherFor {
         languageVersion = JavaLanguageVersion.of(17)
     }
@@ -283,9 +284,9 @@ task('testOn17', type: Test) {
 
 jacocoTestReport {
     reports {
-        xml.enabled true
-        csv.enabled false
-        html.enabled false
+        xml.required.set(true)
+        csv.required.set(false)
+        html.required.set(false)
     }
 
     // exclude generated code
