@@ -178,17 +178,15 @@ public class Field137 extends Field implements Serializable {
         init(4);
         if (value != null) {
             final String toparse = SwiftParseUtils.getAlphaPrefix(value);
-            if (toparse != null && toparse.length() > 0) {
-                if (toparse.length() > 0) {
-                    setComponent1(StringUtils.substring(toparse, 0, 1));
-                    if (toparse.length() >= 4) {
-                        setComponent2(StringUtils.substring(toparse, 1, 4));
-                        if (toparse.length() > 4) {
-                            setComponent3(StringUtils.substring(toparse, 4));
-                        }
-                    } else {
-                        setComponent2(StringUtils.substring(toparse, 1));
+            if (toparse != null && !toparse.isEmpty()) {
+                setComponent1(StringUtils.substring(toparse, 0, 1));
+                if (toparse.length() >= 4) {
+                    setComponent2(StringUtils.substring(toparse, 1, 4));
+                    if (toparse.length() > 4) {
+                        setComponent3(StringUtils.substring(toparse, 4));
                     }
+                } else {
+                    setComponent2(StringUtils.substring(toparse, 1));
                 }
             }
             setComponent4(SwiftParseUtils.getNumericSuffix(value));
