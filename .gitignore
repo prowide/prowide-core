@@ -18,4 +18,3 @@ release.sh
 .idea/*
 *.pb
 .java-version
-.idea/sonarlint/
