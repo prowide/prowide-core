@@ -1,5 +1,10 @@
 # Prowide Core - CHANGELOG
 
+#### 10.2.5 - December 2024
+  * Update apache-commons-lang3 from 3.14.0 to 3.17.0 fixing derived apache-text dependency vulnerabilities 
+  * Minor thread safety fix in the `PropertyLoaded` class, used by the `SafeXmlUtils`
+  * Gradle wrapper update to 8.12
+
 #### 10.2.4 - November 2024
   * Rolling back SHA-256 checksum algorithm to MD5 in the MT message model
 

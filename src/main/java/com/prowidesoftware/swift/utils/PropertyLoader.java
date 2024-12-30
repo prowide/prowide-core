@@ -16,6 +16,7 @@ package com.prowidesoftware.swift.utils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Helper class to load properties from a file.
@@ -27,6 +28,7 @@ class PropertyLoader {
             java.util.logging.Logger.getLogger(PropertyLoader.class.getName());
     static final String PROPERTIES_FILE = "pw-swift-core.properties";
     private static Properties properties = null;
+    private static final ReentrantLock lock = new ReentrantLock();
 
     private PropertyLoader() {
         // prevent instantiation
@@ -34,13 +36,22 @@ class PropertyLoader {
 
     static Properties loadProperties() {
         if (properties == null) {
-            properties = new Properties();
-            try (InputStream inputStream = PropertyLoader.class.getClassLoader().getResourceAsStream(PROPERTIES_FILE)) {
-                if (inputStream != null) {
-                    properties.load(inputStream);
+            lock.lock();
+            try {
+                if (properties == null) {
+                    Properties tempProperties = new Properties();
+                    try (InputStream inputStream =
+                            PropertyLoader.class.getClassLoader().getResourceAsStream(PROPERTIES_FILE)) {
+                        if (inputStream != null) {
+                            tempProperties.load(inputStream);
+                        }
+                    } catch (IOException e) {
+                        log.log(java.util.logging.Level.WARNING, "Error loading properties from " + PROPERTIES_FILE, e);
+                    }
+                    properties = tempProperties;
                 }
-            } catch (IOException e) {
-                log.log(java.util.logging.Level.WARNING, "Error loading properties from " + PROPERTIES_FILE, e);
+            } finally {
+                lock.unlock();
             }
         }
         return properties;
@@ -59,12 +70,6 @@ class PropertyLoader {
 
     static String getProperty(String key) {
         Properties loadedProperties = loadProperties();
-        String propertyValue = loadedProperties.getProperty(key);
-
-        if (propertyValue != null) {
-            return propertyValue;
-        }
-
-        return null;
+        return loadedProperties.getProperty(key);
     }
 }

@@ -1,0 +1,12 @@
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    ignore:
+      - dependency-name: "com.diffplug.spotless:spotless-plugin-gradle"
+      - dependency-name: "pl.allegro.tech.build:axion-release-plugin"
+      - dependency-name: "org.apache.sshd:sshd-common"
