@@ -16,8 +16,8 @@
 package com.prowidesoftware.swift.constraints;
 
 import com.prowidesoftware.swift.utils.IsoUtils;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import org.apache.commons.lang3.StringUtils;
 
 /**
