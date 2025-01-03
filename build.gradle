@@ -282,6 +282,12 @@ tasks.register('testOn17', Test) {
     }
 }
 
+tasks.register('testOn21', Test) {
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 jacocoTestReport {
     reports {
         xml.required.set(true)
