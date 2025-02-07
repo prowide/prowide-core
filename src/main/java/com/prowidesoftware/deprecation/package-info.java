@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 /**
- * Classes to support Prowide deprecation policy: <a href="http://www.prowidesoftware.com/resources/deprecation-policy">Deprecation Policy</a>
+ * Classes to support Prowide deprecation policy:
+ * <a href="http://www.prowidesoftware.com/resources/deprecation-policy">Deprecation Policy</a>
  */
 package com.prowidesoftware.deprecation;

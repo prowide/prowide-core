@@ -19,7 +19,8 @@ import java.io.Serializable;
 import java.util.logging.Level;
 
 /**
- * Base class for SWIFT blocks that contain its fields concatenated as a single <b>fixed length</b> value; blocks 1 and 2.<br>
+ * Base class for SWIFT blocks that contain its fields concatenated as a single <b>fixed length</b>
+ * value; blocks 1 and 2.<br>
  * This is an <b>abstract</b> class so specific block classes for each block should be instantiated.
  *
  * @author sebastian
@@ -29,7 +30,7 @@ public abstract class SwiftValueBlock extends SwiftBlock implements Serializable
     private static final long serialVersionUID = -3680693640473937755L;
 
     @SuppressWarnings("unused")
-    private static final transient java.util.logging.Logger log =
+    private static final java.util.logging.Logger LOGGER =
             java.util.logging.Logger.getLogger(SwiftValueBlock.class.getName());
 
     /**
@@ -135,7 +136,7 @@ public abstract class SwiftValueBlock extends SwiftBlock implements Serializable
             try {
                 s = value.substring(start, start + boundedSize);
             } catch (final IndexOutOfBoundsException e) {
-                log.log(Level.SEVERE, "Exception parsing value part", e);
+                LOGGER.log(Level.SEVERE, "Exception parsing value part", e);
             }
         }
         return s;

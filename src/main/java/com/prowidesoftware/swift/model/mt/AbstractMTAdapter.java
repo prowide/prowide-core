@@ -15,7 +15,15 @@
  */
 package com.prowidesoftware.swift.model.mt;
 
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.Field;
 import java.lang.reflect.Type;
@@ -34,6 +42,8 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
     private static final String BLOCK3_FINAL_NAME = "userHeaderBlock";
     private static final String BLOCK4_FINAL_NAME = "textBlock";
     private static final String BLOCK5_FINAL_NAME = "trailerBlock";
+
+    public static final String FIELDS = "fields";
 
     /**
      * Parses the JSON array with fields into specific Field instances
@@ -84,7 +94,7 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
                     .get("tags")
                     .getAsJsonArray();
             JsonObject trailer = new JsonObject();
-            trailer.add("fields", tags);
+            trailer.add(FIELDS, tags);
             response.add(BLOCK5_FINAL_NAME, trailer);
         }
 
@@ -112,7 +122,7 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
 
         JsonElement userHeaderBlock = jsonObject.get(BLOCK3_FINAL_NAME);
         if (userHeaderBlock != null) {
-            JsonElement fields = userHeaderBlock.getAsJsonObject().get("fields");
+            JsonElement fields = userHeaderBlock.getAsJsonObject().get(FIELDS);
             if (fields != null) {
                 SwiftBlock3 block3 = new SwiftBlock3();
                 block3 = (SwiftBlock3) setFieldsOnBlock(fields, block3);
@@ -122,7 +132,7 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
 
         JsonElement textBlock = jsonObject.get(BLOCK4_FINAL_NAME);
         if (textBlock != null) {
-            JsonElement fields = textBlock.getAsJsonObject().get("fields");
+            JsonElement fields = textBlock.getAsJsonObject().get(FIELDS);
             if (fields != null) {
                 SwiftBlock4 block4 = new SwiftBlock4();
                 block4 = (SwiftBlock4) setFieldsOnBlock(fields, block4);
@@ -132,7 +142,7 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
 
         JsonElement trailerBlock = jsonObject.get(BLOCK5_FINAL_NAME);
         if (trailerBlock != null) {
-            JsonElement fields = trailerBlock.getAsJsonObject().get("fields");
+            JsonElement fields = trailerBlock.getAsJsonObject().get(FIELDS);
             if (fields != null) {
                 SwiftBlock5 block5 = new SwiftBlock5();
                 for (JsonElement element : fields.getAsJsonArray()) {
@@ -152,7 +162,7 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
         return swiftMessage.toMT();
     }
 
-    private SwiftTagListBlock setFieldsOnBlock(JsonElement fields, SwiftTagListBlock block) {
+    private static SwiftTagListBlock setFieldsOnBlock(JsonElement fields, SwiftTagListBlock block) {
         for (Field field : parseFields(fields)) {
             block.append(field);
         }
@@ -161,21 +171,21 @@ public class AbstractMTAdapter implements JsonSerializer<AbstractMT>, JsonDeseri
 
     private void setFinalBlockNameAndFields(JsonObject response, String blockName, List<Tag> tags) {
         String finalBlockName = BLOCK4_FINAL_NAME;
-        if (blockName.equals("block3")) {
+        if ("block3".equals(blockName)) {
             finalBlockName = BLOCK3_FINAL_NAME;
-        } else if (blockName.equals("block5")) {
+        } else if ("block5".equals(blockName)) {
             finalBlockName = BLOCK5_FINAL_NAME;
         }
         JsonArray fields = getFieldsFromTags(tags);
         JsonObject block = new JsonObject();
-        block.add("fields", fields);
+        block.add(FIELDS, fields);
         response.add(finalBlockName, block);
     }
 
     /**
      * Converts the tag elements into fields, and the fields into json
      */
-    private JsonArray getFieldsFromTags(List<Tag> tags) {
+    private static JsonArray getFieldsFromTags(List<Tag> tags) {
         JsonArray fields = new JsonArray();
         for (Tag tag : tags) {
             String json = tag.asField().toJson();
