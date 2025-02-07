@@ -44,7 +44,7 @@ import org.w3c.dom.NodeList;
  * @since 5.0
  */
 public class XMLParser {
-    private static final transient java.util.logging.Logger log =
+    private static final java.util.logging.Logger LOGGER =
             java.util.logging.Logger.getLogger(XMLParser.class.getName());
 
     private static final String UNPARSEDTEXTS = "unparsedtexts";
@@ -65,7 +65,7 @@ public class XMLParser {
             final Document doc = db.parse(new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8)));
             return createMessage(doc);
         } catch (final Exception e) {
-            log.log(Level.WARNING, "Error parsing XML", e);
+            LOGGER.log(Level.WARNING, "Error parsing XML", e);
             return null;
         }
     }
@@ -84,14 +84,14 @@ public class XMLParser {
             final SwiftMessage m = new SwiftMessage(false);
 
             final NodeList blocksNL = message.getChildNodes();
-            if (log.isLoggable(Level.FINE)) {
-                log.fine("blocks in message: " + blocksNL.getLength());
+            if (LOGGER.isLoggable(Level.FINE)) {
+                LOGGER.fine("blocks in message: " + blocksNL.getLength());
             }
 
             for (int i = 0; i < blocksNL.getLength(); i++) {
                 final Node blockNode = blocksNL.item(i);
-                if (log.isLoggable(Level.FINE)) {
-                    log.fine("evaluating node " + blockNode.getNodeName());
+                if (LOGGER.isLoggable(Level.FINE)) {
+                    LOGGER.fine("evaluating node " + blockNode.getNodeName());
                 }
                 if (blockNode.getNodeType() == Node.ELEMENT_NODE) {
                     final String blockName = blockNode.getNodeName();
@@ -124,8 +124,8 @@ public class XMLParser {
      */
     private SwiftBlock1 getBlock1FromNode(final Node blockNode) {
         final NodeList fields = blockNode.getChildNodes();
-        if (log.isLoggable(Level.FINE)) {
-            log.fine(fields.getLength() + " children in <block1>");
+        if (LOGGER.isLoggable(Level.FINE)) {
+            LOGGER.fine(fields.getLength() + " children in <block1>");
         }
 
         final SwiftBlock1 b1 = new SwiftBlock1();
@@ -157,7 +157,7 @@ public class XMLParser {
             if (c.getNodeType() == Node.TEXT_NODE) {
                 text = c.getNodeValue();
             } else {
-                log.warning("Node is not TEXT_NODE: " + c);
+                LOGGER.warning("Node is not TEXT_NODE: " + c);
             }
         }
         return text;
@@ -178,14 +178,14 @@ public class XMLParser {
         final String type = getNodeAttribute(blockNode, "type");
 
         if (type == null) {
-            log.severe("atrribute 'type' was expected but not found at <block2> xml tag");
+            LOGGER.severe("atrribute 'type' was expected but not found at <block2> xml tag");
             return null;
         } else if ("input".equals(type)) {
             return getBlock2InputFromNode(blockNode);
         } else if ("output".equals(type)) {
             return getBlock2OutputFromNode(blockNode);
         } else {
-            log.severe(
+            LOGGER.severe(
                     "expected 'input' or 'output' value for 'type' atribute at <block2> xml tag, and found: " + type);
             return null;
         }
@@ -201,8 +201,8 @@ public class XMLParser {
      */
     private SwiftBlock2Input getBlock2InputFromNode(final Node blockNode) {
         final NodeList fields = blockNode.getChildNodes();
-        if (log.isLoggable(Level.FINE)) {
-            log.fine(fields.getLength() + " childrens in <block2 type=\"input\">");
+        if (LOGGER.isLoggable(Level.FINE)) {
+            LOGGER.fine(fields.getLength() + " childrens in <block2 type=\"input\">");
         }
 
         final SwiftBlock2Input b2 = new SwiftBlock2Input();
@@ -237,8 +237,8 @@ public class XMLParser {
      */
     private SwiftBlock2Output getBlock2OutputFromNode(final Node blockNode) {
         final NodeList fields = blockNode.getChildNodes();
-        if (log.isLoggable(Level.FINE)) {
-            log.fine(fields.getLength() + " childrens in <block2 type=\"output\">");
+        if (LOGGER.isLoggable(Level.FINE)) {
+            LOGGER.fine(fields.getLength() + " childrens in <block2 type=\"output\">");
         }
 
         final SwiftBlock2Output b2 = new SwiftBlock2Output();
@@ -301,8 +301,8 @@ public class XMLParser {
         }
 
         final NodeList fields = blockNode.getChildNodes();
-        if (log.isLoggable(Level.FINE)) {
-            log.fine(fields.getLength() + " children in tag list " + blockName);
+        if (LOGGER.isLoggable(Level.FINE)) {
+            LOGGER.fine(fields.getLength() + " children in tag list " + blockName);
         }
 
         for (int j = 0; j < fields.getLength(); j++) {
@@ -383,7 +383,7 @@ public class XMLParser {
                         try {
                             field.setComponent(Integer.parseInt(number), text);
                         } catch (NumberFormatException e) {
-                            log.warning(
+                            LOGGER.warning(
                                     "error setting component " + number + " for field " + name + ": " + e.getMessage());
                             return null;
                         }
@@ -408,8 +408,8 @@ public class XMLParser {
         final UnparsedTextList unparsedTexts = new UnparsedTextList();
 
         final NodeList texts = blockNode.getChildNodes();
-        if (log.isLoggable(Level.FINE)) {
-            log.fine(texts.getLength() + " children in <unparsedtexts>");
+        if (LOGGER.isLoggable(Level.FINE)) {
+            LOGGER.fine(texts.getLength() + " children in <unparsedtexts>");
         }
         for (int j = 0; j < texts.getLength(); j++) {
             final Node t = texts.item(j);

@@ -37,7 +37,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class SwiftParser {
 
-    private static final transient java.util.logging.Logger log =
+    private static final java.util.logging.Logger LOGGER =
             java.util.logging.Logger.getLogger(SwiftParser.class.getName());
     /**
      * Errors found while parsing the message.
@@ -313,7 +313,8 @@ public class SwiftParser {
      * and calls the proper method to consume the block type
      * that is coming, not all blocks are parsed in the same manner.
      *
-     * @param unparsedReceiver may be null, the unparsedTextList that will receive the chunks that can not be identified sas part of the message
+     * @param unparsedReceiver may be null, the unparsedTextList that will receive the chunks that can
+     *                         not be identified sas part of the message
      * @return the next block in the reader or null if none was found (i.e: end of input)
      * @throws IOException if an error occurred during read
      */
@@ -330,7 +331,8 @@ public class SwiftParser {
             /* if we have an unparsed text add it to last block */
             if (!unparsed.isEmpty()) {
                 if (unparsedReceiver == null) {
-                    log.warning("Unparsed text '" + unparsed + "' can not be reported since unparsedReceiver is null");
+                    LOGGER.warning(
+                            "Unparsed text '" + unparsed + "' can not be reported since unparsedReceiver is null");
                 } else {
                     unparsedReceiver.addText(unparsed);
                 }
@@ -384,7 +386,7 @@ public class SwiftParser {
                 return null;
             }
             // block cannot be identified
-            log.severe("unidentified block:" + s);
+            LOGGER.severe("unidentified block:" + s);
             throw new ProwideException("The block " + s + " could not be identified");
         }
 
@@ -393,7 +395,7 @@ public class SwiftParser {
 
         if (!unparsed.isEmpty()) {
             if (unparsedReceiver == null) {
-                log.warning("Unparsed text '" + unparsed + "' can not be reported since unparsedReceiver is null");
+                LOGGER.warning("Unparsed text '" + unparsed + "' can not be reported since unparsedReceiver is null");
             } else {
                 unparsedReceiver.addText(unparsed);
             }
@@ -554,7 +556,7 @@ public class SwiftParser {
                         // Seek the cursor to last 'processed' position
                         i = end;
                         final Tag t = new Tag(inner);
-                        log.finest("" + t);
+                        LOGGER.finest("" + t);
                         b.append(t);
                     }
                 } else {
@@ -653,7 +655,7 @@ public class SwiftParser {
                      * parece que no se esta detectando bien y entra en loop infinito (bug reportado de hecho)
                      */
                     /// TODO review this log seems to be part of an infinite loop
-                    log.severe("malformed message: exit by bracket");
+                    LOGGER.severe("malformed message: exit by bracket");
                     // break;
                 case ':':
                     // get the tag text
@@ -924,7 +926,7 @@ public class SwiftParser {
             t.setName(name);
             t.setValue(value);
         } else {
-            log.severe("Avoiding tag with null name and value " + value);
+            LOGGER.severe("Avoiding tag with null name and value " + value);
             throw new IllegalArgumentException("Field cannot have a null tag name");
         }
 
