@@ -27,7 +27,7 @@ import java.util.logging.Level;
  */
 // Sebastian Feb 2016: make this API static
 public class MultilineUtil {
-    private static final transient java.util.logging.Logger log =
+    private static final java.util.logging.Logger LOGGER =
             java.util.logging.Logger.getLogger(MultilineUtil.class.getName());
 
     /**
@@ -44,12 +44,16 @@ public class MultilineUtil {
      * Helper method to remove empty lines on a multiline field.
      *
      * @param lines   an non null array of lines to process
-     * @param keepAll if <code>true</code> this method will have the effect of sorting empty lines to the end, if <code>false</code>, empty lines will be removed
-     * @return a String array with all nonempty lines contained in the lines array, the string may be empty if lines is empty, or no non-empty lines are present
+     * @param keepAll if <code>true</code> this method will have the effect of sorting empty lines to the end,
+     *                if <code>false</code>, empty lines will be removed
+     * @return a String array with all nonempty lines contained in the lines array, the string may be empty
+     * if lines is empty, or no non-empty lines are present
      */
     public String[] removeInnerEmptyLines(final String[] lines, final boolean keepAll) {
         Objects.requireNonNull(lines, "lines cannot be null");
-        if (lines.length == 0) return lines;
+        if (lines.length == 0) {
+            return lines;
+        }
         final List<String> text = new ArrayList<>();
         List<String> empty = null;
         if (keepAll) {
@@ -67,14 +71,16 @@ public class MultilineUtil {
         if (keepAll) {
             text.addAll(empty);
         }
-        if (log.isLoggable(Level.FINE)) log.fine("text: " + text);
+        if (LOGGER.isLoggable(Level.FINE)) {
+            LOGGER.fine("text: " + text);
+        }
         return text.toArray(new String[0]);
     }
 
     /**
      * Returns <code>true</code> if string is not null and contains at least one non white character
      */
-    private boolean isEmpty(String string) {
-        return string == null || string.trim().length() == 0;
+    private static boolean isEmpty(String string) {
+        return string == null || string.trim().isEmpty();
     }
 }

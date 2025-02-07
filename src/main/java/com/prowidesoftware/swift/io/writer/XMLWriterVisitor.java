@@ -16,7 +16,17 @@
 package com.prowidesoftware.swift.io.writer;
 
 import com.prowidesoftware.ProwideException;
-import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.SwiftBlock1;
+import com.prowidesoftware.swift.model.SwiftBlock2;
+import com.prowidesoftware.swift.model.SwiftBlock2Input;
+import com.prowidesoftware.swift.model.SwiftBlock2Output;
+import com.prowidesoftware.swift.model.SwiftBlock3;
+import com.prowidesoftware.swift.model.SwiftBlock4;
+import com.prowidesoftware.swift.model.SwiftBlock5;
+import com.prowidesoftware.swift.model.SwiftBlockUser;
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.Tag;
+import com.prowidesoftware.swift.model.UnparsedTextList;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.utils.IMessageVisitor;
 import java.io.IOException;
@@ -32,7 +42,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author sebastian
  */
 public class XMLWriterVisitor implements IMessageVisitor {
-    private static final transient java.util.logging.Logger log =
+    private static final java.util.logging.Logger LOGGER =
             java.util.logging.Logger.getLogger(XMLWriterVisitor.class.getName());
 
     private static final String EOL = System.getProperties().getProperty("line.separator", "\n");
@@ -76,7 +86,9 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (m.getUnparsedTextsSize() > 0) write(m.getUnparsedTexts(), 0);
+        if (m.getUnparsedTextsSize() > 0) {
+            write(m.getUnparsedTexts(), 0);
+        }
 
         write(EOL + "</message>");
     }
@@ -119,7 +131,9 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize() > 0) write(b.getUnparsedTexts(), 1);
+        if (b.getUnparsedTextsSize() > 0) {
+            write(b.getUnparsedTexts(), 1);
+        }
 
         // write block termination
         write(EOL + "</block1>");
@@ -135,8 +149,12 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // decide on the tag to use
         String xmlTag = "<block2>";
         if (!b.isEmpty()) {
-            if (b instanceof SwiftBlock2Input) xmlTag = "<block2 type=\"input\">";
-            if (b instanceof SwiftBlock2Output) xmlTag = "<block2 type=\"output\">";
+            if (b instanceof SwiftBlock2Input) {
+                xmlTag = "<block2 type=\"input\">";
+            }
+            if (b instanceof SwiftBlock2Output) {
+                xmlTag = "<block2 type=\"output\">";
+            }
         }
         write(EOL + xmlTag);
     }
@@ -178,8 +196,10 @@ public class XMLWriterVisitor implements IMessageVisitor {
             appendElement(sb, "MIRSequenceNumber", b2.getMIRSequenceNumber());
             appendElement(sb, "receiverOutputDate", b2.getReceiverOutputDate());
             appendElement(sb, "receiverOutputTime", b2.getReceiverOutputTime());
-            if (b2.getMessagePriority() != null) // optional for service messages
-            appendElement(sb, "messagePriority", b2.getMessagePriority());
+            // optional for service messages
+            if (b2.getMessagePriority() != null) {
+                appendElement(sb, "messagePriority", b2.getMessagePriority());
+            }
         }
 
         write(sb.toString());
@@ -193,7 +213,9 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize() > 0) write(b.getUnparsedTexts(), 1);
+        if (b.getUnparsedTextsSize() > 0) {
+            write(b.getUnparsedTexts(), 1);
+        }
 
         // write block termination
         write(EOL + "</block2>");
@@ -222,7 +244,9 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize() > 0) write(b.getUnparsedTexts(), 1);
+        if (b.getUnparsedTextsSize() > 0) {
+            write(b.getUnparsedTexts(), 1);
+        }
 
         // write block termination
         write(EOL + "</block3>");
@@ -255,7 +279,9 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize() > 0) write(b.getUnparsedTexts(), 1);
+        if (b.getUnparsedTextsSize() > 0) {
+            write(b.getUnparsedTexts(), 1);
+        }
 
         // write block termination
         write(EOL + "</block4>");
@@ -284,7 +310,9 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize() > 0) write(b.getUnparsedTexts(), 1);
+        if (b.getUnparsedTextsSize() > 0) {
+            write(b.getUnparsedTexts(), 1);
+        }
 
         // write block termination
         write(EOL + "</block5>");
@@ -313,7 +341,9 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (b.getUnparsedTextsSize() > 0) write(b.getUnparsedTexts(), 1);
+        if (b.getUnparsedTextsSize() > 0) {
+            write(b.getUnparsedTexts(), 1);
+        }
 
         // write block termination
         write(EOL + "</block>");
@@ -328,12 +358,16 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // generate the xml tag
         write(EOL + "\t<tag>");
         write(EOL + "\t\t<name>");
-        if (t.getName() != null) // otherwise, null name writes name "null"
-        write(t.getName());
+        // otherwise, null name writes name "null"
+        if (t.getName() != null) {
+            write(t.getName());
+        }
         write("</name>");
         write(EOL + "\t\t<value>");
-        if (t.getValue() != null) // otherwise, null value writes value "null"
-        write(t.getValue());
+        // otherwise, null value writes value "null"
+        if (t.getValue() != null) {
+            write(t.getValue());
+        }
         write("</value>");
 
         // if tag has unparsed texts, write them down
@@ -341,14 +375,18 @@ public class XMLWriterVisitor implements IMessageVisitor {
         // IMPORTANT: do not just "write(m.getUnparsedTexts())" because this latest method actually
         //            creates the object if not already there. Guard this with the size "if" that is
         //            safe (returns 0 if there is no list or real size otherwise).
-        if (t.getUnparsedTextsSize() > 0) write(t.getUnparsedTexts(), 2);
+        if (t.getUnparsedTextsSize() > 0) {
+            write(t.getUnparsedTexts(), 2);
+        }
 
         // write tag termination
         write(EOL + "\t</tag>");
     }
 
     private void appendField(Tag tag) {
-        if (tag == null) return;
+        if (tag == null) {
+            return;
+        }
         final Field f = tag.asField();
         if (f == null) {
             // Something went wrong
@@ -356,8 +394,10 @@ public class XMLWriterVisitor implements IMessageVisitor {
             // generate the xml tag
             write(EOL + "\t<field>");
             write(EOL + "\t\t<name>");
-            if (f.getName() != null) // otherwise, null name writes name "null"
-            write(f.getName());
+            // otherwise, null name writes name "null"
+            if (f.getName() != null) {
+                write(f.getName());
+            }
             write("</name>");
             final List<String> components = f.getComponents();
             for (int i = 0; i < components.size(); i++) {
@@ -375,7 +415,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         }
     }
 
-    private void appendElement(StringBuilder sb, String element, String value) {
+    private static void appendElement(StringBuilder sb, String element, String value) {
         sb.append(EOL)
                 .append("\t<")
                 .append(element)
@@ -398,7 +438,8 @@ public class XMLWriterVisitor implements IMessageVisitor {
                 break;
             default:
                 prefix = "\t";
-                break; // level 1 is catched here
+                // level 1 is catched here
+                break;
         }
 
         // write the unparsed texts (if any)
@@ -417,7 +458,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         try {
             writer.write(s);
         } catch (IOException e) {
-            log.log(Level.SEVERE, "Caught exception in XMLWriterVisitor, method write", e);
+            LOGGER.log(Level.SEVERE, "Caught exception in XMLWriterVisitor, method write", e);
             throw new ProwideException(e);
         }
     }

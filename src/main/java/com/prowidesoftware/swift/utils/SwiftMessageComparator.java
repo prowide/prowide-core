@@ -16,7 +16,15 @@
 package com.prowidesoftware.swift.utils;
 
 import com.prowidesoftware.ProwideException;
-import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.BIC;
+import com.prowidesoftware.swift.model.LogicalTerminalAddress;
+import com.prowidesoftware.swift.model.SwiftBlock1;
+import com.prowidesoftware.swift.model.SwiftBlock2;
+import com.prowidesoftware.swift.model.SwiftBlock2Input;
+import com.prowidesoftware.swift.model.SwiftBlock2Output;
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.SwiftTagListBlock;
+import com.prowidesoftware.swift.model.Tag;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
@@ -45,41 +53,41 @@ import org.apache.commons.lang3.StringUtils;
  * @since 7.8.8
  */
 public class SwiftMessageComparator implements Comparator<SwiftMessage> {
-    private static final transient java.util.logging.Logger log =
+    private static final java.util.logging.Logger LOGGER =
             java.util.logging.Logger.getLogger(SwiftMessageComparator.class.getName());
     /**
      * Flag to enable different type of EOLs in multi-line values
      */
-    protected boolean ignoreEolsInMultiline = false;
+    protected boolean ignoreEolsInMultiline;
 
-    protected boolean ignoreHeaderSession = false;
+    protected boolean ignoreHeaderSession;
 
-    protected boolean ignoreTrailer = false;
+    protected boolean ignoreTrailer;
 
     /**
      * @since 8.0.3
      */
-    protected boolean ignoreBlock2OptionalFields = false;
+    protected boolean ignoreBlock2OptionalFields;
 
     /**
      * @since 9.1.3
      */
-    protected boolean ignoreLT = false;
+    protected boolean ignoreLT;
 
     /**
      * @since 9.1.3
      */
-    protected boolean ignoreLocationFlag = false;
+    protected boolean ignoreLocationFlag;
 
     /**
      * @since 9.1.6
      */
-    protected boolean ignoreBlock3 = false;
+    protected boolean ignoreBlock3;
 
     /**
      * @since 9.1.6
      */
-    protected boolean ignorePriority = false;
+    protected boolean ignorePriority;
 
     /**
      * List of tagnames to ignore in comparison.
@@ -114,7 +122,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
         final boolean b3 = ignoreBlock3 || compareTagListBlock(left.getBlock3(), right.getBlock3());
         final boolean b4 = compareTagListBlock(left.getBlock4(), right.getBlock4());
         final boolean b5 = this.ignoreTrailer || compareTagListBlock(left.getBlock5(), right.getBlock5());
-        log.finest("b1=" + b1 + ", b2=" + b2 + ", b3=" + b3 + ", b4=" + b4 + ", b5=" + b5);
+        LOGGER.finest("b1=" + b1 + ", b2=" + b2 + ", b3=" + b3 + ", b4=" + b4 + ", b5=" + b5);
         return b1 && b2 && b3 && b4 && b5 ? 0 : 1;
     }
 
@@ -122,7 +130,8 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
      * Return true if blocks are equals in all values but the ones with the ignore flag. Fields that can be ignored
      * are the optional fields, the BIC LT identifier and the BIC location flag.
      * <br>
-     * If both blocks null will return <code>true</code> and one null and the other one not null will return <code>false</code>
+     * If both blocks null will return <code>true</code> and one null
+     * and the other one not null will return <code>false</code>
      *
      * @param left  first block to compare
      * @param right second block to compare
@@ -187,8 +196,9 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
      *
      * <p>This implementation uses {@link Tag#equals(Object)} for fields comparison.
      *
-     * <p>NOTE a null or empty block is considered a blank block; then if both are blank this method returns <code>true</code>
-     * and if one of the blocks is blank and the other is not this method returns <code>false</code>
+     * <p>NOTE a null or empty block is considered a blank block; then if both
+     * are blank this method returns <code>true</code> and if one of the blocks is blank and
+     * the other is not this method returns <code>false</code>
      *
      * @param left  first block to compare
      * @param right second block to compare
@@ -217,7 +227,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
             final Tag t2 = right.getTag(i);
 
             if (tagNameIgnored(t1.getName(), t2.getName())) {
-                log.finer("Tag ignored: " + t1.getName() + " - " + t2.getName());
+                LOGGER.finer("Tag ignored: " + t1.getName() + " - " + t2.getName());
             } else {
                 if (!(StringUtils.equals(t1.getName(), t2.getName()) && valuesAreEqual(t1.getValue(), t2.getValue()))) {
                     count++;

@@ -22,10 +22,26 @@ import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.io.IConversionService;
 import com.prowidesoftware.swift.io.parser.SwiftParser;
 import com.prowidesoftware.swift.io.writer.SwiftWriter;
-import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.AbstractMessage;
+import com.prowidesoftware.swift.model.BIC;
+import com.prowidesoftware.swift.model.MessageStandardType;
+import com.prowidesoftware.swift.model.MtId;
+import com.prowidesoftware.swift.model.SwiftBlock1;
+import com.prowidesoftware.swift.model.SwiftBlock2;
+import com.prowidesoftware.swift.model.SwiftBlock2Adapter;
+import com.prowidesoftware.swift.model.SwiftBlock2Input;
+import com.prowidesoftware.swift.model.SwiftBlock4;
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.SwiftMessageUtils;
+import com.prowidesoftware.swift.model.SwiftTagListBlock;
+import com.prowidesoftware.swift.model.Tag;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.utils.Lib;
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -43,8 +59,11 @@ import org.apache.commons.lang3.StringUtils;
  * @since 6.0
  */
 public abstract class AbstractMT extends AbstractMessage implements JsonSerializable {
-    private static final transient Logger log = Logger.getLogger(AbstractMT.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(AbstractMT.class.getName());
     private static final String GETSEQUENCE = "getSequence";
+
+    public static final String SWIFT_MESSAGE_WAS_NOT_INITIALIZED = "SwiftMessage was not initialized";
+
     /**
      * The internal swift message.
      */
@@ -53,7 +72,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
     /**
      * @param m swift message to model as a particular MT
      */
-    public AbstractMT(SwiftMessage m) {
+    protected AbstractMT(SwiftMessage m) {
         super(MessageStandardType.MT);
         this.m = m;
     }
@@ -62,7 +81,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * Creates a particular MT initialized with a new SwiftMessage.
      * All blocks are initialized.
      */
-    public AbstractMT() {
+    protected AbstractMT() {
         super(MessageStandardType.MT);
         this.m = new SwiftMessage(true);
         if (getMessageType() != null) {
@@ -78,7 +97,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @see #AbstractMT(int, String, String)
      * @since 7.6
      */
-    public AbstractMT(final int messageType) {
+    protected AbstractMT(final int messageType) {
         this(messageType, BIC.TEST8, BIC.TEST8);
     }
 
@@ -94,7 +113,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @param receiver    the receiver address as a bic8, bic11 or full logical terminal consisting of 12 characters
      * @since 7.6
      */
-    public AbstractMT(final int messageType, final String sender, final String receiver) {
+    protected AbstractMT(final int messageType, final String sender, final String receiver) {
         super(MessageStandardType.MT);
         this.m = new SwiftMessage(true);
         this.m.getBlock1().setSender(sender);
@@ -191,12 +210,12 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
 
     private static String getMessageTypeAsString(int messageType) {
         if (messageType < 10) {
-            return "00" + Integer.valueOf(messageType).toString();
+            return "00" + messageType;
         }
         if (messageType < 100) {
-            return "0" + Integer.valueOf(messageType).toString();
+            return "0" + messageType;
         }
-        return Integer.valueOf(messageType).toString();
+        return Integer.toString(messageType);
     }
 
     /**
@@ -210,9 +229,9 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
         try {
             return SwiftMessage.parse(fin);
         } catch (IOException e) {
-            log.severe("An error occured while reading FIN :" + e.getClass().getName());
-            log.log(Level.SEVERE, "Read exception");
-            log.log(Level.SEVERE, "Read exception while parsing " + fin, e);
+            LOGGER.severe("An error occured while reading FIN :" + e.getClass().getName());
+            LOGGER.log(Level.SEVERE, "Read exception");
+            LOGGER.log(Level.SEVERE, "Read exception while parsing " + fin, e);
         }
         return null;
     }
@@ -287,7 +306,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     public String getApplicationId() {
         if (getSwiftMessage() == null) {
-            throw new IllegalStateException("SwiftMessage was not initialized");
+            throw new IllegalStateException(SWIFT_MESSAGE_WAS_NOT_INITIALIZED);
         }
         if (m.getBlock1() != null) {
             return m.getBlock1().getApplicationId();
@@ -302,7 +321,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     public String getServiceId() {
         if (getSwiftMessage() == null) {
-            throw new IllegalStateException("SwiftMessage was not initialized");
+            throw new IllegalStateException(SWIFT_MESSAGE_WAS_NOT_INITIALIZED);
         }
         if (m.getBlock1() != null) {
             return m.getBlock1().getServiceId();
@@ -317,7 +336,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     public String getLogicalTerminal() {
         if (getSwiftMessage() == null) {
-            throw new IllegalStateException("SwiftMessage was not initialized");
+            throw new IllegalStateException(SWIFT_MESSAGE_WAS_NOT_INITIALIZED);
         }
         if (m.getBlock1() != null) {
             return m.getBlock1().getLogicalTerminal();
@@ -332,7 +351,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     public String getSessionNumber() {
         if (getSwiftMessage() == null) {
-            throw new IllegalStateException("SwiftMessage was not initialized");
+            throw new IllegalStateException(SWIFT_MESSAGE_WAS_NOT_INITIALIZED);
         }
         if (m.getBlock1() != null) {
             return m.getBlock1().getSessionNumber();
@@ -347,7 +366,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     public String getSequenceNumber() {
         if (getSwiftMessage() == null) {
-            throw new IllegalStateException("SwiftMessage was not initialized");
+            throw new IllegalStateException(SWIFT_MESSAGE_WAS_NOT_INITIALIZED);
         }
         if (m.getBlock1() != null) {
             return m.getBlock1().getSequenceNumber();
@@ -362,7 +381,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     public String getMessagePriority() {
         if (getSwiftMessage() == null) {
-            throw new IllegalStateException("SwiftMessage was not initialized");
+            throw new IllegalStateException(SWIFT_MESSAGE_WAS_NOT_INITIALIZED);
         }
         if (m.getBlock2() != null) {
             return m.getBlock2().getMessagePriority();
@@ -377,7 +396,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     public boolean isInput() {
         if (getSwiftMessage() == null) {
-            throw new IllegalStateException("SwiftMessage was not initialized");
+            throw new IllegalStateException(SWIFT_MESSAGE_WAS_NOT_INITIALIZED);
         }
         return m.isInput();
     }
@@ -397,7 +416,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     public boolean isOutput() {
         if (getSwiftMessage() == null) {
-            throw new IllegalStateException("SwiftMessage was not initialized");
+            throw new IllegalStateException(SWIFT_MESSAGE_WAS_NOT_INITIALIZED);
         }
         return m.isOutput();
     }
@@ -550,7 +569,8 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
     public abstract String getMessageType();
 
     /**
-     * Convenience method to get the list of sequences named <code>name</code> from this message without creating the MTXXX class.
+     * Convenience method to get the list of sequences named <code>name</code> from
+     * this message without creating the MTXXX class.
      *
      * <code>getSequenceList("A")</code>
      * is the same as
@@ -636,9 +656,9 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
             }
             return method.invoke(where, argument);
         } catch (final NoSuchMethodException e) {
-            log.log(Level.FINE, "Method " + methodName + " does not exist in " + getClass(), e);
+            LOGGER.log(Level.FINE, "Method " + methodName + " does not exist in " + getClass(), e);
         } catch (Exception e) {
-            log.log(Level.WARNING, "An error occured while invoking " + methodName + " in " + where, e);
+            LOGGER.log(Level.WARNING, "An error occured while invoking " + methodName + " in " + where, e);
         }
         return null;
     }
@@ -706,7 +726,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
 
         // sanity check
         if (getSwiftMessage() == null) {
-            throw new IllegalStateException("SwiftMessage was not initialized");
+            throw new IllegalStateException(SWIFT_MESSAGE_WAS_NOT_INITIALIZED);
         }
 
         // set the signature
@@ -724,7 +744,9 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     public AbstractMT append(final SwiftTagListBlock block) {
         Objects.requireNonNull(block);
-        if (!block.isEmpty()) b4().addTags(block.getTags());
+        if (!block.isEmpty()) {
+            b4().addTags(block.getTags());
+        }
         return this;
     }
 
@@ -754,10 +776,8 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      */
     public AbstractMT append(final Field... fields) {
         Objects.requireNonNull(fields);
-        if (fields.length > 0) {
-            for (final Field t : fields) {
-                b4().append(t);
-            }
+        for (final Field t : fields) {
+            b4().append(t);
         }
         return this;
     }
@@ -788,7 +808,7 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
         Objects.requireNonNull(this.m, "the message to write cannot be null");
         boolean created = file.createNewFile();
         if (created) {
-            log.fine("new file created: " + file.getAbsolutePath());
+            LOGGER.fine("new file created: " + file.getAbsolutePath());
         }
         FileWriter fw = new FileWriter(file.getAbsoluteFile());
         SwiftWriter.writeMessage(this.m, fw, true);
@@ -870,12 +890,12 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @since 7.8.9
      */
     protected Tag tag(final String tagName) {
-        final SwiftMessage _m = getSwiftMessageNotNullOrException();
-        if (_m.getBlock4() == null) {
-            log.info("block4 is null");
+        final SwiftMessage swiftMessage = getSwiftMessageNotNullOrException();
+        if (swiftMessage.getBlock4() == null) {
+            LOGGER.info("block4 is null");
             return null;
         }
-        return _m.getBlock4().getTagByName(tagName);
+        return swiftMessage.getBlock4().getTagByName(tagName);
     }
 
     /**
@@ -886,12 +906,12 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
      * @since 7.8.9
      */
     protected Tag[] tags(final String tagName) {
-        final SwiftMessage _m = getSwiftMessageNotNullOrException();
-        if (_m.getBlock4() == null) {
-            log.info("block4 is null");
+        final SwiftMessage swiftMessage = getSwiftMessageNotNullOrException();
+        if (swiftMessage.getBlock4() == null) {
+            LOGGER.info("block4 is null");
             return null;
         } else {
-            return _m.getBlock4().getTagsByName(tagName);
+            return swiftMessage.getBlock4().getTagsByName(tagName);
         }
     }
 

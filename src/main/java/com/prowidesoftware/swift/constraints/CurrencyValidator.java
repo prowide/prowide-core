@@ -29,7 +29,9 @@ import org.apache.commons.lang3.StringUtils;
 public class CurrencyValidator implements ConstraintValidator<CurrencyConstraint, String> {
 
     @Override
-    public void initialize(CurrencyConstraint currency) {}
+    public void initialize(CurrencyConstraint currency) {
+        // do nothing
+    }
 
     @Override
     public boolean isValid(String currency, ConstraintValidatorContext context) {

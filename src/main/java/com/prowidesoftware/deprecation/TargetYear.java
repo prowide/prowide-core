@@ -25,5 +25,5 @@ package com.prowidesoftware.deprecation;
 public enum TargetYear {
     SRU2025,
     SRU2026,
-    SRU2027;
+    SRU2027
 }

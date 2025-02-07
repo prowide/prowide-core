@@ -15,7 +15,14 @@
  */
 package com.prowidesoftware.swift.utils;
 
-import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.SwiftBlock1;
+import com.prowidesoftware.swift.model.SwiftBlock2;
+import com.prowidesoftware.swift.model.SwiftBlock3;
+import com.prowidesoftware.swift.model.SwiftBlock4;
+import com.prowidesoftware.swift.model.SwiftBlock5;
+import com.prowidesoftware.swift.model.SwiftBlockUser;
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.Tag;
 
 /**
  * Interface to be implemented by classes that will 'visit' a swift message.
@@ -29,7 +36,8 @@ import com.prowidesoftware.swift.model.*;
  * <li><code>startBlock3 -&gt; tag (for every tag) -&gt; endBlock3</code> (if block 3 exists)</li>
  * <li><code>startBlock4 -&gt; tag (for every tag) -&gt; endBlock4</code> (if block 4 exists)</li>
  * <li><code>startBlock5 -&gt; tag (for every tag) -&gt; endBlock5</code> (if block 5 exists)</li>
- * <li><code>startBlockUser -&gt; tag (for every tag) -&gt; endBlockUser</code> (for every user defined block and every tag of that block)</li>
+ * <li><code>startBlockUser -&gt; tag (for every tag) -&gt; endBlockUser</code> (for every
+ * user defined block and every tag of that block)</li>
  * <li><code>endMessage</code></li>
  * </ol>
  *

@@ -17,7 +17,10 @@ package com.prowidesoftware.swift.model;
 
 import com.prowidesoftware.swift.io.ConversionService;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
@@ -277,8 +280,12 @@ public class UnparsedTextList implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         UnparsedTextList that = (UnparsedTextList) o;
         return Objects.equals(texts, that.texts);
     }

@@ -16,9 +16,26 @@
 package com.prowidesoftware.swift.io.parser;
 
 import com.prowidesoftware.ProwideException;
-import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.SwiftBlock;
+import com.prowidesoftware.swift.model.SwiftBlock1;
+import com.prowidesoftware.swift.model.SwiftBlock2;
+import com.prowidesoftware.swift.model.SwiftBlock2Input;
+import com.prowidesoftware.swift.model.SwiftBlock2Output;
+import com.prowidesoftware.swift.model.SwiftBlock3;
+import com.prowidesoftware.swift.model.SwiftBlock4;
+import com.prowidesoftware.swift.model.SwiftBlock5;
+import com.prowidesoftware.swift.model.SwiftBlockUser;
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.SwiftTagListBlock;
+import com.prowidesoftware.swift.model.Tag;
+import com.prowidesoftware.swift.model.UnparsedTextList;
 import com.prowidesoftware.swift.utils.Lib;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +54,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class SwiftParser {
 
-    private static final transient java.util.logging.Logger log =
+    private static final java.util.logging.Logger LOGGER =
             java.util.logging.Logger.getLogger(SwiftParser.class.getName());
     /**
      * Errors found while parsing the message.
@@ -53,7 +70,7 @@ public class SwiftParser {
      */
     private SwiftMessage currentMessage;
 
-    private int lastBlockStartOffset = 0;
+    private int lastBlockStartOffset;
 
     /**
      * @since 7.8
@@ -313,7 +330,8 @@ public class SwiftParser {
      * and calls the proper method to consume the block type
      * that is coming, not all blocks are parsed in the same manner.
      *
-     * @param unparsedReceiver may be null, the unparsedTextList that will receive the chunks that can not be identified sas part of the message
+     * @param unparsedReceiver may be null, the unparsedTextList that will receive the chunks that can
+     *                         not be identified sas part of the message
      * @return the next block in the reader or null if none was found (i.e: end of input)
      * @throws IOException if an error occurred during read
      */
@@ -330,7 +348,8 @@ public class SwiftParser {
             /* if we have an unparsed text add it to last block */
             if (!unparsed.isEmpty()) {
                 if (unparsedReceiver == null) {
-                    log.warning("Unparsed text '" + unparsed + "' can not be reported since unparsedReceiver is null");
+                    LOGGER.warning(
+                            "Unparsed text '" + unparsed + "' can not be reported since unparsedReceiver is null");
                 } else {
                     unparsedReceiver.addText(unparsed);
                 }
@@ -377,23 +396,21 @@ public class SwiftParser {
 
         // identify and create the proper block
         final char blockId = identifyBlock(s);
-        SwiftBlock b;
         if (blockId == ' ') {
             if (configuration.isLenient()) {
                 errors.add("The block " + s + " could not be identified");
                 return null;
             }
             // block cannot be identified
-            log.severe("unidentified block:" + s);
+            LOGGER.severe("unidentified block:" + s);
             throw new ProwideException("The block " + s + " could not be identified");
         }
 
         // create the block object
-        b = createBlock(blockId, s);
-
+        SwiftBlock b = createBlock(blockId, s);
         if (!unparsed.isEmpty()) {
             if (unparsedReceiver == null) {
-                log.warning("Unparsed text '" + unparsed + "' can not be reported since unparsedReceiver is null");
+                LOGGER.warning("Unparsed text '" + unparsed + "' can not be reported since unparsedReceiver is null");
             } else {
                 unparsedReceiver.addText(unparsed);
             }
@@ -413,16 +430,20 @@ public class SwiftParser {
 
         // create the block object
         switch (blockId) {
-            case '1': // block 1 (single valued)
+            case '1':
+                // block 1 (single valued)
                 b = createBlock1(s);
                 break;
-            case '2': // block 2 (single valued)
+            case '2':
+                // block 2 (single valued)
                 b = createBlock2(s);
                 break;
-            case '3': // block 3 (tag list)
+            case '3':
+                // block 3 (tag list)
                 b = consumeTagListBlock(new SwiftBlock3(), s);
                 break;
-            case '4': // block 4
+            case '4':
+                // block 4
                 if (this.configuration.isParseTextBlock()) {
                     if (isTextBlock(s)) {
                         b = consumeBlock4(new SwiftBlock4(), s);
@@ -433,14 +454,16 @@ public class SwiftParser {
                     b = new SwiftBlock4();
                 }
                 break;
-            case '5': // block 5 (tag list)
+            case '5':
+                // block 5 (tag list)
                 if (this.configuration.isParseTrailerBlock()) {
                     b = consumeTagListBlock(new SwiftBlock5(), s);
                 } else {
                     b = new SwiftBlock5();
                 }
                 break;
-            default: // user defined block (tag list)
+            default:
+                // user defined block (tag list)
                 if (this.configuration.isParseUserBlock()) {
                     b = consumeTagListBlock(new SwiftBlockUser(Character.toString(blockId)), s);
                 } else {
@@ -554,13 +577,16 @@ public class SwiftParser {
                         // Seek the cursor to last 'processed' position
                         i = end;
                         final Tag t = new Tag(inner);
-                        log.finest("" + t);
+                        LOGGER.finest("" + t);
                         b.append(t);
                     }
                 } else {
                     // read all the characters until data end or a new '{'
-                    int end;
-                    for (end = i; end < data.length() && data.charAt(end) != '{'; end++) {}
+                    int end = i;
+                    while (end < data.length() && data.charAt(end) != '{') {
+                        // increments end counter
+                        end++;
+                    }
                     final String unparsedText = data.substring(i, end).trim();
                     if (!StringUtils.isEmpty(unparsedText)) {
                         b.unparsedTextAddText(unparsedText);
@@ -615,7 +641,8 @@ public class SwiftParser {
 
             // position ourselves at something meaningful
             int begin = start;
-            char c = ' ', prev;
+            char c = ' ';
+            char prev;
             do {
                 prev = c;
                 c = s.charAt(start++);
@@ -653,7 +680,7 @@ public class SwiftParser {
                      * parece que no se esta detectando bien y entra en loop infinito (bug reportado de hecho)
                      */
                     /// TODO review this log seems to be part of an infinite loop
-                    log.severe("malformed message: exit by bracket");
+                    LOGGER.severe("malformed message: exit by bracket");
                     // break;
                 case ':':
                     // get the tag text
@@ -670,7 +697,7 @@ public class SwiftParser {
                         //
 
                         // keep our position
-                        begin = start > 0 ? start - 1 : 0;
+                        begin = start > 1 ? (start - 1) : 0;
                         end = begin + 1;
                         while (end < s.length() && !s.startsWith("{1:", end)) {
                             end = findEndOfTagByBraces(s, end + 1);
@@ -697,6 +724,7 @@ public class SwiftParser {
                         }
                     }
                     break;
+                default:
             } /* switch(c) */
 
             // process the tag (only if we have a tag)
@@ -720,7 +748,7 @@ public class SwiftParser {
         return b;
     }
 
-    private void stripEOB(final Tag lastTag) {
+    private static void stripEOB(final Tag lastTag) {
         if (lastTag != null) {
             final String v = lastTag.getValue();
             if (v != null) {
@@ -868,7 +896,7 @@ public class SwiftParser {
      * @param start the position to start analysis at
      * @return the position where the tag ends (including the "}")
      */
-    private int findEndOfTagByBraces(final String s, int start) {
+    private static int findEndOfTagByBraces(final String s, int start) {
         // scan until end or end of string
         int balance = 0;
         do {
@@ -912,7 +940,8 @@ public class SwiftParser {
 
         // ignore empty tags (most likely, an "{}" in an unparsed text...)
         if (StringUtils.isEmpty(name) && StringUtils.isEmpty(value)) {
-            return null; // no tag...
+            // no tag...
+            return null;
         }
 
         // build the tag
@@ -924,7 +953,7 @@ public class SwiftParser {
             t.setName(name);
             t.setValue(value);
         } else {
-            log.severe("Avoiding tag with null name and value " + value);
+            LOGGER.severe("Avoiding tag with null name and value " + value);
             throw new IllegalArgumentException("Field cannot have a null tag name");
         }
 
@@ -957,7 +986,7 @@ public class SwiftParser {
      * @param unparsedText the unparsed text to split (this parameter cannot be <b>null</b>).
      * @return the list of unparsed texts. This can be <b>null</b> if the input is the empty string.
      */
-    private UnparsedTextList processUnparsedText(final String unparsedText) {
+    private static UnparsedTextList processUnparsedText(final String unparsedText) {
         // prepare to process
         UnparsedTextList list = null;
 
@@ -1113,7 +1142,7 @@ public class SwiftParser {
     /**
      * Determines if the given string is the start of a textblock
      */
-    private boolean isTextBlock(final String s) {
+    private static boolean isTextBlock(final String s) {
         // hack to report as block4 only text blocks 4 , check data in buffer
         if (s.length() < 3) {
             return false;

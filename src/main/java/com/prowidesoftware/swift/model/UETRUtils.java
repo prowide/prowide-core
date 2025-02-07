@@ -23,8 +23,11 @@ import java.util.UUID;
  *
  * @since 9.1.4
  */
-public class UETRUtils {
+public final class UETRUtils {
 
+    private UETRUtils() {
+        // utility class
+    }
     /**
      * Creates a new random UETR compatible with MT block 3 field 121
      */

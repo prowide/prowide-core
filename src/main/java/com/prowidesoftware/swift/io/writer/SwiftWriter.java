@@ -15,7 +15,12 @@
  */
 package com.prowidesoftware.swift.io.writer;
 
-import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.SwiftBlock1;
+import com.prowidesoftware.swift.model.SwiftBlock2;
+import com.prowidesoftware.swift.model.SwiftBlock3;
+import com.prowidesoftware.swift.model.SwiftBlock4;
+import com.prowidesoftware.swift.model.SwiftBlock5;
+import com.prowidesoftware.swift.model.SwiftMessage;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -25,12 +30,15 @@ import org.apache.commons.lang3.Validate;
 /**
  * Writes MT messages content into FIN format (raw SWIFT format for MT messages).
  */
-public class SwiftWriter {
-    private static final transient java.util.logging.Logger log =
+public final class SwiftWriter {
+    private static final java.util.logging.Logger LOGGER =
             java.util.logging.Logger.getLogger(SwiftWriter.class.getName());
 
     private static final String WRITER_MESSAGE = "writer cannot be null";
 
+    private SwiftWriter() {
+        // static helper
+    }
     /**
      * Writes the given message content to writer in its FIN format (raw SWIFT format for MT messages).
      *
@@ -277,7 +285,7 @@ public class SwiftWriter {
                 buf.append(l).append(FINWriterVisitor.SWIFT_EOL);
             }
         } catch (final Exception e) {
-            log.severe("Error in EOL correction: " + e);
+            LOGGER.severe("Error in EOL correction: " + e);
         }
         if (buf.length() > 0) {
             // remove the last EOL inserted
