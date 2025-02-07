@@ -56,7 +56,7 @@ import org.apache.commons.lang3.time.DateFormatUtils;
  * @since 6.0
  */
 public class SwiftFormatUtils {
-    private static final transient java.util.logging.Logger log =
+    private static final java.util.logging.Logger LOGGER =
             java.util.logging.Logger.getLogger(SwiftFormatUtils.class.getName());
 
     // Suppress default constructor for noninstantiability
@@ -209,7 +209,7 @@ public class SwiftFormatUtils {
             try {
                 number = Long.valueOf(value);
             } catch (final NumberFormatException e) {
-                log.log(java.util.logging.Level.WARNING, "Error parsing number", e);
+                LOGGER.log(java.util.logging.Level.WARNING, "Error parsing number", e);
             }
         }
         return number;
@@ -241,7 +241,7 @@ public class SwiftFormatUtils {
                 df.setParseBigDecimal(true);
                 number = df.parse(amount);
             } catch (final ParseException e) {
-                log.log(java.util.logging.Level.WARNING, "Error parsing number", e);
+                LOGGER.log(java.util.logging.Level.WARNING, "Error parsing number", e);
             }
         }
         return number;
@@ -287,7 +287,7 @@ public class SwiftFormatUtils {
                 df.setParseBigDecimal(true);
                 bigDecimal = (BigDecimal) df.parse(amount);
             } catch (final ParseException e) {
-                log.log(java.util.logging.Level.WARNING, "Error parsing number", e);
+                LOGGER.log(java.util.logging.Level.WARNING, "Error parsing number", e);
             }
         }
         return bigDecimal;
@@ -342,7 +342,7 @@ public class SwiftFormatUtils {
                 cal.setTime(d);
                 return cal;
             } catch (final ParseException e) {
-                log.log(
+                LOGGER.log(
                         java.util.logging.Level.WARNING,
                         "Could not parse '" + value + "' with pattern '" + format + "'");
             }

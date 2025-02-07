@@ -16,7 +16,18 @@
 package com.prowidesoftware.swift.io.parser;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
-import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.model.SwiftBlock1;
+import com.prowidesoftware.swift.model.SwiftBlock2;
+import com.prowidesoftware.swift.model.SwiftBlock2Input;
+import com.prowidesoftware.swift.model.SwiftBlock2Output;
+import com.prowidesoftware.swift.model.SwiftBlock3;
+import com.prowidesoftware.swift.model.SwiftBlock4;
+import com.prowidesoftware.swift.model.SwiftBlock5;
+import com.prowidesoftware.swift.model.SwiftBlockUser;
+import com.prowidesoftware.swift.model.SwiftMessage;
+import com.prowidesoftware.swift.model.SwiftTagListBlock;
+import com.prowidesoftware.swift.model.Tag;
+import com.prowidesoftware.swift.model.UnparsedTextList;
 import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.utils.SafeXmlUtils;
 import java.io.ByteArrayInputStream;
@@ -76,7 +87,7 @@ public class XMLParser {
      * @param doc Document object containing a message in XML format
      * @return SwiftMessage object populated with the given XML message data
      */
-    private SwiftMessage createMessage(final Document doc) {
+    private static SwiftMessage createMessage(final Document doc) {
         final NodeList messageNL = doc.getElementsByTagName("message");
 
         if (messageNL.getLength() == 1) {
@@ -108,7 +119,8 @@ public class XMLParser {
                         m.addBlock(getTagListBlockFromNode(blockNode));
                     }
                 }
-            } // end block list iteration
+                // end block list iteration
+            }
             return m;
         } else {
             throw new IllegalArgumentException("<message> tag not found");
@@ -122,7 +134,7 @@ public class XMLParser {
      * @param blockNode Node object of the &lt;block1&gt; tag in the XML message
      * @return SwiftBlock1 object populated with the given portion of the XML message
      */
-    private SwiftBlock1 getBlock1FromNode(final Node blockNode) {
+    private static SwiftBlock1 getBlock1FromNode(final Node blockNode) {
         final NodeList fields = blockNode.getChildNodes();
         if (LOGGER.isLoggable(Level.FINE)) {
             LOGGER.fine(fields.getLength() + " children in <block1>");
@@ -150,7 +162,7 @@ public class XMLParser {
         return b1;
     }
 
-    private String getText(final Node n) {
+    private static String getText(final Node n) {
         String text = null;
         final Node c = n.getFirstChild();
         if (c != null) {
@@ -174,7 +186,7 @@ public class XMLParser {
      * @see #getBlock2InputFromNode(Node)
      * @see #getBlock2OutputFromNode(Node)
      */
-    private SwiftBlock2 getBlock2FromNode(final Node blockNode) {
+    private static SwiftBlock2 getBlock2FromNode(final Node blockNode) {
         final String type = getNodeAttribute(blockNode, "type");
 
         if (type == null) {
@@ -199,7 +211,7 @@ public class XMLParser {
      * @param blockNode Node object of the &lt;block2&gt; tag in the XML message
      * @return SwiftBlock2Input object populated with the given portion of the XML message
      */
-    private SwiftBlock2Input getBlock2InputFromNode(final Node blockNode) {
+    private static SwiftBlock2Input getBlock2InputFromNode(final Node blockNode) {
         final NodeList fields = blockNode.getChildNodes();
         if (LOGGER.isLoggable(Level.FINE)) {
             LOGGER.fine(fields.getLength() + " childrens in <block2 type=\"input\">");
@@ -235,7 +247,7 @@ public class XMLParser {
      * @param blockNode Node object of the &lt;block2&gt; tag in the XML message
      * @return SwiftBlock2Output object populated with the given portion of the XML message
      */
-    private SwiftBlock2Output getBlock2OutputFromNode(final Node blockNode) {
+    private static SwiftBlock2Output getBlock2OutputFromNode(final Node blockNode) {
         final NodeList fields = blockNode.getChildNodes();
         if (LOGGER.isLoggable(Level.FINE)) {
             LOGGER.fine(fields.getLength() + " childrens in <block2 type=\"output\">");
@@ -277,10 +289,11 @@ public class XMLParser {
      * the XML tree, returns the corresponding SwiftTagListBlock object
      * populated with the given portion of the XML message.
      *
-     * @param blockNode Node object of the &lt;block3&gt;, &lt;block4&gt;, &lt;block5&gt; or &lt;block&gt; tag in the XML message
+     * @param blockNode Node object of the &lt;block3&gt;, &lt;block4&gt;, &lt;block5&gt;
+     *                  or &lt;block&gt; tag in the XML message
      * @return SwiftTagListBlock object populated with the given portion of the XML message
      */
-    private SwiftTagListBlock getTagListBlockFromNode(final Node blockNode) {
+    private static SwiftTagListBlock getTagListBlockFromNode(final Node blockNode) {
         final String blockName = blockNode.getNodeName();
         SwiftTagListBlock b;
         if ("block3".equalsIgnoreCase(blockName)) {
@@ -330,7 +343,7 @@ public class XMLParser {
      * @param t the XML node to parse for name-value pair
      * @return a Tag object containing the name and value of the given XML node.
      */
-    private Tag getTag(final Node t) {
+    private static Tag getTag(final Node t) {
         final Tag tag = new Tag();
         final NodeList children = t.getChildNodes();
         for (int i = 0; i < children.getLength(); i++) {
@@ -360,7 +373,7 @@ public class XMLParser {
      * @param t the XML node to parse for name-value pair
      * @return a Field object or null if "name" element is not present
      */
-    private Field getField(final Node t) {
+    private static Field getField(final Node t) {
         final NodeList children = t.getChildNodes();
         String name = null;
         for (int i = 0; i < children.getLength(); i++) {
@@ -404,7 +417,7 @@ public class XMLParser {
      * @param blockNode Node object of the &lt;unparsedtexts&gt; tag in the XML message
      * @return UnparsedTextList object populated with the given &lt;text&gt; tags content of the &lt;unparsedtexts&gt;
      */
-    private UnparsedTextList getUnparsedTextsFromNode(final Node blockNode) {
+    private static UnparsedTextList getUnparsedTextsFromNode(final Node blockNode) {
         final UnparsedTextList unparsedTexts = new UnparsedTextList();
 
         final NodeList texts = blockNode.getChildNodes();
@@ -428,7 +441,7 @@ public class XMLParser {
      * @param attributeName the attribute name expected in the analyzed Node n
      * @return the value of the attribute expected, or null if the attribute was not found
      */
-    private String getNodeAttribute(final Node n, final String attributeName) {
+    private static String getNodeAttribute(final Node n, final String attributeName) {
         final Node attr = n.getAttributes().getNamedItem(attributeName);
         if (attr == null || !attr.getNodeName().equals(attributeName)) {
             return null;

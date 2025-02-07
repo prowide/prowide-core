@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.tuple.Pair;
 
-public class ResolverUtils {
+public final class ResolverUtils {
+
+    private ResolverUtils() {
+        // Utility class, no instances allowed
+    }
 
     /**
      * Returns a subset of components based on the Types Pattern string and the wanted types
