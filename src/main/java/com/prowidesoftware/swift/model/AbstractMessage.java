@@ -22,7 +22,7 @@ package com.prowidesoftware.swift.model;
  */
 public abstract class AbstractMessage {
 
-    MessageStandardType type = null;
+    MessageStandardType type;
 
     /**
      * Protected constructor necessary for jaxb in MX.
