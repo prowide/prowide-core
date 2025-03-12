@@ -357,7 +357,7 @@ public class BIC {
      */
     public String distinguishedName(boolean includeDefaultBranch) {
         DistinguishedName.Builder dnBuilder = new DistinguishedName.Builder(getBic8());
-        if (includeDefaultBranch || !Objects.equals(getBranchOrDefault(), "XXX")) {
+        if (includeDefaultBranch || !Objects.equals(getBranchOrDefault().toUpperCase(), "XXX")) {
             dnBuilder.withBranch(getBranchOrDefault());
         }
         return dnBuilder.build().toString();
