@@ -356,6 +356,11 @@ public class BIC {
      * @since 9.3.15
      */
     public String distinguishedName(boolean includeDefaultBranch) {
+        // Notify T&T BIC usage for DN
+        if (isTestAndTraining()) {
+            System.out.println(
+                    "Distinguished Name must be constructed using Live BIC instead of Test&Training BIC:" + getBic8());
+        }
         DistinguishedName.Builder dnBuilder = new DistinguishedName.Builder(getBic8());
 
         if (includeDefaultBranch || !Objects.equals(getBranchOrDefault().toUpperCase(), "XXX")) {
