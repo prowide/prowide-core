@@ -348,7 +348,7 @@ public class BIC {
      * Returns the Distinguished Name (DN) for this BIC.
      *
      * <p>The created DN always includes the BIC8 and "swift" and
-     * if the branch is present and not "XXX" it will also be included
+     * if the branch (Upper Case) is present and not "XXX" it will also be included
      * as organization unit (ou)
      *
      * @param includeDefaultBranch if true will return ou=&lt;xxx even if the branch is not present
@@ -357,6 +357,7 @@ public class BIC {
      */
     public String distinguishedName(boolean includeDefaultBranch) {
         DistinguishedName.Builder dnBuilder = new DistinguishedName.Builder(getBic8());
+
         if (includeDefaultBranch || !Objects.equals(getBranchOrDefault().toUpperCase(), "XXX")) {
             dnBuilder.withBranch(getBranchOrDefault());
         }
