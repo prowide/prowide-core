@@ -43,7 +43,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: <code>String</code></li>
+ * 		<li>Component 1: ValuationBusinessDays: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -73,6 +73,11 @@ public class Field29Q extends Field implements Serializable {
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_29Q = "29Q";
+
+	/**
+	 * Component number for the Valuation Business Days subfield.
+	 */
+	public static final Integer VALUATION_BUSINESS_DAYS = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -255,7 +260,7 @@ public class Field29Q extends Field implements Serializable {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add(null);
+        result.add("Valuation Business Days");
         return result;
     }
 
@@ -266,6 +271,7 @@ public class Field29Q extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
+        result.put(1, "valuationBusinessDays");
         return result;
     }
 
@@ -280,11 +286,12 @@ public class Field29Q extends Field implements Serializable {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
+        super.labelMap.put("valuationbusinessdays", 1);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 ($label).
+     * Gets the component 1 (Valuation Business Days).
      * @return the component 1
      */
     public String getComponent1() {
@@ -292,14 +299,32 @@ public class Field29Q extends Field implements Serializable {
     }
 
     /**
-     * Set the component 1 ($label).
+     * Gets the Valuation Business Days (component 1).
+     * @return the Valuation Business Days from component 1
+     */
+    public String getValuationBusinessDays() {
+        return getComponent1();
+    }
+
+    /**
+     * Set the component 1 (Valuation Business Days).
      *
-     * @param component1 the $label to set
+     * @param component1 the Valuation Business Days to set
      * @return the field object to enable build pattern
      */
     public Field29Q setComponent1(String component1) {
         setComponent(1, component1);
         return this;
+    }
+
+    /**
+     * Set the Valuation Business Days (component 1).
+     *
+     * @param component1 the Valuation Business Days to set
+     * @return the field object to enable build pattern
+     */
+    public Field29Q setValuationBusinessDays(String component1) {
+        return setComponent1(component1);
     }
 
 
@@ -382,11 +407,19 @@ public class Field29Q extends Field implements Serializable {
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
-    @SuppressWarnings("unused")
     public static Field29Q fromJson(final String json) {
 
+        final Field29Q field = new Field29Q();
 
-        return new Field29Q();
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+
+        // **** COMPONENT 1 - Valuation Business Days
+
+        if (jsonObject.get("valuationBusinessDays") != null) {
+            field.setComponent1(jsonObject.get("valuationBusinessDays").getAsString());
+        }
+
+        return field;
     }
 
 

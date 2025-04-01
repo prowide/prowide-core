@@ -43,7 +43,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: <code>String</code></li>
+ * 		<li>Component 1: Consequence: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -73,6 +73,11 @@ public class Field14Q extends Field implements Serializable {
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_14Q = "14Q";
+
+	/**
+	 * Component number for the Consequence subfield.
+	 */
+	public static final Integer CONSEQUENCE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -255,7 +260,7 @@ public class Field14Q extends Field implements Serializable {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add(null);
+        result.add("Consequence");
         return result;
     }
 
@@ -266,6 +271,7 @@ public class Field14Q extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
+        result.put(1, "consequence");
         return result;
     }
 
@@ -280,11 +286,12 @@ public class Field14Q extends Field implements Serializable {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
+        super.labelMap.put("consequence", 1);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 ($label).
+     * Gets the component 1 (Consequence).
      * @return the component 1
      */
     public String getComponent1() {
@@ -292,14 +299,32 @@ public class Field14Q extends Field implements Serializable {
     }
 
     /**
-     * Set the component 1 ($label).
+     * Gets the Consequence (component 1).
+     * @return the Consequence from component 1
+     */
+    public String getConsequence() {
+        return getComponent1();
+    }
+
+    /**
+     * Set the component 1 (Consequence).
      *
-     * @param component1 the $label to set
+     * @param component1 the Consequence to set
      * @return the field object to enable build pattern
      */
     public Field14Q setComponent1(String component1) {
         setComponent(1, component1);
         return this;
+    }
+
+    /**
+     * Set the Consequence (component 1).
+     *
+     * @param component1 the Consequence to set
+     * @return the field object to enable build pattern
+     */
+    public Field14Q setConsequence(String component1) {
+        return setComponent1(component1);
     }
 
 
@@ -382,11 +407,19 @@ public class Field14Q extends Field implements Serializable {
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
-    @SuppressWarnings("unused")
     public static Field14Q fromJson(final String json) {
 
+        final Field14Q field = new Field14Q();
 
-        return new Field14Q();
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+
+        // **** COMPONENT 1 - Consequence
+
+        if (jsonObject.get("consequence") != null) {
+            field.setComponent1(jsonObject.get("consequence").getAsString());
+        }
+
+        return field;
     }
 
 

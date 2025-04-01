@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 9.5.6 - SNAPSHOT
+  * (CU-86b49rvw4) Updated label for Fields 14[P,Q,R]/16W/29[Q,W]
+
 #### 9.5.5 - December 2024
   * Update apache-commons-lang3 from 3.14.0 to 3.17.0 fixing derived apache-text dependency vulnerabilities 
   * Minor thread safety fix in the `PropertyLoaded` class, used by the `SafeXmlUtils`
