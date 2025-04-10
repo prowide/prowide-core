@@ -15,6 +15,7 @@
  */
 package com.prowidesoftware.swift.model;
 
+import com.prowidesoftware.swift.io.parser.XMLParser;
 import com.prowidesoftware.swift.utils.IsoUtils;
 import java.util.Objects;
 import org.apache.commons.lang3.StringUtils;
@@ -37,6 +38,8 @@ import org.apache.commons.lang3.StringUtils;
  * @since 3.3
  */
 public class BIC {
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(BIC.class.getName());
     /**
      * Fake "test &amp; training" BIC with 8 chars for testing
      *
@@ -358,7 +361,7 @@ public class BIC {
     public String distinguishedName(boolean includeDefaultBranch) {
         // Notify T&T BIC usage for DN
         if (isTestAndTraining()) {
-            System.out.println(
+            log.warning(
                     "Distinguished Name must be constructed using Live BIC instead of Test&Training BIC:" + getBic8());
         }
         DistinguishedName.Builder dnBuilder = new DistinguishedName.Builder(getBic8());
