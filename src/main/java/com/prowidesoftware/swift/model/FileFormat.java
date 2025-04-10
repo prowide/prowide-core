@@ -36,6 +36,7 @@ public enum FileFormat {
     /**
      * @deprecated undefined and unused file format
      */
+    @Deprecated
     @ProwideDeprecated(phase3 = TargetYear.SRU2025)
     MQ_MT("mt"),
     /**
