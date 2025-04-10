@@ -43,7 +43,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: <code>String</code></li>
+ * 		<li>Component 1: Method: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -73,6 +73,11 @@ public class Field14P extends Field implements Serializable {
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_14P = "14P";
+
+	/**
+	 * Component number for the Method subfield.
+	 */
+	public static final Integer METHOD = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -255,7 +260,7 @@ public class Field14P extends Field implements Serializable {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add(null);
+        result.add("Method");
         return result;
     }
 
@@ -266,6 +271,7 @@ public class Field14P extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
+        result.put(1, "method");
         return result;
     }
 
@@ -280,11 +286,12 @@ public class Field14P extends Field implements Serializable {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
+        super.labelMap.put("method", 1);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 ($label).
+     * Gets the component 1 (Method).
      * @return the component 1
      */
     public String getComponent1() {
@@ -292,14 +299,32 @@ public class Field14P extends Field implements Serializable {
     }
 
     /**
-     * Set the component 1 ($label).
+     * Gets the Method (component 1).
+     * @return the Method from component 1
+     */
+    public String getMethod() {
+        return getComponent1();
+    }
+
+    /**
+     * Set the component 1 (Method).
      *
-     * @param component1 the $label to set
+     * @param component1 the Method to set
      * @return the field object to enable build pattern
      */
     public Field14P setComponent1(String component1) {
         setComponent(1, component1);
         return this;
+    }
+
+    /**
+     * Set the Method (component 1).
+     *
+     * @param component1 the Method to set
+     * @return the field object to enable build pattern
+     */
+    public Field14P setMethod(String component1) {
+        return setComponent1(component1);
     }
 
 
@@ -382,11 +407,19 @@ public class Field14P extends Field implements Serializable {
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
-    @SuppressWarnings("unused")
     public static Field14P fromJson(final String json) {
 
+        final Field14P field = new Field14P();
 
-        return new Field14P();
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+
+        // **** COMPONENT 1 - Method
+
+        if (jsonObject.get("method") != null) {
+            field.setComponent1(jsonObject.get("method").getAsString());
+        }
+
+        return field;
     }
 
 

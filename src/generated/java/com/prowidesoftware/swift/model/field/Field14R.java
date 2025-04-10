@@ -43,7 +43,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: <code>String</code></li>
+ * 		<li>Component 1: Convention: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -73,6 +73,11 @@ public class Field14R extends Field implements Serializable {
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_14R = "14R";
+
+	/**
+	 * Component number for the Convention subfield.
+	 */
+	public static final Integer CONVENTION = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -255,7 +260,7 @@ public class Field14R extends Field implements Serializable {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add(null);
+        result.add("Convention");
         return result;
     }
 
@@ -266,6 +271,7 @@ public class Field14R extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
+        result.put(1, "convention");
         return result;
     }
 
@@ -280,11 +286,12 @@ public class Field14R extends Field implements Serializable {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
+        super.labelMap.put("convention", 1);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 ($label).
+     * Gets the component 1 (Convention).
      * @return the component 1
      */
     public String getComponent1() {
@@ -292,14 +299,32 @@ public class Field14R extends Field implements Serializable {
     }
 
     /**
-     * Set the component 1 ($label).
+     * Gets the Convention (component 1).
+     * @return the Convention from component 1
+     */
+    public String getConvention() {
+        return getComponent1();
+    }
+
+    /**
+     * Set the component 1 (Convention).
      *
-     * @param component1 the $label to set
+     * @param component1 the Convention to set
      * @return the field object to enable build pattern
      */
     public Field14R setComponent1(String component1) {
         setComponent(1, component1);
         return this;
+    }
+
+    /**
+     * Set the Convention (component 1).
+     *
+     * @param component1 the Convention to set
+     * @return the field object to enable build pattern
+     */
+    public Field14R setConvention(String component1) {
+        return setComponent1(component1);
     }
 
 
@@ -382,11 +407,19 @@ public class Field14R extends Field implements Serializable {
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
-    @SuppressWarnings("unused")
     public static Field14R fromJson(final String json) {
 
+        final Field14R field = new Field14R();
 
-        return new Field14R();
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+
+        // **** COMPONENT 1 - Convention
+
+        if (jsonObject.get("convention") != null) {
+            field.setComponent1(jsonObject.get("convention").getAsString());
+        }
+
+        return field;
     }
 
 

@@ -43,7 +43,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: <code>String</code></li>
+ * 		<li>Component 1: Source: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -73,6 +73,11 @@ public class Field29W extends Field implements Serializable {
      * Same as NAME, intended to be clear when using static imports.
      */
     public static final String F_29W = "29W";
+
+	/**
+	 * Component number for the Source subfield.
+	 */
+	public static final Integer SOURCE = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -255,7 +260,7 @@ public class Field29W extends Field implements Serializable {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add(null);
+        result.add("Source");
         return result;
     }
 
@@ -266,6 +271,7 @@ public class Field29W extends Field implements Serializable {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
+        result.put(1, "source");
         return result;
     }
 
@@ -280,11 +286,12 @@ public class Field29W extends Field implements Serializable {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
+        super.labelMap.put("source", 1);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 ($label).
+     * Gets the component 1 (Source).
      * @return the component 1
      */
     public String getComponent1() {
@@ -292,14 +299,32 @@ public class Field29W extends Field implements Serializable {
     }
 
     /**
-     * Set the component 1 ($label).
+     * Gets the Source (component 1).
+     * @return the Source from component 1
+     */
+    public String getSource() {
+        return getComponent1();
+    }
+
+    /**
+     * Set the component 1 (Source).
      *
-     * @param component1 the $label to set
+     * @param component1 the Source to set
      * @return the field object to enable build pattern
      */
     public Field29W setComponent1(String component1) {
         setComponent(1, component1);
         return this;
+    }
+
+    /**
+     * Set the Source (component 1).
+     *
+     * @param component1 the Source to set
+     * @return the field object to enable build pattern
+     */
+    public Field29W setSource(String component1) {
+        return setComponent1(component1);
     }
 
 
@@ -382,11 +407,19 @@ public class Field29W extends Field implements Serializable {
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
-    @SuppressWarnings("unused")
     public static Field29W fromJson(final String json) {
 
+        final Field29W field = new Field29W();
 
-        return new Field29W();
+        final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+
+        // **** COMPONENT 1 - Source
+
+        if (jsonObject.get("source") != null) {
+            field.setComponent1(jsonObject.get("source").getAsString());
+        }
+
+        return field;
     }
 
 
