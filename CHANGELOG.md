@@ -1,5 +1,4 @@
 # Prowide Core - CHANGELOG
-
 #### 10.2.6 - SNAPSHOT
   * (CU-86b49rvw4) Updated label for Fields 14[P,Q,R]/16W/29[Q,W]
   * (PW-2239) BIC Branch check for all upper and lower case
