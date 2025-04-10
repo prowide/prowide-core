@@ -15,7 +15,6 @@
  */
 package com.prowidesoftware.swift.model;
 
-import com.prowidesoftware.swift.io.parser.XMLParser;
 import com.prowidesoftware.swift.utils.IsoUtils;
 import java.util.Objects;
 import org.apache.commons.lang3.StringUtils;
