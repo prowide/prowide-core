@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.prowidesoftware.swift.model.IBAN;
 import com.prowidesoftware.swift.model.IbanValidationResult;
-import javax.validation.ClockProvider;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ClockProvider;
+import jakarta.validation.ConstraintValidatorContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
