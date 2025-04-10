@@ -361,7 +361,7 @@ public class BIC {
         // Notify T&T BIC usage for DN
         if (isTestAndTraining()) {
             log.warning(
-                    "Distinguished Name must be constructed using Live BIC instead of Test&Training BIC:" + getBic8());
+                    "Distinguished Name must be constructed using Live BIC instead of Test&Training BIC: " + getBic8());
         }
         DistinguishedName.Builder dnBuilder = new DistinguishedName.Builder(getBic8());
 
