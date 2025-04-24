@@ -154,10 +154,14 @@ public class BICTest {
     public void testDistinguishedName() {
         assertEquals("o=bacoarb1,o=swift", new BIC("BACOARB1").distinguishedName());
         assertEquals("o=bacoarb1,o=swift", new BIC("BACOARB1XXX").distinguishedName());
+        /* Test BIC with lower case */
+        assertEquals("o=bankbebb,o=swift", new BIC("bankbebbxxx").distinguishedName());
         assertEquals("ou=0be,o=bacoarb1,o=swift", new BIC("BACOARB10BE").distinguishedName());
 
         assertEquals("ou=xxx,o=bacoarb1,o=swift", new BIC("BACOARB1").distinguishedName(true));
         assertEquals("ou=xxx,o=bacoarb1,o=swift", new BIC("BACOARB1XXX").distinguishedName(true));
+        /* TEST DN from T&TBic */
+        assertEquals("ou=xxx,o=bankbeb0,o=swift", new BIC("BANKBEB0XXX").distinguishedName(true));
     }
 
     @Test

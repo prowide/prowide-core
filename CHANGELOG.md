@@ -2,6 +2,8 @@
 
 #### 9.5.6 - SNAPSHOT
   * (CU-86b49rvw4) Updated label for Fields 14[P,Q,R]/16W/29[Q,W]
+  * (PW-2239) BIC Branch check for all upper and lower case
+  * (PW-2239) Notify Test and Training BIC usage in DN.
 
 #### 9.5.5 - December 2024
   * Update apache-commons-lang3 from 3.14.0 to 3.17.0 fixing derived apache-text dependency vulnerabilities 
