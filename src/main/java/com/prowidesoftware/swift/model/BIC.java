@@ -37,6 +37,8 @@ import org.apache.commons.lang3.StringUtils;
  * @since 3.3
  */
 public class BIC {
+    private static final transient java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(BIC.class.getName());
     /**
      * Fake "test &amp; training" BIC with 8 chars for testing
      *
@@ -348,7 +350,7 @@ public class BIC {
      * Returns the Distinguished Name (DN) for this BIC.
      *
      * <p>The created DN always includes the BIC8 and "swift" and
-     * if the branch is present and not "XXX" it will also be included
+     * if the branch (Upper Case) is present and not "XXX" it will also be included
      * as organization unit (ou)
      *
      * @param includeDefaultBranch if true will return ou=&lt;xxx even if the branch is not present
@@ -356,8 +358,14 @@ public class BIC {
      * @since 9.3.15
      */
     public String distinguishedName(boolean includeDefaultBranch) {
+        // Notify T&T BIC usage for DN
+        if (isTestAndTraining()) {
+            log.warning(
+                    "Distinguished Name must be constructed using Live BIC instead of Test&Training BIC: " + getBic8());
+        }
         DistinguishedName.Builder dnBuilder = new DistinguishedName.Builder(getBic8());
-        if (includeDefaultBranch || !Objects.equals(getBranchOrDefault(), "XXX")) {
+
+        if (includeDefaultBranch || !Objects.equals(getBranchOrDefault().toUpperCase(), "XXX")) {
             dnBuilder.withBranch(getBranchOrDefault());
         }
         return dnBuilder.build().toString();
