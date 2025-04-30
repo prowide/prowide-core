@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2024 Prowide
+ * Copyright 2006-2025 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@ Sequence A (M)<ul><li class="field">Field 15 A (M)</li>
 <li class="field">Field 83 A,J (O)</li>
 <li class="field">Field 30  (M)</li>
 <li class="field">Field 31 C (O)</li>
-<li class="field">Field 31 G (M)</li>
+<li class="field">Field 31 G,W (M)</li>
 <li class="field">Field 31 E (M)</li>
 <li class="field">Field 26 F (M)</li>
 <li class="field">Field 39 M (O)</li>
@@ -117,7 +117,7 @@ Sequence B1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2024</strong>
+ * This source code is specific to release <strong>SRU 2025</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -126,7 +126,7 @@ public class MT305 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2024;
+	public static final int SRU = 2025;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT305.class.getName());
 	
@@ -625,6 +625,24 @@ public class MT305 extends AbstractMT implements Serializable {
 		final Tag t = tag("31G");
 		if (t != null) {
 			return new Field31G(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 31W, 
+	 * or null if none is found.
+	 * The first occurrence of field 31W at MT305 is expected to be the only one.
+	 * 
+	 * @return a Field31W object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field31W getField31W() {
+		final Tag t = tag("31W");
+		if (t != null) {
+			return new Field31W(t.getValue());
 		} else {
 			return null;
 		}

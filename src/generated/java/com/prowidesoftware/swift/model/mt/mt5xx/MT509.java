@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2024 Prowide
+ * Copyright 2006-2025 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -82,7 +82,7 @@ Sequence B1 - Trading Parties (O) (repetitive)<ul><li class="field">Field 16 R (
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,B,D (O)</li><li>FieldsetItem 97 A,E (O)</li></ul></li><li class="field">Field 98 A,C (O)</li>
+ (O)<ul><li>FieldsetItem 97 A,B,D (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 D (O)</li></ul></li><li class="field">Field 98 A,C (O)</li>
 <li class="field">Field 20 C (O)</li>
 <li class="fieldset">
 Fieldset 70
@@ -108,7 +108,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2024</strong>
+ * This source code is specific to release <strong>SRU 2025</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -117,7 +117,7 @@ public class MT509 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2024;
+	public static final int SRU = 2025;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT509.class.getName());
 	
