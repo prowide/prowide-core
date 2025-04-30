@@ -33,7 +33,6 @@ public interface SchemeConstantsM {
     String MAIN = "MAIN";
     String MAXF = "MAXF";
     String MAST = "MAST";
-    String MFKT = "MFKT";
     String MITR = "MITR";
     String MORE = "MORE";
     String MKTV = "MKTV";

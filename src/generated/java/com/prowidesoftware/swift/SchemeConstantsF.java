@@ -66,6 +66,7 @@ public interface SchemeConstantsF {
     String FISC = "FISC";
     String FBIP = "FBIP";
     String FXDT = "FXDT";
+    String FORI = "FORI";
     String FDAT = "FDAT";
     String FTCA = "FTCA";
     String FILL = "FILL";
