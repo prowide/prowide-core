@@ -124,6 +124,7 @@ public interface SchemeConstantsD {
     String DISN = "DISN";
     String DISR = "DISR";
     String DISS = "DISS";
+    String DITU = "DITU";
     String DKCS = "DKCS";
     String DKNY = "DKNY";
     String DLNP = "DLNP";

@@ -174,7 +174,7 @@ Fieldset 19
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
-Sequence E4 - Digital Network Fee (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence E4 - Digital Network Fee (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 35 B (M)</li>
 <li class="field">Field 36 D (M)</li>
 <li class="field">Field 16 S (M)</li>
@@ -3096,65 +3096,54 @@ public class MT540 extends AbstractMT implements Serializable {
 		}
 
 	}
-
 	/**
-	 * Get the list of SequenceE4 delimited by 16R/16S with value specified in {@link SequenceE4#START_END_16RS}.
-	 *
-	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
-     * @return the found sequences or an empty list if none is found
+	 * Get the single occurrence of SequenceE4 delimited by 16R/16S the value of SequenceE4#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @return the found sequence or an empty sequence if none is found
 	 * @see SequenceE4#START_END_16RS
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public List<SequenceE4> getSequenceE4List() {
-		return getSequenceE4List(super.getSwiftMessageNotNullOrException().getBlock4());
+	public SequenceE4 getSequenceE4() {
+		return new SequenceE4(super.getSwiftMessageNotNullOrException());
 	}
 
     /**
-     * Same as getSequenceE4List using the sequence delimiter field qualifier
-     * @see SequenceE4#getSequenceE4List()
-     * @return the found sequences or an empty list if none is found
+     * Same as getSequenceE4 using the sequence delimiter field qualifier
+     * @see SequenceE4#getSequenceE4()
+     * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
      * @since 9.2.18
      */
-     public List<SequenceE4> getSequenceNTWKFEEList() {
-        return getSequenceE4List();
-     }
-
+    public SequenceE4 getSequenceNTWKFEE() {
+        return getSequenceE4();
+    }
+	
 	/**
-	 * Get the list of SequenceE4 delimited by 16R/16S with value specified in {@link SequenceE4#START_END_16RS}.
-	 *
-	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the single occurrence of SequenceE4 delimited by 16R/16S the value of SequenceE4#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * @see SequenceE4#START_END_16RS
 	 * @param parentSequence a not null parent sequence to find SequenceE4 within it
-	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public static List<SequenceE4> getSequenceE4List(final SwiftTagListBlock parentSequence) {
-	    if (parentSequence != null) {
-            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceE4.START_END_16RS);
-            if (blocks != null && !blocks.isEmpty()) {
-                final List<SequenceE4> result = new ArrayList<>(blocks.size());
-                for (final SwiftTagListBlock b : blocks) {
-                    final SequenceE4 s = new SequenceE4();
-                    s.setTags(b.getSubBlock(SequenceE4.START_END_16RS).getTags());
-                    result.add(s);
-                }
-                return result;
-            }
+	public static SequenceE4 getSequenceE4(SwiftTagListBlock parentSequence) {
+		final SequenceE4 s = new SequenceE4();
+		if (parentSequence != null) {
+		    s.setTags(parentSequence.getSubBlock(SequenceE4.START_END_16RS).getTags());
 		}
-		return Collections.emptyList();
+		return s;
 	}
 
     /**
-     * Same as getSequenceE4List using the sequence delimiter field qualifier
-     * @see SequenceE4#getSequenceE4List(SwiftTagListBlock)
-     * @param parentSequence a not null parent sequence to find SequenceE4 within it
-     * @return the found sequences or an empty list if none is found
-     * @since 9.2.18
-     */
-     public static List<SequenceE4> getSequenceNTWKFEEList(final SwiftTagListBlock parentSequence) {
-        return getSequenceE4List(parentSequence);
-    }
+	 * Same as getSequenceE4 using the sequence delimiter field qualifier
+	 * @see SequenceE4#getSequenceE4(SwiftTagListBlock)
+	 * @param parentSequence a not null parent sequence to find SequenceE4 within it
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 9.2.18
+	 */
+	public static SequenceE4 getSequenceNTWKFEE(SwiftTagListBlock parentSequence) {
+		return getSequenceE4(parentSequence);
+	}
  
 
 	/**

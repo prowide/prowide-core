@@ -100,7 +100,7 @@ Sequence C - Financial Instrument/Account (M)<ul><li class="field">Field 16 R (M
 Fieldset 95
  (O)<ul><li>FieldsetItem 95 P,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="fieldset">
 Fieldset 97
- (M) (repetitive)<ul><li>FieldsetItem 97 A,B,D (M)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 D (O)</li></ul></li><li class="field">Field 94 B,C,F,L,T (O) (repetitive)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 97 A,B,D (M)</li><li>FieldsetItem 97 A,E,D (O)</li></ul></li><li class="field">Field 94 B,C,F,L,T (O) (repetitive)</li>
 <li class="sequence">
 Sequence C1 -  (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 B (O)</li>

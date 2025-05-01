@@ -27,8 +27,6 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
 import com.prowidesoftware.swift.model.field.GenericField;
 
@@ -48,14 +46,13 @@ import com.google.gson.JsonParser;
  * <ol>
  * 		<li>Component 1: Qualifier: <code>String</code></li>
  * 		<li>Component 2: LegalEntityIdentifier: <code>String</code></li>
- * 		<li>Component 3: <code>Long</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>:4!c//9!x</code></li>
- * 		<li>parser pattern: <code>:S//9!x</code></li>
- * 		<li>components pattern: <code>SSN</code></li>
+ * 		<li>parser pattern: <code>:S//S</code></li>
+ * 		<li>components pattern: <code>SS</code></li>
  * </ul>
  *
  * <p>
@@ -93,7 +90,7 @@ public class Field95D extends Field implements Serializable, GenericField {
      * Default constructor. Creates a new field setting all components to null.
      */
     public Field95D() {
-        super(3);
+        super(2);
     }
 
     /**
@@ -165,9 +162,9 @@ public class Field95D extends Field implements Serializable, GenericField {
      */
     @Override
     public void parse(final String value) {
-        init(3);
-        // @NotImplemented
-        throw new org.apache.commons.lang3.NotImplementedException("Missing parserPattern in Field.vm : :S//9!x");
+        init(2);
+        setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "//"));
+        setComponent2(SwiftParseUtils.getTokenSecondLast(value, "//"));
     }
 
     /**
@@ -176,8 +173,10 @@ public class Field95D extends Field implements Serializable, GenericField {
     @Override
     public String getValue() {
         final StringBuilder result = new StringBuilder();
-        //FIXME serialization :S//9!x
-        // @NotImplemented
+        result.append(":");
+        append(result, 1);
+        result.append("//");
+        append(result, 2);
         return result.toString();
     }
 
@@ -192,20 +191,16 @@ public class Field95D extends Field implements Serializable, GenericField {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 3) {
+        if (component < 1 || component > 2) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 95D");
         }
         if (component == 1) {
             //default format (as is)
             return getComponent(1);
         }
-        if (component == 2) {
-            //default format (as is)
-            return getComponent(2);
-        }
         // This is the last component, return directly without `if`
         //default format (as is)
-        return getComponent(3);
+        return getComponent(2);
     }
 
     /**
@@ -217,7 +212,7 @@ public class Field95D extends Field implements Serializable, GenericField {
      */
     @Override
     public String typesPattern() {
-        return "SSN";
+        return "SS";
     }
 
     /**
@@ -225,7 +220,7 @@ public class Field95D extends Field implements Serializable, GenericField {
      */
     @Override
     public String parserPattern() {
-        return ":S//9!x";
+        return ":S//S";
     }
 
     /**
@@ -268,7 +263,7 @@ public class Field95D extends Field implements Serializable, GenericField {
      */
     @Override
     public int componentsSize() {
-        return 3;
+        return 2;
     }
 
     /**
@@ -283,7 +278,6 @@ public class Field95D extends Field implements Serializable, GenericField {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
         result.add("Legal Entity Identifier");
-        result.add(null);
         return result;
     }
 
@@ -348,24 +342,6 @@ public class Field95D extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the component 3 (Legal Entity Identifier).
-     * @return the component 3
-     */
-    public String getComponent3() {
-        return getComponent(3);
-    }
-
-    /**
-     * Get the component 3 as Long
-     *
-     * @return the component 3 converted to Long or null if cannot be converted
-     * @since 9.2.7
-     */
-    public java.lang.Long getComponent3AsLong() {
-        return SwiftFormatUtils.getLong(getComponent(3));
-    }
-
-    /**
      * Set the component 1 (Qualifier).
      *
      * @param component1 the Qualifier to set
@@ -405,44 +381,6 @@ public class Field95D extends Field implements Serializable, GenericField {
      */
     public Field95D setLegalEntityIdentifier(String component2) {
         return setComponent2(component2);
-    }
-
-    /**
-     * Set the component 3 (Legal Entity Identifier).
-     *
-     * @param component3 the Legal Entity Identifier to set
-     * @return the field object to enable build pattern
-     */
-    public Field95D setComponent3(String component3) {
-        setComponent(3, component3);
-        return this;
-    }
-
-
-    /**
-     * Alternative method setter for field's Legal Entity Identifier (component 3) as Number
-     * <p>
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component3 the Number with the Legal Entity Identifier content to set
-     * @return the field object to enable build pattern
-     */
-    public Field95D setComponent3(java.lang.Number component3) {
-
-        // NOTE: remember instanceof implicitly checks for non-null
-
-        if (component3 instanceof Long) {
-            setComponent(3, SwiftFormatUtils.getLong((Long) component3));
-        } else if (component3 instanceof BigInteger || component3 instanceof Integer) {
-            setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
-        } else if (component3 != null) {
-            // it's another non-null Number (Float, Double, BigDecimal, etc...)
-            setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
-        } else {
-            // explicitly set component as null
-            setComponent(3, null);
-        }
-        return this;
     }
 
 
@@ -579,7 +517,6 @@ public class Field95D extends Field implements Serializable, GenericField {
         if (jsonObject.get("legalEntityIdentifier") != null) {
             field.setComponent2(jsonObject.get("legalEntityIdentifier").getAsString());
         }
-
 
         return field;
     }

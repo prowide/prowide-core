@@ -27,8 +27,6 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
 import com.prowidesoftware.swift.model.field.GenericField;
 
@@ -46,16 +44,15 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: DigitalLedgerIdentifier: <code>String</code></li>
- * 		<li>Component 2: <code>String</code></li>
- * 		<li>Component 3: <code>Long</code></li>
+ * 		<li>Component 1: Qualifier: <code>String</code></li>
+ * 		<li>Component 2: DigitalLedgerIdentifier: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>:4!c//9!x</code></li>
- * 		<li>parser pattern: <code>:S//9!SS</code></li>
- * 		<li>components pattern: <code>SSN</code></li>
+ * 		<li>parser pattern: <code>:S//S</code></li>
+ * 		<li>components pattern: <code>SS</code></li>
  * </ul>
  *
  * <p>
@@ -80,15 +77,20 @@ public class Field94T extends Field implements Serializable, GenericField {
     public static final String F_94T = "94T";
 
 	/**
+	 * Component number for the Qualifier subfield.
+	 */
+	public static final Integer QUALIFIER = 1;
+
+	/**
 	 * Component number for the Digital Ledger Identifier subfield.
 	 */
-	public static final Integer DIGITAL_LEDGER_IDENTIFIER = 1;
+	public static final Integer DIGITAL_LEDGER_IDENTIFIER = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
     public Field94T() {
-        super(3);
+        super(2);
     }
 
     /**
@@ -160,9 +162,9 @@ public class Field94T extends Field implements Serializable, GenericField {
      */
     @Override
     public void parse(final String value) {
-        init(3);
-        // @NotImplemented
-        throw new org.apache.commons.lang3.NotImplementedException("Missing parserPattern in Field.vm : :S//9!SS");
+        init(2);
+        setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "//"));
+        setComponent2(SwiftParseUtils.getTokenSecondLast(value, "//"));
     }
 
     /**
@@ -171,8 +173,10 @@ public class Field94T extends Field implements Serializable, GenericField {
     @Override
     public String getValue() {
         final StringBuilder result = new StringBuilder();
-        //FIXME serialization :S//9!SS
-        // @NotImplemented
+        result.append(":");
+        append(result, 1);
+        result.append("//");
+        append(result, 2);
         return result.toString();
     }
 
@@ -187,20 +191,16 @@ public class Field94T extends Field implements Serializable, GenericField {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 3) {
+        if (component < 1 || component > 2) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 94T");
         }
         if (component == 1) {
             //default format (as is)
             return getComponent(1);
         }
-        if (component == 2) {
-            //default format (as is)
-            return getComponent(2);
-        }
         // This is the last component, return directly without `if`
         //default format (as is)
-        return getComponent(3);
+        return getComponent(2);
     }
 
     /**
@@ -212,7 +212,7 @@ public class Field94T extends Field implements Serializable, GenericField {
      */
     @Override
     public String typesPattern() {
-        return "SSN";
+        return "SS";
     }
 
     /**
@@ -220,7 +220,7 @@ public class Field94T extends Field implements Serializable, GenericField {
      */
     @Override
     public String parserPattern() {
-        return ":S//9!SS";
+        return ":S//S";
     }
 
     /**
@@ -263,7 +263,7 @@ public class Field94T extends Field implements Serializable, GenericField {
      */
     @Override
     public int componentsSize() {
-        return 3;
+        return 2;
     }
 
     /**
@@ -276,9 +276,8 @@ public class Field94T extends Field implements Serializable, GenericField {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
+        result.add("Qualifier");
         result.add("Digital Ledger Identifier");
-        result.add(null);
-        result.add(null);
         return result;
     }
 
@@ -289,7 +288,8 @@ public class Field94T extends Field implements Serializable, GenericField {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "digitalLedgerIdentifier");
+        result.put(1, "qualifier");
+        result.put(2, "digitalLedgerIdentifier");
         return result;
     }
 
@@ -304,12 +304,13 @@ public class Field94T extends Field implements Serializable, GenericField {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
-        super.labelMap.put("digitalledgeridentifier", 1);
+        super.labelMap.put("qualifier", 1);
+        super.labelMap.put("digitalledgeridentifier", 2);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 (Digital Ledger Identifier).
+     * Gets the component 1 (Qualifier).
      * @return the component 1
      */
     public String getComponent1() {
@@ -317,10 +318,10 @@ public class Field94T extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the Digital Ledger Identifier (component 1).
-     * @return the Digital Ledger Identifier from component 1
+     * Gets the Qualifier (component 1).
+     * @return the Qualifier from component 1
      */
-    public String getDigitalLedgerIdentifier() {
+    public String getQualifier() {
         return getComponent1();
     }
 
@@ -333,27 +334,17 @@ public class Field94T extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the component 3 (Digital Ledger Identifier).
-     * @return the component 3
+     * Gets the Digital Ledger Identifier (component 2).
+     * @return the Digital Ledger Identifier from component 2
      */
-    public String getComponent3() {
-        return getComponent(3);
+    public String getDigitalLedgerIdentifier() {
+        return getComponent2();
     }
 
     /**
-     * Get the component 3 as Long
+     * Set the component 1 (Qualifier).
      *
-     * @return the component 3 converted to Long or null if cannot be converted
-     * @since 9.2.7
-     */
-    public java.lang.Long getComponent3AsLong() {
-        return SwiftFormatUtils.getLong(getComponent(3));
-    }
-
-    /**
-     * Set the component 1 (Digital Ledger Identifier).
-     *
-     * @param component1 the Digital Ledger Identifier to set
+     * @param component1 the Qualifier to set
      * @return the field object to enable build pattern
      */
     public Field94T setComponent1(String component1) {
@@ -362,12 +353,12 @@ public class Field94T extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the Digital Ledger Identifier (component 1).
+     * Set the Qualifier (component 1).
      *
-     * @param component1 the Digital Ledger Identifier to set
+     * @param component1 the Qualifier to set
      * @return the field object to enable build pattern
      */
-    public Field94T setDigitalLedgerIdentifier(String component1) {
+    public Field94T setQualifier(String component1) {
         return setComponent1(component1);
     }
 
@@ -383,41 +374,13 @@ public class Field94T extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the component 3 (Digital Ledger Identifier).
+     * Set the Digital Ledger Identifier (component 2).
      *
-     * @param component3 the Digital Ledger Identifier to set
+     * @param component2 the Digital Ledger Identifier to set
      * @return the field object to enable build pattern
      */
-    public Field94T setComponent3(String component3) {
-        setComponent(3, component3);
-        return this;
-    }
-
-
-    /**
-     * Alternative method setter for field's Digital Ledger Identifier (component 3) as Number
-     * <p>
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component3 the Number with the Digital Ledger Identifier content to set
-     * @return the field object to enable build pattern
-     */
-    public Field94T setComponent3(java.lang.Number component3) {
-
-        // NOTE: remember instanceof implicitly checks for non-null
-
-        if (component3 instanceof Long) {
-            setComponent(3, SwiftFormatUtils.getLong((Long) component3));
-        } else if (component3 instanceof BigInteger || component3 instanceof Integer) {
-            setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
-        } else if (component3 != null) {
-            // it's another non-null Number (Float, Double, BigDecimal, etc...)
-            setComponent(3, SwiftFormatUtils.getLong(component3.longValue()));
-        } else {
-            // explicitly set component as null
-            setComponent(3, null);
-        }
-        return this;
+    public Field94T setDigitalLedgerIdentifier(String component2) {
+        return setComponent2(component2);
     }
 
 
@@ -543,13 +506,17 @@ public class Field94T extends Field implements Serializable, GenericField {
 
         final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-        // **** COMPONENT 1 - Digital Ledger Identifier
+        // **** COMPONENT 1 - Qualifier
 
-        if (jsonObject.get("digitalLedgerIdentifier") != null) {
-            field.setComponent1(jsonObject.get("digitalLedgerIdentifier").getAsString());
+        if (jsonObject.get("qualifier") != null) {
+            field.setComponent1(jsonObject.get("qualifier").getAsString());
         }
 
+        // **** COMPONENT 2 - Digital Ledger Identifier
 
+        if (jsonObject.get("digitalLedgerIdentifier") != null) {
+            field.setComponent2(jsonObject.get("digitalLedgerIdentifier").getAsString());
+        }
 
         return field;
     }

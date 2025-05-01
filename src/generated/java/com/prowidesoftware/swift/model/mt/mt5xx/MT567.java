@@ -77,7 +77,7 @@ Fieldset 22
  (O)<ul><li>FieldsetItem 22 F,H (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="field">Field 95 P,R (O)</li>
 <li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,D (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 D (O)</li></ul></li><li class="field">Field 94 B,C,F,T (O)</li>
+ (O)<ul><li>FieldsetItem 97 A,D (O)</li><li>FieldsetItem 97 A,E,D (O)</li></ul></li><li class="field">Field 94 B,C,F,T (O)</li>
 <li class="field">Field 35 B (O)</li>
 <li class="field">Field 36 B,D (O) (repetitive)</li>
 <li class="fieldset">

@@ -109,7 +109,7 @@ Fieldset 19
 Fieldset 95
  (O)<ul><li>FieldsetItem 95 P,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="fieldset">
 Fieldset 97
- (M) (repetitive)<ul><li>FieldsetItem 97 A,B,D (M)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 D (O)</li></ul></li><li class="field">Field 94 B,C,F,L,T (O) (repetitive)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 97 A,B,D (M)</li><li>FieldsetItem 97 A,E,D (O)</li></ul></li><li class="field">Field 94 B,C,F,L,T (O) (repetitive)</li>
 <li class="sequence">
 Sequence C1 -  (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 B (O)</li>
@@ -176,7 +176,7 @@ Fieldset 19
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
-Sequence E4 - Digital Network Fee (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence E4 - Digital Network Fee (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 35 B (M)</li>
 <li class="field">Field 36 D (M)</li>
 <li class="field">Field 16 S (M)</li>
@@ -489,6 +489,24 @@ public class MT547 extends AbstractMT implements Serializable {
 		final Tag t = tag("11A");
 		if (t != null) {
 			return new Field11A(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 36D, 
+	 * or null if none is found.
+	 * The first occurrence of field 36D at MT547 is expected to be the only one.
+	 * 
+	 * @return a Field36D object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field36D getField36D() {
+		final Tag t = tag("36D");
+		if (t != null) {
+			return new Field36D(t.getValue());
 		} else {
 			return null;
 		}
@@ -1429,26 +1447,6 @@ public class MT547 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field92B(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 36D, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 36D at MT547 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field36D objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field36D> getField36D() {
-		final List<Field36D> result = new ArrayList<>();
-		final Tag[] tags = tags("36D");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field36D(tag.getValue()));
             }
 		}
 		return result;
@@ -3116,65 +3114,54 @@ public class MT547 extends AbstractMT implements Serializable {
 		}
 
 	}
-
 	/**
-	 * Get the list of SequenceE4 delimited by 16R/16S with value specified in {@link SequenceE4#START_END_16RS}.
-	 *
-	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
-     * @return the found sequences or an empty list if none is found
+	 * Get the single occurrence of SequenceE4 delimited by 16R/16S the value of SequenceE4#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @return the found sequence or an empty sequence if none is found
 	 * @see SequenceE4#START_END_16RS
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public List<SequenceE4> getSequenceE4List() {
-		return getSequenceE4List(super.getSwiftMessageNotNullOrException().getBlock4());
+	public SequenceE4 getSequenceE4() {
+		return new SequenceE4(super.getSwiftMessageNotNullOrException());
 	}
 
     /**
-     * Same as getSequenceE4List using the sequence delimiter field qualifier
-     * @see SequenceE4#getSequenceE4List()
-     * @return the found sequences or an empty list if none is found
+     * Same as getSequenceE4 using the sequence delimiter field qualifier
+     * @see SequenceE4#getSequenceE4()
+     * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
      * @since 9.2.18
      */
-     public List<SequenceE4> getSequenceNTWKFEEList() {
-        return getSequenceE4List();
-     }
-
+    public SequenceE4 getSequenceNTWKFEE() {
+        return getSequenceE4();
+    }
+	
 	/**
-	 * Get the list of SequenceE4 delimited by 16R/16S with value specified in {@link SequenceE4#START_END_16RS}.
-	 *
-	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the single occurrence of SequenceE4 delimited by 16R/16S the value of SequenceE4#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * @see SequenceE4#START_END_16RS
 	 * @param parentSequence a not null parent sequence to find SequenceE4 within it
-	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public static List<SequenceE4> getSequenceE4List(final SwiftTagListBlock parentSequence) {
-	    if (parentSequence != null) {
-            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceE4.START_END_16RS);
-            if (blocks != null && !blocks.isEmpty()) {
-                final List<SequenceE4> result = new ArrayList<>(blocks.size());
-                for (final SwiftTagListBlock b : blocks) {
-                    final SequenceE4 s = new SequenceE4();
-                    s.setTags(b.getSubBlock(SequenceE4.START_END_16RS).getTags());
-                    result.add(s);
-                }
-                return result;
-            }
+	public static SequenceE4 getSequenceE4(SwiftTagListBlock parentSequence) {
+		final SequenceE4 s = new SequenceE4();
+		if (parentSequence != null) {
+		    s.setTags(parentSequence.getSubBlock(SequenceE4.START_END_16RS).getTags());
 		}
-		return Collections.emptyList();
+		return s;
 	}
 
     /**
-     * Same as getSequenceE4List using the sequence delimiter field qualifier
-     * @see SequenceE4#getSequenceE4List(SwiftTagListBlock)
-     * @param parentSequence a not null parent sequence to find SequenceE4 within it
-     * @return the found sequences or an empty list if none is found
-     * @since 9.2.18
-     */
-     public static List<SequenceE4> getSequenceNTWKFEEList(final SwiftTagListBlock parentSequence) {
-        return getSequenceE4List(parentSequence);
-    }
+	 * Same as getSequenceE4 using the sequence delimiter field qualifier
+	 * @see SequenceE4#getSequenceE4(SwiftTagListBlock)
+	 * @param parentSequence a not null parent sequence to find SequenceE4 within it
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 9.2.18
+	 */
+	public static SequenceE4 getSequenceNTWKFEE(SwiftTagListBlock parentSequence) {
+		return getSequenceE4(parentSequence);
+	}
  
 
 	/**

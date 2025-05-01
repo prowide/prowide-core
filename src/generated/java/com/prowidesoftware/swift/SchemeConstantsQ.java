@@ -25,9 +25,13 @@ public interface SchemeConstantsQ {
     String QINS = "QINS";
     String QAGE = "QAGE";
     String QALL = "QALL";
+    String QCAN = "QCAN";
     String QEIN = "QEIN";
     String QIBB = "QIBB";
     String QINV = "QINV";
+    String QPAC = "QPAC";
+    String QPEN = "QPEN";
+    String QREJ = "QREJ";
     String QUAS = "QUAS";
     String QUNP = "QUNP";
     String QUTR = "QUTR";
