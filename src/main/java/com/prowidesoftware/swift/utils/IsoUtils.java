@@ -31,7 +31,7 @@ import org.apache.commons.lang3.Validate;
  * @since 7.9.2
  */
 public final class IsoUtils {
-    private static final transient Logger log = Logger.getLogger(IsoUtils.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(IsoUtils.class.getName());
     private static final IsoUtils INSTANCE = new IsoUtils();
     private Set<String> currencies;
     private Set<String> countries;
@@ -47,7 +47,7 @@ public final class IsoUtils {
 
         countries = new HashSet<>(Arrays.asList(Locale.getISOCountries()));
 
-        log.fine("IsoUtils initialized with " + currencies.size() + " currency codes and " + countries.size()
+        LOGGER.fine("IsoUtils initialized with " + currencies.size() + " currency codes and " + countries.size()
                 + " country codes");
     }
 
@@ -97,7 +97,7 @@ public final class IsoUtils {
         return false;
     }
 
-    private boolean isUserAssignedCountryCode(String code) {
+    private static boolean isUserAssignedCountryCode(String code) {
         return code.charAt(0) == 'X' && Character.isUpperCase(code.charAt(1));
     }
 
