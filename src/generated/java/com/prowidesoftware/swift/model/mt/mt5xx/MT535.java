@@ -70,7 +70,7 @@ Sequence B - Sub-safekeeping account (O) (repetitive)<ul><li class="field">Field
 <li class="fieldset">
 Fieldset 95
  (O)<ul><li>FieldsetItem 95 P,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 97 A,B,D (O)</li>
-<li class="field">Field 94 B,C,F,L (O) (repetitive)</li>
+<li class="field">Field 94 B,C,F,L,T (O) (repetitive)</li>
 <li class="field">Field 17 B (O)</li>
 <li class="sequence">
 Sequence B1 - Financial Instrument (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
@@ -102,7 +102,7 @@ Fieldset 36
 </ul></li>
 <li class="field">Field 22 H (O)</li>
 <li class="field">Field 90 A,B,E (O)</li>
-<li class="field">Field 94 B (O)</li>
+<li class="field">Field 94 B,S (O)</li>
 <li class="field">Field 98 A,C (O)</li>
 <li class="fieldset">
 Fieldset 93
@@ -113,7 +113,7 @@ Fieldset 93
  (M) (repetitive)<ul><li>FieldsetItem 93 B,C,E,F (M)</li><li>FieldsetItem 93 B,F (O)</li><li>FieldsetItem 93 B,F (O)</li></ul></li><li class="field">Field 22 F,H (O)</li>
 <li class="fieldset">
 Fieldset 94
- (O) (repetitive)<ul><li>FieldsetItem 94 B (O)</li><li>FieldsetItem 94 B,C,F,L (O) (repetitive)</li><li>FieldsetItem 94 B,F,L (O) (repetitive)</li><li>FieldsetItem 94 B (O)</li></ul></li><li class="field">Field 90 A,B,E (O)</li>
+ (O) (repetitive)<ul><li>FieldsetItem 94 B,S (O)</li><li>FieldsetItem 94 B,C,F,L,T (O) (repetitive)</li><li>FieldsetItem 94 B,F,L (O) (repetitive)</li><li>FieldsetItem 94 B (O)</li></ul></li><li class="field">Field 90 A,B,E (O)</li>
 <li class="field">Field 98 A,C (O)</li>
 <li class="field">Field 99 A (O)</li>
 <li class="fieldset">
@@ -882,6 +882,26 @@ public class MT535 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94T, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 94T at MT535 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field94T objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field94T> getField94T() {
+		final List<Field94T> result = new ArrayList<>();
+		final Tag[] tags = tags("94T");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field94T(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 35B, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 35B at MT535 are expected at one sequence or across several sequences.
@@ -1136,6 +1156,26 @@ public class MT535 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field90E(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94S, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 94S at MT535 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field94S objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field94S> getField94S() {
+		final List<Field94S> result = new ArrayList<>();
+		final Tag[] tags = tags("94S");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field94S(tag.getValue()));
             }
 		}
 		return result;

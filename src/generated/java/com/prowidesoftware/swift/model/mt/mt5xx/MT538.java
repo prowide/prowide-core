@@ -92,7 +92,7 @@ Fieldset 36
 </ul></li>
 <li class="sequence">
 Sequence B2 - Sub Balance (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
-<li class="field">Field 94 B,C,F (O)</li>
+<li class="field">Field 94 B,C,F,T (O)</li>
 <li class="field">Field 93 A (M)</li>
 <li class="sequence">
 Sequence B2a - Intra-Position Movement (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
@@ -966,6 +966,26 @@ public class MT538 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field94F(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94T, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 94T at MT538 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field94T objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field94T> getField94T() {
+		final List<Field94T> result = new ArrayList<>();
+		final Tag[] tags = tags("94T");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field94T(tag.getValue()));
             }
 		}
 		return result;

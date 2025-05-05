@@ -60,7 +60,7 @@ Sequence A1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 Sequence B - Intra-Position Details (M)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 95 P,R (O)</li>
 <li class="field">Field 97 A,B,D (M)</li>
-<li class="field">Field 94 B,C,F (O)</li>
+<li class="field">Field 94 B,C,F,T (O)</li>
 <li class="fieldset">
 Fieldset 36
  (M) (repetitive)<ul><li>FieldsetItem 36 B,D (M)</li><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="field">Field 13 B (O)</li>
@@ -472,6 +472,24 @@ public class MT508 extends AbstractMT implements Serializable {
 		final Tag t = tag("94F");
 		if (t != null) {
 			return new Field94F(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 94T, 
+	 * or null if none is found.
+	 * The first occurrence of field 94T at MT508 is expected to be the only one.
+	 * 
+	 * @return a Field94T object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field94T getField94T() {
+		final Tag t = tag("94T");
+		if (t != null) {
+			return new Field94T(t.getValue());
 		} else {
 			return null;
 		}
