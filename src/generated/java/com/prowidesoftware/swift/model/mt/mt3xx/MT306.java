@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2024 Prowide
+ * Copyright 2006-2025 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,9 +71,8 @@ Sequence B (M)<ul><li class="field">Field 15 B (M)</li>
 <li class="field">Field 17 V (O)</li>
 <li class="field">Field 30 T (M)</li>
 <li class="field">Field 30 X (M)</li>
-<li class="fieldset">
-Fieldset 29
- (M)<ul><li>FieldsetItem 29 E (M)</li><li>FieldsetItem 29 W (M)</li></ul></li><li class="field">Field 30 F,J (M)</li>
+<li class="field">Field 29 E,W (M)</li>
+<li class="field">Field 30 F,J (M)</li>
 <li class="field">Field 29 H (O) (repetitive)</li>
 <li class="field">Field 14 S (O) (repetitive)</li>
 <li class="field">Field 39 M (O)</li>
@@ -245,7 +244,7 @@ Sequence M1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2024</strong>
+ * This source code is specific to release <strong>SRU 2025</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -254,7 +253,7 @@ public class MT306 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2024;
+	public static final int SRU = 2025;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT306.class.getName());
 	
@@ -969,6 +968,24 @@ public class MT306 extends AbstractMT implements Serializable {
 		final Tag t = tag("30X");
 		if (t != null) {
 			return new Field30X(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 29W, 
+	 * or null if none is found.
+	 * The first occurrence of field 29W at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field29W object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field29W getField29W() {
+		final Tag t = tag("29W");
+		if (t != null) {
+			return new Field29W(t.getValue());
 		} else {
 			return null;
 		}
@@ -2469,46 +2486,6 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 29E, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 29E at MT306 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field29E objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field29E> getField29E() {
-		final List<Field29E> result = new ArrayList<>();
-		final Tag[] tags = tags("29E");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field29E(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 29W, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 29W at MT306 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field29W objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field29W> getField29W() {
-		final List<Field29W> result = new ArrayList<>();
-		final Tag[] tags = tags("29W");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field29W(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 29H, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 29H at MT306 are expected at one sequence or across several sequences.
@@ -2943,6 +2920,26 @@ public class MT306 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field30T(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 29E, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 29E at MT306 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field29E objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field29E> getField29E() {
+		final List<Field29E> result = new ArrayList<>();
+		final Tag[] tags = tags("29E");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field29E(tag.getValue()));
             }
 		}
 		return result;

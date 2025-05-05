@@ -50,6 +50,7 @@ public interface SchemeConstantsU {
     String UNIT = "UNIT";
     String UNKN = "UNKN";
     String UNLK = "UNLK";
+    String UNMD = "UNMD";
     String UNMT = "UNMT";
     String UNRE = "UNRE";
     String UNRG = "UNRG";
