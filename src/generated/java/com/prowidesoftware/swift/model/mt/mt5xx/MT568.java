@@ -63,7 +63,7 @@ Sequence A1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 Sequence B - Underlying Securities (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 95 P,R (O)</li>
 <li class="field">Field 97 A,C,D (M)</li>
-<li class="field">Field 94 B,C,F,T (O)</li>
+<li class="field">Field 94 B,C,F (O)</li>
 <li class="field">Field 35 B (O)</li>
 <li class="sequence">
 Sequence B1 - Financial Instrument Attributes (O)<ul><li class="field">Field 16 R (M)</li>
@@ -495,24 +495,6 @@ public class MT568 extends AbstractMT implements Serializable {
 		final Tag t = tag("94F");
 		if (t != null) {
 			return new Field94F(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
-	 * Iterates through block4 fields and return the first one whose name matches 94T, 
-	 * or null if none is found.
-	 * The first occurrence of field 94T at MT568 is expected to be the only one.
-	 * 
-	 * @return a Field94T object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field94T getField94T() {
-		final Tag t = tag("94T");
-		if (t != null) {
-			return new Field94T(t.getValue());
 		} else {
 			return null;
 		}

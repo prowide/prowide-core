@@ -347,7 +347,7 @@ public class MT798 extends AbstractMT implements Serializable {
 	 * Creates a new messages with the content of the enclosed sub-message type.
 	 *
 	 * The headers are a clone to the actual envelop MT798 headers, changing the message type in block 2 with the
-	 * value of field 12 in the envelop. The block4 will contain all fields following 77E in the envelop (including
+	 * value of field 12 in the envelope. The block4 will contain all fields following 77E in the envelope (including
 	 * for example the message index in 27A and customer reference in 21P when present).
 	 *
 	 * Notice the return type is a {@link SwiftMessage} since this model has a very lenient structure. If the sub-message

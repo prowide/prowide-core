@@ -68,7 +68,7 @@ Fieldset 95
 Sequence B - Cash Account Activity (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (O)<ul><li>FieldsetItem 95 P,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 97 A,E,D (M)</li>
+ (O)<ul><li>FieldsetItem 95 P,R (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 97 A,E (M)</li>
 <li class="sequence">
 Sequence B1 - Activity Information Per Currency (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 11 A (M)</li>
@@ -114,7 +114,7 @@ Fieldset 98
 Sequence B1a4 - Settlement Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C,D (M)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 97 A,B,D (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C (M)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 97 A,B,D (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="field">Field 16 S (M)</li>
@@ -149,7 +149,7 @@ Fieldset 98
 Sequence C2a - Settlement Parties (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C,D (M)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 97 A,B,D (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C (M)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 97 A,B,D (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="field">Field 16 S (M)</li>
@@ -702,26 +702,6 @@ public class MT575 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97D, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 97D at MT575 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field97D objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field97D> getField97D() {
-		final List<Field97D> result = new ArrayList<>();
-		final Tag[] tags = tags("97D");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field97D(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 11A, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 11A at MT575 are expected at one sequence or across several sequences.
@@ -882,6 +862,26 @@ public class MT575 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97D, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 97D at MT575 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field97D objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field97D> getField97D() {
+		final List<Field97D> result = new ArrayList<>();
+		final Tag[] tags = tags("97D");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field97D(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 19A, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 19A at MT575 are expected at one sequence or across several sequences.
@@ -1016,26 +1016,6 @@ public class MT575 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field95C(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95D, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 95D at MT575 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field95D objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field95D> getField95D() {
-		final List<Field95D> result = new ArrayList<>();
-		final Tag[] tags = tags("95D");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field95D(tag.getValue()));
             }
 		}
 		return result;

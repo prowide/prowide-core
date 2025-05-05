@@ -62,7 +62,7 @@ Sequence A1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 Sequence B - Order Details (M)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 94
- (O) (repetitive)<ul><li>FieldsetItem 94 B,L (O) (repetitive)</li><li>FieldsetItem 94 B,C,F,L,T (O) (repetitive)</li></ul></li><li class="sequence">
+ (O) (repetitive)<ul><li>FieldsetItem 94 B,L (O) (repetitive)</li><li>FieldsetItem 94 B,C,F,L (O) (repetitive)</li></ul></li><li class="sequence">
 Sequence B1 - Price (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 90 A,B (M)</li>
 <li class="fieldset">
@@ -82,7 +82,7 @@ Sequence B2 - Trading Parties (M) (repetitive)<ul><li class="field">Field 16 R (
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,B,D (O)</li><li>FieldsetItem 97 A,E,D (O)</li></ul></li><li class="field">Field 98 A,C (O)</li>
+ (O)<ul><li>FieldsetItem 97 A,B (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 D (O)</li></ul></li><li class="field">Field 98 A,C (O)</li>
 <li class="field">Field 20 C (O)</li>
 <li class="fieldset">
 Fieldset 70
@@ -146,7 +146,7 @@ Sequence C2 - Cash Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)<
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,D,E (O)</li></ul></li><li class="field">Field 98 A,C (O)</li>
+ (O)<ul><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li></ul></li><li class="field">Field 98 A,C (O)</li>
 <li class="field">Field 20 C (O)</li>
 <li class="field">Field 70 C (O)</li>
 <li class="field">Field 16 S (M)</li>
@@ -169,7 +169,7 @@ Sequence D - Other Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)<
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,B,D (O)</li><li>FieldsetItem 97 A,E,D (O)</li></ul></li><li class="field">Field 70 C (O)</li>
+ (O)<ul><li>FieldsetItem 97 A,B,D (O)</li><li>FieldsetItem 97 A,E (O)</li></ul></li><li class="field">Field 70 C (O)</li>
 <li class="field">Field 20 C (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -668,26 +668,6 @@ public class MT502 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field94L(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94T, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 94T at MT502 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field94T objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field94T> getField94T() {
-		final List<Field94T> result = new ArrayList<>();
-		final Tag[] tags = tags("94T");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field94T(tag.getValue()));
             }
 		}
 		return result;
