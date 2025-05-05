@@ -1,11 +1,10 @@
 # Prowide Core - CHANGELOG
 
-#### 10.2.8 - June 2024
-  * Fix: Enhanced the `DefaultMtMetadataStrategy` to prevent NPE when the message headers are malformed
-
-#### 10.2.7 - May 2025
-  * (PW-2055) Fixed the default message metadata extraction for ACK/NAK to set the service message block 1 BIC as receiver, not as sender
-  * (PW-2055) Enhanced the `SwiftMessageUtils` extractors to support the service 21 message type (ACK/NAK)
+#### 10.3.0 - SNAPSHOT
+  * SWIFT Standard release update 2025 (live 22 November 2025)
+  * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
+  * Dependency update: commons-lang3 -> 3.14.0
+  * Dependency update: gson -> 2.11.0
 
 #### 10.2.6 - April 2025
   * (CU-86b49rvw4) Updated label for Fields 14[P,Q,R]/16W/29[Q,W]
