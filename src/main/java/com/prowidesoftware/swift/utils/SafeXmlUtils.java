@@ -242,7 +242,7 @@ public class SafeXmlUtils {
      * @deprecated use the default SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI) instead, there is no need to prevent XXE attacks in the schema factory
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2025)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2026)
     public static SchemaFactory schemaFactory() {
         DeprecationUtils.phase2(
                 SafeXmlUtils.class,
@@ -273,9 +273,9 @@ public class SafeXmlUtils {
      * @deprecated use the default schema.newValidator() instead, there is no need to prevent XXE attacks in validation
      */
     @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2025)
+    @ProwideDeprecated(phase4 = TargetYear.SRU2026)
     public static Validator validator(Schema schema) {
-        DeprecationUtils.phase2(SafeXmlUtils.class, "validator", "use schema.newValidator() instead");
+        DeprecationUtils.phase3(SafeXmlUtils.class, "validator", "use schema.newValidator() instead");
         String feature = null;
         try {
             Validator validator = schema.newValidator();

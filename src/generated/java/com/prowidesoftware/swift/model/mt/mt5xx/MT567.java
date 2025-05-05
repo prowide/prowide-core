@@ -58,7 +58,6 @@ Sequence A1 - Linkages (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="sequence">
 Sequence A2 - Status (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 25 D (M)</li>
-<li class="field">Field 36 B,D (M) (repetitive)</li>
 <li class="sequence">
 Sequence A2a - Reason (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 24 B (M)</li>
@@ -77,7 +76,7 @@ Fieldset 22
  (O)<ul><li>FieldsetItem 22 F,H (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="field">Field 95 P,R (O)</li>
 <li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,D (O)</li><li>FieldsetItem 97 A,E,D (O)</li></ul></li><li class="field">Field 94 B,C,F,T (O)</li>
+ (O)<ul><li>FieldsetItem 97 A,D (O)</li><li>FieldsetItem 97 A,E (O)</li></ul></li><li class="field">Field 94 B,C,F (O)</li>
 <li class="field">Field 35 B (O)</li>
 <li class="field">Field 36 B,D (O) (repetitive)</li>
 <li class="fieldset">
@@ -469,24 +468,6 @@ public class MT567 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 94T, 
-	 * or null if none is found.
-	 * The first occurrence of field 94T at MT567 is expected to be the only one.
-	 * 
-	 * @return a Field94T object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field94T getField94T() {
-		final Tag t = tag("94T");
-		if (t != null) {
-			return new Field94T(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
 	 * Iterates through block4 fields and return the first one whose name matches 35B, 
 	 * or null if none is found.
 	 * The first occurrence of field 35B at MT567 is expected to be the only one.
@@ -643,46 +624,6 @@ public class MT567 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 36B, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 36B at MT567 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field36B objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field36B> getField36B() {
-		final List<Field36B> result = new ArrayList<>();
-		final Tag[] tags = tags("36B");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field36B(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 36D, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 36D at MT567 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field36D objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field36D> getField36D() {
-		final List<Field36D> result = new ArrayList<>();
-		final Tag[] tags = tags("36D");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field36D(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 24B, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 24B at MT567 are expected at one sequence or across several sequences.
@@ -817,6 +758,46 @@ public class MT567 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field97E(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 36B, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 36B at MT567 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field36B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field36B> getField36B() {
+		final List<Field36B> result = new ArrayList<>();
+		final Tag[] tags = tags("36B");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field36B(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 36D, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 36D at MT567 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field36D objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field36D> getField36D() {
+		final List<Field36D> result = new ArrayList<>();
+		final Tag[] tags = tags("36D");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field36D(tag.getValue()));
             }
 		}
 		return result;
