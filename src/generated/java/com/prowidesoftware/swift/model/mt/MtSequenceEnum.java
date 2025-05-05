@@ -1,5 +1,5 @@
 /*
-* Copyright 2006-2024 Prowide
+* Copyright 2006-2025 Prowide
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 /**
 * Enumeration representing all possible sequence paths for each MT (Message Type) schema.
 * Each constant in this enumeration corresponds to a specific MT schema, identified by its
-* sequence paths as a comma-separated string (CSV) for SRU 2024.
+* sequence paths as a comma-separated string (CSV) for SRU 2025.
 *
 * <p>For example, the MT508 message type may have sequence paths such as "A", "A/A1", "B", "B/B1", and "C",
 * which would be represented as the CSV string "A,A/A1,B,B/B1,C".
@@ -92,14 +92,14 @@ public enum MtSequenceEnum {
     MT536("A,A/A1,B,B/B1,B/B1/B1a,B/B1/B1a/B1a1,B/B1/B1a/B1a2,B/B1/B1a/B1a2/B1a2A,C"),
     MT537("A,A/A1,B,B/B1,B/B2,B/B2/B2a,B/B2/B2b,B/B2/B2b/B2b1,C,C/C1,C/C2,C/C2/C2a,C/C3,C/C3/C3a,D,D/D1,D/D1/D1a,D/D1/D1a/D1a1,D/D1/D1a/D1a1/D1a1A,D/D1/D1a/D1a1/D1a1A/D1a1A1,D/D1/D1a/D1a1/D1a1B,D/D1/D1a/D1a1/D1a1B/D1a1B1,D/D1/D1a/D1a1/D1a1B/D1a1B1/D1a1B1a,D/D1/D1a/D1a1/D1a1B/D1a1B1/D1a1B1a/D1a1B1a1,E"),
     MT538("A,A/A1,B,B/B1,B/B2,B/B2/B2a,B/B2/B2a/B2a1,C"),
-    MT540("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,F"),
-    MT541("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,F"),
-    MT542("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,F"),
-    MT543("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,F"),
-    MT544("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,F"),
-    MT545("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,F"),
-    MT546("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,F"),
-    MT547("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,F"),
+    MT540("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,E/E4,F"),
+    MT541("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,E/E4,F"),
+    MT542("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,E/E4,F"),
+    MT543("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,E/E4,F"),
+    MT544("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,E/E4,F"),
+    MT545("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,E/E4,F"),
+    MT546("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,E/E4,F"),
+    MT547("A,A/A1,B,B/B1,C,C/C1,D,E,E/E1,E/E2,E/E3,E/E4,F"),
     MT548("A,A/A1,A/A2,A/A2/A2a,B,B/B1,C,C/C1,C/C1/C1a,C/C1/C1a/C1a1,C/C1/C1a/C1a1/C1a1A,C/C1/C1a/C1a1/C1a1A/C1a1A1,C/C1/C1a/C1a1/C1a1B,C/C1/C1a/C1a1/C1a1B/C1a1B1,C/C1/C1a/C1a1/C1a1B/C1a1B1/C1a1B1a,C/C1/C1a/C1a1/C1a1B/C1a1B1/C1a1B1a/C1a1B1a1,D"),
     MT549("A,A/A1,B,C,D"),
     MT558("A,A/A1,A/A2,A/A2/A2a,A/A3,B,B/B1,C,D,E"),

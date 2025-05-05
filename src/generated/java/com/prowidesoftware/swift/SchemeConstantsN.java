@@ -49,6 +49,8 @@ public interface SchemeConstantsN {
     String NESP = "NESP";
     String NCOM = "NCOM";
     String NBON = "NBON";
+    String NTWK = "NTWK";
+    String NTWKFEE = "NTWKFEE";
     String NBLT = "NBLT";
     String NDOM = "NDOM";
     String NPLI = "NPLI";
