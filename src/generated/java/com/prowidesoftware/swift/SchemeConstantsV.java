@@ -44,5 +44,6 @@ public interface SchemeConstantsV {
     String VLDA = "VLDA";
     String VOLU = "VOLU";
     String VVPR = "VVPR";
+    String VWAP = "VWAP";
 
 }
