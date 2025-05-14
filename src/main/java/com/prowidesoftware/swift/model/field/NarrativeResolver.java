@@ -36,48 +36,77 @@ public class NarrativeResolver {
     private static final int CODEWORDTYPE_UCASE_NUMBER = 2;
     private static final int CODEWORDTYPE_NUMBER = 3;
 
-    /**
-     * Parses the narrative text with a specific format depending on the field
-     */
-    public static Narrative parse(Field f) {
+    static int formatForField(Field f) {
         // each field support one or two line formats
         switch (f.getName()) {
             case Field77A.NAME:
             case Field74.NAME:
             case Field86.NAME:
-                return parseFormat1(f);
+                return 1;
             case Field72Z.NAME:
             case Field72.NAME:
             case Field77.NAME:
             case Field77J.NAME:
-                return parseFormat2(f);
+                return 2;
             case Field73A.NAME:
             case Field71D.NAME:
             case Field73.NAME:
             case Field71B.NAME:
             case "71E": // SCORE field
-                return parseFormat3(f);
+                return 3;
             case Field77B.NAME:
-                return parseFormat4(f);
+                return 4;
             case Field75.NAME:
             case Field76.NAME:
-                return parseFormat5(f);
+                return 5;
             case Field49N.NAME:
             case Field45B.NAME:
             case Field46B.NAME:
             case Field47B.NAME:
             case Field49M.NAME:
-                return parseFormat6(f);
-            case Field70.NAME:
+                return 6;
             case Field77D.NAME:
             case Field37N.NAME:
-                return parseFormat7(f);
+                return 7;
             case Field29A.NAME:
+            case Field70.NAME:
             case Field79.NAME:
-                return parseFormat8(f.getValue());
             case Field61.NAME:
-                Field61 field61 = (Field61) f;
-                return parseFormat8(field61.getSupplementaryDetails());
+                return 8;
+        }
+        log.warning("Don't know how to parse structured narrative line formats for " + f.getName());
+        return -1;
+    }
+
+    /**
+     * Parses the narrative text with a specific format depending on the field
+     */
+    public static Narrative parse(Field f) {
+        // each field support one or two line formats
+        int format = formatForField(f);
+        switch (format) {
+            case 1:
+                return parseFormat1(f);
+            case 2:
+                return parseFormat2(f);
+            case 3:
+                return parseFormat3(f);
+            case 4:
+                return parseFormat4(f);
+            case 5:
+                return parseFormat5(f);
+            case 6:
+                return parseFormat6(f);
+            case 7:
+                return parseFormat7(f);
+            case 8: {
+                if (Field61.NAME.equals(f.getName())) {
+                    Field61 field61 = (Field61) f;
+                    return parseFormat8(field61.getSupplementaryDetails());
+                } else {
+                    return parseFormat8(f.getValue());
+                }
+            }
         }
         log.warning("Don't know how to parse structured narrative line formats for " + f.getName());
         return new Narrative();
