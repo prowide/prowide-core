@@ -222,6 +222,7 @@ public interface SchemeConstantsC {
     String CCIR = "CCIR";
     String CCPC = "CCPC";
     String CCPN = "CCPN";
+    String CCUS = "CCUS";
     String CDAC = "CDAC";
     String CDIV = "CDIV";
     String CDLR = "CDLR";
@@ -240,9 +241,11 @@ public interface SchemeConstantsC {
     String CLDE = "CLDE";
     String CLDI = "CLDI";
     String CLEN = "CLEN";
+    String CLFT = "CLFT";
+    String CLNT = "CLNT";
+    String CLPT = "CLPT";
     String CLHT = "CLHT";
     String CLLE = "CLLE";
-    String CLNT = "CLNT";
     String CLOA = "CLOA";
     String CLOP = "CLOP";
     String CLRA = "CLRA";

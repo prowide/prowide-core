@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2024 Prowide
+ * Copyright 2006-2025 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -108,6 +108,7 @@ Sequence C1a (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 <li class="field">Field 98 H (O)</li>
 <li class="field">Field 29 A (O)</li>
 <li class="field">Field 34 C (O) (repetitive)</li>
+<li class="field">Field 22 W (O)</li>
 <li class="field">Field 72  (O)</li>
 </ul></li>
 <li class="sequence">
@@ -131,7 +132,7 @@ Sequence E (O)<ul><li class="field">Field 15 E (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2024</strong>
+ * This source code is specific to release <strong>SRU 2025</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -140,7 +141,7 @@ public class MT304 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2024;
+	public static final int SRU = 2025;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT304.class.getName());
 	
@@ -1161,6 +1162,24 @@ public class MT304 extends AbstractMT implements Serializable {
 		final Tag t = tag("29A");
 		if (t != null) {
 			return new Field29A(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 22W, 
+	 * or null if none is found.
+	 * The first occurrence of field 22W at MT304 is expected to be the only one.
+	 * 
+	 * @return a Field22W object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field22W getField22W() {
+		final Tag t = tag("22W");
+		if (t != null) {
+			return new Field22W(t.getValue());
 		} else {
 			return null;
 		}

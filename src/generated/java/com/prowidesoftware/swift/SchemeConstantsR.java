@@ -119,6 +119,7 @@ public interface SchemeConstantsR {
     String RC = "RC";
     String RD = "RD";
     String RATA = "RATA";
+    String RCLA = "RCLA";
     String RCON = "RCON";
     String RDAV = "RDAV";
     String RDDN = "RDDN";
@@ -149,6 +150,7 @@ public interface SchemeConstantsR {
     String RESC = "RESC";
     String RESI = "RESI";
     String RETL = "RETL";
+    String RETE = "RETE";
     String REVE = "REVE";
     String REVN = "REVN";
     String REVS = "REVS";

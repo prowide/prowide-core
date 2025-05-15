@@ -115,6 +115,7 @@ public interface SchemeConstantsS {
     String SBLO = "SBLO";
     String SBRE = "SBRE";
     String SBSB = "SBSB";
+    String SCAS = "SCAS";
     String SCEX = "SCEX";
     String SCHD = "SCHD";
     String SCHM = "SCHM";
