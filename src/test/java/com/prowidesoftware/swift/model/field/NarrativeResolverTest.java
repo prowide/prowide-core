@@ -1143,7 +1143,7 @@ public class NarrativeResolverTest {
         assertEquals(8, NarrativeResolver.formatForField(f));
         Narrative n = NarrativeResolver.parse(f);
         assertEquals(3, n.getStructured().size());
-        assertEquals("Jones/Brian/", n.getStructured("NAME").getNarrative());
+        assertEquals("Jones/Brian", n.getStructured("NAME").getNarrative());
         assertEquals(
                 "IRS Back Office - more DEPT description/description2",
                 n.getStructured("DEPT").getNarrative());
@@ -1176,7 +1176,7 @@ public class NarrativeResolverTest {
         Narrative n = NarrativeResolver.parseFormat8(
                 "/OCMT/EUR10000,\n//CHGS/EUR100,/xxxxxxxxxx\n/CHGS/EUR50,/\n//xxxxxxxxxx");
         assertEquals(3, n.getStructured().size());
-        assertEquals("EUR10000,/", n.getStructured().get(0).getNarrative());
+        assertEquals("EUR10000,", n.getStructured().get(0).getNarrative());
         assertEquals("EUR100,/xxxxxxxxxx", n.getStructured().get(1).getNarrative());
         assertEquals("EUR50,///xxxxxxxxxx", n.getStructured().get(2).getNarrative());
     }
@@ -1200,7 +1200,7 @@ public class NarrativeResolverTest {
     public void testFormat8_tripleSlash() {
         Narrative n = NarrativeResolver.parseFormat8("/INV/abc/SDF-96//1234-234///ROC/98I\nU87");
         assertEquals(2, n.getStructured().size());
-        assertEquals("abc/SDF-96//1234-234//", n.getStructured().get(0).getNarrative());
+        assertEquals("abc/SDF-96//1234-234", n.getStructured().get(0).getNarrative());
         assertEquals("98IU87", n.getStructured().get(1).getNarrative());
     }
 
