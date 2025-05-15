@@ -275,7 +275,10 @@ public class NarrativeResolver {
     }
 
     /**
-     * Free format codes in slashes, not necessary on new lines
+     * Free format codes in slashes, not necessary on new lines.
+     * Separator could have one or more slashes. They are all considered the same and removed from the narrative text.
+     * For example in this value: /ROC/CUSTOMERREFERENCE8THAUGUST2026TIME0///URI/INVOICE-123 the narrative for ROC
+     * is "CUSTOMERREFERENCE8THAUGUST2026TIME0" and for URI is "INVOICE-123"
      */
     public static Narrative parseFreeFormat(String value) {
         Narrative narrative = new Narrative();
@@ -297,7 +300,7 @@ public class NarrativeResolver {
                 if (isCodewordValid(token, CODEWORDTYPE_UCASE, -1)) {
                     if (currentCodeword != null) {
                         // store current structured item
-                        add(narrative, currentCodeword, currentText.toString());
+                        addNarrativeFromFreeFormatParsing(narrative, currentCodeword, currentText.toString());
                     }
                     currentCodeword = token;
                     currentText = new StringBuilder();
@@ -312,7 +315,7 @@ public class NarrativeResolver {
             }
             if (currentCodeword != null) {
                 // add the last created item if necessary
-                add(narrative, currentCodeword, currentText.toString());
+                addNarrativeFromFreeFormatParsing(narrative, currentCodeword, currentText.toString());
             }
 
         } else {
@@ -332,10 +335,11 @@ public class NarrativeResolver {
      * @param codeword  a codeword
      * @param text      the narrative text or blank to skip
      */
-    private static void add(Narrative narrative, String codeword, String text) {
+    private static void addNarrativeFromFreeFormatParsing(Narrative narrative, String codeword, String text) {
         StructuredNarrative item = new StructuredNarrative().setCodeword(codeword);
         if (StringUtils.isNoneBlank(text)) {
-            item.addNarrativeFragment(text);
+            String cleanNarrative = StringUtils.stripEnd(text, "/");
+            item.addNarrativeFragment(cleanNarrative);
         }
         narrative.add(item);
     }
