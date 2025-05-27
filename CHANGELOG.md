@@ -2,10 +2,11 @@
 
 #### 10.3.0 - SNAPSHOT
   * SWIFT Standard release update 2025 (live 22 November 2025)
-  * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
+  * Yearly revision of the deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
   * Dependency update: commons-lang3 -> 3.17.0
   * Dependency update: gson -> 2.13.1
   * Changed field 70 narrative resolver to use the free format parser, code/narrative appearing anywhere, not just at the beginning of a line
+  * (PW-2371) Added a `uetr` field in the `AbstractSwiftMessage` to store the message's unique end-to-end transaction reference (UETR)
 
 #### 10.2.6 - April 2025
   * (CU-86b49rvw4) Updated label for Fields 14[P,Q,R]/16W/29[Q,W]
