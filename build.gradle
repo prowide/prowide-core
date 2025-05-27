@@ -66,6 +66,7 @@ dependencies {
     testImplementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
     testImplementation 'jakarta.validation:jakarta.validation-api:3.1.0'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.12.2'
+    testImplementation 'org.junit.platform:junit-platform-launcher:1.12.2'
     testImplementation 'org.assertj:assertj-core:3.27.2'
     testImplementation 'org.xmlunit:xmlunit-core:2.10.0'
     testImplementation 'org.xmlunit:xmlunit-matchers:2.10.0'
