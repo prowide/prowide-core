@@ -42,7 +42,7 @@ public class Tag implements Serializable {
     /**
      * List of unparsed texts. For performance reasons, this will be null until really needed.
      */
-    protected UnparsedTextList unparsedTexts = null;
+    protected UnparsedTextList unparsedTexts;
 
     /**
      * Default constructor.
@@ -66,7 +66,8 @@ public class Tag implements Serializable {
      * <p>
      * If inner contains one ':' character, the string before is set as the tag name and the rest as the value.
      * If inner contains more than one ':' characters, then the first value is used as previously described.
-     * If no ':' character is found the whole string is set as the tag value and the tag name is kept null (useful for bloc data)
+     * If no ':' character is found the whole string is set as the tag value and the tag name is kept
+     * null (useful for bloc data)
      *
      * <p>
      * Maps:
@@ -96,7 +97,9 @@ public class Tag implements Serializable {
                 this.value = inner.substring(i + 1);
             }
         } else {
-            if (inner.length() > 0) this.value = inner;
+            if (!inner.isEmpty()) {
+                this.value = inner;
+            }
         }
     }
 
@@ -216,7 +219,9 @@ public class Tag implements Serializable {
      * verifies that the unparsed text list exists
      */
     protected void unparsedTextVerify() {
-        if (this.unparsedTexts == null) this.unparsedTexts = new UnparsedTextList();
+        if (this.unparsedTexts == null) {
+            this.unparsedTexts = new UnparsedTextList();
+        }
     }
 
     /**
@@ -249,7 +254,9 @@ public class Tag implements Serializable {
     public Integer getUnparsedTextsSize() {
 
         // no list => size is zero...
-        if (this.unparsedTexts == null) return 0;
+        if (this.unparsedTexts == null) {
+            return 0;
+        }
         return this.unparsedTexts.size();
     }
 
@@ -326,8 +333,12 @@ public class Tag implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Tag tag = (Tag) o;
         return Objects.equals(name, tag.name)
                 && Objects.equals(value, tag.value)
@@ -348,17 +359,31 @@ public class Tag implements Serializable {
      * @since 7.9.3
      */
     public boolean equalsIgnoreCR(Tag other) {
-        if (other == null) return false;
-        if (this == other) return true;
+        if (other == null) {
+            return false;
+        }
+        if (this == other) {
+            return true;
+        }
         if (name == null) {
-            if (other.name != null) return false;
-        } else if (!name.equals(other.name)) return false;
+            if (other.name != null) {
+                return false;
+            }
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
         if (unparsedTexts == null) {
-            if (other.unparsedTexts != null) return false;
-        } else if (!unparsedTexts.equals(other.unparsedTexts)) return false;
+            if (other.unparsedTexts != null) {
+                return false;
+            }
+        } else if (!unparsedTexts.equals(other.unparsedTexts)) {
+            return false;
+        }
         if (value == null) {
             return other.value == null;
-        } else return StringUtils.replace(value, "\r", "").equals(StringUtils.replace(other.value, "\r", ""));
+        } else {
+            return StringUtils.replace(value, "\r", "").equals(StringUtils.replace(other.value, "\r", ""));
+        }
     }
 
     /**

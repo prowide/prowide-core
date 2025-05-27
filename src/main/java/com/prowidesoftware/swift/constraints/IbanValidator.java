@@ -30,7 +30,9 @@ import org.apache.commons.lang3.StringUtils;
 public class IbanValidator implements ConstraintValidator<IbanConstraint, String> {
 
     @Override
-    public void initialize(IbanConstraint iban) {}
+    public void initialize(IbanConstraint iban) {
+        // do nothing
+    }
 
     @Override
     public boolean isValid(String iban, ConstraintValidatorContext context) {

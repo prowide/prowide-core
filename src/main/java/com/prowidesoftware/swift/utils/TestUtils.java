@@ -28,7 +28,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @author sebastian
  */
-public class TestUtils {
+public final class TestUtils {
 
     // Suppress default constructor for noninstantiability
     private TestUtils() {
@@ -53,7 +53,7 @@ public class TestUtils {
      */
     public static SwiftMessage addSeq(final SwiftMessage msg, final String sequenceIdentifier, final Tag... tags) {
         msg.getBlock4().append(new Tag("16R", sequenceIdentifier));
-        if (tags != null && tags.length > 0) {
+        if (tags != null) {
             for (final Tag t : tags) {
                 msg.getBlock4().append(t);
             }
