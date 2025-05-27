@@ -125,6 +125,7 @@ public interface SchemeConstantsA {
     String A012 = "A012";
     String A013 = "A013";
     String A014 = "A014";
+    String AACO = "AACO";
     String AADJ = "AADJ";
     String ABEC = "ABEC";
     String ABRD = "ABRD";
@@ -134,7 +135,10 @@ public interface SchemeConstantsA {
     String ACCU = "ACCU";
     String ACLA = "ACLA";
     String ACLI = "ACLI";
+    String ACPL = "ACPL";
+    String ACPR = "ACPR";
     String ACTU = "ACTU";
+    String ACUS = "ACUS";
     String ADEA = "ADEA";
     String ADHO = "ADHO";
     String AFBA = "AFBA";
@@ -166,7 +170,9 @@ public interface SchemeConstantsA {
     String ATXF = "ATXF";
     String AUCL = "AUCL";
     String AUCT = "AUCT";
+    String AVAR = "AVAR";
     String AVER = "AVER";
+    String AVCL = "AVCL";
     String AVOV = "AVOV";
     String AVPS = "AVPS";
     String AWAS = "AWAS";
