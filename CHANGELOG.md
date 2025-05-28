@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.3.0 - SNAPSHOT
+#### 10.3.0 - May 2025
   * SWIFT Standard release update 2025 (live 22 November 2025)
   * Yearly revision of the deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
   * Dependency update: commons-lang3 -> 3.17.0
