@@ -122,6 +122,7 @@ public interface SchemeConstantsD {
     String DISN = "DISN";
     String DISR = "DISR";
     String DISS = "DISS";
+    String DITU = "DITU";
     String DKCS = "DKCS";
     String DKNY = "DKNY";
     String DLNP = "DLNP";
@@ -132,6 +133,7 @@ public interface SchemeConstantsD {
     String DNIN = "DNIN";
     String DNRE = "DNRE";
     String DOCC = "DOCC";
+    String DOCD = "DOCD";
     String DOCY = "DOCY";
     String DONE = "DONE";
     String DONF = "DONF";

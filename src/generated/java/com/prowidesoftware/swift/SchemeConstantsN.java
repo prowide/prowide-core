@@ -72,10 +72,13 @@ public interface SchemeConstantsN {
     String NPRT = "NPRT";
     String NMLT = "NMLT";
     String NMPT = "NMPT";
+    String NACO = "NACO";
     String NACT = "NACT";
     String NAFF = "NAFF";
     String NAMC = "NAMC";
     String NARR = "NARR";
+    String NAVA = "NAVA";
+    String NAVF = "NAVF";
     String NBEN = "NBEN";
     String NBFR = "NBFR";
     String NBOR = "NBOR";
@@ -84,6 +87,7 @@ public interface SchemeConstantsN {
     String NCRR = "NCRR";
     String NCRS = "NCRS";
     String NCSD = "NCSD";
+    String NCUS = "NCUS";
     String NDEF = "NDEF";
     String NDIS = "NDIS";
     String NDLF = "NDLF";
@@ -116,6 +120,7 @@ public interface SchemeConstantsN {
     String NOHE = "NOHE";
     String NOIN = "NOIN";
     String NOMC = "NOMC";
+    String NONC = "NONC";
     String NONR = "NONR";
     String NOOF = "NOOF";
     String NOPA = "NOPA";
@@ -142,6 +147,8 @@ public interface SchemeConstantsN {
     String NSTP = "NSTP";
     String NSYN = "NSYN";
     String NTBK = "NTBK";
+    String NTWK = "NTWK";
+    String NTWKFEE = "NTWKFEE";
     String NUND = "NUND";
 
 }
