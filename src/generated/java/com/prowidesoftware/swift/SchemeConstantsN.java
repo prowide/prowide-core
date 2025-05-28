@@ -149,8 +149,6 @@ public interface SchemeConstantsN {
     String NSTP = "NSTP";
     String NSYN = "NSYN";
     String NTBK = "NTBK";
-    String NTWK = "NTWK";
-    String NTWKFEE = "NTWKFEE";
     String NUND = "NUND";
 
 }
