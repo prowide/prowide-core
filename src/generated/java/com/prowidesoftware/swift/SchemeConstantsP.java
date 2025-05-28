@@ -176,7 +176,6 @@ public interface SchemeConstantsP {
     String PRII = "PRII";
     String PRIM = "PRIM";
     String PRIO = "PRIO";
-    String PRMN = "PRMN";
     String PROF = "PROF";
     String PROV = "PROV";
     String PROX = "PROX";

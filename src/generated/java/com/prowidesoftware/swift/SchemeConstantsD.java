@@ -135,7 +135,6 @@ public interface SchemeConstantsD {
     String DNIN = "DNIN";
     String DNRE = "DNRE";
     String DOCC = "DOCC";
-    String DOCD = "DOCD";
     String DOCY = "DOCY";
     String DONE = "DONE";
     String DONF = "DONF";

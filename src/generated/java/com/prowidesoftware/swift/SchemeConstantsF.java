@@ -98,7 +98,6 @@ public interface SchemeConstantsF {
     String FIMY = "FIMY";
     String FINA = "FINA";
     String FINL = "FINL";
-    String FITY = "FITY";
     String FIXE = "FIXE";
     String FIXI = "FIXI";
     String FIXT = "FIXT";
@@ -108,7 +107,6 @@ public interface SchemeConstantsF {
     String FOEX = "FOEX";
     String FOGU = "FOGU";
     String FOPT = "FOPT";
-    String FORI = "FORI";
     String FORW = "FORW";
     String FORX = "FORX";
     String FPOO = "FPOO";
