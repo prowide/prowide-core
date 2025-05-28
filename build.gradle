@@ -28,9 +28,10 @@ project.ext {
 }
 
 scmVersion {
+    versionCreator('simple')
     tag {
-        prefix.set("${SRU}")
-        versionSeparator.set('-')
+        prefix = SRU
+        versionSeparator = '-'
     }
 }
 project.version = "${SRU}-${scmVersion.version}"
