@@ -70,6 +70,7 @@ public interface SchemeConstantsB {
     String BBAA = "BBAA";
     String BCBL = "BCBL";
     String BCBN = "BCBN";
+    String BCCW = "BCCW";
     String BCFD = "BCFD";
     String BCPD = "BCPD";
     String BCRO = "BCRO";
