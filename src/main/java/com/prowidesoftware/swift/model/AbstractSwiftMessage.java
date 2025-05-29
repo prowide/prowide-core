@@ -55,13 +55,13 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      *
      * @since 7.8.8
      */
-    protected static final String IDENTIFIER_ACK = "ACK";
+    public static final String IDENTIFIER_ACK = "ACK";
     /**
      * Identifier constant for non-acknowledge service messages
      *
      * @since 7.8.8
      */
-    protected static final String IDENTIFIER_NAK = "NAK";
+    public static final String IDENTIFIER_NAK = "NAK";
 
     private static final transient java.util.logging.Logger log =
             java.util.logging.Logger.getLogger(AbstractSwiftMessage.class.getName());

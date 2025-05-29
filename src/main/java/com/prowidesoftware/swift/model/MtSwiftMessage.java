@@ -262,59 +262,43 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
         }
     }
 
+    /**
+     * Updates the attributes of this message with the data from the given SwiftMessage model.
+     * <p>
+     * This method extracts the metadata from the model and sets the internal attributes accordingly, using the
+     * provided {@link MessageMetadataStrategy}. And on top of that, sets additional attributes such as the
+     * last modified date, checksum, and MUR.
+     *
+     *
+     * @param model            the SwiftMessage model to extract metadata from
+     * @param metadataStrategy a strategy implementation to extract the metadata from the model
+     */
     private void updateAttributes(final SwiftMessage model, final MessageMetadataStrategy metadataStrategy) {
-        if (model.isServiceMessage21()) {
-            // for service messages, we attempt to set the metadata from the original attached message, if present
-            if (model.getUnparsedTextsSize() > 0) {
-                final SwiftMessage original = model.getUnparsedTexts().getTextAsMessage(0);
-                if (original != null) {
-                    extractMetadata(original, metadataStrategy);
-                }
-            }
-            // then we overwrite the identifier form the actual service message
-            if (model.isAck()) {
-                setIdentifier(IDENTIFIER_ACK);
-            } else if (model.isNack()) {
-                setIdentifier(IDENTIFIER_NAK);
-            }
-
-        } else {
-            // any other case we just update the metadata from the received message
-            extractMetadata(model, metadataStrategy);
-            Optional<String> identifier = metadataStrategy.identifier(model.toMT());
-            identifier.ifPresent(this::setIdentifier);
-        }
+        applyStrategy(model, metadataStrategy);
 
         setFileFormat(FileFormat.FIN);
-
-        Optional<String> sender = metadataStrategy.sender(model.toMT());
-        sender.ifPresent(s -> setSender(bic11(s)));
-
         setChecksum(SwiftMessageUtils.calculateChecksum(model));
         setChecksumBody(SwiftMessageUtils.calculateChecksum(model.getBlock4()));
         setLastModified(Calendar.getInstance());
         setMur(model.getMUR());
-    }
-
-    private void extractMetadata(final SwiftMessage model, final MessageMetadataStrategy metadataStrategy) {
-
-        Optional<String> receiver = metadataStrategy.receiver(model.toMT());
-        receiver.ifPresent(r -> setReceiver(bic11(r)));
-        setDirection(model.getDirection());
-
         setPde(model.getPDE());
         setPdm(model.getPDM());
         setMir(model.getMIR());
-
         if (model.getBlock2() != null) {
             setUuid(model.getUUID());
         }
-
-        // we extract metadata with the default strategy
-        // specific strategy can be applied on top with the #updateMetadata method
-        applyStrategy(model, metadataStrategy);
+        setDirection(model.getDirection());
     }
 
+    /**
+     * Applies the given strategy to extract metadata from the SwiftMessage model.
+     * <p>
+     * This method only updates the attributes extracted via the strategy implementation. Existing values are not
+     * cleared. They are only updated if the strategy returns a value for the corresponding metadata.
+     *
+     * @param model   the SwiftMessage model to extract metadata from
+     * @param strategy the strategy to use for extracting metadata
+     */
     private void applyStrategy(SwiftMessage model, MessageMetadataStrategy strategy) {
         AbstractMT mt = model.toMT();
 
@@ -323,20 +307,30 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
             return;
         }
 
-        String reference = strategy.reference(mt).orElse(null);
-        if (StringUtils.isNotBlank(reference)) {
-            setReference(reference);
-        }
+        // REFERENCE
+        strategy.reference(mt).ifPresent(this::setReference);
 
+        // AMOUNT
         Optional<Money> money = strategy.amount(mt);
         if (money.isPresent()) {
             setCurrency(money.get().getCurrency());
             setAmount(money.get().getAmount());
         }
 
+        // VALUE DATE
         strategy.valueDate(mt).ifPresent(this::setValueDate);
 
+        // TRADE DATE
         strategy.tradeDate(mt).ifPresent(this::setTradeDate);
+
+        // SENDER
+        strategy.sender(mt).ifPresent(this::setSender);
+
+        // RECEIVER
+        strategy.receiver(mt).ifPresent(this::setReceiver);
+
+        // IDENTIFIER
+        strategy.identifier(mt).ifPresent(this::setIdentifier);
     }
 
     /**
@@ -349,7 +343,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
     }
 
     /**
-     * Updates the the attributes with the raw message and its metadata from the given raw (FIN) message content.
+     * Updates the attributes with the raw message and its metadata from the given raw (FIN) message content.
      *
      * @param fin              the new message content
      * @param metadataStrategy a strategy implementation to extract the metadata from the FIN content
