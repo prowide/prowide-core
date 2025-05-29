@@ -302,7 +302,7 @@ public class SwiftMessageUtils {
      * SWIFT interface. Anyway for convenience, this implementation attempts to extract as ACK sender the counterparty
      * BIC from the original sent message, if present as part of the ACK payload.
      *
-     * @return the proper sender address as BIC11 or null if blocks 1 or 2 are not found or incomplete
+     * @return the proper sender LT address or null if blocks 1 or 2 are not found or incomplete
      * @since 9.3.19
      */
     public static String sender(final SwiftMessage m) {
@@ -310,13 +310,13 @@ public class SwiftMessageUtils {
             if (m.isServiceMessage21() && m.getUnparsedTextsSize() > 0) {
                 final SwiftMessage original = m.getUnparsedTexts().getTextAsMessage(0);
                 if (original != null) {
-                    return asBic11(original.getReceiver());
+                    return original.getReceiver();
                 }
             }
             if (m.getDirection() == MessageIOType.outgoing && m.getBlock1() != null) {
-                return asBic11(m.getBlock1().getLogicalTerminal());
+                return m.getBlock1().getLogicalTerminal();
             } else if (m.getDirection() == MessageIOType.incoming && m.getBlock2() != null) {
-                return asBic11(((SwiftBlock2Output) m.getBlock2()).getMIRLogicalTerminal());
+                return ((SwiftBlock2Output) m.getBlock2()).getMIRLogicalTerminal();
             }
         } catch (final Exception e) {
             log.severe("Exception occurred while retrieving sender's BIC from message data: " + e);
@@ -334,29 +334,22 @@ public class SwiftMessageUtils {
      * application perspective acknowledges are incoming messages, thus the receiver is the sender of the original
      * message.
      *
-     * @return the proper receiver address as BIC11 or null if blocks 1 or 2 are not found or incomplete
+     * @return the proper receiver LT address or null if blocks 1 or 2 are not found or incomplete
      * @since 9.3.19
      */
     public static String receiver(final SwiftMessage m) {
         try {
             if (m.isServiceMessage() && m.getBlock1() != null) {
-                return asBic11(m.getBlock1().getLogicalTerminal());
+                return m.getBlock1().getLogicalTerminal();
             } else if (m.getDirection() == MessageIOType.incoming && m.getBlock1() != null) {
-                return asBic11(m.getBlock1().getLogicalTerminal());
+                return m.getBlock1().getLogicalTerminal();
             } else if (m.getDirection() == MessageIOType.outgoing && m.getBlock2() != null) {
-                return asBic11(((SwiftBlock2Input) m.getBlock2()).getReceiverAddress());
+                return ((SwiftBlock2Input) m.getBlock2()).getReceiverAddress();
             }
         } catch (final Exception e) {
             log.severe("Exception occurred while retrieving receiver's BIC from message data: " + e);
         }
         return null;
-    }
-
-    private static String asBic11(final String ltAddress) {
-        if (ltAddress == null) {
-            return null;
-        }
-        return new BIC(ltAddress).getBic11();
     }
 
     /**

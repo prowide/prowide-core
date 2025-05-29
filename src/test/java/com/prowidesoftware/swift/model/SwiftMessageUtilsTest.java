@@ -380,8 +380,8 @@ public class SwiftMessageUtilsTest {
     void testSenderAndReceiverExtractionOutgoingMT() throws IOException {
         String fin = "{1:F01AAAAIT2TX36A0000000000}{2:I101BBBBPLPKXXXXN}{4:\n" + ":20:4C2W0S0V8AM6X7OH\n" + "-}";
         SwiftMessage sm = SwiftMessage.parse(fin);
-        assertEquals("AAAAIT2T36A", SwiftMessageUtils.sender(sm));
-        assertEquals("BBBBPLPKXXX", SwiftMessageUtils.receiver(sm));
+        assertEquals("AAAAIT2TX36A", SwiftMessageUtils.sender(sm));
+        assertEquals("BBBBPLPKXXXX", SwiftMessageUtils.receiver(sm));
     }
 
     @Test
@@ -390,15 +390,15 @@ public class SwiftMessageUtilsTest {
                 + ":20:FTR3836472 01\n"
                 + "-}\n";
         SwiftMessage sm = SwiftMessage.parse(fin);
-        assertEquals("BBBBESMMXXX", SwiftMessageUtils.sender(sm));
-        assertEquals("AAAAARYYXXX", SwiftMessageUtils.receiver(sm));
+        assertEquals("BBBBESMMAXXX", SwiftMessageUtils.sender(sm));
+        assertEquals("AAAAARYYAXXX", SwiftMessageUtils.receiver(sm));
     }
 
     @Test
     void testReceiverExtractionACK() throws IOException {
         String fin = "{1:F21AAAAUS33AXXX0344000050}{4:{177:2505291057}{451:0}{108:9CB44CDCCB763E17}}";
         SwiftMessage sm = SwiftMessage.parse(fin);
-        assertEquals("AAAAUS33XXX", SwiftMessageUtils.receiver(sm));
+        assertEquals("AAAAUS33AXXX", SwiftMessageUtils.receiver(sm));
         assertNull(SwiftMessageUtils.sender(sm));
     }
 
@@ -409,8 +409,8 @@ public class SwiftMessageUtilsTest {
                         + ":20:TBEXO200909031\n"
                         + "-}";
         SwiftMessage sm = SwiftMessage.parse(fin);
-        assertEquals("AAAAUS33XXX", SwiftMessageUtils.receiver(sm));
+        assertEquals("AAAAUS33AXXX", SwiftMessageUtils.receiver(sm));
         // ACK does not have a sender, however we parse as sender the counterparty of the original message
-        assertEquals("BBBBIDJ10J6", SwiftMessageUtils.sender(sm));
+        assertEquals("BBBBIDJ1X0J6", SwiftMessageUtils.sender(sm));
     }
 }

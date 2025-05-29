@@ -69,7 +69,11 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
      */
     @Override
     public Optional<String> sender(AbstractMessage message) {
-        return Optional.ofNullable(SwiftMessageUtils.sender(asSwiftMessage(message)));
+        final String sender = SwiftMessageUtils.sender(asSwiftMessage(message));
+        if (sender != null) {
+            return Optional.of(new BIC(sender).getBic11());
+        }
+        return Optional.empty();
     }
 
     /**
@@ -78,7 +82,11 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
      */
     @Override
     public Optional<String> receiver(AbstractMessage message) {
-        return Optional.ofNullable(SwiftMessageUtils.receiver(asSwiftMessage(message)));
+        final String receiver = SwiftMessageUtils.receiver(asSwiftMessage(message));
+        if (receiver != null) {
+            return Optional.of(new BIC(receiver).getBic11());
+        }
+        return Optional.empty();
     }
 
     /**
