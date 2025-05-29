@@ -22,6 +22,10 @@ import java.util.Optional;
 /**
  * Default implementation of MT messages metadata extraction.
  *
+ * <p>
+ * The implementation uses the utility methods from {@link SwiftMessageUtils} to extract the metadata from the MT
+ * messages, including support for acknowledgements (ACKs) and negative acknowledgements (NAKs).
+ *
  * @see SwiftMessageUtils
  * @since 9.1.4
  */
@@ -61,18 +65,28 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
 
     /**
      * Extracts the MT sender, if present, using {@link SwiftMessageUtils#sender(SwiftMessage)}
+     * When found, returns the BIC11 format of the sender LT address.
      */
     @Override
     public Optional<String> sender(AbstractMessage message) {
-        return Optional.ofNullable(SwiftMessageUtils.sender(asSwiftMessage(message)));
+        final String sender = SwiftMessageUtils.sender(asSwiftMessage(message));
+        if (sender != null) {
+            return Optional.of(new BIC(sender).getBic11());
+        }
+        return Optional.empty();
     }
 
     /**
      * Extracts the MT receiver, if any, using {@link SwiftMessageUtils#receiver(SwiftMessage)}
+     * When found, returns the BIC11 format of the receiver LT address.
      */
     @Override
     public Optional<String> receiver(AbstractMessage message) {
-        return Optional.ofNullable(SwiftMessageUtils.receiver(asSwiftMessage(message)));
+        final String receiver = SwiftMessageUtils.receiver(asSwiftMessage(message));
+        if (receiver != null) {
+            return Optional.of(new BIC(receiver).getBic11());
+        }
+        return Optional.empty();
     }
 
     /**
