@@ -357,24 +357,24 @@ public class SwiftMessageTest {
     @Test
     public void testGetSenderReceiver() throws IOException {
         /*
-         * incomming
+         * incoming
          */
         SwiftMessage m = SwiftMessage.parse(
                 "{1:F01FOOBARXXAXXX0387241036}{2:O9502352060913FOOBUS22XXXX18884819330609140052N}{4:\n:20:123456\n-}");
-        assertEquals("FOOBUS22XXXX", m.getSender());
-        assertEquals("FOOBARXXAXXX", m.getReceiver());
+        assertEquals("FOOBUS22XXX", m.getSender());
+        assertEquals("FOOBARXXXXX", m.getReceiver());
         /*
          * outgoing
          */
         m = SwiftMessage.parse("{1:F01FOOBARAAAXXX3219604112}{2:I535FOOBUS22XXXXN}{4:\n:16R:GENL\n-}");
-        assertEquals("FOOBARAAAXXX", m.getSender());
-        assertEquals("FOOBUS22XXXX", m.getReceiver());
+        assertEquals("FOOBARAAXXX", m.getSender());
+        assertEquals("FOOBUS22XXX", m.getReceiver());
         /*
          * ack
          */
         m = SwiftMessage.parse("{1:F21BNPAFRPPZXXX0000000007}{4:{177:1702040914}{451:0}}");
-        assertEquals("BNPAFRPPZXXX", m.getSender());
-        assertNull(m.getReceiver());
+        assertEquals("BNPAFRPPXXX", m.getReceiver());
+        assertNull(m.getSender());
     }
 
     @Test

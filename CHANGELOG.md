@@ -1,5 +1,10 @@
 # Prowide Core - CHANGELOG
 
+#### 10.2.7 - SNAPSHOT
+  * (PW-2055) Fixed the default message metadata extraction for ACK/NAK to set the service message block 1 BIC as receiver, not as sender
+  * (PW-2055) Enhanced the `SwiftMessageUtils` extractors to support the service 21 message type (ACK/NAK)
+  * (PW-2055) Changed the extraction logic in `SwiftMessageUtils` and SwiftMessage to return the BIC11 instead of the LT address for sender and receiver
+
 #### 10.2.6 - April 2025
   * (CU-86b49rvw4) Updated label for Fields 14[P,Q,R]/16W/29[Q,W]
   * (PW-2239) BIC Branch check for all upper and lower case

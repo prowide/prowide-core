@@ -134,103 +134,116 @@ public class SwiftMessageUtils {
      * <li>For MT564 returns the value date from Cash Movements Field 98a with qualifier PAYD (not qualifier VALU)</li>
      * </ul>
      *
+     * <p>For ACK/NAK messages, the value date is extracted from the original attached message, if present.
+     *
      * @param m the message where the value date is to be found
-     * @return found date or null if the message does not defines a value date, or if the defined value date field is not present in the message
+     * @return found date or null if the message does not define a value date, or if the defined value date field is not present in the message
      * @since 7.7
      */
     public static Calendar valueDate(final SwiftMessage m) {
-        if (m != null) {
-            final SwiftBlock4 b4 = m.getBlock4();
-            if (b4 != null && !b4.isEmpty()) {
-                Tag t = null;
-                Field f = null;
-                if (m.isType(101, 104, 107, 201, 203, 204, 207, 210, 604, 605)) {
-                    t = b4.getTagByName(Field30.NAME);
-                } else if (m.isType(102, 103, 200, 202, 205, 400, 450, 455, 800, 802, 900, 910)) {
-                    t = b4.getTagByName(Field32A.NAME);
-                } else if (m.isType(300, 304, 320, 330, 350, 620)) {
-                    t = b4.getTagByName(Field30V.NAME);
-                } else if (m.isType(370)) {
-                    final SwiftTagListBlock seq = b4.getSubBlock("NETPOS");
-                    if (seq != null) {
-                        f = seq.getFieldByNumber(98, "NETT");
-                    }
-                } else if (m.isType(456)) {
-                    t = b4.getTagByName(Field33D.NAME);
-                } else if (m.isType(502)) {
-                    final SwiftTagListBlock seq = b4.getSubBlock("AMT");
-                    if (seq != null) {
-                        f = seq.getFieldByNumber(98, "VALU");
-                    }
-                } else if (m.isType(509)) {
-                    final SwiftTagListBlock seq = b4.getSubBlock("TRADE");
-                    if (seq != null) {
-                        f = seq.getFieldByNumber(98, "SETT");
-                    }
-                } else if (m.isType(513)) {
-                    final SwiftTagListBlock seq = b4.getSubBlock("ORDRDET");
-                    if (seq != null) {
-                        f = seq.getFieldByNumber(98, "SETT");
-                    }
-                } else if (m.isType(514, 515, 518)) {
-                    final SwiftTagListBlock seq = b4.getSubBlock("CONFDET");
-                    if (seq != null) {
-                        f = seq.getFieldByNumber(98, "SETT");
-                    }
-                } else if (m.isType(540, 541, 542, 543, 544, 545, 546, 547, 586)) {
-                    final SwiftTagListBlock seq = b4.getSubBlock("TRADDET");
-                    if (seq != null) {
-                        f = seq.getFieldByNumber(98, "SETT");
-                    } else {
-                        final SwiftTagListBlock seq2 = b4.getSubBlock("AMT");
-                        if (seq2 != null) {
-                            f = seq2.getFieldByNumber(98, "VALU");
-                        }
-                    }
-                } else if (m.isType(537)) {
-                    final SwiftTagListBlock seq = b4.getSubBlock("TRANSDET");
-                    if (seq != null) {
-                        f = seq.getFieldByNumber(98, "EXSE");
-                    }
-                } else if (m.isType(548)) {
-                    final SwiftTagListBlock seq = b4.getSubBlock("SETTRAN");
-                    if (seq != null) {
-                        f = seq.getFieldByNumber(70, "SPRO");
-                    }
-                } else if (m.isType(564)) {
-                    final SwiftTagListBlock seq = b4.getSubBlock("CASHMOVE");
-                    if (seq != null) {
-                        f = seq.getFieldByNumber(98, "PAYD");
-                    }
-                } else if (m.isType(566)) {
-                    final SwiftTagListBlock seq = b4.getSubBlock("CASHMOVE");
-                    if (seq != null) {
-                        f = seq.getFieldByNumber(98, "POST");
-                    }
-                } else if (m.isType(730, 768, 769)) {
-                    t = b4.getTagByName(Field32D.NAME);
-                } else if (m.isType(734, 752, 756)) {
-                    t = b4.getTagByName(Field33A.NAME);
-                } else if (m.isType(742, 754)) {
-                    t = b4.getTagByName(Field34A.NAME);
-                } else if (m.isType(942, 950, 970, 972)) {
-                    t = b4.getTagByName(Field61.NAME);
-                } else if (m.isType(305)) {
-                    t = b4.getTagByName(Field31G.NAME);
-                } else if (m.isType(306)) {
-                    t = b4.getTagByName(Field30V.NAME);
-                } else if (m.isType(340, 341)) {
-                    t = b4.getTagByName(Field30F.NAME);
-                } else if (m.isType(360, 361, 362)) {
-                    t = b4.getTagByName(Field30V.NAME);
+        if (m == null) {
+            return null;
+        }
+        // for ACK/NAK, we attempt to extract the value date from the original attached message, if present
+        if (m.isServiceMessage21() && m.getUnparsedTextsSize() > 0) {
+            final SwiftMessage original = m.getUnparsedTexts().getTextAsMessage(0);
+            if (original != null) {
+                final Calendar valueDate = valueDate(original);
+                if (valueDate != null) {
+                    return valueDate;
                 }
+            }
+        }
+        final SwiftBlock4 b4 = m.getBlock4();
+        if (b4 != null && !b4.isEmpty()) {
+            Tag t = null;
+            Field f = null;
+            if (m.isType(101, 104, 107, 201, 203, 204, 207, 210, 604, 605)) {
+                t = b4.getTagByName(Field30.NAME);
+            } else if (m.isType(102, 103, 200, 202, 205, 400, 450, 455, 800, 802, 900, 910)) {
+                t = b4.getTagByName(Field32A.NAME);
+            } else if (m.isType(300, 304, 320, 330, 350, 620)) {
+                t = b4.getTagByName(Field30V.NAME);
+            } else if (m.isType(370)) {
+                final SwiftTagListBlock seq = b4.getSubBlock("NETPOS");
+                if (seq != null) {
+                    f = seq.getFieldByNumber(98, "NETT");
+                }
+            } else if (m.isType(456)) {
+                t = b4.getTagByName(Field33D.NAME);
+            } else if (m.isType(502)) {
+                final SwiftTagListBlock seq = b4.getSubBlock("AMT");
+                if (seq != null) {
+                    f = seq.getFieldByNumber(98, "VALU");
+                }
+            } else if (m.isType(509)) {
+                final SwiftTagListBlock seq = b4.getSubBlock("TRADE");
+                if (seq != null) {
+                    f = seq.getFieldByNumber(98, "SETT");
+                }
+            } else if (m.isType(513)) {
+                final SwiftTagListBlock seq = b4.getSubBlock("ORDRDET");
+                if (seq != null) {
+                    f = seq.getFieldByNumber(98, "SETT");
+                }
+            } else if (m.isType(514, 515, 518)) {
+                final SwiftTagListBlock seq = b4.getSubBlock("CONFDET");
+                if (seq != null) {
+                    f = seq.getFieldByNumber(98, "SETT");
+                }
+            } else if (m.isType(540, 541, 542, 543, 544, 545, 546, 547, 586)) {
+                final SwiftTagListBlock seq = b4.getSubBlock("TRADDET");
+                if (seq != null) {
+                    f = seq.getFieldByNumber(98, "SETT");
+                } else {
+                    final SwiftTagListBlock seq2 = b4.getSubBlock("AMT");
+                    if (seq2 != null) {
+                        f = seq2.getFieldByNumber(98, "VALU");
+                    }
+                }
+            } else if (m.isType(537)) {
+                final SwiftTagListBlock seq = b4.getSubBlock("TRANSDET");
+                if (seq != null) {
+                    f = seq.getFieldByNumber(98, "EXSE");
+                }
+            } else if (m.isType(548)) {
+                final SwiftTagListBlock seq = b4.getSubBlock("SETTRAN");
+                if (seq != null) {
+                    f = seq.getFieldByNumber(70, "SPRO");
+                }
+            } else if (m.isType(564)) {
+                final SwiftTagListBlock seq = b4.getSubBlock("CASHMOVE");
+                if (seq != null) {
+                    f = seq.getFieldByNumber(98, "PAYD");
+                }
+            } else if (m.isType(566)) {
+                final SwiftTagListBlock seq = b4.getSubBlock("CASHMOVE");
+                if (seq != null) {
+                    f = seq.getFieldByNumber(98, "POST");
+                }
+            } else if (m.isType(730, 768, 769)) {
+                t = b4.getTagByName(Field32D.NAME);
+            } else if (m.isType(734, 752, 756)) {
+                t = b4.getTagByName(Field33A.NAME);
+            } else if (m.isType(742, 754)) {
+                t = b4.getTagByName(Field34A.NAME);
+            } else if (m.isType(942, 950, 970, 972)) {
+                t = b4.getTagByName(Field61.NAME);
+            } else if (m.isType(305)) {
+                t = b4.getTagByName(Field31G.NAME);
+            } else if (m.isType(306)) {
+                t = b4.getTagByName(Field30V.NAME);
+            } else if (m.isType(340, 341)) {
+                t = b4.getTagByName(Field30F.NAME);
+            } else if (m.isType(360, 361, 362)) {
+                t = b4.getTagByName(Field30V.NAME);
+            }
 
-                if (t != null) {
-                    f = t.asField();
-                }
-                if (f != null && f instanceof DateContainer) {
-                    return ((DateContainer) f).dates().get(0);
-                }
+            if (t != null) {
+                f = t.asField();
+            }
+            if (f != null && f instanceof DateContainer) {
+                return ((DateContainer) f).dates().get(0);
             }
         }
         return null;
@@ -245,22 +258,35 @@ public class SwiftMessageUtils {
      *
      * <p>Notice a lot of messages do not define a trade date.
      *
+     * <p>For ACK/NAK messages, the trade date is extracted from the original attached message, if present.
+     *
      * @param m the message where the value date is to be found
-     * @return found date or null if the message does not defines a trade date, or if the defined trade date field is not present in the message
+     * @return found date or null if the message does not define a trade date, or if the defined trade date field is not present in the message
      * @since 7.10.4
      */
     public static Calendar tradeDate(final SwiftMessage m) {
-        if (m != null) {
-            final SwiftBlock4 b4 = m.getBlock4();
-            if (b4 != null && !b4.isEmpty()) {
+        if (m == null) {
+            return null;
+        }
+        // for ACK/NAK, we attempt to extract the trade date from the original attached message, if present
+        if (m.isServiceMessage21() && m.getUnparsedTextsSize() > 0) {
+            final SwiftMessage original = m.getUnparsedTexts().getTextAsMessage(0);
+            if (original != null) {
+                final Calendar tradeDate = tradeDate(original);
+                if (tradeDate != null) {
+                    return tradeDate;
+                }
+            }
+        }
+        final SwiftBlock4 b4 = m.getBlock4();
+        if (b4 != null && !b4.isEmpty()) {
 
-                Field f = m.getBlock4().getFieldByName(Field30T.NAME);
-                if (f == null) {
-                    f = m.getBlock4().getFieldByNumber(98, "TRAD");
-                }
-                if (f != null && f instanceof DateContainer) {
-                    return ((DateContainer) f).dates().get(0);
-                }
+            Field f = m.getBlock4().getFieldByName(Field30T.NAME);
+            if (f == null) {
+                f = m.getBlock4().getFieldByNumber(98, "TRAD");
+            }
+            if (f != null && f instanceof DateContainer) {
+                return ((DateContainer) f).dates().get(0);
             }
         }
         return null;
@@ -268,19 +294,29 @@ public class SwiftMessageUtils {
 
     /**
      * Gets the message sender BIC from the message headers.
-     * <p>For outgoing messages this is the logical terminal at block 1,
-     * and for incoming messages this is logical terminal at the MIR of block 2.
-     * <p>for service message (example acknowledges) always returns the logical terminal from block1
+     * <p>
+     * For outgoing messages this is the logical terminal at block 1, and for incoming messages this is logical
+     * terminal at the MIR of block 2.
+     * <p>
+     * For service message (example acknowledges) there is no sender address, the service messages are sent by the
+     * SWIFT interface. Anyway for convenience, this implementation attempts to extract as ACK sender the counterparty
+     * BIC from the original sent message, if present as part of the ACK payload.
      *
-     * @return the proper sender address or null if blocks 1 or 2 are not found or incomplete
+     * @return the proper sender address as BIC11 or null if blocks 1 or 2 are not found or incomplete
      * @since 9.3.19
      */
     public static String sender(final SwiftMessage m) {
         try {
-            if (m.isServiceMessage() || m.getDirection() == MessageIOType.outgoing) {
-                return m.getBlock1() == null ? null : m.getBlock1().getLogicalTerminal();
-            } else if ((m.getDirection() == MessageIOType.incoming) && (m.getBlock2() != null)) {
-                return ((SwiftBlock2Output) m.getBlock2()).getMIRLogicalTerminal();
+            if (m.isServiceMessage21() && m.getUnparsedTextsSize() > 0) {
+                final SwiftMessage original = m.getUnparsedTexts().getTextAsMessage(0);
+                if (original != null) {
+                    return asBic11(original.getReceiver());
+                }
+            }
+            if (m.getDirection() == MessageIOType.outgoing && m.getBlock1() != null) {
+                return asBic11(m.getBlock1().getLogicalTerminal());
+            } else if (m.getDirection() == MessageIOType.incoming && m.getBlock2() != null) {
+                return asBic11(((SwiftBlock2Output) m.getBlock2()).getMIRLogicalTerminal());
             }
         } catch (final Exception e) {
             log.severe("Exception occurred while retrieving sender's BIC from message data: " + e);
@@ -290,37 +326,60 @@ public class SwiftMessageUtils {
 
     /**
      * Gets the message receiver BIC from the message headers.
-     * <p>For outgoing messages this is the receiver address at block 2,
-     * and for incoming messages this is logical terminal at block 1.
-     * <p>for service message (example acknowledges) always returns null
+     * <p>
+     * For outgoing messages this is the receiver address at block 2, and for incoming messages this is logical
+     * terminal at block 1.
+     * <p>
+     * For service message (example acknowledges) always returns the logical terminal from block1, as from the
+     * application perspective acknowledges are incoming messages, thus the receiver is the sender of the original
+     * message.
      *
-     * @return the proper receiver address or null if blocks 1 or 2 are not found or incomplete
+     * @return the proper receiver address as BIC11 or null if blocks 1 or 2 are not found or incomplete
      * @since 9.3.19
      */
     public static String receiver(final SwiftMessage m) {
         try {
-            if (m.isServiceMessage()) {
-                return null;
-            } else if (m.getDirection() == MessageIOType.incoming) {
-                return m.getBlock1().getLogicalTerminal();
-            } else if (m.getDirection() == MessageIOType.outgoing) {
-                return ((SwiftBlock2Input) m.getBlock2()).getReceiverAddress();
-            } else {
-                return null;
+            if (m.isServiceMessage() && m.getBlock1() != null) {
+                return asBic11(m.getBlock1().getLogicalTerminal());
+            } else if (m.getDirection() == MessageIOType.incoming && m.getBlock1() != null) {
+                return asBic11(m.getBlock1().getLogicalTerminal());
+            } else if (m.getDirection() == MessageIOType.outgoing && m.getBlock2() != null) {
+                return asBic11(((SwiftBlock2Input) m.getBlock2()).getReceiverAddress());
             }
         } catch (final Exception e) {
             log.severe("Exception occurred while retrieving receiver's BIC from message data: " + e);
+        }
+        return null;
+    }
+
+    private static String asBic11(final String ltAddress) {
+        if (ltAddress == null) {
             return null;
         }
+        return new BIC(ltAddress).getBic11();
     }
 
     /**
      * Get a string in the form of businessprocess.messagetype.variant
      *
+     * <p>
+     * For acknowledges and negative acknowledges, the identifier is fixed to "ACK" and "NAK" respectively.
+     *
      * @return a string with the MT message type identification
      * @since 9.3.19
      */
     public static String identifier(final SwiftMessage m) {
+        if (m == null) {
+            return null;
+        }
+        // for ACK/NAK messages, we return the fixed identifiers
+        if (m.isServiceMessage21()) {
+            if (m.isAck()) {
+                return MtSwiftMessage.IDENTIFIER_ACK;
+            } else if (m.isNack()) {
+                return MtSwiftMessage.IDENTIFIER_NAK;
+            }
+        }
         try {
             return m.getMtId().id();
         } catch (final Exception e) {
@@ -498,30 +557,42 @@ public class SwiftMessageUtils {
      * Gets the message reference from field 20 (if present) or from field 20C:SEME if message category is 5.
      * If no Field20 or 20C are found and MUR is present, returns the MUR value (field 108 from block 3).
      *
+     * <p>For ACK/NAK messages, the reference is extracted from the original attached message, if present.
+     *
      * @param m the message where the reference is to be found
-     * @return found reference or null if the message does not defines a reference, or if the defined reference field is not present in the message
+     * @return found reference or null if the message does not define a reference, or if the defined reference field is not present in the message
      * @since 7.8
      */
     public static String reference(final SwiftMessage m) {
-        if (m != null) {
-            final SwiftBlock4 b4 = m.getBlock4();
-            if (b4 != null && !b4.isEmpty()) {
-                final Tag t = b4.getTagByName("20");
-                if (t != null) {
-                    return t.getValue();
-                }
-                final Field f = b4.getFieldByNumber(20, "SEME");
-                if (f != null) {
-                    return f.getComponent(2);
-                }
-                final Tag murBlock4 = b4.getTagByName("108");
-                if (murBlock4 != null) {
-                    return murBlock4.getValue();
+        if (m == null) {
+            return null;
+        }
+        // for ACK/NAK, we attempt to extract the reference from the original attached message, if present
+        if (m.isServiceMessage21() && m.getUnparsedTextsSize() > 0) {
+            final SwiftMessage original = m.getUnparsedTexts().getTextAsMessage(0);
+            if (original != null) {
+                final String reference = reference(original);
+                if (reference != null) {
+                    return reference;
                 }
             }
-            return m.getMUR();
         }
-        return null;
+        final SwiftBlock4 b4 = m.getBlock4();
+        if (b4 != null && !b4.isEmpty()) {
+            final Tag t = b4.getTagByName("20");
+            if (t != null) {
+                return t.getValue();
+            }
+            final Field f = b4.getFieldByNumber(20, "SEME");
+            if (f != null) {
+                return f.getComponent(2);
+            }
+            final Tag murBlock4 = b4.getTagByName("108");
+            if (murBlock4 != null) {
+                return murBlock4.getValue();
+            }
+        }
+        return m.getMUR();
     }
 
     /**
@@ -643,8 +714,18 @@ public class SwiftMessageUtils {
      * Keep in sync special case for 104 and 107 with MT104 and MT107 getSequenceC logic.
      */
     public static Money money(final SwiftMessage m) {
-        if (m == null || m.isServiceMessage21()) {
+        if (m == null) {
             return null;
+        }
+        // for ACK/NAK, we attempt to extract the amount from the original attached message, if present
+        if (m.isServiceMessage21() && m.getUnparsedTextsSize() > 0) {
+            final SwiftMessage original = m.getUnparsedTexts().getTextAsMessage(0);
+            if (original != null) {
+                final Money money = money(original);
+                if (money != null) {
+                    return money;
+                }
+            }
         }
         final SwiftBlock4 b4 = m.getBlock4();
         if (b4 == null || b4.isEmpty()) {

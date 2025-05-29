@@ -30,26 +30,77 @@ public class MtSwiftMessageTest {
 
     @Test
     public void testParseMt() {
-        String fin = "{1:F01AGBLLT2XAXXX1012000002}{2:I399TESTARZZXXXXN}{3:{108:MYMUR123458}}{4:\n" + ":20:TEST\n"
-                + ":79:AAAAA\n"
+        String fin = "{1:F01AGBLLT2XAXXX1012000002}{2:I103TESTARZZXXXXN}{3:{108:MYMUR123458}}{4:\n"
+                + ":20:TEST\n"
+                + ":32A:090903USD23453,"
                 + "-}";
         MtSwiftMessage mt = MtSwiftMessage.parse(fin);
         assertEquals("AGBLLT2XXXX", mt.getSender());
         assertEquals("TESTARZZXXX", mt.getReceiver());
         assertEquals("MYMUR123458", mt.getMur());
         assertEquals("TEST", mt.getReference());
+        assertEquals("USD", mt.getCurrency());
+        assertEquals(new BigDecimal("23453"), mt.getAmount());
+        Calendar valueDate = mt.getValueDate();
+        assertEquals(2009, valueDate.get(Calendar.YEAR));
+        assertEquals(Calendar.SEPTEMBER, valueDate.get(Calendar.MONTH));
+        assertEquals(3, valueDate.get(Calendar.DAY_OF_MONTH));
+        assertNull(mt.getTradeDate());
     }
 
     @Test
     public void testParseAck() {
+        String fin = "{1:F21AAAALT2XAXXX0000000000}{4:{177:1903250612}{451:0}{108:MYMUR123458}}";
+        MtSwiftMessage mt = MtSwiftMessage.parse(fin);
+
+        assertEquals("MYMUR123458", mt.getMur());
+        assertEquals("MYMUR123458", mt.getReference());
+
+        // the receiver and sender are swapped in the ACK because the ACK is sent by the SWIFT interface back to the
+        // sender of the original message. From the ACK perspective, the original sender is the receiver of the ACK.
+        assertEquals("AAAALT2XXXX", mt.getReceiver());
+
+        // the ACK itself (service 21) does not have a sender (it is sent by the SWIFT interface)
+        assertNull(mt.getSender());
+
+        assertNull(mt.getTradeDate());
+        assertNull(mt.getValueDate());
+        assertNull(mt.getCurrency());
+        assertNull(mt.getAmount());
+    }
+
+    @Test
+    public void testParseAckWithOriginalMessageCopy() {
         String fin =
-                "{1:F21AGBLLT2XAXXX0000000000}{4:{177:1903250612}{451:0}{108:MYMUR123458}}{1:F01AGBLLT2XAXXX1012000002}{2:I399TESTARZZXXXXN}{4:\n"
+                "{1:F21AAAALT2XAXXX0000000000}{4:{177:1903250612}{451:0}}{1:F01AAAALT2XAXXX1012000002}{2:I103BBBBARZZXXXXN}{4:\n"
                         + ":20:TEST\n"
-                        + ":79:AAAAA\n"
+                        + ":32A:090903USD23453,"
                         + "-}";
         MtSwiftMessage mt = MtSwiftMessage.parse(fin);
-        assertEquals("MYMUR123458", mt.getMur());
+
+        assertNull(mt.getMur());
         assertEquals("TEST", mt.getReference());
+
+        // the receiver and sender are swapped in the ACK because the ACK is sent by the SWIFT interface back to the
+        // sender of the original message. From the ACK perspective, the original sender is the receiver of the ACK.
+        assertEquals("AAAALT2XXXX", mt.getReceiver());
+
+        // the ACK itself (service 21) does not have a sender (it is sent by the SWIFT interface) however for
+        // convenience
+        // we extract as sender the counterparty BIC in the original message
+        assertEquals("BBBBARZZXXX", mt.getSender());
+
+        assertNull(mt.getTradeDate());
+
+        // we extract the value date from the original message
+        Calendar valueDate = mt.getValueDate();
+        assertEquals(2009, valueDate.get(Calendar.YEAR));
+        assertEquals(Calendar.SEPTEMBER, valueDate.get(Calendar.MONTH));
+        assertEquals(3, valueDate.get(Calendar.DAY_OF_MONTH));
+
+        // the original message has an amount, we extract it
+        assertEquals(new BigDecimal("23453"), mt.getAmount());
+        assertEquals("USD", mt.getCurrency());
     }
 
     @Test
