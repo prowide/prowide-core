@@ -697,6 +697,8 @@ public class SwiftMessageUtils {
      * This implementation is a work in progress and the interpretation of which field is consider
      * the main amount for each message type may change from time to time adding more cases or
      * even changing the used field.
+     * <p>
+     * For ACK/NAK messages, the amount is extracted from the original attached message, if present.
      *
      * @param m a message with some amount field
      * @return the currency and amount object extracted from the message or null if non is present or cannot be created from its fields

@@ -112,8 +112,8 @@ class DefaultMtMetadataStrategyTest {
         // sender of the original message. From the ACK perspective, the original sender is the receiver of the ACK.
         assertEquals("AAAALT2XXXX", strategy.receiver(mt).orElse(null));
 
-        // the ACK itself (service 21) does not have a sender (it is sent by the SWIFT interface) however for conveniece
-        // we extract as sender the counterparty BIC in the origina message
+        // the ACK itself (service 21) does not have a sender (it is sent by the SWIFT interface) however for convenience
+        // we extract as sender the counterparty BIC in the original message
         assertEquals("BBBBARZZXXX", strategy.sender(mt).orElse(null));
 
         assertEquals("ACK", strategy.identifier(mt).orElse(null));
