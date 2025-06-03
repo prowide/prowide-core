@@ -177,8 +177,9 @@ public class BICTest {
                 + ":20:REF987654FFF\n"
                 + ":79:FOOBARMURTEST\n"
                 + "-}";
+
         // Parse the message and avoid NPE check in the Sender BIC
         MtSwiftMessage mt2 = MtSwiftMessage.parse(finO);
-        System.out.println(mt2);
+        assertNull(mt2.getSender());
     }
 }
