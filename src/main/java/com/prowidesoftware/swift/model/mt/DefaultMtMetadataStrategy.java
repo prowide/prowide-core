@@ -31,6 +31,9 @@ import java.util.Optional;
  */
 public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
 
+    private static final java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(DefaultMtMetadataStrategy.class.getName());
+
     /**
      * Extracts the MT main reference using {@link SwiftMessageUtils#reference(SwiftMessage)}
      */
@@ -71,7 +74,11 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
     public Optional<String> sender(AbstractMessage message) {
         final String sender = SwiftMessageUtils.sender(asSwiftMessage(message));
         if (sender != null) {
-            return Optional.of(new BIC(sender).getBic11());
+            if (new BIC(sender).isValid()) {
+                return Optional.of(new BIC(sender).getBic11());
+            } else {
+                log.fine("Invalid BIC: " + sender);
+            }
         }
         return Optional.empty();
     }
@@ -84,7 +91,11 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
     public Optional<String> receiver(AbstractMessage message) {
         final String receiver = SwiftMessageUtils.receiver(asSwiftMessage(message));
         if (receiver != null) {
-            return Optional.of(new BIC(receiver).getBic11());
+            if (new BIC(receiver).isValid()) {
+                return Optional.of(new BIC(receiver).getBic11());
+            } else {
+                log.fine("Invalid BIC: " + receiver);
+            }
         }
         return Optional.empty();
     }
