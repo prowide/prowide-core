@@ -74,8 +74,9 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
     public Optional<String> sender(AbstractMessage message) {
         final String sender = SwiftMessageUtils.sender(asSwiftMessage(message));
         if (sender != null) {
-            if (new BIC(sender).isValid()) {
-                return Optional.of(new BIC(sender).getBic11());
+            BIC bic = new BIC(sender);
+            if (bic.isValid()) {
+                return Optional.of(bic.getBic11());
             } else {
                 log.fine("Invalid BIC: " + sender);
             }
@@ -91,8 +92,9 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
     public Optional<String> receiver(AbstractMessage message) {
         final String receiver = SwiftMessageUtils.receiver(asSwiftMessage(message));
         if (receiver != null) {
-            if (new BIC(receiver).isValid()) {
-                return Optional.of(new BIC(receiver).getBic11());
+            BIC bic = new BIC(receiver);
+            if (bic.isValid()) {
+                return Optional.of(bic.getBic11());
             } else {
                 log.fine("Invalid BIC: " + receiver);
             }
