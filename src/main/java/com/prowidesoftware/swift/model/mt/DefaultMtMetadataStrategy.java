@@ -94,7 +94,7 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
     private static Optional<String> getBIC(String inputBIC) {
         if (inputBIC != null) {
             BIC bic = new BIC(inputBIC);
-            if (bic.isValid()) {
+            if (bic.getBic11() != null) {
                 return Optional.of(bic.getBic11());
             } else {
                 log.fine("Invalid BIC: " + inputBIC);
