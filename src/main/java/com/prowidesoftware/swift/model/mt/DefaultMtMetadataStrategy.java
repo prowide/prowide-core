@@ -86,6 +86,11 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
         return getBIC(receiver);
     }
 
+    /**
+     *
+     * @param inputBIC the BIC to validate and convert to BIC11 format
+     * @return the BIC11 format of the input BIC, if valid, or an empty Optional if the input is null or invalid.
+     */
     private static Optional<String> getBIC(String inputBIC) {
         if (inputBIC != null) {
             BIC bic = new BIC(inputBIC);
