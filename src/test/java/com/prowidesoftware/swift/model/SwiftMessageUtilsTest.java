@@ -204,7 +204,7 @@ public class SwiftMessageUtilsTest {
     }
 
     @Test
-    public void testCurrencyAmountFromMessage() throws IOException {
+    public void testAmountFromMessage() throws IOException {
         final String fin = "{1:F01CCRTIT2TX36A0000000000}{2:I101PPABPLPKXXXXN}{3:{108:YSGU193268223XXX}}{4:\n"
                 + ":20:4C2W0S0V8AM6X7OH\n"
                 + ":28D:00001/00001\n"
@@ -228,13 +228,33 @@ public class SwiftMessageUtilsTest {
     }
 
     @Test
-    public void testCurrencyAmountFromSystemMessage() throws IOException {
+    public void testAmountFromACK() throws IOException {
+        final String fin = "{1:F21BNPAFRPPZXXX0000000002}{4:{177:1702090741}{451:0}}";
+        Money money = SwiftMessageUtils.money(SwiftMessage.parse(fin));
+        assertNull(money);
+    }
+
+    @Test
+    public void testAmountFromACK2() throws IOException {
         final String fin =
                 "{1:F21BNPAFRPPZXXX0000000002}{4:{177:1702090741}{451:0}}{1:F01BNPAFRPPZXXX0000000002}{2:I103BNPAFRPPXXXXN}{3:{108:REF1}}{4:\n"
                         + ":20:WITHMUR\n"
                         + "-}{5:{MAC:ABCD1234}{CHK:ABCDEF123456}}";
         Money money = SwiftMessageUtils.money(SwiftMessage.parse(fin));
         assertNull(money);
+    }
+
+    @Test
+    public void testAmountFromACK3() throws IOException {
+        final String fin =
+                "{1:F21BNPAFRPPZXXX0000000002}{4:{177:1702090741}{451:0}}{1:F01BNPAFRPPZXXX0000000002}{2:I103BNPAFRPPXXXXN}{3:{108:REF1}}{4:\n"
+                        + ":20:WITHMUR\n"
+                        + ":32A:251019USD1000,00\n"
+                        + "-}";
+        Money money = SwiftMessageUtils.money(SwiftMessage.parse(fin));
+        assertNotNull(money);
+        assertEquals("USD", money.getCurrency());
+        assertEquals(new BigDecimal("1000.00"), money.getAmount());
     }
 
     @Test
@@ -305,9 +325,92 @@ public class SwiftMessageUtilsTest {
     }
 
     @Test
+    public void testReferenceFromACK() throws IOException {
+        final String fin =
+                "{1:F21BNPAFRPPZXXX0000000002}{4:{177:1702090741}{451:0}}{1:F01BNPAFRPPZXXX0000000002}{2:I103BNPAFRPPXXXXN}{3:{108:REF1}}{4:\n"
+                        + ":20:WITHMUR\n"
+                        + "-}{5:{MAC:ABCD1234}{CHK:ABCDEF123456}}";
+        SwiftMessage sm = SwiftMessage.parse(fin);
+        String reference = SwiftMessageUtils.reference(sm);
+        assertEquals("WITHMUR", reference);
+    }
+
+    @Test
+    public void testReferenceFromACK2() throws IOException {
+        final String fin =
+                "{1:F21BNPAFRPPZXXX0000000002}{4:{177:1702090741}{451:0}}{1:F01BNPAFRPPZXXX0000000002}{2:I103BNPAFRPPXXXXN}{3:{108:REF1}}{4:\n"
+                        + ":23E:CRED\n"
+                        + "-}{5:{MAC:ABCD1234}{CHK:ABCDEF123456}}";
+        SwiftMessage sm = SwiftMessage.parse(fin);
+        String reference = SwiftMessageUtils.reference(sm);
+        assertEquals("REF1", reference);
+    }
+
+    @Test
+    public void testReferenceFromACK3() throws IOException {
+        final String fin =
+                "{1:F21BNPAFRPPZXXX0000000002}{4:{177:1702090741}{451:0}}{1:F01BNPAFRPPZXXX0000000002}{2:I103BNPAFRPPXXXXN}{3:{108:REF1}}";
+        SwiftMessage sm = SwiftMessage.parse(fin);
+        String reference = SwiftMessageUtils.reference(sm);
+        assertEquals("REF1", reference);
+    }
+
+    @Test
+    public void testValueDateFromACK() throws IOException {
+        final String fin =
+                "{1:F21BNPAFRPPZXXX0000000002}{4:{177:1702090741}{451:0}}{1:F01BNPAFRPPZXXX0000000002}{2:I103BNPAFRPPXXXXN}{3:{108:REF1}}{4:\n"
+                        + ":20:WITHMUR\n"
+                        + ":32A:251019USD1000,00\n"
+                        + "-}{5:{MAC:ABCD1234}{CHK:ABCDEF123456}}";
+        SwiftMessage sm = SwiftMessage.parse(fin);
+        Calendar date = SwiftMessageUtils.valueDate(sm);
+        assertEquals(2025, date.get(Calendar.YEAR));
+        assertEquals(Calendar.OCTOBER, date.get(Calendar.MONTH));
+        assertEquals(19, date.get(Calendar.DAY_OF_MONTH));
+    }
+
+    @Test
     void testCalculateChecksumLength() throws IOException {
         SwiftMessage msg = SwiftMessage.parse(Lib.readResource("MT362.fin"));
         String s = calculateChecksum(msg);
         assertEquals(s.length(), 32);
+    }
+
+    @Test
+    void testSenderAndReceiverExtractionOutgoingMT() throws IOException {
+        String fin = "{1:F01AAAAIT2TX36A0000000000}{2:I101BBBBPLPKXXXXN}{4:\n" + ":20:4C2W0S0V8AM6X7OH\n" + "-}";
+        SwiftMessage sm = SwiftMessage.parse(fin);
+        assertEquals("AAAAIT2TX36A", SwiftMessageUtils.sender(sm));
+        assertEquals("BBBBPLPKXXXX", SwiftMessageUtils.receiver(sm));
+    }
+
+    @Test
+    void testSenderAndReceiverExtractionIncomingMT() throws IOException {
+        String fin = "{1:F01AAAAARYYAXXX8687502912}{2:O2021531051104BBBBESMMAXXX54308192420511041531N}{4:\n"
+                + ":20:FTR3836472 01\n"
+                + "-}\n";
+        SwiftMessage sm = SwiftMessage.parse(fin);
+        assertEquals("BBBBESMMAXXX", SwiftMessageUtils.sender(sm));
+        assertEquals("AAAAARYYAXXX", SwiftMessageUtils.receiver(sm));
+    }
+
+    @Test
+    void testReceiverExtractionACK() throws IOException {
+        String fin = "{1:F21AAAAUS33AXXX0344000050}{4:{177:2505291057}{451:0}{108:9CB44CDCCB763E17}}";
+        SwiftMessage sm = SwiftMessage.parse(fin);
+        assertEquals("AAAAUS33AXXX", SwiftMessageUtils.receiver(sm));
+        assertNull(SwiftMessageUtils.sender(sm));
+    }
+
+    @Test
+    void testReceiverExtractionACKWithOriginalMessageCopy() throws IOException {
+        String fin =
+                "{1:F21AAAAUS33AXXX0344000050}{4:{177:2505291057}{451:0}}{1:F01AAAAUS33AXXX0344000050}{2:I103BBBBIDJ1X0J6N}{4:\n"
+                        + ":20:TBEXO200909031\n"
+                        + "-}";
+        SwiftMessage sm = SwiftMessage.parse(fin);
+        assertEquals("AAAAUS33AXXX", SwiftMessageUtils.receiver(sm));
+        // ACK does not have a sender, however we parse as sender the counterparty of the original message
+        assertEquals("BBBBIDJ1X0J6", SwiftMessageUtils.sender(sm));
     }
 }
