@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2024 Prowide
+ * Copyright 2006-2025 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,13 +48,13 @@ import com.google.gson.JsonParser;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>12a</code></li>
+ * 		<li>validation pattern: <code>12x</code></li>
  * 		<li>parser pattern: <code>S</code></li>
  * 		<li>components pattern: <code>S</code></li>
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2024</strong>
+ * This class complies with standard release <strong>SRU2025</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -62,7 +62,7 @@ public class Field22U extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2024;
+	public static final int SRU = 2025;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -212,7 +212,7 @@ public class Field22U extends Field implements Serializable {
      */
     @Override
     public String validatorPattern() {
-        return "12a";
+        return "12x";
     }
 
     /**

@@ -32,23 +32,17 @@ import org.apache.commons.lang3.Validate;
  * @since 7.8
  */
 public abstract class AbstractReader implements Iterator<String>, Iterable<String> {
-    private static final Logger log = Logger.getLogger(AbstractReader.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(AbstractReader.class.getName());
     /** The wrapped reader instance. */
     protected Reader reader;
 
-    private boolean usedAsIterable = false;
-
-    @Override
-    public abstract String next();
-
-    @Override
-    public abstract boolean hasNext();
+    private boolean usedAsIterable;
 
     /**
      * Constructs a reader to read messages from a given Reader instance
      * @param r reader instance
      */
-    public AbstractReader(Reader r) {
+    protected AbstractReader(Reader r) {
         this.reader = r;
     }
 
@@ -57,7 +51,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
      * @param string  String providing the character stream.
      * @throws IllegalArgumentException if string is null
      */
-    public AbstractReader(final String string) {
+    protected AbstractReader(final String string) {
         Objects.requireNonNull(string, "string must not be null");
         this.reader = new StringReader(string);
     }
@@ -68,11 +62,11 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
      * @param stream input stream
      * @throws IllegalArgumentException if stream is null
      */
-    public AbstractReader(final InputStream stream) {
+    protected AbstractReader(final InputStream stream) {
         this(stream, null);
     }
 
-    public AbstractReader(final InputStream _stream, final Charset _charset) {
+    protected AbstractReader(final InputStream _stream, final Charset _charset) {
         Objects.requireNonNull(_stream, "stream must not be null");
         this.reader = new InputStreamReader(_stream, _charset != null ? _charset : StandardCharsets.UTF_8);
     }
@@ -84,16 +78,22 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
      * @throws FileNotFoundException if the file does not exist, is a directory or cannot be opened
      * @throws IllegalArgumentException if file is null
      */
-    public AbstractReader(final File file) throws FileNotFoundException {
+    protected AbstractReader(final File file) throws FileNotFoundException {
         this(file, null);
     }
 
-    public AbstractReader(final File _file, Charset _charset) throws FileNotFoundException {
-        Objects.requireNonNull(_file, "file must not be null");
-        Validate.isTrue(_file.exists(), "Non existent file: " + _file.getAbsolutePath());
+    protected AbstractReader(final File inputFile, Charset inputCharset) throws FileNotFoundException {
+        Objects.requireNonNull(inputFile, "file must not be null");
+        Validate.isTrue(inputFile.exists(), "Non existent file: " + inputFile.getAbsolutePath());
         this.reader = new BufferedReader(new InputStreamReader(
-                new FileInputStream(_file), _charset != null ? _charset : StandardCharsets.UTF_8));
+                new FileInputStream(inputFile), inputCharset != null ? inputCharset : StandardCharsets.UTF_8));
     }
+
+    @Override
+    public abstract String next();
+
+    @Override
+    public abstract boolean hasNext();
 
     /**
      * @return this object as an Iterator
@@ -102,8 +102,8 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
     @Override
     public Iterator<String> iterator() throws IllegalArgumentException {
         if (usedAsIterable) {
-            throw new IllegalStateException(
-                    "This reader has already been used as Iterator and the implementation does not support multiple iterations, create another reader instance instead");
+            throw new IllegalStateException("This reader has already been used as Iterator and the implementation does "
+                    + "not support multiple iterations, create another reader instance instead");
         }
         usedAsIterable = true;
         return this;
@@ -131,7 +131,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
                 final String fin = candidate.getUnparsedTexts().getAsFINString();
                 return AbstractMT.parse(fin);
             } else if (candidate.isServiceMessage()) {
-                log.warning("nextMT in " + getClass().getName()
+                LOGGER.warning("nextMT in " + getClass().getName()
                         + " is not intended for service messages, use nextSwiftMessage() instead");
                 return null;
             } else {
@@ -155,7 +155,7 @@ public abstract class AbstractReader implements Iterator<String>, Iterable<Strin
         if (StringUtils.isNotBlank(msg)) {
             return SwiftMessage.parse(msg);
         }
-        log.warning("Ignoring blank message");
+        LOGGER.warning("Ignoring blank message");
         return null;
     }
 }

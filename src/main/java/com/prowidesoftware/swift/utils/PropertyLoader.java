@@ -23,11 +23,11 @@ import java.util.concurrent.locks.ReentrantLock;
  *
  * @since 9.3.18
  */
-class PropertyLoader {
-    private static final java.util.logging.Logger log =
+final class PropertyLoader {
+    private static final java.util.logging.Logger LOGGER =
             java.util.logging.Logger.getLogger(PropertyLoader.class.getName());
     static final String PROPERTIES_FILE = "pw-swift-core.properties";
-    private static Properties properties = null;
+    private static Properties properties;
     private static final ReentrantLock lock = new ReentrantLock();
 
     private PropertyLoader() {
@@ -46,7 +46,8 @@ class PropertyLoader {
                             tempProperties.load(inputStream);
                         }
                     } catch (IOException e) {
-                        log.log(java.util.logging.Level.WARNING, "Error loading properties from " + PROPERTIES_FILE, e);
+                        LOGGER.log(
+                                java.util.logging.Level.WARNING, "Error loading properties from " + PROPERTIES_FILE, e);
                     }
                     properties = tempProperties;
                 }

@@ -27,13 +27,13 @@ import org.apache.commons.lang3.StringUtils;
  * @author sebastian
  * @since 7.8.9
  */
-public class DeprecationUtils {
+public final class DeprecationUtils {
     /**
      * Environment variable used to switch off deprecation phase implementation
      */
     public static final String PW_DEPRECATED = "PW_DEPRECATED";
 
-    private static final transient java.util.logging.Logger log =
+    private static final java.util.logging.Logger LOGGER =
             java.util.logging.Logger.getLogger(DeprecationUtils.class.getName());
 
     // Suppress default constructor for noninstantiability
@@ -52,14 +52,14 @@ public class DeprecationUtils {
     @SuppressWarnings("rawtypes")
     public static void phase2(final Class clazz, final String method, final String message) {
         if (!isSet(EnvironmentVariableKey.NOLOG)) {
-            log.warning(notice(clazz, method) + message);
+            LOGGER.warning(notice(clazz, method) + message);
         }
         if (!isSet(EnvironmentVariableKey.NODELAY)) {
             try {
                 Thread.sleep(4000);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                log.log(Level.WARNING, notice(clazz, method) + message, e);
+                LOGGER.log(Level.WARNING, notice(clazz, method) + message, e);
             }
         }
     }
@@ -163,10 +163,10 @@ public class DeprecationUtils {
                     }
                 }
             } catch (Exception e2) {
-                log.log(Level.WARNING, e2.getMessage(), e2);
+                LOGGER.log(Level.WARNING, e2.getMessage(), e2);
             }
         } catch (Exception e1) {
-            log.log(Level.WARNING, e1.getMessage(), e1);
+            LOGGER.log(Level.WARNING, e1.getMessage(), e1);
         }
     }
 
