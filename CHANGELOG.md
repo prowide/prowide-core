@@ -5,10 +5,11 @@
   * Yearly revision of the deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
   * Dependency update: commons-lang3 -> 3.17.0
   * Dependency update: gson -> 2.13.1
-  * Changed field 70 narrative resolver to use the free format parser, code/narrative appearing anywhere, not just at the beginning of a line
   * (PW-2371) Added a `uetr` field in the `AbstractSwiftMessage` to store the message's unique end-to-end transaction reference (UETR)
   * (PW-2055) Fixed the default message metadata extraction for ACK/NAK to set the service message block 1 BIC as receiver, not as sender
   * (PW-2055) Enhanced the `SwiftMessageUtils` extractors to support the service 21 message type (ACK/NAK)
+  * Fix: Enhanced the `DefaultMtMetadataStrategy` to prevent NPE when the message headers are malformed
+  * Changed field 70 narrative resolver to use the free format parser, code/narrative appearing anywhere, not just at the beginning of a line
 
 #### 9.5.6 - April 2025
   * (CU-86b49rvw4) Updated label for Fields 14[P,Q,R]/16W/29[Q,W]

@@ -70,11 +70,7 @@ dependencies {
     testImplementation 'org.xmlunit:xmlunit-assertj:2.10.0'
 }
 
-sourceSets.named('main') {
-    java {
-        setSrcDirs(['src/main/java', 'src/generated/java'])
-    }
-}
+sourceSets.main.java.srcDirs = ['src/main/java', 'src/generated/java']
 
 test {
     useJUnitPlatform()
