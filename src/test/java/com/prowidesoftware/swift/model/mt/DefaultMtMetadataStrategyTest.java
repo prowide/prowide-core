@@ -3,6 +3,7 @@ package com.prowidesoftware.swift.model.mt;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.prowidesoftware.swift.model.Money;
+import com.prowidesoftware.swift.model.MtSwiftMessage;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -118,5 +119,68 @@ class DefaultMtMetadataStrategyTest {
         assertEquals("BBBBARZZXXX", strategy.sender(mt).orElse(null));
 
         assertEquals("ACK", strategy.identifier(mt).orElse(null));
+    }
+
+    @Test
+    public void testInvalidSenderInputMessage() {
+        MtSwiftMessage mt = MtSwiftMessage.parse(
+                "{1:F01AAAAAAAAAAAA1234567890}{2:I199CHASUS33XXXXN}{4:\n" + ":20:REF987654FFF\n" + "-}");
+
+        assertNotNull(mt.getReceiver());
+        assertEquals("CHASUS33XXX", mt.getReceiver());
+
+        assertNotNull(mt.getSender());
+        assertEquals("AAAAAAAAAAA", mt.getSender());
+    }
+
+    @Test
+    public void testInvalidReceiverInputMessage() {
+        MtSwiftMessage mt = MtSwiftMessage.parse(
+                "{1:F01CHASUS33AXXX1234567890}{2:I199AAAAAAAAAAAAN}{4:\n" + ":20:REF987654FFF\n" + "-}");
+
+        assertNotNull(mt.getSender());
+        assertEquals("CHASUS33XXX", mt.getSender());
+
+        assertNotNull(mt.getReceiver());
+        assertEquals("AAAAAAAAAAA", mt.getReceiver());
+    }
+
+    @Test
+    public void testInvalidSenderOutputMessage() {
+        MtSwiftMessage mt = MtSwiftMessage.parse(
+                "{1:F01CHASUS33XXXX1234567890}{2:O1990811060227AAAAAAAAAAAA55529746000602270811N}{4:\n"
+                        + ":20:REF987654FFF\n" + "-}");
+
+        assertNotNull(mt.getSender());
+        assertEquals("AAAAAAAAAAA", mt.getSender());
+
+        assertNotNull(mt.getReceiver());
+        assertEquals("CHASUS33XXX", mt.getReceiver());
+    }
+
+    @Test
+    public void testInvalidReceiverOutputMessage() {
+        MtSwiftMessage mt = MtSwiftMessage.parse(
+                "{1:F01CHASUS33AXXX1234567890}{2:O1990811060227AAAAAAAAAAAA55529746000602270811N}{4:\n"
+                        + ":20:REF987654FFF\n" + "-}");
+
+        assertNotNull(mt.getReceiver());
+        assertEquals("CHASUS33XXX", mt.getReceiver());
+
+        assertNotNull(mt.getSender());
+        assertEquals("AAAAAAAAAAA", mt.getSender());
+    }
+
+    @Test
+    public void testMalformedBlock2() {
+        // block 2 has the structure of an Input block, but the block direction is set to "O" for Output
+        MtSwiftMessage mt = MtSwiftMessage.parse(
+                "{1:F01CHASUS33AXXX1234567890}{2:O199AAAAAAAAAAAAN}{4:\n" + ":20:REF987654FFF\n" + "-}");
+
+        assertNotNull(mt.getReceiver());
+        assertEquals("CHASUS33XXX", mt.getReceiver());
+
+        // sender BIC cannot be parsed from the malformed block 2
+        assertNull(mt.getSender());
     }
 }
