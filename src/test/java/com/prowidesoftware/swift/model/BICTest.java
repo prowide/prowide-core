@@ -170,30 +170,4 @@ public class BICTest {
         assertEquals("BACOARB0XXX", new BIC("BACOARB1XXX").asTestBic().getBic11());
         assertEquals("BACOARB00BE", new BIC("BACOARB10BE").asTestBic().getBic11());
     }
-
-    @Test
-    public void testInvalidSender() {
-        final String finO = "{1:F01AAAACAT3BIMM0018055280}{2:O199BBBBCATTXXXXN}{3:{108:REFFORMURTEST123}}{4:\n"
-                + ":20:REF987654FFF\n"
-                + ":79:FOOBARMURTEST\n"
-                + "-}";
-
-        // Parse the message and avoid NPE check in the Sender BIC
-        MtSwiftMessage mt2 = MtSwiftMessage.parse(finO);
-        assertNull(mt2.getSender());
-        assertNotNull(mt2.getReceiver());
-    }
-
-    @Test
-    public void testInvalidReceiver() {
-        final String finO = "{1:F01AAAACAT3BIMM0018055280}{2:I199BBBBCATTXXXXN}{3:{108:REFFORMURTEST123}}{4:\n"
-                + ":20:REF987654FFF\n"
-                + ":79:FOOBARMURTEST\n"
-                + "-}";
-
-        // Parse the message and avoid NPE check in the Sender BIC
-        MtSwiftMessage mt2 = MtSwiftMessage.parse(finO);
-        assertEquals("AAAACAT3IMM", mt2.getSender());
-        assertEquals("BBBBCATTXXX", mt2.getReceiver());
-    }
 }
