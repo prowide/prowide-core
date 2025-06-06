@@ -31,6 +31,9 @@ import java.util.Optional;
  */
 public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
 
+    private static final java.util.logging.Logger log =
+            java.util.logging.Logger.getLogger(DefaultMtMetadataStrategy.class.getName());
+
     /**
      * Extracts the MT main reference using {@link SwiftMessageUtils#reference(SwiftMessage)}
      */
@@ -70,10 +73,7 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
     @Override
     public Optional<String> sender(AbstractMessage message) {
         final String sender = SwiftMessageUtils.sender(asSwiftMessage(message));
-        if (sender != null) {
-            return Optional.of(new BIC(sender).getBic11());
-        }
-        return Optional.empty();
+        return getBIC(sender);
     }
 
     /**
@@ -83,8 +83,22 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
     @Override
     public Optional<String> receiver(AbstractMessage message) {
         final String receiver = SwiftMessageUtils.receiver(asSwiftMessage(message));
-        if (receiver != null) {
-            return Optional.of(new BIC(receiver).getBic11());
+        return getBIC(receiver);
+    }
+
+    /**
+     *
+     * @param inputBIC the BIC to validate and convert to BIC11 format
+     * @return the BIC11 format of the input BIC, if valid, or an empty Optional if the input is null or invalid.
+     */
+    private static Optional<String> getBIC(String inputBIC) {
+        if (inputBIC != null) {
+            BIC bic = new BIC(inputBIC);
+            if (bic.getBic11() != null) {
+                return Optional.of(bic.getBic11());
+            } else {
+                log.fine("Invalid BIC: " + inputBIC);
+            }
         }
         return Optional.empty();
     }
