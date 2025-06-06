@@ -24,7 +24,7 @@ archivesBaseName = 'pw-swift-core'
 group 'com.prowidesoftware'
 
 project.ext {
-    SRU = 'SRU2024'
+    SRU = 'SRU2025'
 }
 
 scmVersion {
@@ -33,8 +33,8 @@ scmVersion {
         versionSeparator.set('-')
     }
 }
-project.version = "${SRU}-${scmVersion.version}"
-//project.version = "${SRU}-9.5.0"
+//project.version = "${SRU}-${scmVersion.version}"
+project.version = "SRU2025-9.6.0-SNAPSHOT"
 
 java {
     toolchain {
@@ -55,7 +55,7 @@ repositories {
 
 dependencies {
     implementation 'org.apache.commons:commons-lang3:3.17.0'
-    implementation 'com.google.code.gson:gson:2.11.0'
+    implementation 'com.google.code.gson:gson:2.13.1'
 
     compileOnly 'javax.persistence:javax.persistence-api:2.2'
     compileOnly 'javax.xml.bind:jaxb-api:2.3.1'

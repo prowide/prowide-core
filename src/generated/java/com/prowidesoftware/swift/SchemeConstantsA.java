@@ -85,6 +85,7 @@ public interface SchemeConstantsA {
     String AREV = "AREV";
     String ACCTINFO = "ACCTINFO";
     String ACIN = "ACIN";
+    String ACPL = "ACPL";
     String ATAX = "ATAX";
     String AFFB = "AFFB";
     String ADSR = "ADSR";
@@ -135,7 +136,6 @@ public interface SchemeConstantsA {
     String ACCU = "ACCU";
     String ACLA = "ACLA";
     String ACLI = "ACLI";
-    String ACPL = "ACPL";
     String ACPR = "ACPR";
     String ACTU = "ACTU";
     String ACUS = "ACUS";
