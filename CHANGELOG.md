@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.3.1 - SNAPSHOT
+#### 10.3.1 - June 2025
   * (PW-2055) Fixed the default message metadata extraction for ACK/NAK to set the service message block 1 BIC as receiver, not as sender
   * (PW-2055) Enhanced the `SwiftMessageUtils` extractors to support the service 21 message type (ACK/NAK)
   * Fix: Enhanced the `DefaultMtMetadataStrategy` to prevent NPE when the message headers are malformed
