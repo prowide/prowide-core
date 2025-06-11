@@ -33,7 +33,6 @@ public interface SchemeConstantsT {
     String TAPC = "TAPC";
     String TRAX = "TRAX";
     String TRRE = "TRRE";
-    String TAXE = "TAXE";
     String TRTE = "TRTE";
     String TRCN = "TRCN";
     String TRTR = "TRTR";
@@ -49,6 +48,7 @@ public interface SchemeConstantsT {
     String TYCO = "TYCO";
     String TEXA = "TEXA";
     String TCRL = "TCRL";
+    String TAXE = "TAXE";
     String TEXP = "TEXP";
     String TRRF = "TRRF";
     String TPOU = "TPOU";
