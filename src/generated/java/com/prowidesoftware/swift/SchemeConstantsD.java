@@ -50,10 +50,12 @@ public interface SchemeConstantsD {
     String DCSD = "DCSD";
     String DACO = "DACO";
     String DENC = "DENC";
+    String DOCD = "DOCD";
     String DIVR = "DIVR";
     String DVCP = "DVCP";
     String DERY = "DERY";
     String DROP = "DROP";
+    String DTCH = "DTCH";
     String DEDI = "DEDI";
     String DSPL = "DSPL";
     String DEVI = "DEVI";
@@ -133,7 +135,6 @@ public interface SchemeConstantsD {
     String DNIN = "DNIN";
     String DNRE = "DNRE";
     String DOCC = "DOCC";
-    String DOCD = "DOCD";
     String DOCY = "DOCY";
     String DONE = "DONE";
     String DONF = "DONF";
@@ -149,7 +150,6 @@ public interface SchemeConstantsD {
     String DSCL = "DSCL";
     String DSEC = "DSEC";
     String DSET = "DSET";
-    String DTCH = "DTCH";
     String DTRA = "DTRA";
     String DTRD = "DTRD";
     String DUEB = "DUEB";
