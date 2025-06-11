@@ -6,6 +6,11 @@
   * Dependency update: commons-lang3 -> 3.17.0
   * Dependency update: gson -> 2.13.1
   * (PW-2371) Added a `uetr` field in the `AbstractSwiftMessage` to store the message's unique end-to-end transaction reference (UETR)
+
+#### 9.5.8 - June 2024
+  * Fix: Enhanced the `DefaultMtMetadataStrategy` to prevent NPE when the message headers are malformed
+
+#### 9.5.7 - May 2025
   * (PW-2055) Fixed the default message metadata extraction for ACK/NAK to set the service message block 1 BIC as receiver, not as sender
   * (PW-2055) Enhanced the `SwiftMessageUtils` extractors to support the service 21 message type (ACK/NAK)
   * Fix: Enhanced the `DefaultMtMetadataStrategy` to prevent NPE when the message headers are malformed
