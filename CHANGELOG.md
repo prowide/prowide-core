@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.2.8 - SNAPSHOT
+#### 10.2.8 - June 2024
   * Fix: Enhanced the `DefaultMtMetadataStrategy` to prevent NPE when the message headers are malformed
 
 #### 10.2.7 - May 2025
