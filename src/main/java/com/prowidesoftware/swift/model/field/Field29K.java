@@ -31,10 +31,10 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @deprecated This field has been removed since SRU2024
+ * @deprecated This field has been removed since SRU2025
  */
 @Deprecated
-@ProwideDeprecated(phase2 = TargetYear.SRU2025)
+@ProwideDeprecated(phase3 = TargetYear.SRU2026)
 public class Field29K extends Field implements Serializable {
     /**
      * Constant identifying the SRU to which this class belongs to.

@@ -1,5 +1,5 @@
 /*
-* Copyright 2006-2024 Prowide
+* Copyright 2006-2025 Prowide
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ package com.prowidesoftware.swift.model.field;
 import com.prowidesoftware.Generated;
 
 /**
-* Enumeration of fields for SRU 2024
+* Enumeration of fields for SRU 2025
 *
 * @since 9.5.2
 */
@@ -124,6 +124,7 @@ public enum FieldEnum {
     F19Z,
     F19,
     F20C,
+    F20N,
     F20D,
     F20E,
     F20U,
@@ -168,7 +169,6 @@ public enum FieldEnum {
     F22,
     F23A,
     F23B,
-    F23C,
     F23D,
     F23E,
     F23F,
@@ -253,6 +253,7 @@ public enum FieldEnum {
     F31R,
     F31S,
     F31T,
+    F31W,
     F31X,
     F32A,
     F32B,
@@ -573,7 +574,10 @@ public enum FieldEnum {
     F94G,
     F94H,
     F94L,
+    F94S,
+    F94T,
     F95C,
+    F95D,
     F95L,
     F95P,
     F95Q,
