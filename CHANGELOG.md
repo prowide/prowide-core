@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 10.3.2 - SNAPSHOT
+  * Fix: Updated components for Field 13W
+
 #### 10.3.1 - June 2025
   * (PW-2055) Fixed the default message metadata extraction for ACK/NAK to set the service message block 1 BIC as receiver, not as sender
   * (PW-2055) Enhanced the `SwiftMessageUtils` extractors to support the service 21 message type (ACK/NAK)
