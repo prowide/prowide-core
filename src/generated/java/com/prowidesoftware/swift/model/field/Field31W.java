@@ -48,14 +48,13 @@ import com.google.gson.JsonParser;
  * <ol>
  * 		<li>Component 1: Date: <code>Calendar</code></li>
  * 		<li>Component 2: Source: <code>String</code></li>
- * 		<li>Component 3: <code>Calendar</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>&lt;DATE4&gt;/4!c(**)</code></li>
  * 		<li>parser pattern: <code>S/S</code></li>
- * 		<li>components pattern: <code>DSH</code></li>
+ * 		<li>components pattern: <code>DS</code></li>
  * </ul>
  *
  * <p>
@@ -93,7 +92,7 @@ public class Field31W extends Field implements Serializable, DateContainer {
      * Default constructor. Creates a new field setting all components to null.
      */
     public Field31W() {
-        super(3);
+        super(2);
     }
 
     /**
@@ -165,7 +164,7 @@ public class Field31W extends Field implements Serializable, DateContainer {
      */
     @Override
     public void parse(final String value) {
-        init(3);
+        init(2);
         setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
         setComponent2(SwiftParseUtils.getTokenSecondLast(value, "/"));
     }
@@ -193,7 +192,7 @@ public class Field31W extends Field implements Serializable, DateContainer {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 3) {
+        if (component < 1 || component > 2) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 31W");
         }
         if (component == 1) {
@@ -204,18 +203,9 @@ public class Field31W extends Field implements Serializable, DateContainer {
                 return f.format(cal.getTime());
             }
         }
-        if (component == 2) {
-            //default format (as is)
-            return getComponent(2);
-        }
         // This is the last component, return directly without `if`
-        //time: HH[mm]
-        java.text.DateFormat f = new java.text.SimpleDateFormat("HH:mm", notNull(locale));
-        java.util.Calendar cal = getComponent3AsCalendar();
-        if (cal != null) {
-            return f.format(cal.getTime());
-        }
-        return null;
+        //default format (as is)
+        return getComponent(2);
     }
 
     /**
@@ -227,7 +217,7 @@ public class Field31W extends Field implements Serializable, DateContainer {
      */
     @Override
     public String typesPattern() {
-        return "DSH";
+        return "DS";
     }
 
     /**
@@ -278,7 +268,7 @@ public class Field31W extends Field implements Serializable, DateContainer {
      */
     @Override
     public int componentsSize() {
-        return 3;
+        return 2;
     }
 
     /**
@@ -293,7 +283,6 @@ public class Field31W extends Field implements Serializable, DateContainer {
         List<String> result = new ArrayList<>();
         result.add("Date");
         result.add("Source");
-        result.add(null);
         return result;
     }
 
@@ -375,23 +364,6 @@ public class Field31W extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Gets the component 3 (Source).
-     * @return the component 3
-     */
-    public String getComponent3() {
-        return getComponent(3);
-    }
-
-    /**
-     * Get the component 3 as Calendar
-     *
-     * @return the component 3 converted to Calendar or null if cannot be converted
-     */
-    public java.util.Calendar getComponent3AsCalendar() {
-        return SwiftFormatUtils.getTime3(getComponent(3));
-    }
-
-    /**
      * Set the component 1 (Date).
      *
      * @param component1 the Date to set
@@ -454,28 +426,6 @@ public class Field31W extends Field implements Serializable, DateContainer {
      */
     public Field31W setSource(String component2) {
         return setComponent2(component2);
-    }
-
-    /**
-     * Set the component 3 (Source).
-     *
-     * @param component3 the Source to set
-     * @return the field object to enable build pattern
-     */
-    public Field31W setComponent3(String component3) {
-        setComponent(3, component3);
-        return this;
-    }
-
-    /**
-     * Set the component3 from a Calendar object.
-     *
-     * @param component3 the Calendar with the Source content to set
-     * @return the field object to enable build pattern
-     */
-    public Field31W setComponent3(java.util.Calendar component3) {
-        setComponent(3, SwiftFormatUtils.getTime3(component3));
-        return this;
     }
 
 
@@ -594,7 +544,6 @@ public class Field31W extends Field implements Serializable, DateContainer {
         if (jsonObject.get("source") != null) {
             field.setComponent2(jsonObject.get("source").getAsString());
         }
-
 
         return field;
     }
