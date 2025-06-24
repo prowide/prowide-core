@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 10.33 - SNAPSHOT
+  * Adding a new entry to SchemeConstantsR class
+
 #### 10.3.2 - June 2025
   * Fix: Updated components for Field 13W
 
