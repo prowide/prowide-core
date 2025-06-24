@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.3.2 - SNAPSHOT
+#### 10.3.2 - June 2025
   * Fix: Updated components for Field 13W
 
 #### 10.3.1 - June 2025
