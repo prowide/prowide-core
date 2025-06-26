@@ -1,9 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 9.6.2 - SNAPSHOT
-  * Adding a new entry to SchemeConstantsR class
-
-#### 9.6.1 - SNAPSHOT
+#### 9.6.1 - June 2025
   * Fix: Updated components for Field 13W
   * (PW-2055) Fixed the default message metadata extraction for ACK/NAK to set the service message block 1 BIC as receiver, not as sender
   * (PW-2055) Enhanced the `SwiftMessageUtils` extractors to support the service 21 message type (ACK/NAK)
