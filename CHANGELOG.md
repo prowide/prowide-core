@@ -1,11 +1,26 @@
 # Prowide Core - CHANGELOG
 
+#### 9.6.1 - June 2025
+  * Fix: Updated components for Field 13W
+  * (PW-2055) Fixed the default message metadata extraction for ACK/NAK to set the service message block 1 BIC as receiver, not as sender
+  * (PW-2055) Enhanced the `SwiftMessageUtils` extractors to support the service 21 message type (ACK/NAK)
+  * Fix: Enhanced the `DefaultMtMetadataStrategy` to prevent NPE when the message headers are malformed
+
+#### 9.6.0 - June 2025
+  * SWIFT Standard release update 2025 (live 22 November 2025)
+  * Yearly revision of the deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
+  * Dependency update: commons-lang3 -> 3.17.0
+  * Dependency update: gson -> 2.13.1
+  * (PW-2371) Added a `uetr` field in the `AbstractSwiftMessage` to store the message's unique end-to-end transaction reference (UETR)
+
 #### 9.5.8 - June 2024
   * Fix: Enhanced the `DefaultMtMetadataStrategy` to prevent NPE when the message headers are malformed
 
 #### 9.5.7 - May 2025
   * (PW-2055) Fixed the default message metadata extraction for ACK/NAK to set the service message block 1 BIC as receiver, not as sender
   * (PW-2055) Enhanced the `SwiftMessageUtils` extractors to support the service 21 message type (ACK/NAK)
+  * Fix: Enhanced the `DefaultMtMetadataStrategy` to prevent NPE when the message headers are malformed
+  * Changed field 70 narrative resolver to use the free format parser, code/narrative appearing anywhere, not just at the beginning of a line
 
 #### 9.5.6 - April 2025
   * (CU-86b49rvw4) Updated label for Fields 14[P,Q,R]/16W/29[Q,W]
