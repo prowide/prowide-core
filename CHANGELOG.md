@@ -1,9 +1,9 @@
 # Prowide Core - CHANGELOG
 
-#### 10.2.9 - SNAPSHOT
+#### 10.2.9 - June 2025
   * (PW-2541) Updated the narrative resolver, format field 70 (used in field 70), to allow multiple lines and using // as codeword separator (/CODEWORD1/text///CODEWORD2/text) 
 
-#### 10.2.8 - June 2024
+#### 10.2.8 - June 2025
   * Fix: Enhanced the `DefaultMtMetadataStrategy` to prevent NPE when the message headers are malformed
 
 #### 10.2.7 - May 2025
