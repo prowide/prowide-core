@@ -918,7 +918,7 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat7_1() {
         String v = "/RFB/C767405OCP021001";
-        Narrative n = NarrativeResolver.parse(new Field70(v));
+        Narrative n = NarrativeResolver.parse(new Field77D(v));
         assertEquals(1, n.getStructured().size());
         assertEquals("C767405OCP021001", n.getStructured("RFB").getNarrative());
         assertNull(n.getUnstructured());
@@ -927,7 +927,7 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat7_2() {
         String v = "/CNC/FRA. 2213 CUENTA 18 SEPTIEMBRE\n" + "// MANT\n" + "//NIMIENTO EQUIPOS E INSTALACIONES";
-        Narrative n = NarrativeResolver.parse(new Field70(v));
+        Narrative n = NarrativeResolver.parse(new Field77D(v));
         assertEquals(1, n.getStructured().size());
         assertEquals(
                 "FRA. 2213 CUENTA 18 SEPTIEMBRE MANTNIMIENTO EQUIPOS E INSTALACIONES",
@@ -938,7 +938,7 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat7_3() {
         String v = "RESERVATION OF HOTEL";
-        Narrative n = NarrativeResolver.parse(new Field70(v));
+        Narrative n = NarrativeResolver.parse(new Field77D(v));
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured());
     }
@@ -972,6 +972,59 @@ public class NarrativeResolverTest {
         Narrative n = NarrativeResolver.parse(new Field77D(v));
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured("\n"));
+    }
+
+    /*
+     * FORMAT Field 70
+     *  Free format codes in slashes, joining all lines and separating using //
+     */
+
+    @Test
+    public void testFormatField70_1() {
+        String v = "/ULTD/ULTIMATE DEBTOR/GB/LONDON///U\n" + "LTB/ULTIMATE CREDITOR/JO/JORDAN";
+        Narrative n = NarrativeResolver.parse(new Field70(v));
+        assertEquals(2, n.getStructured().size());
+        assertEquals("ULTD", n.getStructured().get(0).getCodeword());
+        assertEquals(
+                "ULTIMATE DEBTOR/GB/LONDON",
+                n.getStructured().get(0).getNarrativeFragmentsDetail().get(0).getText());
+        assertEquals("ULTB", n.getStructured().get(1).getCodeword());
+        assertEquals(
+                "ULTIMATE CREDITOR/JO/JORDAN",
+                n.getStructured().get(1).getNarrativeFragmentsDetail().get(0).getText());
+    }
+
+    @Test
+    public void testFormatField70_2() {
+        String v = "/ULTD/CITIJOAXXXX///ULTB/JIBAJOAMXX\n"
+                + "X///PURP/ACCT///PURP/PRTRY456009///\n"
+                + "ROC/2120-2102111PACS008///SRI/+";
+        Narrative n = NarrativeResolver.parse(new Field70(v));
+        assertEquals(6, n.getStructured().size());
+        assertEquals("ULTD", n.getStructured().get(0).getCodeword());
+        assertEquals(
+                "CITIJOAXXXX",
+                n.getStructured().get(0).getNarrativeFragmentsDetail().get(0).getText());
+        assertEquals("ULTB", n.getStructured().get(1).getCodeword());
+        assertEquals(
+                "JIBAJOAMXXX",
+                n.getStructured().get(1).getNarrativeFragmentsDetail().get(0).getText());
+        assertEquals("PURP", n.getStructured().get(2).getCodeword());
+        assertEquals(
+                "ACCT",
+                n.getStructured().get(2).getNarrativeFragmentsDetail().get(0).getText());
+        assertEquals("PURP", n.getStructured().get(3).getCodeword());
+        assertEquals(
+                "PRTRY456009",
+                n.getStructured().get(3).getNarrativeFragmentsDetail().get(0).getText());
+        assertEquals("ROC", n.getStructured().get(4).getCodeword());
+        assertEquals(
+                "2120-2102111PACS008",
+                n.getStructured().get(4).getNarrativeFragmentsDetail().get(0).getText());
+        assertEquals("SRI", n.getStructured().get(5).getCodeword());
+        assertEquals(
+                "+",
+                n.getStructured().get(5).getNarrativeFragmentsDetail().get(0).getText());
     }
 
     /*
