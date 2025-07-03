@@ -88,6 +88,16 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     private List<String> tagnamesToIgnore = new ArrayList<>();
 
     /**
+     * @since 10.2.10
+     */
+    protected boolean ignoreSenderInputTime = false;
+
+    /**
+     * @since 10.2.10
+     */
+    protected boolean ignoreReceiverOutputTime = false;
+
+    /**
      * @return true if block is null or empty
      */
     private static boolean isBlank(final SwiftTagListBlock b) {
@@ -160,15 +170,16 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
 
     private boolean compareB2Output(final SwiftBlock2Output left, final SwiftBlock2Output right) {
         boolean sameType = StringUtils.equals(left.getMessageType(), right.getMessageType());
-        boolean sameSenderInputTime = StringUtils.equals(left.getSenderInputTime(), right.getSenderInputTime());
+        boolean sameSenderInputTime =
+                ignoreSenderInputTime || StringUtils.equals(left.getSenderInputTime(), right.getSenderInputTime());
         boolean sameMIRDate = StringUtils.equals(left.getMIRDate(), right.getMIRDate());
         boolean sameMIRLogicalTerminal = compareLTAddress(left.getMIRLogicalTerminal(), right.getMIRLogicalTerminal());
         boolean sameMIRSessionNumber = StringUtils.equals(left.getMIRSessionNumber(), right.getMIRSessionNumber());
         boolean sameMIRSequenceNumber = StringUtils.equals(left.getMIRSequenceNumber(), right.getMIRSequenceNumber());
         boolean sameReceiverOutputDate =
                 StringUtils.equals(left.getReceiverOutputDate(), right.getReceiverOutputDate());
-        boolean sameReceiverOutputTime =
-                StringUtils.equals(left.getReceiverOutputTime(), right.getReceiverOutputTime());
+        boolean sameReceiverOutputTime = ignoreReceiverOutputTime
+                || StringUtils.equals(left.getReceiverOutputTime(), right.getReceiverOutputTime());
         boolean samePriority =
                 ignorePriority || StringUtils.equals(left.getMessagePriority(), right.getMessagePriority());
         return sameType
@@ -491,5 +502,39 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
      */
     public void setIgnorePriority(boolean ignorePriority) {
         this.ignorePriority = ignorePriority;
+    }
+
+    /**
+     * @see #setIgnoreSenderInputTime(boolean)
+     * @since 10.2.10
+     */
+    public boolean isIgnoreSenderInputTime() {
+        return ignoreSenderInputTime;
+    }
+
+    /**
+     * If this is set to true, the sender input time value in block 2 will be ignored in the comparison.
+     *
+     * @since 10.2.10
+     */
+    public void setIgnoreSenderInputTime(final boolean ignoreSenderInputTime) {
+        this.ignoreSenderInputTime = ignoreSenderInputTime;
+    }
+
+    /**
+     * @see #setIgnoreReceiverOutputTime(boolean)
+     * @since 10.2.10
+     */
+    public boolean isIgnoreReceiverOutputTime() {
+        return ignoreReceiverOutputTime;
+    }
+
+    /**
+     * If this is set to true, the receiver output time value in block 2 will be ignored in the comparison.
+     *
+     * @since 10.2.10
+     */
+    public void setIgnoreReceiverOutputTime(final boolean ignoreReceiverOutputTime) {
+        this.ignoreReceiverOutputTime = ignoreReceiverOutputTime;
     }
 }

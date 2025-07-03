@@ -219,6 +219,30 @@ public class SwiftMessageComparatorTest {
     }
 
     @Test
+    public void testB2OutputSenderInputTime() {
+        SwiftMessageComparator comp = new SwiftMessageComparator();
+
+        SwiftBlock2Output b3 = new SwiftBlock2Output("O1001200010103BANKBEBBAXXX22221234560101031201N");
+        SwiftBlock2Output b4 = new SwiftBlock2Output("O1001201010103BANKBEBBAXXX22221234560101031201N");
+        assertFalse(comp.compareB2(b3, b4));
+
+        comp.setIgnoreSenderInputTime(true);
+        assertTrue(comp.compareB2(b3, b4));
+    }
+
+    @Test
+    public void testB2OutputReceiverOutputTime() {
+        SwiftMessageComparator comp = new SwiftMessageComparator();
+
+        SwiftBlock2Output b3 = new SwiftBlock2Output("O1001200010103BANKBEBBAXXX22221234560101031201N");
+        SwiftBlock2Output b4 = new SwiftBlock2Output("O1001200010103BANKBEBBAXXX22221234560101031202N");
+        assertFalse(comp.compareB2(b3, b4));
+
+        comp.setIgnoreReceiverOutputTime(true);
+        assertTrue(comp.compareB2(b3, b4));
+    }
+
+    @Test
     public void testB2OutputPriority() {
         SwiftMessageComparator comp = new SwiftMessageComparator();
 
