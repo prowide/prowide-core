@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
+import static org.apache.commons.lang3.StringEscapeUtils.unescapeXml;
+
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.Field;
@@ -339,7 +341,7 @@ public class XMLParser {
                 tag.setName(getText(n));
             }
             if ("value".equalsIgnoreCase(n.getNodeName())) {
-                String text = getText(n);
+                String text = unescapeXml(getText(n));
                 // normalize line feeds (DOM parser removes carriage return characters from original XML file)
                 text = StringUtils.replace(text, "\n", FINWriterVisitor.SWIFT_EOL);
                 tag.setValue(text);
@@ -377,7 +379,7 @@ public class XMLParser {
                 if ("component".equalsIgnoreCase(n.getNodeName())) {
                     final String number = getNodeAttribute(n, "number");
                     if (StringUtils.isNumeric(number)) {
-                        String text = getText(n);
+                        String text = unescapeXml(getText(n));
                         // normalize line feeds (DOM parser removes carriage return characters from original XML file)
                         text = StringUtils.replace(text, "\n", FINWriterVisitor.SWIFT_EOL);
                         try {

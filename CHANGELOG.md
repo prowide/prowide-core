@@ -1,5 +1,10 @@
 # Prowide Core - CHANGELOG
 
+#### 10.2.10 - SNAPSHOT
+  * chore: Enhanced the `SwiftMessageComparator` to allow less strict comparison regarding Block2's Sender Input Time and Receiver Output Time
+  * chore: Enhanced the Xml parsing logic to escape/unescape `<` and `>` characters in the XML content
+  * chore: Added xsd for validating the result for AbstractMt.xml() output
+
 #### 10.2.9 - June 2025
   * (PW-2541) Updated the narrative resolver, format field 70 (used in field 70), to allow multiple lines and using // as codeword separator (/CODEWORD1/text///CODEWORD2/text) 
 
