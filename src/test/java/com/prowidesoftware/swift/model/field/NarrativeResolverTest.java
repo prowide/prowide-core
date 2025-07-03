@@ -1097,6 +1097,67 @@ public class NarrativeResolverTest {
     }
 
     /*
+     * FORMAT Field 70
+     *  Free format codes in slashes, joining all lines and separating using //
+     */
+
+    @Test
+    public void testFormatField70_1() {
+        String v = "/ULTD/ULTIMATE DEBTOR/GB/LONDON///U\n" + "LTB/ULTIMATE CREDITOR/JO/JORDAN";
+
+        Field f = new Field70(v);
+        assertEquals(70, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
+
+        assertEquals(2, n.getStructured().size());
+        assertEquals("ULTD", n.getStructured().get(0).getCodeword());
+        assertEquals(
+                "ULTIMATE DEBTOR/GB/LONDON",
+                n.getStructured().get(0).getNarrativeFragmentsDetail().get(0).getText());
+        assertEquals("ULTB", n.getStructured().get(1).getCodeword());
+        assertEquals(
+                "ULTIMATE CREDITOR/JO/JORDAN",
+                n.getStructured().get(1).getNarrativeFragmentsDetail().get(0).getText());
+    }
+
+    @Test
+    public void testFormatField70_2() {
+        String v = "/ULTD/CITIJOAXXXX///ULTB/JIBAJOAMXX\n"
+                + "X///PURP/ACCT///PURP/PRTRY456009///\n"
+                + "ROC/2120-2102111PACS008///SRI/+";
+
+        Field f = new Field70(v);
+        assertEquals(70, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
+
+        assertEquals(6, n.getStructured().size());
+        assertEquals("ULTD", n.getStructured().get(0).getCodeword());
+        assertEquals(
+                "CITIJOAXXXX",
+                n.getStructured().get(0).getNarrativeFragmentsDetail().get(0).getText());
+        assertEquals("ULTB", n.getStructured().get(1).getCodeword());
+        assertEquals(
+                "JIBAJOAMXXX",
+                n.getStructured().get(1).getNarrativeFragmentsDetail().get(0).getText());
+        assertEquals("PURP", n.getStructured().get(2).getCodeword());
+        assertEquals(
+                "ACCT",
+                n.getStructured().get(2).getNarrativeFragmentsDetail().get(0).getText());
+        assertEquals("PURP", n.getStructured().get(3).getCodeword());
+        assertEquals(
+                "PRTRY456009",
+                n.getStructured().get(3).getNarrativeFragmentsDetail().get(0).getText());
+        assertEquals("ROC", n.getStructured().get(4).getCodeword());
+        assertEquals(
+                "2120-2102111PACS008",
+                n.getStructured().get(4).getNarrativeFragmentsDetail().get(0).getText());
+        assertEquals("SRI", n.getStructured().get(5).getCodeword());
+        assertEquals(
+                "+",
+                n.getStructured().get(5).getNarrativeFragmentsDetail().get(0).getText());
+    }
+
+    /*
      * FORMAT 8
      *  Free format codes in slashes, not necessary on new lines
      */
