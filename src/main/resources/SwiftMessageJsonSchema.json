@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/swift-fin-envelope.schema.json",
+  "title": "SWIFT FIN message envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "timestamp",
+    "version",
+    "data"
+  ],
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "block1",
+        "block4"
+      ],
+      "properties": {
+        "block1": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "applicationId",
+            "serviceId",
+            "logicalTerminal",
+            "sessionNumber",
+            "sequenceNumber"
+          ],
+          "properties": {
+            "applicationId": {
+              "type": "string",
+              "pattern": "^[AFL]$"
+            },
+            "serviceId": {
+              "type": "string",
+              "pattern": "^\\d{2}$"
+            },
+            "logicalTerminal": {
+              "type": "string",
+              "pattern": "^[A-Z0-9]{12}$"
+            },
+            "sessionNumber": {
+              "type": "string",
+              "pattern": "^\\d{4}$"
+            },
+            "sequenceNumber": {
+              "type": "string",
+              "pattern": "^\\d{6}$"
+            }
+          }
+        },
+        "block2": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "messageType"
+          ],
+          "properties": {
+            "messageType": {
+              "type": "string"
+            },
+            "receiverAddress": {
+              "type": "string"
+            },
+            "senderAddress": {
+              "type": "string"
+            },
+            "senderInputTime": {
+              "type": "string"
+            },
+            "MIRDate": {
+              "type": "string"
+            },
+            "MIRLogicalTerminal": {
+              "type": "string"
+            },
+            "MIRSessionNumber": {
+              "type": "string"
+            },
+            "MIRSequenceNumber": {
+              "type": "string"
+            },
+            "sessionNumber": {
+              "type": "string"
+            },
+            "sequenceNumber": {
+              "type": "string"
+            },
+            "receiverOutputDate": {
+              "type": "string"
+            },
+            "receiverOutputTime": {
+              "type": "string"
+            },
+            "messagePriority": {
+              "type": "string"
+            },
+            "deliveryMonitoring": {
+              "type": "string"
+            },
+            "obsolescencePeriod": {
+              "type": "string"
+            },
+            "blockType": {
+              "type": "string"
+            },
+            "direction": {
+              "type": "string"
+            }
+          }
+        },
+        "block3": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tags": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "pattern": "^[A-Z0-9]{1,3}$"
+                  },
+                  "value": {
+                    "type": "string",
+                    "maxLength": 64
+                  }
+                }
+              }
+            }
+          }
+        },
+        "block4": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tags": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "pattern": "^[0-9A-Z]{1,5}$"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "block5": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tags": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "pattern": "^[A-Z0-9]{1,3}$"
+                  },
+                  "value": {
+                    "type": "string",
+                    "maxLength": 64
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
