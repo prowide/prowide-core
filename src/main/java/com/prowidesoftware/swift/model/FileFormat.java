@@ -15,9 +15,6 @@
  */
 package com.prowidesoftware.swift.model;
 
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
-
 /**
  * Supported file formats in the {@link AbstractSwiftMessage} hierarchy.
  *
@@ -33,12 +30,6 @@ public enum FileFormat {
      * Prowide CORE XML format
      */
     CORE_XML("xml"),
-    /**
-     * @deprecated undefined and unused file format
-     */
-    @Deprecated
-    @ProwideDeprecated(phase3 = TargetYear.SRU2025)
-    MQ_MT("mt"),
     /**
      * Only valid for MT.
      * Remote Job Entry

@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2025 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,78 +15,81 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.prowidesoftware.swift.model.Tag;
+import com.prowidesoftware.Generated;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
-import com.prowidesoftware.swift.model.*;
-import com.prowidesoftware.swift.model.Tag;
-import com.prowidesoftware.swift.utils.SwiftFormatUtils;
+
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.HashMap;
+
+
+import com.prowidesoftware.swift.model.field.GenericField;
+
+import com.prowidesoftware.swift.model.*;
+import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 /**
- * SWIFT MT Field 34K.
+ * SWIFT MT Field 20N.
  * <p>
- * Model and parser for field 34K of a SWIFT MT message.
+ * Model and parser for field 20N of a SWIFT MT message.
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: Currency: <code>String</code></li>
- * 		<li>Component 2: Amount: <code>BigDecimal</code></li>
+ * 		<li>Component 1: Qualifier: <code>String</code></li>
+ * 		<li>Component 2: Reference: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>3!a&lt;AMOUNT&gt;15</code></li>
- * 		<li>parser pattern: <code>SN</code></li>
- * 		<li>components pattern: <code>SN</code></li>
+ * 		<li>validation pattern: <code>:4!c//35x(***)</code></li>
+ * 		<li>parser pattern: <code>:S//S</code></li>
+ * 		<li>components pattern: <code>SS</code></li>
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2022</strong>
- *
- * @deprecated This field has been moved to the Prowide Integrator since it is only used in SCORE messages, not in the general MT standard
+ * This class complies with standard release <strong>SRU2025</strong>
  */
-@Deprecated
-@ProwideDeprecated(phase4 = TargetYear.SRU2025)
-public class Field34K extends Field implements Serializable, AmountContainer {
-    /**
-     * Constant identifying the SRU to which this class belongs to.
-     */
-    public static final int SRU = 2022;
+@SuppressWarnings("unused")
+@Generated
+public class Field20N extends Field implements Serializable, GenericField {
+	/**
+	 * Constant identifying the SRU to which this class belongs to.
+	 */
+	public static final int SRU = 2025;
 
-    private static final long serialVersionUID = 1L;
-    /**
-     * Constant with the field name 34K.
-     */
-    public static final String NAME = "34K";
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Constant with the field name 20N.
+	 */
+    public static final String NAME = "20N";
     /**
      * Same as NAME, intended to be clear when using static imports.
      */
-    public static final String F_34K = "34K";
+    public static final String F_20N = "20N";
 
-    /**
-     * Component number for the Currency subfield.
-     */
-    public static final Integer CURRENCY = 1;
+	/**
+	 * Component number for the Qualifier subfield.
+	 */
+	public static final Integer QUALIFIER = 1;
 
-    /**
-     * Component number for the Amount subfield.
-     */
-    public static final Integer AMOUNT = 2;
+	/**
+	 * Component number for the Reference subfield.
+	 */
+	public static final Integer REFERENCE = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
-    public Field34K() {
+    public Field20N() {
         super(2);
     }
 
@@ -94,7 +97,7 @@ public class Field34K extends Field implements Serializable, AmountContainer {
      * Creates a new field and initializes its components with content from the parameter value.
      * @param value complete field value including separators and CRLF
      */
-    public Field34K(final String value) {
+    public Field20N(final String value) {
         super(value);
     }
 
@@ -104,14 +107,13 @@ public class Field34K extends Field implements Serializable, AmountContainer {
      * @throws IllegalArgumentException if the parameter tag is null or its tagname does not match the field name
      * @since 7.8
      */
-    public Field34K(final Tag tag) {
+    public Field20N(final Tag tag) {
         this();
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!StringUtils.equals(tag.getName(), "34K")) {
-            throw new IllegalArgumentException("cannot create field 34K from tag " + tag.getName()
-                    + ", tagname must match the name of the field.");
+        if (!StringUtils.equals(tag.getName(), "20N")) {
+            throw new IllegalArgumentException("cannot create field 20N from tag "+tag.getName()+", tagname must match the name of the field.");
         }
         parse(tag.getValue());
     }
@@ -122,8 +124,8 @@ public class Field34K extends Field implements Serializable, AmountContainer {
      * @param source a field instance to copy
      * @since 7.7
      */
-    public static Field34K newInstance(Field34K source) {
-        Field34K cp = new Field34K();
+    public static Field20N newInstance(Field20N source) {
+        Field20N cp = new Field20N();
         cp.setComponents(new ArrayList<>(source.getComponents()));
         return cp;
     }
@@ -148,6 +150,7 @@ public class Field34K extends Field implements Serializable, AmountContainer {
         return new Tag(NAME, "");
     }
 
+
     /**
      * Parses the parameter value into the internal components structure.
      *
@@ -160,8 +163,8 @@ public class Field34K extends Field implements Serializable, AmountContainer {
     @Override
     public void parse(final String value) {
         init(2);
-        setComponent1(SwiftParseUtils.getAlphaPrefix(value));
-        setComponent2(SwiftParseUtils.getNumericSuffix(value));
+        setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "//"));
+        setComponent2(SwiftParseUtils.getTokenSecondLast(value, "//"));
     }
 
     /**
@@ -170,7 +173,10 @@ public class Field34K extends Field implements Serializable, AmountContainer {
     @Override
     public String getValue() {
         final StringBuilder result = new StringBuilder();
-        result.append(joinComponents());
+        result.append(":");
+        append(result, 1);
+        result.append("//");
+        append(result, 2);
         return result.toString();
     }
 
@@ -186,32 +192,27 @@ public class Field34K extends Field implements Serializable, AmountContainer {
     @Override
     public String getValueDisplay(int component, Locale locale) {
         if (component < 1 || component > 2) {
-            throw new IllegalArgumentException("invalid component number " + component + " for field 34K");
+            throw new IllegalArgumentException("invalid component number " + component + " for field 20N");
         }
         if (component == 1) {
-            // default format (as is)
+            //default format (as is)
             return getComponent(1);
         }
-        // amount, rate
-        java.text.NumberFormat f = java.text.NumberFormat.getNumberInstance(notNull(locale));
-        f.setMaximumFractionDigits(13);
-        BigDecimal n = getComponent2AsBigDecimal();
-        if (n != null) {
-            return f.format(n);
-        }
-        return null;
+        // This is the last component, return directly without `if`
+        //default format (as is)
+        return getComponent(2);
     }
 
     /**
      * Returns the field component types pattern.
-     *
+     * <p>
      * This method returns a letter representing the type for each component in the Field. It supersedes
      * the Components Pattern because it distinguishes between N (Number) and I (BigDecimal).
      * @since 9.2.7
      */
     @Override
     public String typesPattern() {
-        return "SI";
+        return "SS";
     }
 
     /**
@@ -219,7 +220,7 @@ public class Field34K extends Field implements Serializable, AmountContainer {
      */
     @Override
     public String parserPattern() {
-        return "SN";
+        return ":S//S";
     }
 
     /**
@@ -227,7 +228,7 @@ public class Field34K extends Field implements Serializable, AmountContainer {
      */
     @Override
     public String validatorPattern() {
-        return "3!a<AMOUNT>15";
+        return ":4!c//35x(***)";
     }
 
     /**
@@ -251,7 +252,7 @@ public class Field34K extends Field implements Serializable, AmountContainer {
      */
     @Override
     public boolean isGeneric() {
-        return false;
+        return true;
     }
 
     /**
@@ -275,8 +276,8 @@ public class Field34K extends Field implements Serializable, AmountContainer {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Currency");
-        result.add("Amount");
+        result.add("Qualifier");
+        result.add("Reference");
         return result;
     }
 
@@ -287,8 +288,8 @@ public class Field34K extends Field implements Serializable, AmountContainer {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "currency");
-        result.put(2, "amount");
+        result.put(1, "qualifier");
+        result.put(2, "reference");
         return result;
     }
 
@@ -303,13 +304,13 @@ public class Field34K extends Field implements Serializable, AmountContainer {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
-        super.labelMap.put("currency", 1);
-        super.labelMap.put("amount", 2);
+        super.labelMap.put("qualifier", 1);
+        super.labelMap.put("reference", 2);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 (Currency).
+     * Gets the component 1 (Qualifier).
      * @return the component 1
      */
     public String getComponent1() {
@@ -317,15 +318,15 @@ public class Field34K extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Gets the Currency (component 1).
-     * @return the Currency from component 1
+     * Gets the Qualifier (component 1).
+     * @return the Qualifier from component 1
      */
-    public String getCurrency() {
+    public String getQualifier() {
         return getComponent1();
     }
 
     /**
-     * Gets the component 2 (Amount).
+     * Gets the component 2 (Reference).
      * @return the component 2
      */
     public String getComponent2() {
@@ -333,138 +334,97 @@ public class Field34K extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Get the component 2 as BigDecimal
-     *
-     * @return the component 2 converted to BigDecimal or null if cannot be converted
-     * @since 9.2.7
+     * Gets the Reference (component 2).
+     * @return the Reference from component 2
      */
-    public java.math.BigDecimal getComponent2AsBigDecimal() {
-        return SwiftFormatUtils.getBigDecimal(getComponent(2));
-    }
-
-    /**
-     * Gets the Amount (component 2).
-     * @return the Amount from component 2
-     */
-    public String getAmount() {
+    public String getReference() {
         return getComponent2();
     }
 
     /**
-     * Get the Amount (component 2) as BigDecimal
-     * @return the Amount from component 2 converted to BigDecimal or null if cannot be converted
-     * @since 9.2.7
-     */
-    public java.math.BigDecimal getAmountAsBigDecimal() {
-        return getComponent2AsBigDecimal();
-    }
-
-    /**
-     * Set the component 1 (Currency).
+     * Set the component 1 (Qualifier).
      *
-     * @param component1 the Currency to set
+     * @param component1 the Qualifier to set
      * @return the field object to enable build pattern
      */
-    public Field34K setComponent1(String component1) {
+    public Field20N setComponent1(String component1) {
         setComponent(1, component1);
         return this;
     }
 
     /**
-     * Set the Currency (component 1).
+     * Set the Qualifier (component 1).
      *
-     * @param component1 the Currency to set
+     * @param component1 the Qualifier to set
      * @return the field object to enable build pattern
      */
-    public Field34K setCurrency(String component1) {
+    public Field20N setQualifier(String component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Set the component 2 (Amount).
+     * Set the component 2 (Reference).
      *
-     * @param component2 the Amount to set
+     * @param component2 the Reference to set
      * @return the field object to enable build pattern
      */
-    public Field34K setComponent2(String component2) {
+    public Field20N setComponent2(String component2) {
         setComponent(2, component2);
         return this;
     }
 
     /**
-     * Alternative method setter for field's Amount (component 2) as as Number
+     * Set the Reference (component 2).
      *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10.0 becomes an Float)
-     *
-     * @param component2 the Number with the Amount content to set
+     * @param component2 the Reference to set
      * @return the field object to enable build pattern
      */
-    public Field34K setComponent2(java.lang.Number component2) {
-
-        // NOTE: remember instanceof implicitly checks for non-null
-
-        if (component2 instanceof BigDecimal) {
-            setComponent(2, SwiftFormatUtils.getBigDecimal((BigDecimal) component2));
-        } else if (component2 instanceof BigInteger) {
-            setComponent(2, SwiftFormatUtils.getBigDecimal(new BigDecimal((BigInteger) component2)));
-        } else if (component2 instanceof Long || component2 instanceof Integer) {
-            setComponent(2, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component2.longValue())));
-        } else if (component2 != null) {
-            // it's other non-null Number (Float, Double, etc...)
-            setComponent(2, SwiftFormatUtils.getBigDecimal(BigDecimal.valueOf(component2.doubleValue())));
-        } else {
-            // explicitly set component as null
-            setComponent(2, null);
-        }
-        return this;
-    }
-
-    /**
-     * Set the Amount (component 2).
-     *
-     * @param component2 the Amount to set
-     * @return the field object to enable build pattern
-     */
-    public Field34K setAmount(String component2) {
+    public Field20N setReference(String component2) {
         return setComponent2(component2);
     }
 
-    /**
-     * Alternative method setter for field's Amount (component 2) as as Number
-     *
-     * This method supports java constant value boxing for simpler coding styles (ex: 10 becomes an Integer)
-     *
-     * @param component2 the Number with the Amount content to set
-     * @return the field object to enable build pattern
-     */
-    public Field34K setAmount(java.lang.Number component2) {
-        return setComponent2(component2);
-    }
+
 
     /**
-     * Returns the list of all NON-NULL amounts as BigDecimal
+     * Returns the issuer code (or Data Source Scheme or DSS).
+     * The DSS is only present in some generic fields, when present, is equals to component two.
      *
-     * @return the list of NON-NULL amounts as BigDecimal values
-     * @see AmountResolver#amounts(Field)
-     */
-    public List<BigDecimal> amounts() {
-        return AmountResolver.amounts(this);
-    }
-
-    /**
-     * Returns the first amounts as BigDecimal
-     *
-     * @return the first amount as BigDecimal value. Can be null
-     * @see AmountResolver#amount(Field)
+     * @return DSS component value or null if the DSS is not set or not available for this field.
      */
     @Override
-    public BigDecimal amount() {
-        return AmountResolver.amount(this);
+    public String getDSS() {
+        return null;
+    }
+
+    /**
+     * Checks if the issuer code (or Data Source Scheme or DSS) is present.
+     *
+     * @see #getDSS()
+     * @return true if DSS is present, false otherwise.
+     */
+    @Override
+    public boolean isDSSPresent() {
+        return false;
+    }
+
+    /**
+     * Component number for the conditional qualifier subfield.
+     */
+    public static final Integer CONDITIONAL_QUALIFIER = 2;
+
+    /**
+     * Gets the component with the conditional (secondary) qualifier.
+     *
+     * @return for generic fields returns the value of the conditional qualifier or null if not set or not applicable for this field.
+     */
+    @Override
+    public String getConditionalQualifier() {
+        return getComponent(CONDITIONAL_QUALIFIER);
     }
 
     /**
      * Returns the field's name composed by the field number and the letter option (if any).
-     * @return the static value of Field34K.NAME
+     * @return the static value of Field20N.NAME
      */
     @Override
     public String getName() {
@@ -476,7 +436,7 @@ public class Field34K extends Field implements Serializable, AmountContainer {
      * @return null if not found o block is null or empty
      * @param block may be null or empty
      */
-    public static Field34K get(final SwiftTagListBlock block) {
+    public static Field20N get(final SwiftTagListBlock block) {
         if (block == null || block.isEmpty()) {
             return null;
         }
@@ -484,16 +444,16 @@ public class Field34K extends Field implements Serializable, AmountContainer {
         if (t == null) {
             return null;
         }
-        return new Field34K(t);
+        return new Field20N(t);
     }
 
     /**
-     * Gets the first instance of Field34K in the given message.
+     * Gets the first instance of Field20N in the given message.
      * @param msg may be empty or null
      * @return null if not found or msg is empty or null
      * @see #get(SwiftTagListBlock)
      */
-    public static Field34K get(final SwiftMessage msg) {
+    public static Field20N get(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return null;
         }
@@ -501,12 +461,12 @@ public class Field34K extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field34K in the given message
+     * Gets a list of all occurrences of the field Field20N in the given message
      * an empty list is returned if none found.
      * @param msg may be empty or null in which case an empty list is returned
      * @see #getAll(SwiftTagListBlock)
      */
-    public static List<Field34K> getAll(final SwiftMessage msg) {
+    public static List<Field20N> getAll(final SwiftMessage msg) {
         if (msg == null || msg.getBlock4() == null || msg.getBlock4().isEmpty()) {
             return java.util.Collections.emptyList();
         }
@@ -514,50 +474,52 @@ public class Field34K extends Field implements Serializable, AmountContainer {
     }
 
     /**
-     * Gets a list of all occurrences of the field Field34K from the given block
+     * Gets a list of all occurrences of the field Field20N from the given block
      * an empty list is returned if none found.
      *
      * @param block may be empty or null in which case an empty list is returned
      */
-    public static List<Field34K> getAll(final SwiftTagListBlock block) {
-        final List<Field34K> result = new ArrayList<>();
+    public static List<Field20N> getAll(final SwiftTagListBlock block) {
+        final List<Field20N> result = new ArrayList<>();
         if (block == null || block.isEmpty()) {
             return result;
         }
         final Tag[] arr = block.getTagsByName(NAME);
         if (arr != null) {
             for (final Tag f : arr) {
-                result.add(new Field34K(f));
+                result.add(new Field20N(f));
             }
         }
         return result;
     }
 
     /**
-     * This method deserializes the JSON data into a Field34K object.
+     * This method deserializes the JSON data into a Field20N object.
      * @param json JSON structure including tuples with label and value for all field components
      * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
      * @since 7.10.3
      * @see Field#fromJson(String)
      */
-    public static Field34K fromJson(final String json) {
+    public static Field20N fromJson(final String json) {
 
-        final Field34K field = new Field34K();
+        final Field20N field = new Field20N();
 
         final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-        // **** COMPONENT 1 - Currency
+        // **** COMPONENT 1 - Qualifier
 
-        if (jsonObject.get("currency") != null) {
-            field.setComponent1(jsonObject.get("currency").getAsString());
+        if (jsonObject.get("qualifier") != null) {
+            field.setComponent1(jsonObject.get("qualifier").getAsString());
         }
 
-        // **** COMPONENT 2 - Amount
+        // **** COMPONENT 2 - Reference
 
-        if (jsonObject.get("amount") != null) {
-            field.setComponent2(jsonObject.get("amount").getAsString());
+        if (jsonObject.get("reference") != null) {
+            field.setComponent2(jsonObject.get("reference").getAsString());
         }
 
         return field;
     }
+
+
 }
