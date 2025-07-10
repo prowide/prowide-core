@@ -34,6 +34,7 @@ scmVersion {
     }
 }
 project.version = "${SRU}-${scmVersion.version}"
+//project.version = "SRU2025-10.3.3"
 
 java {
     toolchain {
@@ -62,6 +63,7 @@ dependencies {
 
     testImplementation 'javax.validation:validation-api:2.0.1.Final'
     testImplementation 'javax.persistence:javax.persistence-api:2.2'
+    testImplementation 'com.networknt:json-schema-validator:1.5.8'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
     testImplementation 'org.assertj:assertj-core:3.27.2'
     testImplementation 'org.xmlunit:xmlunit-core:2.10.0'
@@ -210,11 +212,6 @@ java {
     withJavadocJar()
     withSourcesJar()
 }
-nexusPublishing {
-    repositories {
-        sonatype()
-    }
-}
 
 // Zip GitHub releases
 distributions {
@@ -241,26 +238,80 @@ distZip {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
-// Alternative (manual) staging upload to OSS Sonatype
-tasks.register('bundle', Jar) {
-    dependsOn build
+tasks.register('generateChecksums') {
+    dependsOn jar, sourcesJar, javadocJar, generatePomFileForMavenJavaPublication
+    description 'Generates MD5 and SHA1 checksums for artifacts and POM'
+    doLast {
+        def filesToChecksum = [
+                "${buildDir}/libs/${project.archivesBaseName}-${project.version}.jar",
+                "${buildDir}/libs/${project.archivesBaseName}-${project.version}-sources.jar",
+                "${buildDir}/libs/${project.archivesBaseName}-${project.version}-javadoc.jar",
+                "${buildDir}/publications/mavenJava/pom-default.xml"
+        ]
+
+        filesToChecksum.each { filePath ->
+            def file = file(filePath)
+            if (file.exists()) {
+                // Generate MD5
+                def md5Digest = java.security.MessageDigest.getInstance('MD5')
+                file.withInputStream { stream ->
+                    byte[] buffer = new byte[8192]
+                    int read
+                    while ((read = stream.read(buffer)) > 0) {
+                        md5Digest.update(buffer, 0, read)
+                    }
+                }
+                def md5Checksum = md5Digest.digest().encodeHex().toString()
+                new File("${file}.md5").text = md5Checksum
+
+                // Generate SHA1
+                def sha1Digest = java.security.MessageDigest.getInstance('SHA1')
+                file.withInputStream { stream ->
+                    byte[] buffer = new byte[8192]
+                    int read
+                    while ((read = stream.read(buffer)) > 0) {
+                        sha1Digest.update(buffer, 0, read)
+                    }
+                }
+                def sha1Checksum = sha1Digest.digest().encodeHex().toString()
+                new File("${file}.sha1").text = sha1Checksum
+            } else {
+                throw new GradleException("File not found: ${filePath}")
+            }
+        }
+    }
+}
+
+// Alternative (manual) upload artifact for Maven Central Repository
+tasks.register('bundle', Zip) {
+    dependsOn build, signMavenJavaPublication, generateChecksums
     onlyIf {
         project.hasProperty('SONATYPE_RELEASE')
     }
-    description 'Creates the bundle.jar for Maven Central distribution'
-    from jar
-    from sourcesJar
-    from javadocJar
-    from ("$buildDir/publications/mavenJava/pom-default.xml") {
-        rename ".*", "pom.xml"
+    description 'Creates the bundle.zip for Maven Central distribution with Maven Repository Layout'
+
+    def baseName = "${project.archivesBaseName}-${project.version}"
+    def mavenPath = "com/prowidesoftware/${project.archivesBaseName}/${project.version}/"
+
+    into(mavenPath) {
+        from("${buildDir}/libs/${baseName}.jar") { rename { "${baseName}.jar" } }
+        from("${buildDir}/libs/${baseName}-sources.jar") { rename { "${baseName}-sources.jar" } }
+        from("${buildDir}/libs/${baseName}-javadoc.jar") { rename { "${baseName}-javadoc.jar" } }
+        from("${buildDir}/libs/${baseName}.jar.asc") { rename { "${baseName}.jar.asc" } }
+        from("${buildDir}/libs/${baseName}-sources.jar.asc") { rename { "${baseName}-sources.jar.asc" } }
+        from("${buildDir}/libs/${baseName}-javadoc.jar.asc") { rename { "${baseName}-javadoc.jar.asc" } }
+        from("${buildDir}/libs/${baseName}.jar.md5") { rename { "${baseName}.jar.md5" } }
+        from("${buildDir}/libs/${baseName}-sources.jar.md5") { rename { "${baseName}-sources.jar.md5" } }
+        from("${buildDir}/libs/${baseName}-javadoc.jar.md5") { rename { "${baseName}-javadoc.jar.md5" } }
+        from("${buildDir}/libs/${baseName}.jar.sha1") { rename { "${baseName}.jar.sha1" } }
+        from("${buildDir}/libs/${baseName}-sources.jar.sha1") { rename { "${baseName}-sources.jar.sha1" } }
+        from("${buildDir}/libs/${baseName}-javadoc.jar.sha1") { rename { "${baseName}-javadoc.jar.sha1" } }
+        from("${buildDir}/publications/mavenJava/pom-default.xml") { rename { "${baseName}.pom" } }
+        from("${buildDir}/publications/mavenJava/pom-default.xml.asc") { rename { "${baseName}.pom.asc" } }
+        from("${buildDir}/publications/mavenJava/pom-default.xml.md5") { rename { "${baseName}.pom.md5" } }
+        from("${buildDir}/publications/mavenJava/pom-default.xml.sha1") { rename { "${baseName}.pom.sha1" } }
     }
-    from ("$buildDir/publications/mavenJava/pom-default.xml.asc") {
-        rename ".*", "pom.xml.asc"
-    }
-    from ("$buildDir/libs") {
-        include '*.asc'
-    }
-    archiveFileName.set('bundle.jar')
+    archiveFileName.set('bundle.zip')
 }
 
 tasks.withType(Test).configureEach {
