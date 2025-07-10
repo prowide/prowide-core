@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.3.3 - SNAPSHOT
+#### 10.3.3 - July 2025
   * (PW-2541) Updated the narrative resolver, format field 70 (used in field 70), to allow multiple lines and using // as codeword separator (/CODEWORD1/text///CODEWORD2/text)
   * Fix: Adding a new entry to SchemeConstantsR class
   * Fix: Enhanced the Xml parsing logic to escape/unescape `<` and `>` characters in the XML content
