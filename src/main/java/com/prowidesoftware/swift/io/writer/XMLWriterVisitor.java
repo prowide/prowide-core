@@ -15,6 +15,8 @@
  */
 package com.prowidesoftware.swift.io.writer;
 
+import static org.apache.commons.lang3.StringEscapeUtils.escapeXml11;
+
 import com.prowidesoftware.ProwideException;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.Field;
@@ -333,7 +335,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
         write("</name>");
         write(EOL + "\t\t<value>");
         if (t.getValue() != null) // otherwise, null value writes value "null"
-        write(t.getValue());
+        write(escapeXml11(t.getValue()));
         write("</value>");
 
         // if tag has unparsed texts, write them down
@@ -365,7 +367,7 @@ public class XMLWriterVisitor implements IMessageVisitor {
                 final String component = components.get(i);
                 if (component != null) {
                     write(EOL + "\t\t<component number=\"" + id + "\">");
-                    write(component);
+                    write(escapeXml11(component));
                     write("</component>");
                 }
             }

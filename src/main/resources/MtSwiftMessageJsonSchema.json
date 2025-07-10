@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/abstract-swift-message-v3.schema.json",
+  "title": "AbstractSwiftMessage – Prowide Core (v3)",
+  "type": "object",
+  "additionalProperties": false,
+
+  "required": ["uuid", "identifier", "message", "direction"],
+
+  "properties": {
+    "uuid":        { "type": "string" },
+    "id":          { "type": ["integer", "null"] },
+    "identifier":  { "type": "string" },
+
+    "mir":         { "type": ["string", "null"] },
+    "mur":         { "type": ["string", "null"] },
+
+    "sender": {
+      "type": ["string", "null"],
+      "pattern": "^[A-Z0-9]{8,12}$"
+    },
+    "receiver": {
+      "type": ["string", "null"],
+      "pattern": "^[A-Z0-9]{8,12}$"
+    },
+
+    "message": { "type": "string" },
+
+    "direction": {
+      "type": "string",
+      "enum": ["incoming", "outgoing"]
+    },
+
+    "checksum":     { "type": ["string", "null"], "minLength": 32, "maxLength": 32 },
+    "checksumBody": { "type": ["string", "null"], "minLength": 32, "maxLength": 32 },
+
+    "lastModified": { "$ref": "#/$defs/calendar" },
+    "creationDate": { "$ref": "#/$defs/calendar" },
+    "valueDate":    { "$ref": "#/$defs/calendar" },
+    "tradeDate":    { "$ref": "#/$defs/calendar" },
+
+    "statusTrail": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/statusInfo" }
+    },
+    "status": { "type": ["string", "null"] },
+
+    "notes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/note" }
+    },
+
+    "properties": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+
+    "fileFormat": {
+      "type": ["string", "null"],
+      "enum": ["FIN", "XML", "CSV", null]
+    },
+    "reference":   { "type": ["string", "null"] },
+
+    "currency": {
+      "type": ["string", "null"],
+      "pattern": "^[A-Z]{3}$"
+    },
+    "amount":      { "type": ["number", "null"] },
+
+    "revisions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/revision" }
+    }
+  },
+
+  "$defs": {
+    "calendar": {
+      "type": "object",
+      "required": ["year", "month", "dayOfMonth"],
+      "additionalProperties": false,
+      "properties": {
+        "year":       { "type": "integer" },
+        "month":      { "type": "integer", "minimum": 0, "maximum": 11 },
+        "dayOfMonth": { "type": "integer", "minimum": 1, "maximum": 31 },
+        "hourOfDay":  { "type": "integer", "minimum": 0, "maximum": 23 },
+        "minute":     { "type": "integer", "minimum": 0, "maximum": 59 },
+        "second":     { "type": "integer", "minimum": 0, "maximum": 59 }
+      }
+    },
+
+    "statusInfo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "creationDate"],
+      "properties": {
+        "name":          { "type": "string" },
+        "creationDate":  { "$ref": "#/$defs/calendar" },
+        "comments":      { "type": ["string", "null"] },
+        "creationUser":  { "type": ["string", "null"] },
+        "data":          { "type": ["string", "null"] }
+      }
+    },
+
+    "note": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text"],
+      "properties": {
+        "text":          { "type": "string" },
+        "creationUser":  { "type": ["string", "null"] },
+        "creationDate":  { "$ref": "#/$defs/calendar" }
+      }
+    },
+
+    "revision": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "creationUser":  { "type": ["string", "null"] },
+        "creationDate":  { "$ref": "#/$defs/calendar" },
+        "message":       { "type": ["string", "null"] },
+        "json":          { "type": ["string", "null"] }
+      }
+    }
+  }
+}

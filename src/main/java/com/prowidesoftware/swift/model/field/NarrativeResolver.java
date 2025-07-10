@@ -17,6 +17,7 @@ package com.prowidesoftware.swift.model.field;
 
 import com.prowidesoftware.swift.utils.IsoUtils;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
@@ -69,6 +70,7 @@ public class NarrativeResolver {
             case Field49M.NAME:
                 return parseFormat6(f);
             case Field70.NAME:
+                return parseFormatField70(f);
             case Field77D.NAME:
             case Field37N.NAME:
                 return parseFormat7(f);
@@ -92,18 +94,44 @@ public class NarrativeResolver {
             boolean supportsSupplement,
             boolean additionalNarrativesStartWithDoubleSlash) {
 
-        // create an empty narrative, get the value and check there's something to do
-        Narrative narrative = new Narrative();
         String value = f.getValue();
         if (value == null) {
+            return new Narrative();
+        }
+
+        List<String> valueLines = notEmptyLines(value);
+
+        return parseFormat(
+                valueLines,
+                codewordMaxSize,
+                codewordType,
+                supportsCountry,
+                supportsCurrency,
+                supportsSupplement,
+                additionalNarrativesStartWithDoubleSlash);
+    }
+
+    private static Narrative parseFormat(
+            List<String> valueLines,
+            int codewordMaxSize,
+            int codewordType,
+            boolean supportsCountry,
+            boolean supportsCurrency,
+            boolean supportsSupplement,
+            boolean additionalNarrativesStartWithDoubleSlash) {
+
+        // create an empty narrative, get the value and check there's something to do
+        Narrative narrative = new Narrative();
+        if (valueLines == null || valueLines.size() == 0) {
             return narrative;
         }
 
         // start processing
-        boolean unstructuredSection = !value.startsWith("/") || value.startsWith("//");
+        boolean unstructuredSection =
+                !valueLines.get(0).startsWith("/") || valueLines.get(0).startsWith("//");
         StructuredNarrative structured = new StructuredNarrative();
         boolean firstSupplementAdded = false;
-        List<String> valueLines = notEmptyLines(value);
+
         int lineIndex = 0;
         for (String valueLine : valueLines) {
             lineIndex++;
@@ -245,10 +273,14 @@ public class NarrativeResolver {
         return firstSupplementAdded;
     }
 
+    public static Narrative parseFreeFormat(String value) {
+        return parseFreeFormat(value, "/");
+    }
+
     /**
      * Free format codes in slashes, not necessary on new lines
      */
-    public static Narrative parseFreeFormat(String value) {
+    public static Narrative parseFreeFormat(String value, String separator) {
         Narrative narrative = new Narrative();
 
         if (value == null) {
@@ -261,7 +293,7 @@ public class NarrativeResolver {
         List<String> lines = notEmptyLines(value);
         if (structured) {
             // parse structured items detecting codewords
-            String[] tokens = String.join("", lines).split("/");
+            String[] tokens = String.join("", lines).split(separator);
             String currentCodeword = null;
             StringBuilder currentText = new StringBuilder();
             for (String token : tokens) {
@@ -440,5 +472,25 @@ public class NarrativeResolver {
      */
     public static Narrative parseFormat8(String value) {
         return parseFreeFormat(value);
+    }
+
+    /**
+     * Code between slashes at the beginning of a line and multiple codes present, // separates codewords
+     */
+    public static Narrative parseFormatField70(Field f) {
+        String value = f.getValue();
+        if (value == null) {
+            return new Narrative();
+        }
+
+        List<String> valueLines = notEmptyLines(value);
+
+        // remove CRs and split lines using // only if the narrative starts with a codeword
+        if (value.startsWith("/")) {
+            value = value.replace("\n", "").replace("\r", "");
+            valueLines = Arrays.asList(StringUtils.splitByWholeSeparator(value, "//"));
+        }
+
+        return parseFormat(valueLines, -1, CODEWORDTYPE_UCASE, false, false, false, false);
     }
 }

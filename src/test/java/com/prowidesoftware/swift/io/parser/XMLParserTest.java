@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.SwiftMessage;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
+import com.prowidesoftware.swift.model.mt.mt7xx.MT767;
 import com.prowidesoftware.swift.utils.SafeXmlUtils;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -423,6 +424,119 @@ public class XMLParserTest {
 
         assertNotNull(mt.getField71A());
         assertNotNull("SHA", mt.getField71A().getComponent1());
+    }
+
+    @Test
+    public void testFieldFormatEscaped() {
+        String xml = "<message>\n" + "   <block1>\n"
+                + "      <applicationId>F</applicationId>\n"
+                + "      <serviceId>01</serviceId>\n"
+                + "      <logicalTerminal>FOOPGB20A36A</logicalTerminal>\n"
+                + "   </block1>\n"
+                + "   <block2 type=\"input\">\n"
+                + "      <messageType>767</messageType>\n"
+                + "      <receiverAddress>FOOLUS60AXXX</receiverAddress>\n"
+                + "      <messagePriority>N</messagePriority>\n"
+                + "   </block2>\n"
+                + "   <block4>\n"
+                + "      <field>\n"
+                + "         <name>15A</name>\n"
+                + "      </field>\n"
+                + "      <field>\n"
+                + "         <name>27</name>\n"
+                + "         <component number=\"1\">1</component>\n"
+                + "         <component number=\"2\">1</component>\n"
+                + "      </field>\n"
+                + "      <field>\n"
+                + "         <name>21</name>\n"
+                + "         <component number=\"1\">RELTXN12345</component>\n"
+                + "      </field>\n"
+                + "      <field>\n"
+                + "         <name>22A</name>\n"
+                + "         <component number=\"1\">ICCA</component>\n"
+                + "      </field>\n"
+                + "      <field>\n"
+                + "         <name>72Z</name>\n"
+                + "         <component number=\"1\">&lt;Sender&gt; to &lt;Reciever&gt; message</component>\n"
+                + "      </field>\n"
+                + "      <field>\n"
+                + "         <name>15B</name>\n"
+                + "      </field>\n"
+                + "      <field>\n"
+                + "         <name>20</name>\n"
+                + "         <component number=\"1\">PG8761234</component>\n"
+                + "      </field>\n"
+                + "      <field>\n"
+                + "         <name>26E</name>\n"
+                + "         <component number=\"1\">2</component>\n"
+                + "      </field>\n"
+                + "      <field>\n"
+                + "         <name>30</name>\n"
+                + "         <component number=\"1\">120501</component>\n"
+                + "      </field>\n"
+                + "      <field>\n"
+                + "         <name>52A</name>\n"
+                + "         <component number=\"3\">FOOPGB2L</component>\n"
+                + "      </field>\n"
+                + "      <field>\n"
+                + "         <name>32B</name>\n"
+                + "         <component number=\"1\">GBP</component>\n"
+                + "         <component number=\"2\">38000,</component>\n"
+                + "      </field>\n"
+                + "      <field>\n"
+                + "         <name>77U</name>\n"
+                + "         <component number=\"1\">WE, NATIONAL WESTMINSTER BANK, LONDON, HEREBY UNDERTAKE\n"
+                + "TO PAY TO YOU ANY SUM OR SUMS NOT EXCEEDING AN AGGREGATE OF USD\n"
+                + "27,240,UNITED STATES DOLLARS TWENTY SEVEN THOUSAND TWO HUNDRED\n"
+                + "AND FORTY), REPRESENTING 5 PCT OF THE TOTAL ORDER/CONTRACT PRICE\n"
+                + "ON RECEIPT BY US AT THIS OFFICE OF YOUR FIRST DEMAND ON US IN\n"
+                + "WRITING, COMPLYING WITH ALL THE REQUIREMENTS HEREOF, QUOTING\n"
+                + "OUR REFERENCE OVERSEAS DIVISION GUARANTEE NO. PG8761234. THE\n"
+                + "SIGNATURES APPEARING THEREON TO BE DULY CONFIRMED BY YOUR\n"
+                + "BANKERS, STATING THE AMOUNT PAYABLE AND THAT SOUND AND IMAGE\n"
+                + "HAVE FAILED TO PERFORM THE TERMS OF THE ORDER/CONTRACT NO.\n"
+                + "S556VSF FOR THE SUPPLY OF A FILM THE VIDEO STORY\n"
+                + "ALWAYS PROVIDED THAT\n"
+                + "1. THIS UNDERTAKING IS PERSONAL TO YOU AND IS NOT ASSIGNABLE.\n"
+                + "2. OUR LIABILITY HEREUNDER SHALL BE LIMITED TO A SUM OR SUMS\n"
+                + "NOT EXCEEDING IN AGGREGATE USD 27,240 (UNITED STATES DOLLARS\n"
+                + "TWENTY SEVEN THOUSAND TWO HUNDRED AND FORTY).\n"
+                + "3. OUR LIABILITY IS VALID AS AT 1 JUNE 2012 AND SHALL EXPIRE\n"
+                + "ON 31 MAY 2013 EXCEPT IN RESPECT OF ANY WRITTEN DEMANDS FOR\n"
+                + "PAYMENT COMPLYING WITH ALL THE REQUIREMENTS HEREOF RECEIVED BY\n"
+                + "US AT THIS OFFICE ON OR BEFORE 31 MAY 2013, AFTER WHICH DATE\n"
+                + "THIS UNDERTAKING SHALL BECOME NULL AND VOID WHETHER RETURNED\n"
+                + "TO US OR NOT.\n"
+                + "4. OUR LIABILITY UNDER THIS UNDERTAKING SHALL BE REDUCED BY\n"
+                + "ANY AMOUNTS DEMANDED IN ACCORDANCE WITH THE TERMS HEREOF.\n"
+                + "5. THIS UNDERTAKING SHALL BE GOVERNED BY AND CONSTRUED ACCORDING\n"
+                + "TO THE LAWS OF ENGLAND, THE COURTS OF WHICH COUNTRY SHALL HAVE\n"
+                + "SOLE JURISDICTION TO ADJUDICATE ON ANY AND ALL CLAIMS DIRECTLY\n"
+                + "OR INDIRECTLY RELATING HERETO AND YOUR ACCEPTANCE OF OUR\n"
+                + "UNDERTAKING SHALL BE YOUR CONFIRMATION THAT YOU SUBMIT TO\n"
+                + "THE JURISDICTION OF THE COURTS OF ENGLAND IN THIS REGARD.</component>\n"
+                + "      </field>\n"
+                + "      <field>\n"
+                + "         <name>24G</name>\n"
+                + "         <component number=\"1\">BENE</component>\n"
+                + "      </field>\n"
+                + "      <field>\n"
+                + "         <name>15C</name>\n"
+                + "      </field>\n"
+                + "      <field>\n"
+                + "         <name>32B</name>\n"
+                + "         <component number=\"1\">GBP</component>\n"
+                + "         <component number=\"2\">38000,</component>\n"
+                + "      </field>\n"
+                + "   </block4>\n"
+                + "</message>\n";
+        XMLParser p = new XMLParser();
+        SwiftMessage m = p.parse(xml);
+        assertNotNull(m);
+        MT767 mt = new MT767(m);
+
+        assertNotNull(mt.getField72Z());
+        assertNotNull("<Sender> to <Reciever> message", mt.getField72Z().getComponent1());
     }
 
     /**
