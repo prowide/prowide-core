@@ -59,12 +59,12 @@ dependencies {
 
     // jakarta is only used for annotations, we do not add it as implementation dependency on purpose to avoid forcing
     // users to use jakarta jars in their project when they might not even be using JPA or JAXB at all
-    compileOnly 'jakarta.persistence:jakarta.persistence-api:3.1.0' // jakarta 3.1 is Jakarta EE 10, jakarta 3.2 would imply migration to Jakarta EE 11
+    compileOnly 'jakarta.persistence:jakarta.persistence-api:3.2.0' // jakarta 3.1 is Jakarta EE 10, jakarta 3.2 would imply migration to Jakarta EE 11
     compileOnly 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.2'
     compileOnly 'jakarta.validation:jakarta.validation-api:3.1.0'
 
     testImplementation 'com.networknt:json-schema-validator:1.5.8'
-    testImplementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+    testImplementation 'jakarta.persistence:jakarta.persistence-api:3.2.0'
     testImplementation 'jakarta.validation:jakarta.validation-api:3.1.0'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
     testImplementation 'org.assertj:assertj-core:3.27.2'
