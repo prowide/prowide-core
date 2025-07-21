@@ -1157,6 +1157,25 @@ public class NarrativeResolverTest {
                 n.getStructured().get(5).getNarrativeFragmentsDetail().get(0).getText());
     }
 
+    @Test
+    public void testFormatField70_3() {
+        String v = "/ULTB/Ultimate Creditor Name/HK///U\n" + "LTD/Ultimate Debtor Name/KL///ROC/2\n"
+                + "40102MS00213600///URI/Remittance In\n"
+                + "fo Ustrd1";
+        Narrative n = NarrativeResolver.parse(new Field70(v));
+        assertEquals(4, n.getStructured().size());
+        assertEquals("ULTB", n.getStructured().get(0).getCodeword());
+        assertEquals("Ultimate Creditor Name/HK", n.getStructured().get(0).getNarrative());
+        assertEquals("ULTD", n.getStructured().get(1).getCodeword());
+        assertEquals("Ultimate Debtor Name/KL", n.getStructured().get(1).getNarrative());
+        assertEquals("ROC", n.getStructured().get(2).getCodeword());
+        assertEquals("240102MS00213600", n.getStructured().get(2).getNarrative());
+        assertEquals("URI", n.getStructured().get(3).getCodeword());
+        assertEquals(
+                "Remittance Info Ustrd1",
+                n.getStructured().get(3).getNarrativeFragmentsDetail().get(0).getText());
+    }
+
     /*
      * FORMAT 8
      *  Free format codes in slashes, not necessary on new lines

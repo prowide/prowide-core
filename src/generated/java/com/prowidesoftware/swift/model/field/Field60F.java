@@ -60,7 +60,7 @@ import com.google.gson.JsonParser;
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>&lt;DC&gt;&lt;DATE2&gt;&lt;3!a&gt;&lt;AMOUNT&gt;15</code></li>
- * 		<li>parser pattern: <code>[c]&lt;DATE2&gt;SN</code></li>
+ * 		<li>parser pattern: <code>c&lt;DATE2&gt;SN</code></li>
  * 		<li>components pattern: <code>SECN</code></li>
  * </ul>
  *
@@ -264,7 +264,7 @@ public class Field60F extends Field implements Serializable, MonetaryAmountConta
      */
     @Override
     public String parserPattern() {
-        return "[c]<DATE2>SN";
+        return "c<DATE2>SN";
     }
 
     /**
