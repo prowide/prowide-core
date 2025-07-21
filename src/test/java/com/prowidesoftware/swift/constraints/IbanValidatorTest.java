@@ -231,6 +231,7 @@ public class IbanValidatorTest {
 
         // Simulated ConstraintViolationBuilder implementation
         class TestConstraintViolationBuilder implements ConstraintViolationBuilder {
+            @SuppressWarnings("deprecation")
             @Override
             public NodeBuilderDefinedContext addNode(String name) {
                 return null;

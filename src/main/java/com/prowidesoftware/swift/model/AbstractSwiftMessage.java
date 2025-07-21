@@ -154,6 +154,12 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     private java.util.Calendar tradeDate;
 
     /**
+     * @since 10.3.0
+     */
+    @Column(length = 36)
+    private String uetr;
+
+    /**
      * Empty constructor provided for the ORM only, use one of the specific constructors instead.
      *
      * @since 7.7
@@ -1425,5 +1431,21 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
         } else {
             return getIdentifier();
         }
+    }
+
+    /**
+     * @return the Unique End-to-End Transaction Reference (UETR) for this message, if any.
+     * @since 10.3.0
+     */
+    public String getUetr() {
+        return uetr;
+    }
+
+    /**
+     * @param uetr the Unique End-to-End Transaction Reference (UETR) for this message.
+     * @since 10.3.0
+     */
+    public void setUetr(String uetr) {
+        this.uetr = uetr;
     }
 }
