@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 10.2.12 - SNAPSHOT
+  * (PW-2613) Updated the Field70 codeword splitting logic to allow / as trailing chars
+
 #### 10.2.11 - July 2025
   * (PW-2594) Fixed format for Fields 60, 62, 64, and 65 to ensure the DC component is mandatory.
   * feat: Added new `MtSequenceSeparatorEnum` enum with every MT separator style for its inner sequences in block4

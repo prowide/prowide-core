@@ -223,6 +223,7 @@ public class NarrativeResolver {
                 structured.addNarrativeFragment(valueLine, lineIndex, lineLength);
                 unstructuredSection = false;
             }
+
             if (unstructuredSection) narrative.addUnstructuredFragment(valueLine);
         }
 
@@ -479,16 +480,43 @@ public class NarrativeResolver {
      */
     public static Narrative parseFormatField70(Field f) {
         String value = f.getValue();
-        if (value == null) {
+        if (StringUtils.isBlank(value)) {
             return new Narrative();
         }
 
-        List<String> valueLines = notEmptyLines(value);
+        List<String> valueLines;
 
         // remove CRs and split lines using // only if the narrative starts with a codeword
         if (value.startsWith("/")) {
-            value = value.replace("\n", "").replace("\r", "");
-            valueLines = Arrays.asList(StringUtils.splitByWholeSeparator(value, "//"));
+
+            int endSlashQuant = 0;
+            int endIndex = value.length() - 1;
+
+            // Count trailing slashes
+            while (endIndex >= 0 && value.charAt(endIndex) == '/') {
+                endIndex--;
+                endSlashQuant++;
+            }
+
+            // Remove CRs and trailing slashes
+            value = value.substring(0, endIndex + 1).replace("\n", "").replace("\r", "");
+
+            // Split by /// (// separator and / as codeword starter)
+            String[] linesSplitted = StringUtils.splitByWholeSeparator(value, "///");
+
+            // Add slashes to the beginning of each line (codeword starter)
+            for (int i = 1; i < linesSplitted.length; i++) {
+                linesSplitted[i] = "/" + linesSplitted[i];
+            }
+
+            // Append the removed trailing slashes to the last line
+            if (endSlashQuant > 0) {
+                linesSplitted[linesSplitted.length - 1] =
+                        linesSplitted[linesSplitted.length - 1] + StringUtils.repeat("/", endSlashQuant);
+            }
+            valueLines = Arrays.asList(linesSplitted);
+        } else {
+            valueLines = notEmptyLines(value);
         }
 
         return parseFormat(valueLines, -1, CODEWORDTYPE_UCASE, false, false, false, false);
