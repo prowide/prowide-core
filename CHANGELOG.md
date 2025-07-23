@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.2.12 - SNAPSHOT
+#### 10.2.12 - July 2025
   * (PW-2613) Updated the Field70 codeword splitting logic to allow / as trailing chars
 
 #### 10.2.11 - July 2025
