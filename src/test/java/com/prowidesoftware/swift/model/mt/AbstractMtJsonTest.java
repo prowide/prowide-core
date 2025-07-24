@@ -733,4 +733,32 @@ public class AbstractMtJsonTest {
         assertEquals(1, mt.getFields().size());
         assertTrue(mt.getFields().get(0) instanceof Field16R);
     }
+
+    @Test
+    public void testMT103ParsingWithTrailingSlashesInField70() {
+        String msg =
+                "{1:F01FOOGIT2TAXXX8236800072}{2:O1030750131111FOOGDEFFAXXX04925010251311110751N}{3:{103:TGT}{113:NNNN}{108:96NG868888869101}{119:STP}{121:1420a5f5-a452-436b-ab36-b2d3379c40e5}{115:075115075115DE0000000497323714}}{4:\n"
+                        + ":20:96NG868888869101\n"
+                        + ":23B:CRED\n"
+                        + ":32A:131111EUR1170,\n"
+                        + ":33B:EUR1170,\n"
+                        + ":50F:CCPT/RU/03 01 767874 DD 08.08.2002\n"
+                        + "1/SOROKIN PAVEL NIKOLAEVICH\n"
+                        + "2/SAYAT-NOVA 42\n"
+                        + "3/RU/SOCHI\n"
+                        + ":52A:FOOIRUMMRA1\n"
+                        + ":57A:FOOGIT2TH00\n"
+                        + ":59:/IT90W0869254370016000540148\n"
+                        + "GRUPPO MANGANO SRL\n"
+                        + ":70:/ROC/V250721B47764872///URI/FFC OTP\n"
+                        + "P GLOBAL CREDIT LP / NPNF/GLOBAL SE\n"
+                        + "RVICE GMBH JUL 2019//\n"
+                        + ":71A:OUR\n"
+                        + "-}{5:{CHK:044E280702DB}}{S:{SAC:}{FAC:}{COP:P}}";
+
+        MT103 mt103 = new MT103(msg);
+        assertNotNull(mt103.getField70());
+        String field70Content = mt103.getField70().getValue();
+        assertTrue(field70Content.contains("JUL 2019//"), "Field 70 should preserve trailing slashes");
+    }
 }
