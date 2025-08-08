@@ -820,7 +820,7 @@ public class SwiftParserConsumeBlockLenientTest {
         SwiftBlock4 block = new SwiftBlock4();
         String content = "4::57A://ACCOUNT123\n:20:REF";
         SwiftBlock4 result = parser.consumeBlock4(block, content);
-
+        SwiftBlock4 result = this.parser.consumeBlock4(block, content);
         assertNotNull(result);
         assertEquals(2, result.size());
         assertEquals("57A", result.getTag(0).getName());
