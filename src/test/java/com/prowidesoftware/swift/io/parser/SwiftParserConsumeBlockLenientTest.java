@@ -793,7 +793,7 @@ public class SwiftParserConsumeBlockLenientTest {
                 + "-";
 
         SwiftBlock4 result = parser.consumeBlock4(block, content);
-
+        SwiftBlock4 result = this.parser.consumeBlock4(block, content);
         assertNotNull(result);
         assertEquals(1, result.size());
 
