@@ -501,7 +501,7 @@ public class SwiftParserConsumeBlockLenientTest {
 
         // Should throw IllegalArgumentException for empty tag name
         assertThrows(IllegalArgumentException.class, () -> {
-            parser.consumeBlock4(block, content);
+            this.parser.consumeBlock4(block, content);
         });
     }
 
