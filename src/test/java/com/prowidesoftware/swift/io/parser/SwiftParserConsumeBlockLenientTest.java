@@ -229,7 +229,7 @@ public class SwiftParserConsumeBlockLenientTest {
         assertEquals(4, b4.getNumber().intValue());
         // assertEquals("", b4.getBlockValue());
 
-        final SwiftBlock nil = this.parser.consumeBlock(null);
+        final SwiftBlock nil = parser.consumeBlock(null);
         assertNull(nil);
     }
 
