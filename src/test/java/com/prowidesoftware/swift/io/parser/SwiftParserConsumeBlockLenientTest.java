@@ -848,7 +848,7 @@ public class SwiftParserConsumeBlockLenientTest {
         SwiftBlock4 block = new SwiftBlock4();
         String content = "4::32A:VALUE1\n:50K:VALUE2\n:52A:VALUE3\n:56A:VALUE4";
         SwiftBlock4 result = parser.consumeBlock4(block, content);
-
+        SwiftBlock4 result = this.parser.consumeBlock4(block, content);
         assertNotNull(result);
         assertEquals(4, result.size());
 
