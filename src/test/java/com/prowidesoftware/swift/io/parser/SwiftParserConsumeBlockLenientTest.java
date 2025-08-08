@@ -42,124 +42,124 @@ public class SwiftParserConsumeBlockLenientTest {
 
     @Test
     public void testConsumeBock1InvalidValueSize() throws IOException {
-        parser.setData("{1:012345678901}");
-        parser.consumeBlock(null);
+        this.parser.setData("{1:012345678901}");
+        this.parser.consumeBlock(null);
         assertError();
     }
 
     private void assertError() {
-        assertFalse(parser.getErrors().isEmpty());
-        for (String error : parser.getErrors()) {
+        assertFalse(this.parser.getErrors().isEmpty());
+        for (String error : this.parser.getErrors()) {
             System.out.println(error);
         }
     }
 
     @Test
     public void testConsumeBock1MissingClossingBracket() throws IOException {
-        parser.setData("{1:0123456789012345678901234");
-        parser.consumeBlock(null);
+        this.parser.setData("{1:0123456789012345678901234");
+        this.parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testConsumeBock1MissingClossingBracket2() throws IOException {
-        parser.setData("{1:0123456789012345678901234{2:I100BANKDEFFXXXXU3003}");
-        parser.consumeBlock(null);
+        this.parser.setData("{1:0123456789012345678901234{2:I100BANKDEFFXXXXU3003}");
+        this.parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testConsumeBock2InvalidValueSize() throws IOException {
-        parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I100BANKDEFF3}");
-        parser.consumeBlock(null); // block 1
-        parser.consumeBlock(null); // block 2
+        this.parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I100BANKDEFF3}");
+        this.parser.consumeBlock(null); // block 1
+        this.parser.consumeBlock(null); // block 2
         assertError();
     }
 
     @Test
     public void testConsumeBock2MissingClosingBracket() throws IOException {
-        parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I100BANKDEFFXXXXU3003");
-        parser.consumeBlock(null); // block 1
-        parser.consumeBlock(null); // block 2
+        this.parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I100BANKDEFFXXXXU3003");
+        this.parser.consumeBlock(null); // block 1
+        this.parser.consumeBlock(null); // block 2
         assertError();
     }
 
     @Test
     public void testConsumeBock2MissingClosingBracket2() throws IOException {
-        parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I100BANKDEFFXXXXU3003{3:{108:11111111}}");
-        parser.consumeBlock(null); // block 1
-        parser.consumeBlock(null); // block 2
+        this.parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I100BANKDEFFXXXXU3003{3:{108:11111111}}");
+        this.parser.consumeBlock(null); // block 1
+        this.parser.consumeBlock(null); // block 2
         assertError();
     }
 
     @Test
     public void testConsumeBock3MissingClosingBracket() throws IOException {
-        parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I100BANKDEFFXXXXU3003}{3:{108:11111111}");
-        parser.consumeBlock(null); // block 1
-        parser.consumeBlock(null); // block 2
-        parser.consumeBlock(null); // block 3
+        this.parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I100BANKDEFFXXXXU3003}{3:{108:11111111}");
+        this.parser.consumeBlock(null); // block 1
+        this.parser.consumeBlock(null); // block 2
+        this.parser.consumeBlock(null); // block 3
         assertError();
     }
 
     @Test
     public void testBlock4MissingClossingBracket() throws IOException {
-        parser.setData("{4:\r\n" + ":79:FOO");
-        parser.consumeBlock(null);
+        this.parser.setData("{4:\r\n" + ":79:FOO");
+        this.parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testBlock4MissingClossingBracket2() throws IOException {
-        parser.setData("{4:\r\n" + ":79:FOO\r\n");
-        parser.consumeBlock(null);
+        this.parser.setData("{4:\r\n" + ":79:FOO\r\n");
+        this.parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testBlock4MissingClossingBracket3() throws IOException {
-        parser.setData("{4:\r\n" + ":79:FOO\r\n" + "-");
-        parser.consumeBlock(null);
+        this.parser.setData("{4:\r\n" + ":79:FOO\r\n" + "-");
+        this.parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testBlock4MissingClossingBracket4() throws IOException {
-        parser.setData("{4:\r\n" + ":79:FOO\r\n" + "-{");
-        parser.consumeBlock(null);
+        this.parser.setData("{4:\r\n" + ":79:FOO\r\n" + "-{");
+        this.parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testBlock4MissingClossingBracket5() throws IOException {
-        parser.setData("{4:\r\n" + ":79:FOO\r\n" + "-{5:CHK:ABSH}");
-        parser.consumeBlock(null);
+        this.parser.setData("{4:\r\n" + ":79:FOO\r\n" + "-{5:CHK:ABSH}");
+        this.parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testBlock4MissingClossingHyphen() throws IOException {
-        parser.setData("{4:\r\n" + ":79:FOO\r\n" + "}");
-        parser.consumeBlock(null);
+        this.parser.setData("{4:\r\n" + ":79:FOO\r\n" + "}");
+        this.parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testBlock4MissingClossingHyphen2() throws IOException {
-        parser.setData("{4:\r\n" + ":79:FOO}");
-        parser.consumeBlock(null);
+        this.parser.setData("{4:\r\n" + ":79:FOO}");
+        this.parser.consumeBlock(null);
         assertError();
     }
 
     @Test
     public void testBlock4ClossingBracketOk() throws IOException {
-        parser.setData("{4:\r\n" + ":79:FOO\r\n" + "-}");
-        parser.consumeBlock(null);
+        this.parser.setData("{4:\r\n" + ":79:FOO\r\n" + "-}");
+        this.parser.consumeBlock(null);
     }
 
     @Test
     public void testConsumeBock_01() throws IOException {
-        parser.setData("{1:0123456789012345678901234}");
-        final SwiftBlock1 b = (SwiftBlock1) parser.consumeBlock(null);
+        this.parser.setData("{1:0123456789012345678901234}");
+        final SwiftBlock1 b = (SwiftBlock1) this.parser.consumeBlock(null);
         assertNotNull(b);
         assertTrue(b instanceof SwiftBlock1);
         assertEquals("0123456789012345678901234", b.getBlockValue());
@@ -167,13 +167,13 @@ public class SwiftParserConsumeBlockLenientTest {
 
     @Test
     public void testConsumeBock_02() throws IOException {
-        parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I100BANKDEFFXXXXU3003}");
-        final SwiftBlock1 b = (SwiftBlock1) parser.consumeBlock(null);
+        this.parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I100BANKDEFFXXXXU3003}");
+        final SwiftBlock1 b = (SwiftBlock1) this.parser.consumeBlock(null);
         assertNotNull(b);
         assertEquals(1, b.getNumber().intValue());
         assertEquals("F01FOOBARXXXXXX0000000000", b.getBlockValue());
 
-        final SwiftBlock2 b2 = (SwiftBlock2) parser.consumeBlock(null);
+        final SwiftBlock2 b2 = (SwiftBlock2) this.parser.consumeBlock(null);
         assertNotNull(b2);
         assertEquals(2, b2.getNumber().intValue());
         assertEquals("I100BANKDEFFXXXXU3003", b2.getBlockValue());
@@ -181,7 +181,7 @@ public class SwiftParserConsumeBlockLenientTest {
 
     @Test
     public void testConsumeBock_03() throws IOException {
-        parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I541CITIGB2LXXXXN}{4:\r\n" + ":16R:GENL\r\n"
+        this.parser.setData("{1:F01FOOBARXXXXXX0000000000}{2:I541CITIGB2LXXXXN}{4:\r\n" + ":16R:GENL\r\n"
                 + ":20C::SEME//2005070600000006\r\n"
                 + ":23G:NEWM\r\n"
                 + ":98A::PREP//20050706\r\n"
@@ -214,29 +214,29 @@ public class SwiftParserConsumeBlockLenientTest {
                 + ":16S:SETDET\r\n"
                 + "-}\r\n"
                 + "");
-        final SwiftBlock1 b1 = (SwiftBlock1) parser.consumeBlock(null);
+        final SwiftBlock1 b1 = (SwiftBlock1) this.parser.consumeBlock(null);
         assertNotNull(b1);
         assertEquals(1, b1.getNumber().intValue());
         assertEquals("F01FOOBARXXXXXX0000000000", b1.getBlockValue());
 
-        final SwiftBlock2 b2 = (SwiftBlock2) parser.consumeBlock(null);
+        final SwiftBlock2 b2 = (SwiftBlock2) this.parser.consumeBlock(null);
         assertNotNull(b2);
         assertEquals(2, b2.getNumber().intValue());
         assertEquals("I541CITIGB2LXXXXN", b2.getBlockValue());
 
-        final SwiftBlock4 b4 = (SwiftBlock4) parser.consumeBlock(null);
+        final SwiftBlock4 b4 = (SwiftBlock4) this.parser.consumeBlock(null);
         assertNotNull(b4);
         assertEquals(4, b4.getNumber().intValue());
         // assertEquals("", b4.getBlockValue());
 
-        final SwiftBlock nil = parser.consumeBlock(null);
+        final SwiftBlock nil = this.parser.consumeBlock(null);
         assertNull(nil);
     }
 
     @Test
     public void testSimpleBlockConsumerBlock3_1() throws IOException {
-        parser.setData("{3:{108:00112233}}");
-        final SwiftBlock3 b3 = (SwiftBlock3) parser.consumeBlock(null);
+        this.parser.setData("{3:{108:00112233}}");
+        final SwiftBlock3 b3 = (SwiftBlock3) this.parser.consumeBlock(null);
         assertNotNull(b3);
         assertTrue(b3.containsTag("108"));
         assertEquals("00112233", b3.getTagValue("108"));
@@ -244,8 +244,8 @@ public class SwiftParserConsumeBlockLenientTest {
 
     @Test
     public void testSimpleBlockConsumerBlock3_2() throws IOException {
-        parser.setData("{3:{108:00112233}{4:foobar}}");
-        final SwiftBlock3 b3 = (SwiftBlock3) parser.consumeBlock(null);
+        this.parser.setData("{3:{108:00112233}{4:foobar}}");
+        final SwiftBlock3 b3 = (SwiftBlock3) this.parser.consumeBlock(null);
         assertNotNull(b3);
         assertTrue(b3.containsTag("108"));
         assertEquals("00112233", b3.getTagValue("108"));
@@ -255,8 +255,8 @@ public class SwiftParserConsumeBlockLenientTest {
 
     @Test
     public void testSimpleBlockConsumerBlock5_1() throws IOException {
-        parser.setData("{5:{108:00112233}}");
-        final SwiftBlock5 b = (SwiftBlock5) parser.consumeBlock(null);
+        this.parser.setData("{5:{108:00112233}}");
+        final SwiftBlock5 b = (SwiftBlock5) this.parser.consumeBlock(null);
         assertNotNull(b);
         assertTrue(b.containsTag("108"));
         assertEquals("00112233", b.getTagValue("108"));
@@ -264,8 +264,8 @@ public class SwiftParserConsumeBlockLenientTest {
 
     @Test
     public void testSimpleBlockConsumerBlock5_2() throws IOException {
-        parser.setData("{5:{108:00112233}{4:foobar}}");
-        final SwiftBlock5 b = (SwiftBlock5) parser.consumeBlock(null);
+        this.parser.setData("{5:{108:00112233}{4:foobar}}");
+        final SwiftBlock5 b = (SwiftBlock5) this.parser.consumeBlock(null);
         assertNotNull(b);
         assertTrue(b.containsTag("108"));
         assertEquals("00112233", b.getTagValue("108"));
@@ -276,9 +276,9 @@ public class SwiftParserConsumeBlockLenientTest {
     @Test
     public void testBug1539324() throws IOException {
         final String fin = "{1:" + Constants.B1_DATA + "}{3:{n:v}}";
-        parser.setData(fin);
-        final SwiftBlock1 b1 = (SwiftBlock1) parser.consumeBlock(null);
-        final SwiftBlock3 b3 = (SwiftBlock3) parser.consumeBlock(null);
+        this.parser.setData(fin);
+        final SwiftBlock1 b1 = (SwiftBlock1) this.parser.consumeBlock(null);
+        final SwiftBlock3 b3 = (SwiftBlock3) this.parser.consumeBlock(null);
         assertEquals(Constants.B1_DATA, b1.getValue());
         assertEquals(1, b3.countAll());
         assertEquals("n", b3.getTag(0).getName());
@@ -290,8 +290,8 @@ public class SwiftParserConsumeBlockLenientTest {
      */
     @Test
     public void testSimpleBlockConsumerBlock3_3_KnownToFail() throws IOException {
-        parser.setData("{3:blockdata{108:00112233}{4:foobar}}");
-        final SwiftBlock3 b = (SwiftBlock3) parser.consumeBlock(null);
+        this.parser.setData("{3:blockdata{108:00112233}{4:foobar}}");
+        final SwiftBlock3 b = (SwiftBlock3) this.parser.consumeBlock(null);
         assertNotNull(b);
         assertTrue(b.containsTag("108"));
         assertEquals("00112233", b.getTagValue("108"));
@@ -752,7 +752,6 @@ public class SwiftParserConsumeBlockLenientTest {
                 + ":33B:USD234234,\n"
                 + "-";
 
-        SwiftBlock4 result = parser.consumeBlock4(block, content);
         SwiftBlock4 result = this.parser.consumeBlock4(block, content);
         assertNotNull(result);
         assertEquals(12, result.size());
@@ -792,7 +791,6 @@ public class SwiftParserConsumeBlockLenientTest {
                 + "33B:USD234234,\n"
                 + "-";
 
-        SwiftBlock4 result = parser.consumeBlock4(block, content);
         SwiftBlock4 result = this.parser.consumeBlock4(block, content);
         assertNotNull(result);
         assertEquals(1, result.size());
@@ -819,7 +817,6 @@ public class SwiftParserConsumeBlockLenientTest {
     void testFieldWithDoubleSlashPrefix() {
         SwiftBlock4 block = new SwiftBlock4();
         String content = "4::57A://ACCOUNT123\n:20:REF";
-        SwiftBlock4 result = parser.consumeBlock4(block, content);
         SwiftBlock4 result = this.parser.consumeBlock4(block, content);
         assertNotNull(result);
         assertEquals(2, result.size());
@@ -832,7 +829,6 @@ public class SwiftParserConsumeBlockLenientTest {
     void testMultilineFieldValues() {
         SwiftBlock4 block = new SwiftBlock4();
         String content = "4::50K:LINE1\nLINE2\nLINE3\n:20:NEXT_TAG";
-        SwiftBlock4 result = parser.consumeBlock4(block, content);
         SwiftBlock4 result = this.parser.consumeBlock4(block, content);
         assertNotNull(result);
         assertEquals(2, result.size());
@@ -847,7 +843,6 @@ public class SwiftParserConsumeBlockLenientTest {
     void testAlphanumericTagNames() {
         SwiftBlock4 block = new SwiftBlock4();
         String content = "4::32A:VALUE1\n:50K:VALUE2\n:52A:VALUE3\n:56A:VALUE4";
-        SwiftBlock4 result = parser.consumeBlock4(block, content);
         SwiftBlock4 result = this.parser.consumeBlock4(block, content);
         assertNotNull(result);
         assertEquals(4, result.size());
@@ -864,7 +859,7 @@ public class SwiftParserConsumeBlockLenientTest {
     void testFieldValuesWithTrailingCommas() {
         SwiftBlock4 block = new SwiftBlock4();
         String content = "4::32A:180529USD22423,\n:33B:USD234234,";
-        SwiftBlock4 result = parser.consumeBlock4(block, content);
+        SwiftBlock4 result = this.parser.consumeBlock4(block, content);
 
         assertNotNull(result);
         assertEquals(2, result.size());
@@ -877,7 +872,6 @@ public class SwiftParserConsumeBlockLenientTest {
     void testDuplicateTagNames() {
         SwiftBlock4 block = new SwiftBlock4();
         String content = "4::52A:FIRST_BANK\n:57A:CORRESPONDENT\n:52A:SECOND_BANK";
-        SwiftBlock4 result = parser.consumeBlock4(block, content);
         SwiftBlock4 result = this.parser.consumeBlock4(block, content);
         assertNotNull(result);
         assertEquals(3, result.size());
@@ -894,7 +888,6 @@ public class SwiftParserConsumeBlockLenientTest {
     void testFieldWithMixedCaseContent() {
         SwiftBlock4 block = new SwiftBlock4();
         String content = "4::59:ASDF ASDF\n:50K:SDFGSDFG SDFG";
-        SwiftBlock4 result = parser.consumeBlock4(block, content);
         SwiftBlock4 result = this.parser.consumeBlock4(block, content);
         assertNotNull(result);
         assertEquals(2, result.size());
@@ -907,7 +900,6 @@ public class SwiftParserConsumeBlockLenientTest {
     void testBICCodesInFieldValues() {
         SwiftBlock4 block = new SwiftBlock4();
         String content = "4::52A:SSTYPLP1XXX\n:56A:RRPLZAJJXXX\n:58A:HDSBKHPPXXX";
-        SwiftBlock4 result = parser.consumeBlock4(block, content);
         SwiftBlock4 result = this.parser.consumeBlock4(block, content);
         assertNotNull(result);
         assertEquals(3, result.size());
@@ -923,7 +915,6 @@ public class SwiftParserConsumeBlockLenientTest {
     void testFieldContinuationWithoutTagPrefix() {
         SwiftBlock4 block = new SwiftBlock4();
         String content = "4::57A://FFFF\nCTZNCA8V001\n:58A:NEXTFIELD";
-        SwiftBlock4 result = parser.consumeBlock4(block, content);
         SwiftBlock4 result = this.parser.consumeBlock4(block, content);
         assertNotNull(result);
         assertEquals(2, result.size());
@@ -940,7 +931,6 @@ public class SwiftParserConsumeBlockLenientTest {
     void testEOBWithOnlyDash() {
         SwiftBlock4 block = new SwiftBlock4();
         String content = "4::20:REFERENCE\n:32A:VALUE\n-";
-        SwiftBlock4 result = parser.consumeBlock4(block, content);
         SwiftBlock4 result = this.parser.consumeBlock4(block, content);
         assertNotNull(result);
         assertEquals(2, result.size());
