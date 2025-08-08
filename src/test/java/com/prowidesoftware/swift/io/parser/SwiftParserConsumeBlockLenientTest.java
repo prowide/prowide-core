@@ -489,7 +489,7 @@ public class SwiftParserConsumeBlockLenientTest {
         String content = "4::20REF123";
 
         assertThrows(IllegalArgumentException.class, () -> {
-            parser.consumeBlock4(block, content);
+            this.parser.consumeBlock4(block, content);
         });
     }
 
