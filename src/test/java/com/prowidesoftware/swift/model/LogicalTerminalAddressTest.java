@@ -118,9 +118,9 @@ public class LogicalTerminalAddressTest {
     @Test
     public void testSenderLT() {
         assertEquals("FOOOOOHUAXXX", new LogicalTerminalAddress("FOOOOOHUAXXX").getSenderLogicalTerminalAddress());
-        assertEquals("FOOOOOHUAXXX", new LogicalTerminalAddress("FOOOOOHUXXXX").getSenderLogicalTerminalAddress());
-        assertEquals("FOOOOOHUAXXX", new LogicalTerminalAddress("FOOOOOHUXXX").getSenderLogicalTerminalAddress());
-        assertEquals("FOOOOOHUAXXX", new LogicalTerminalAddress("FOOOOOHU").getSenderLogicalTerminalAddress());
+        assertEquals("FOOOOOHUXXXX", new LogicalTerminalAddress("FOOOOOHUXXXX").getSenderLogicalTerminalAddress());
+        assertEquals("FOOOOOHUXXXX", new LogicalTerminalAddress("FOOOOOHUXXX").getSenderLogicalTerminalAddress());
+        assertEquals("FOOOOOHUXXXX", new LogicalTerminalAddress("FOOOOOHU").getSenderLogicalTerminalAddress());
         assertNull(new LogicalTerminalAddress("FOO").getSenderLogicalTerminalAddress());
     }
 
