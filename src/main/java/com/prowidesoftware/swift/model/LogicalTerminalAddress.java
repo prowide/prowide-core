@@ -88,9 +88,9 @@ public class LogicalTerminalAddress extends BIC {
      * @return the 12 characters address or null if the BIC has less than 8 characters
      */
     public String getSenderLogicalTerminalAddress() {
-        char LT = this.lTIdentifier == null ? 'X' : this.lTIdentifier;
+        final char lt = Character.toUpperCase(this.lTIdentifier == null ? 'X' : this.lTIdentifier);
         if (getBic8() != null) {
-            return getBic8() + LT + getBranchOrDefault();
+            return getBic8() + lt + getBranchOrDefault();
         }
         return null;
     }
