@@ -24,10 +24,11 @@ import org.apache.commons.lang3.StringUtils;
  * The LT identifier is located in position 9 of a full 12 characters address.
  * For example letter 'A' in CCCCUS33AXXX<br>
  * <p>
- * A sender LT address cannot have 'X' as LT identifier as it is a reserved character for LT.
+ * A sender LT address cannot have 'X' as LT identifier
+ * as it is a reserved character for LT wildcard.
  * SWIFT NAK the messages with H10 error when messages sent to their network.
- * However, messages to Messaging Interface can have 'X' as LT Identifier
- * that will be used as wild card to load balance the LT and replaced by
+ * However, messages to Messaging Interface can have 'X' as Sender LT Identifier
+ * that will be used as wild card to load balance the LTs and replaced by
  * Messaging Interface before sending to SWIFT to the corresponding LT Value.
  * A receiver LT address must have an 'X' as LT identifier.
  *
