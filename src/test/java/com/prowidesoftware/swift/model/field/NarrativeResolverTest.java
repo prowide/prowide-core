@@ -1162,4 +1162,128 @@ public class NarrativeResolverTest {
         String v = "12";
         assertFalse(NarrativeResolver.isCurrencyAndAmount(v));
     }
+
+    @Test
+    public void test_Field70_Narrative_ends_with_double_slash() {
+        Field70 field70 = new Field70();
+        field70.setNarrative("/ROC/V999999B99999999///URI/FOO BAR\n" + "P GLOBAL FOOBAR LP / XXNF/GLOBAL SE\n"
+                + "FOOBAR FOOX JUL 2019//");
+
+        Narrative narrative = NarrativeResolver.parseFormatField70(field70);
+        assertEquals(2, narrative.getStructured().size());
+
+        assertEquals("ROC", narrative.getStructured().get(0).getCodeword());
+        assertEquals("V999999B99999999", narrative.getStructured().get(0).getNarrative());
+
+        assertEquals("URI", narrative.getStructured().get(1).getCodeword());
+        assertEquals(
+                "FOO BARP GLOBAL FOOBAR LP / XXNF/GLOBAL SEFOOBAR FOOX JUL 2019//",
+                narrative.getStructured().get(1).getNarrative());
+    }
+
+    @Test
+    public void test_Issue_Narrative_with_double_slash_in_the_middle() {
+        Field70 field70 = new Field70();
+        field70.setNarrative("/ROC/V999999B99999999///URI/FOO BAR\n" + "P GLOBAL FOOBAR LP // XXNF/GLOBAL SE\n"
+                + "FOOBAR FOOX JUL 2019//");
+
+        Narrative narrative = NarrativeResolver.parseFormatField70(field70);
+        assertEquals(2, narrative.getStructured().size());
+
+        assertEquals("ROC", narrative.getStructured().get(0).getCodeword());
+        assertEquals("V999999B99999999", narrative.getStructured().get(0).getNarrative());
+
+        assertEquals("URI", narrative.getStructured().get(1).getCodeword());
+        assertEquals(
+                "FOO BARP GLOBAL FOOBAR LP // XXNF/GLOBAL SEFOOBAR FOOX JUL 2019//",
+                narrative.getStructured().get(1).getNarrative());
+    }
+
+    @Test
+    public void test_Issue_Narrative_with_3_slash_in_the_middle() {
+        Field70 field70 = new Field70();
+        field70.setNarrative("/ROC/V999999B99999999///URI/FOO BAR\n" + "P GLOBAL FOOBAR LP ///XXNF/GLOBAL SE\n"
+                + "FOOBAR FOOX JUL 2019//");
+
+        Narrative narrative = NarrativeResolver.parseFormatField70(field70);
+        assertEquals(3, narrative.getStructured().size());
+        assertEquals("V999999B99999999", narrative.getStructured().get(0).getNarrative());
+        assertEquals("ROC", narrative.getStructured().get(0).getCodeword());
+
+        assertEquals("URI", narrative.getStructured().get(1).getCodeword());
+        assertEquals(
+                "FOO BARP GLOBAL FOOBAR LP ", narrative.getStructured().get(1).getNarrative());
+
+        assertEquals("XXNF", narrative.getStructured().get(2).getCodeword());
+        assertEquals(
+                "GLOBAL SEFOOBAR FOOX JUL 2019//",
+                narrative.getStructured().get(2).getNarrative());
+    }
+
+    @Test
+    public void test_Issue_Narrative_with_4_slash_in_the_middle() {
+        Field70 field70 = new Field70();
+        field70.setNarrative("/ROC/V999999B99999999///URI/FOO BAR\n" + "P GLOBAL FOOBAR LP ////XXNF/GLOBAL\n"
+                + "FOOBAR FOOX JUL 2019//");
+
+        Narrative narrative = NarrativeResolver.parseFormatField70(field70);
+        assertEquals(2, narrative.getStructured().size());
+        assertEquals("V999999B99999999", narrative.getStructured().get(0).getNarrative());
+        assertEquals("ROC", narrative.getStructured().get(0).getCodeword());
+
+        assertEquals("URI", narrative.getStructured().get(1).getCodeword());
+        assertEquals(
+                "FOO BARP GLOBAL FOOBAR LP //XXNF/GLOBALFOOBAR FOOX JUL 2019//",
+                narrative.getStructured().get(1).getNarrative());
+    }
+
+    @Test
+    public void test_Issue_Narrative_with_3_and_space_slash_in_the_middle() {
+        Field70 field70 = new Field70();
+        field70.setNarrative("/ROC/V999999B99999999///URI/FOO BAR\n" + "P GLOBAL FOOBAR LP /// XXNF/GLOBAL SE\n"
+                + "FOOBAR FOOX JUL 2019//");
+
+        Narrative narrative = NarrativeResolver.parseFormatField70(field70);
+        assertEquals(3, narrative.getStructured().size());
+        assertEquals("V999999B99999999", narrative.getStructured().get(0).getNarrative());
+        assertEquals("ROC", narrative.getStructured().get(0).getCodeword());
+
+        assertEquals(
+                "FOO BARP GLOBAL FOOBAR LP ", narrative.getStructured().get(1).getNarrative());
+        assertEquals("URI", narrative.getStructured().get(1).getCodeword());
+
+        assertEquals(
+                "GLOBAL SEFOOBAR FOOX JUL 2019//",
+                narrative.getStructured().get(2).getNarrative());
+        assertEquals(" XXNF", narrative.getStructured().get(2).getCodeword());
+    }
+
+    @Test
+    public void test_Issue_Narrative_ends_with_3_slash() {
+        Field70 field70 = new Field70();
+        field70.setNarrative("/ROC/V999999B99999999///URI/FOO BAR\n" + "P GLOBAL FOOBAR LP // XXNF/GLOBAL SE\n"
+                + "FOOBAR FOOX JUL 2019///");
+
+        //    ///FER/texto///PABLO/
+        Narrative narrative = NarrativeResolver.parseFormatField70(field70);
+        assertEquals(2, narrative.getStructured().size());
+        assertEquals("V999999B99999999", narrative.getStructured().get(0).getNarrative());
+        assertEquals(
+                "FOO BARP GLOBAL FOOBAR LP // XXNF/GLOBAL SEFOOBAR FOOX JUL 2019///",
+                narrative.getStructured().get(1).getNarrative());
+    }
+
+    @Test
+    public void test_Issue_Narrative_ends_with_4_slash() {
+        Field70 field70 = new Field70();
+        field70.setNarrative("/ROC/V999999B99999999///URI/FOO BAR\n" + "P GLOBAL FOOBAR LP // XXNF/GLOBAL SE\n"
+                + "FOOBAR FOOX JUL 2019////");
+
+        Narrative narrative = NarrativeResolver.parseFormatField70(field70);
+        assertEquals(2, narrative.getStructured().size());
+        assertEquals("V999999B99999999", narrative.getStructured().get(0).getNarrative());
+        assertEquals(
+                "FOO BARP GLOBAL FOOBAR LP // XXNF/GLOBAL SEFOOBAR FOOX JUL 2019////",
+                narrative.getStructured().get(1).getNarrative());
+    }
 }

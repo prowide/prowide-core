@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+#### 9.5.11 - SNAPSHOT
+  * feat: Enhanced SwiftParser for edge cases avoiding OutOfBoundsException when parsing messages with empty blocks
+  * (PW-2613) Updated the Field70 codeword splitting logic to allow / as trailing chars
+
 #### 9.5.10 - July 2025
   * (PW-2594) Fixed format for Fields 60, 62, 64, and 65 to ensure the DC component is mandatory.
   * fix: Enhanced the Xml parsing logic to escape/unescape `<` and `>` characters in the XML content
