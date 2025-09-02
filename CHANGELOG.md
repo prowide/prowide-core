@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 9.5.11 - SNAPSHOT
+#### 9.5.11 - September 2025
   * feat: Enhanced SwiftParser for edge cases avoiding OutOfBoundsException when parsing messages with empty blocks
   * (PW-2613) Updated the Field70 codeword splitting logic to allow / as trailing chars
 
