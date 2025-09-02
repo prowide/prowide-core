@@ -1,8 +1,10 @@
 # Prowide Core - CHANGELOG
 
-#### 9.6.3 - SNAPSHOT
+#### 9.6.4 - September 2025
   * feat: Enhanced SwiftParser for edge cases avoiding OutOfBoundsException when parsing messages with empty blocks
   * (PW-2613) Updated the Field70 codeword splitting logic to allow / as trailing chars
+
+#### 9.6.3 - July 2025
   * (PW-2594) Fixed format for Fields 60, 62, 64, and 65 to ensure the DC component is mandatory.
   * (PW-2541) Updated the narrative resolver, format field 70 (used in field 70), to allow multiple lines and using // as codeword separator (/CODEWORD1/text///CODEWORD2/text) 
   * Fix: Enhanced the Xml parsing logic to escape/unescape `<` and `>` characters in the XML content
