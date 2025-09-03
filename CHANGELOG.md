@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+#### 9.6.5 - August 2025
+  * feat: Enhanced SwiftParser for edge cases avoiding OutOfBoundsException when parsing messages with empty blocks
+  * fix: `LogicalTerminalAddress` sender LT "X" is now the default instead of "A" for load balancing by Messaging Interface
+
 #### 9.6.4 - September 2025
   * feat: Enhanced SwiftParser for edge cases avoiding OutOfBoundsException when parsing messages with empty blocks
   * (PW-2613) Updated the Field70 codeword splitting logic to allow / as trailing chars
