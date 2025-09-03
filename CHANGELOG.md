@@ -2,6 +2,7 @@
 
 #### 10.2.13 - SNAPSHOT
   * feat: Enhanced SwiftParser for edge cases avoiding OutOfBoundsException when parsing messages with empty blocks
+  * fix: `LogicalTerminalAddress` sender LT "X" is now the default instead of "A" for load balancing by Messaging Interface
 
 #### 10.2.12 - July 2025
   * (PW-2613) Updated the Field70 codeword splitting logic to allow / as trailing chars

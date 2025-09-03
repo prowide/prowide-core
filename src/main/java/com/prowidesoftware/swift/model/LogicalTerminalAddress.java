@@ -20,12 +20,17 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * Identifies a logical channel connection to SWIFT, and the network uses it for addressing.
- * It is basically a BIC code with an additional character identifier the terminal sending the message. The LT
- * identifier is located in position 9 of a full 12 characters address.
+ * It is basically a BIC code with an additional character identifier the terminal sending the message.
+ * The LT identifier is located in position 9 of a full 12 characters address.
  * For example letter 'A' in CCCCUS33AXXX<br>
  * <p>
- * A sender LT address cannot have 'X' as LT identifier, conversely a
- * receiver LT address must have an 'X' as LT identifier.
+ * A sender LT address cannot have 'X' as LT identifier
+ * as it is a reserved character for LT wildcard.
+ * SWIFT NAK the messages with H10 error when messages sent to their network.
+ * However, messages to Messaging Interface can have 'X' as Sender LT Identifier
+ * that will be used as wild card to load balance the LTs and replaced by
+ * Messaging Interface before sending to SWIFT to the corresponding LT Value.
+ * A receiver LT address must have an 'X' as LT identifier.
  *
  * @author sebastian
  * @since 7.6
@@ -73,19 +78,18 @@ public class LogicalTerminalAddress extends BIC {
 
     /**
      * Returns a proper LT address for the sender of a message, assuring
-     * the returned code has 12 characters and with no "X" in the 9th position.
+     * the returned code has 12 characters.
      *
-     * <p>If the terminal identifier is not set or if it is set to "X", then
-     * the default identifier "A" will be used.
+     * <p>If the terminal identifier is not set, then the wildcard LT identifier "X" will be used.
      *
      * <p>The branch code is padded with "XXX" if not present.
      *
      * @return the 12 characters address or null if the BIC has less than 8 characters
      */
     public String getSenderLogicalTerminalAddress() {
-        char LT = this.lTIdentifier == null || this.lTIdentifier.equals('X') ? 'A' : this.lTIdentifier;
+        final char lt = Character.toUpperCase(this.lTIdentifier == null ? 'X' : this.lTIdentifier);
         if (getBic8() != null) {
-            return getBic8() + LT + getBranchOrDefault();
+            return getBic8() + lt + getBranchOrDefault();
         }
         return null;
     }
