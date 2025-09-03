@@ -78,10 +78,9 @@ public class LogicalTerminalAddress extends BIC {
 
     /**
      * Returns a proper LT address for the sender of a message, assuring
-     * the returned code has 12 characters and with no "X" in the 9th position.
+     * the returned code has 12 characters.
      *
-     * <p>If the terminal identifier is not set or if it is set to "X", then
-     * the wildcard LT identifier "X" will be used.
+     * <p>If the terminal identifier is not set, then the wildcard LT identifier "X" will be used.
      *
      * <p>The branch code is padded with "XXX" if not present.
      *
