@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2024 Prowide
+ * Copyright 2006-2025 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -115,8 +115,9 @@ Fieldset 22
 Sequence B4 - Financial Instrument/Account (M)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 36 B,D (M)</li>
 <li class="field">Field 70 D (O)</li>
-<li class="field">Field 97 A,E (O)</li>
-<li class="field">Field 94 B,C,F,L (O) (repetitive)</li>
+<li class="fieldset">
+Fieldset 97
+ (O)<ul><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 B (O)</li></ul></li><li class="field">Field 94 B,C,F,L,T (O) (repetitive)</li>
 <li class="sequence">
 Sequence B4a -  (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 B (O)</li>
@@ -151,7 +152,7 @@ Fieldset 22
 Sequence B6a - Settlement Parties (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C (M)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="field">Field 97 A,B,D (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C,D (M)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="field">Field 97 A,B,D (O)</li>
 <li class="field">Field 98 A,C (O)</li>
 <li class="field">Field 20 C (O)</li>
 <li class="fieldset">
@@ -180,7 +181,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2024</strong>
+ * This source code is specific to release <strong>SRU 2025</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -189,7 +190,7 @@ public class MT586 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2024;
+	public static final int SRU = 2025;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT586.class.getName());
 	
@@ -490,24 +491,6 @@ public class MT586 extends AbstractMT implements Serializable {
 		final Tag t = tag("11A");
 		if (t != null) {
 			return new Field11A(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
-	 * Iterates through block4 fields and return the first one whose name matches 97E, 
-	 * or null if none is found.
-	 * The first occurrence of field 97E at MT586 is expected to be the only one.
-	 * 
-	 * @return a Field97E object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field97E getField97E() {
-		final Tag t = tag("97E");
-		if (t != null) {
-			return new Field97E(t.getValue());
 		} else {
 			return null;
 		}
@@ -1212,6 +1195,46 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97B, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 97B at MT586 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field97B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field97B> getField97B() {
+		final List<Field97B> result = new ArrayList<>();
+		final Tag[] tags = tags("97B");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field97B(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97E, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 97E at MT586 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field97E objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field97E> getField97E() {
+		final List<Field97E> result = new ArrayList<>();
+		final Tag[] tags = tags("97E");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field97E(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94C, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 94C at MT586 are expected at one sequence or across several sequences.
@@ -1246,6 +1269,26 @@ public class MT586 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field94F(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94T, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 94T at MT586 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field94T objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field94T> getField94T() {
+		final List<Field94T> result = new ArrayList<>();
+		final Tag[] tags = tags("94T");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field94T(tag.getValue()));
             }
 		}
 		return result;
@@ -1312,6 +1355,26 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95D, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 95D at MT586 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field95D objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field95D> getField95D() {
+		final List<Field95D> result = new ArrayList<>();
+		final Tag[] tags = tags("95D");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field95D(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95S, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 95S at MT586 are expected at one sequence or across several sequences.
@@ -1326,26 +1389,6 @@ public class MT586 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field95S(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97B, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 97B at MT586 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field97B objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field97B> getField97B() {
-		final List<Field97B> result = new ArrayList<>();
-		final Tag[] tags = tags("97B");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field97B(tag.getValue()));
             }
 		}
 		return result;
@@ -1684,7 +1727,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT586GetSequenceA1List_sru2024(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT586GetSequenceA1List_sru2025(this);
 	}
 
 
@@ -1984,7 +2027,7 @@ public class MT586 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT586GetSequenceB1List_sru2024(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT586GetSequenceB1List_sru2025(this);
 	}
 
 
