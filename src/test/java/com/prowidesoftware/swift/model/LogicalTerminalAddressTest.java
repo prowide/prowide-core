@@ -118,15 +118,16 @@ public class LogicalTerminalAddressTest {
     @Test
     public void testSenderLT() {
         assertEquals("FOOOOOHUAXXX", new LogicalTerminalAddress("FOOOOOHUAXXX").getSenderLogicalTerminalAddress());
-        assertEquals("FOOOOOHUAXXX", new LogicalTerminalAddress("FOOOOOHUXXXX").getSenderLogicalTerminalAddress());
-        assertEquals("FOOOOOHUAXXX", new LogicalTerminalAddress("FOOOOOHUXXX").getSenderLogicalTerminalAddress());
-        assertEquals("FOOOOOHUAXXX", new LogicalTerminalAddress("FOOOOOHU").getSenderLogicalTerminalAddress());
+        assertEquals("FOOOOOHUXXXX", new LogicalTerminalAddress("FOOOOOHUXXXX").getSenderLogicalTerminalAddress());
+        assertEquals("FOOOOOHUXXXX", new LogicalTerminalAddress("FOOOOOHUXXX").getSenderLogicalTerminalAddress());
+        assertEquals("FOOOOOHUXXXX", new LogicalTerminalAddress("FOOOOOHU").getSenderLogicalTerminalAddress());
         assertNull(new LogicalTerminalAddress("FOO").getSenderLogicalTerminalAddress());
     }
 
     @Test
     public void testReceiverLT() {
         assertEquals("FOOOOOHUXXXX", new LogicalTerminalAddress("FOOOOOHUXXXX").getReceiverLogicalTerminalAddress());
+        assertEquals("X", String.valueOf(new LogicalTerminalAddress("FOOOOOHUXXXX").getLTIdentifier()));
         assertEquals("FOOOOOHUXXXX", new LogicalTerminalAddress("FOOOOOHUAXXX").getReceiverLogicalTerminalAddress());
         assertEquals("FOOOOOHUXXXX", new LogicalTerminalAddress("FOOOOOHUXXX").getReceiverLogicalTerminalAddress());
         assertEquals("FOOOOOHUXXXX", new LogicalTerminalAddress("FOOOOOHU").getReceiverLogicalTerminalAddress());
