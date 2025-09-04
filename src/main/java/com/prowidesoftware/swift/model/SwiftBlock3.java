@@ -17,6 +17,7 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.prowidesoftware.swift.model.field.Field;
 import com.prowidesoftware.swift.model.field.Field108;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -150,5 +151,32 @@ public class SwiftBlock3 extends SwiftTagListBlock implements Serializable {
      */
     public SwiftBlock3Builder builder() {
         return new SwiftBlock3Builder(this);
+    }
+
+    /**
+     * Add the given field in order the list, sorted by field name.
+     * The Field components are serialized into a plain value usign the getValue implementation
+     * of the Field object, and this created value is use for the internal Tag actually set into
+     * the block.
+     *
+     * @param field the field to add, must not be null
+     * @return <code>this</code>
+     * @throws IllegalArgumentException if field is null
+     * @since 7.7
+     */
+    @Override
+    public SwiftTagListBlock append(final Field field) {
+        super.append(field);
+        List<Tag> tags = super.getTags();
+        tags.sort((t1, t2) -> {
+            String n1 = (t1 != null) ? t1.getName() : null;
+            String n2 = (t2 != null) ? t2.getName() : null;
+            if (n1 == n2) return 0;
+            if (n1 == null) return 1;
+            if (n2 == null) return -1;
+            return n1.compareToIgnoreCase(n2);
+        });
+        super.setTags(tags);
+        return this;
     }
 }

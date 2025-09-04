@@ -72,4 +72,19 @@ public class SwiftBlock3Test {
         assertEquals(4, b.getTags().size());
         assertEquals("finalValue106", b.getTagValue(Field106.NAME));
     }
+
+    @Test
+    public void testAppend() {
+        SwiftBlock3 b = new SwiftBlock3();
+        b.append(new Field121("foo"));
+        b.append(new Field165("foo"));
+        b.append(new Field106("finalValue106"));
+        b.append(new Field108("foo"));
+        assertEquals(Field106.NAME, b.getTags().get(0).getName());
+        assertEquals(Field108.NAME, b.getTags().get(1).getName());
+        assertEquals(Field121.NAME, b.getTags().get(2).getName());
+        assertEquals(Field165.NAME, b.getTags().get(3).getName());
+        assertEquals(4, b.getTags().size());
+        assertEquals("finalValue106", b.getTagValue(Field106.NAME));
+    }
 }

@@ -415,7 +415,7 @@ public class AbstractMtJsonTest {
         SwiftMessageComparator comp = new SwiftMessageComparator();
         comp.setIgnoreEolsInMultiline(true);
 
-        MT103 mt = MT103.parse("{1:F01FOOSEDR0AXXX0000000000}{3:{113:SEPA}{108:ILOVESEPA}}{2:I103FOORECV0XXXXN}{4:\n"
+        MT103 mt = MT103.parse("{1:F01FOOSEDR0AXXX0000000000}{3:{108:ILOVESEPA}{113:SEPA}}{2:I103FOORECV0XXXXN}{4:\n"
                 + ":20:REFERENCE\n"
                 + ":23B:CRED\n"
                 + ":32A:130204USD1234567,89\n"
