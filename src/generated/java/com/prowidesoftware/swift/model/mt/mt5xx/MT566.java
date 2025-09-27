@@ -171,8 +171,9 @@ Sequence D2 - Cash Movements (O) (repetitive)<ul><li class="field">Field 16 R (M
 <li class="fieldset">
 Fieldset 22
  (M) (repetitive)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li></ul></li><li class="field">Field 94 C (O)</li>
-<li class="field">Field 97 A,E (O)</li>
-<li class="sequence">
+<li class="fieldset">
+Fieldset 97
+ (O)<ul><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 D (O)</li></ul></li><li class="sequence">
 Sequence D2a - Cash Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
