@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 10.3.7 - SNAPSHOT
+  * fix: `MT544-547` Field19 NTWK Option as per SRU2025 UG
+
 #### 10.3.6 - August 2025
   * feat: Enhanced SwiftParser for edge cases avoiding OutOfBoundsException when parsing messages with empty blocks
   * fix: `LogicalTerminalAddress` sender LT "X" is now the default instead of "A" for load balancing by Messaging Interface
