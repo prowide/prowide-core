@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.3.7 - SNAPSHOT
+#### 10.3.7 - November 2025
   * fix: `MT544-547` Field19 NTWK Option as per SRU2025 UG
   * (PW-2907) Fixed format for Field 31W from DATE4 to DATE2
 
