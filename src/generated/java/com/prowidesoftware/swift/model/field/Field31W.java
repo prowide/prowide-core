@@ -52,7 +52,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>&lt;DATE4&gt;/4!c(**)</code></li>
+ * 		<li>validation pattern: <code>&lt;DATE2&gt;/4!c(**)</code></li>
  * 		<li>parser pattern: <code>S/S</code></li>
  * 		<li>components pattern: <code>DS</code></li>
  * </ul>
@@ -233,7 +233,7 @@ public class Field31W extends Field implements Serializable, DateContainer {
      */
     @Override
     public String validatorPattern() {
-        return "<DATE4>/4!c(**)";
+        return "<DATE2>/4!c(**)";
     }
 
     /**
