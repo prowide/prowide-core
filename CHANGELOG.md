@@ -2,6 +2,7 @@
 
 #### 10.3.7 - SNAPSHOT
   * fix: `MT544-547` Field19 NTWK Option as per SRU2025 UG
+  * (PW-2907) Fixed format for Field 31W from DATE4 to DATE2
 
 #### 10.3.6 - August 2025
   * feat: Enhanced SwiftParser for edge cases avoiding OutOfBoundsException when parsing messages with empty blocks
