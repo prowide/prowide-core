@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+#### 9.6.6 - SNAPSHOT
+  * fix: `MT544-547` Field19 NTWK Option as per SRU2025 UG
+  * (PW-2907) Fixed format for Field 31W from DATE4 to DATE2
+
 #### 9.6.5 - August 2025
   * feat: Enhanced SwiftParser for edge cases avoiding OutOfBoundsException when parsing messages with empty blocks
   * fix: `LogicalTerminalAddress` sender LT "X" is now the default instead of "A" for load balancing by Messaging Interface

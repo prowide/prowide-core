@@ -53,7 +53,7 @@ Fieldset 99
 Sequence A1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 22 F (O)</li>
 <li class="field">Field 13 A,B (O)</li>
-<li class="field">Field 20 C,U (M)</li>
+<li class="field">Field 20 C,U,N (M)</li>
 <li class="field">Field 36 B,D (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -630,6 +630,26 @@ public class MT541 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field20U(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 20N, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 20N at MT541 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field20N objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field20N> getField20N() {
+		final List<Field20N> result = new ArrayList<>();
+		final Tag[] tags = tags("20N");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field20N(tag.getValue()));
             }
 		}
 		return result;
