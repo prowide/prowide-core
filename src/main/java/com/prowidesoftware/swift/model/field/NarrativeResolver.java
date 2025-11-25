@@ -37,49 +37,80 @@ public class NarrativeResolver {
     private static final int CODEWORDTYPE_UCASE_NUMBER = 2;
     private static final int CODEWORDTYPE_NUMBER = 3;
 
-    /**
-     * Parses the narrative text with a specific format depending on the field
-     */
-    public static Narrative parse(Field f) {
+    static int formatForField(Field f) {
         // each field support one or two line formats
         switch (f.getName()) {
             case Field77A.NAME:
             case Field74.NAME:
             case Field86.NAME:
-                return parseFormat1(f);
+                return 1;
             case Field72Z.NAME:
             case Field72.NAME:
             case Field77.NAME:
             case Field77J.NAME:
-                return parseFormat2(f);
+                return 2;
             case Field73A.NAME:
             case Field71D.NAME:
             case Field73.NAME:
             case Field71B.NAME:
             case "71E": // SCORE field
-                return parseFormat3(f);
+                return 3;
             case Field77B.NAME:
-                return parseFormat4(f);
+                return 4;
             case Field75.NAME:
             case Field76.NAME:
-                return parseFormat5(f);
+                return 5;
             case Field49N.NAME:
             case Field45B.NAME:
             case Field46B.NAME:
             case Field47B.NAME:
             case Field49M.NAME:
-                return parseFormat6(f);
+                return 6;
             case Field70.NAME:
-                return parseFormatField70(f);
+                return 70;
             case Field77D.NAME:
             case Field37N.NAME:
-                return parseFormat7(f);
+                return 7;
             case Field29A.NAME:
             case Field79.NAME:
-                return parseFormat8(f.getValue());
             case Field61.NAME:
-                Field61 field61 = (Field61) f;
-                return parseFormat8(field61.getSupplementaryDetails());
+                return 8;
+        }
+        log.warning("Don't know how to parse structured narrative line formats for " + f.getName());
+        return -1;
+    }
+
+    /**
+     * Parses the narrative text with a specific format depending on the field
+     */
+    public static Narrative parse(Field f) {
+        // each field support one or two line formats
+        int format = formatForField(f);
+        switch (format) {
+            case 1:
+                return parseFormat1(f);
+            case 2:
+                return parseFormat2(f);
+            case 3:
+                return parseFormat3(f);
+            case 4:
+                return parseFormat4(f);
+            case 5:
+                return parseFormat5(f);
+            case 6:
+                return parseFormat6(f);
+            case 7:
+                return parseFormat7(f);
+            case 8: {
+                if (Field61.NAME.equals(f.getName())) {
+                    Field61 field61 = (Field61) f;
+                    return parseFormat8(field61.getSupplementaryDetails());
+                } else {
+                    return parseFormat8(f.getValue());
+                }
+            }
+            case 70:
+                return parseFormatField70(f);
         }
         log.warning("Don't know how to parse structured narrative line formats for " + f.getName());
         return new Narrative();
@@ -223,6 +254,7 @@ public class NarrativeResolver {
                 structured.addNarrativeFragment(valueLine, lineIndex, lineLength);
                 unstructuredSection = false;
             }
+
             if (unstructuredSection) narrative.addUnstructuredFragment(valueLine);
         }
 
@@ -278,7 +310,10 @@ public class NarrativeResolver {
     }
 
     /**
-     * Free format codes in slashes, not necessary on new lines
+     * Free format codes in slashes, not necessary on new lines.
+     * Separator could have one or more slashes. They are all considered the same and removed from the narrative text.
+     * For example in this value: /ROC/CUSTOMERREFERENCE8THAUGUST2026TIME0///URI/INVOICE-123 the narrative for ROC
+     * is "CUSTOMERREFERENCE8THAUGUST2026TIME0" and for URI is "INVOICE-123"
      */
     public static Narrative parseFreeFormat(String value, String separator) {
         Narrative narrative = new Narrative();
@@ -300,7 +335,7 @@ public class NarrativeResolver {
                 if (isCodewordValid(token, CODEWORDTYPE_UCASE, -1)) {
                     if (currentCodeword != null) {
                         // store current structured item
-                        add(narrative, currentCodeword, currentText.toString());
+                        addNarrativeFromFreeFormatParsing(narrative, currentCodeword, currentText.toString());
                     }
                     currentCodeword = token;
                     currentText = new StringBuilder();
@@ -315,7 +350,7 @@ public class NarrativeResolver {
             }
             if (currentCodeword != null) {
                 // add the last created item if necessary
-                add(narrative, currentCodeword, currentText.toString());
+                addNarrativeFromFreeFormatParsing(narrative, currentCodeword, currentText.toString());
             }
 
         } else {
@@ -335,10 +370,11 @@ public class NarrativeResolver {
      * @param codeword  a codeword
      * @param text      the narrative text or blank to skip
      */
-    private static void add(Narrative narrative, String codeword, String text) {
+    private static void addNarrativeFromFreeFormatParsing(Narrative narrative, String codeword, String text) {
         StructuredNarrative item = new StructuredNarrative().setCodeword(codeword);
         if (StringUtils.isNoneBlank(text)) {
-            item.addNarrativeFragment(text);
+            String cleanNarrative = StringUtils.stripEnd(text, "/");
+            item.addNarrativeFragment(cleanNarrative);
         }
         narrative.add(item);
     }
@@ -479,16 +515,43 @@ public class NarrativeResolver {
      */
     public static Narrative parseFormatField70(Field f) {
         String value = f.getValue();
-        if (value == null) {
+        if (StringUtils.isBlank(value)) {
             return new Narrative();
         }
 
-        List<String> valueLines = notEmptyLines(value);
+        List<String> valueLines;
 
         // remove CRs and split lines using // only if the narrative starts with a codeword
         if (value.startsWith("/")) {
-            value = value.replace("\n", "").replace("\r", "");
-            valueLines = Arrays.asList(StringUtils.splitByWholeSeparator(value, "//"));
+
+            int endSlashQuant = 0;
+            int endIndex = value.length() - 1;
+
+            // Count trailing slashes
+            while (endIndex >= 0 && value.charAt(endIndex) == '/') {
+                endIndex--;
+                endSlashQuant++;
+            }
+
+            // Remove CRs and trailing slashes
+            value = value.substring(0, endIndex + 1).replace("\n", "").replace("\r", "");
+
+            // Split by /// (// separator and / as codeword starter)
+            String[] linesSplitted = StringUtils.splitByWholeSeparator(value, "///");
+
+            // Add slashes to the beginning of each line (codeword starter)
+            for (int i = 1; i < linesSplitted.length; i++) {
+                linesSplitted[i] = "/" + linesSplitted[i];
+            }
+
+            // Append the removed trailing slashes to the last line
+            if (endSlashQuant > 0) {
+                linesSplitted[linesSplitted.length - 1] =
+                        linesSplitted[linesSplitted.length - 1] + StringUtils.repeat("/", endSlashQuant);
+            }
+            valueLines = Arrays.asList(linesSplitted);
+        } else {
+            valueLines = notEmptyLines(value);
         }
 
         return parseFormat(valueLines, -1, CODEWORDTYPE_UCASE, false, false, false, false);

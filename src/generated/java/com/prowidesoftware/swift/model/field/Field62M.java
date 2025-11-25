@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2024 Prowide
+ * Copyright 2006-2025 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,12 +59,12 @@ import com.google.gson.JsonParser;
  * <p>Structure definition
  * <ul>
  * 		<li>validation pattern: <code>&lt;DC&gt;&lt;DATE2&gt;&lt;3!a&gt;&lt;AMOUNT&gt;15</code></li>
- * 		<li>parser pattern: <code>[c]&lt;DATE2&gt;SN</code></li>
+ * 		<li>parser pattern: <code>c&lt;DATE2&gt;SN</code></li>
  * 		<li>components pattern: <code>SESN</code></li>
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2024</strong>
+ * This class complies with standard release <strong>SRU2025</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -72,7 +72,7 @@ public class Field62M extends Field implements Serializable, AmountContainer, Da
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2024;
+	public static final int SRU = 2025;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -263,7 +263,7 @@ public class Field62M extends Field implements Serializable, AmountContainer, Da
      */
     @Override
     public String parserPattern() {
-        return "[c]<DATE2>SN";
+        return "c<DATE2>SN";
     }
 
     /**

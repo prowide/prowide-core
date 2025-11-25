@@ -599,6 +599,10 @@ public class SwiftParser {
         //   - if start is ':' => find tag end as '<CR><LF>:[X]' => split tag (no unparsed texts)
         // - detect block end as '<CR><LF>-}' or '}'
         //
+        if (s == null || s.length() < 2) {
+            return b;
+        }
+
         int start = 0;
         if (s.charAt(start) == '4') {
             start++;
