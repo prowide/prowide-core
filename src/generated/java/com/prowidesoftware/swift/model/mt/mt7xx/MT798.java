@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2024 Prowide
+ * Copyright 2006-2025 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ import java.io.IOException;
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2024</strong>
+ * This source code is specific to release <strong>SRU 2025</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -53,7 +53,7 @@ public class MT798 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2024;
+	public static final int SRU = 2025;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT798.class.getName());
 	
@@ -347,7 +347,7 @@ public class MT798 extends AbstractMT implements Serializable {
 	 * Creates a new messages with the content of the enclosed sub-message type.
 	 *
 	 * The headers are a clone to the actual envelop MT798 headers, changing the message type in block 2 with the
-	 * value of field 12 in the envelop. The block4 will contain all fields following 77E in the envelop (including
+	 * value of field 12 in the envelope. The block4 will contain all fields following 77E in the envelope (including
 	 * for example the message index in 27A and customer reference in 21P when present).
 	 *
 	 * Notice the return type is a {@link SwiftMessage} since this model has a very lenient structure. If the sub-message
