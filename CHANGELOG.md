@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 10.2.14 - SNAPSHOT
+  * Updated apache-commons-lang3 from 3.17.0 to 3.19.0
+
 #### 10.2.13 - August 2025
   * feat: Enhanced SwiftParser for edge cases avoiding OutOfBoundsException when parsing messages with empty blocks
   * fix: `LogicalTerminalAddress` sender LT "X" is now the default instead of "A" for load balancing by Messaging Interface
