@@ -10,3 +10,6 @@ updates:
       - dependency-name: "com.diffplug.spotless:spotless-plugin-gradle"
       - dependency-name: "pl.allegro.tech.build:axion-release-plugin"
       - dependency-name: "org.apache.sshd:sshd-common"
+      # Jakarta Persistence 3.2+ requires Java 17, project is on Java 11
+      - dependency-name: "jakarta.persistence:jakarta.persistence-api"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]

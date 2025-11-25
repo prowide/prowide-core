@@ -33,6 +33,7 @@ public interface SchemeConstantsB {
     String BPAR = "BPAR";
     String BREF = "BREF";
     String BENE = "BENE";
+    String BCCW = "BCCW";
     String BRCR = "BRCR";
     String BUYR = "BUYR";
     String BASK = "BASK";
@@ -69,7 +70,6 @@ public interface SchemeConstantsB {
     String BBAA = "BBAA";
     String BCBL = "BCBL";
     String BCBN = "BCBN";
-    String BCCW = "BCCW";
     String BCFD = "BCFD";
     String BCPD = "BCPD";
     String BCRO = "BCRO";
