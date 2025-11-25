@@ -45,7 +45,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat1_1() {
         // empty value
-        Narrative n = NarrativeResolver.parse(new Field77A());
+        Field f = new Field77A();
+        assertEquals(1, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertNull(n.getUnstructured("\n"));
         assertNull(n.getUnstructured());
@@ -58,7 +60,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat1_2() {
         String v = "WE NOTED FCR SHOWING YOURSELVES\n" + "AS CONSIGNEE PLEASE DISCHARGE\n" + "US SOONEST";
-        Narrative n = NarrativeResolver.parse(new Field77A(v));
+        Field f = new Field77A(v);
+        assertEquals(1, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured("\n"));
         assertEquals(StringUtils.replace(v, "\n", ""), n.getUnstructured());
@@ -71,7 +75,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat1_3() {
         String v = "/WE NOTED FCR SHOWING YOURSELVES";
-        Narrative n = NarrativeResolver.parse(new Field77A(v));
+        Field f = new Field77A(v);
+        assertEquals(1, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured());
     }
@@ -82,7 +88,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat1_4() {
         String v = "/111/WE NOTED FCR SHOWING YOURSELVES";
-        Narrative n = NarrativeResolver.parse(new Field77A(v));
+        Field f = new Field77A(v);
+        assertEquals(1, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured());
     }
@@ -93,7 +101,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat1_5() {
         String v = "/aaa/WE NOTED FCR SHOWING YOURSELVES";
-        Narrative n = NarrativeResolver.parse(new Field77A(v));
+        Field f = new Field77A(v);
+        assertEquals(1, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured());
     }
@@ -104,7 +114,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat1_6() {
         String v = "/AAAAAAAAA/Long codeword";
-        Narrative n = NarrativeResolver.parse(new Field77A(v));
+        Field f = new Field77A(v);
+        assertEquals(1, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured());
     }
@@ -115,7 +127,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat1_7() {
         String v = "/AA$AA/Long codeword";
-        Narrative n = NarrativeResolver.parse(new Field77A(v));
+        Field f = new Field77A(v);
+        assertEquals(1, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured());
     }
@@ -126,7 +140,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat1_8() {
         String v = "/AAA/WE NOTED FCR SHOWING YOURSELVES";
-        Narrative n = NarrativeResolver.parse(new Field77A(v));
+        Field f = new Field77A(v);
+        assertEquals(1, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("WE NOTED FCR SHOWING YOURSELVES", n.getStructured("AAA").getNarrative());
         assertNull(n.getUnstructured());
@@ -138,7 +154,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat1_9() {
         String v = "/AAA/WE NOTED FCR SHOWING YOURSELVES";
-        Narrative n = NarrativeResolver.parse(new Field77A(v));
+        Field f = new Field77A(v);
+        assertEquals(1, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("WE NOTED FCR SHOWING YOURSELVES", n.getStructured("AAA").getNarrative());
         assertNull(n.getUnstructured());
@@ -157,7 +175,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat2_1() {
         String v = "WE NOTED FCR SHOWING YOURSELVES\n" + "AS CONSIGNEE PLEASE DISCHARGE\n" + "US SOONEST";
-        Narrative n = NarrativeResolver.parse(new Field72Z(v));
+        Field f = new Field72Z(v);
+        assertEquals(2, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured("\n"));
     }
@@ -168,7 +188,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat2_2() {
         String v = "/aaa/WE NOTED FCR SHOWING YOURSELVES";
-        Narrative n = NarrativeResolver.parse(new Field77(v));
+        Field f = new Field77(v);
+        assertEquals(2, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured());
     }
@@ -179,7 +201,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat2_3() {
         String v = "/REC123/EURO\n" + "//Target";
-        Narrative n = NarrativeResolver.parse(new Field72(v));
+        Field f = new Field72(v);
+        assertEquals(2, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("EUROTarget", n.getStructured("REC123").getNarrative());
         assertEquals("EURO Target", n.getStructured("REC123").getNarrative(" "));
@@ -192,7 +216,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat2_4() {
         String v = "/RETN/59\n" + "/BE02/UNKNOWN BENEFICIARY\n" + "/MREF/0511030094000014";
-        Narrative n = NarrativeResolver.parse(new Field72(v));
+        Field f = new Field72(v);
+        assertEquals(2, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(3, n.getStructured().size());
         assertEquals("59", n.getStructured("RETN").getNarrative());
         assertEquals("UNKNOWN BENEFICIARY", n.getStructured("BE02").getNarrative());
@@ -206,7 +232,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat2_5() {
         String v = "/RETN/59\n" + "//UNKNOWN BENEFICIARY\n" + "/MREF/0511030094000014";
-        Narrative n = NarrativeResolver.parse(new Field72(v));
+        Field f = new Field72(v);
+        assertEquals(2, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(2, n.getStructured().size());
         assertEquals("59UNKNOWN BENEFICIARY", n.getStructured("RETN").getNarrative());
         assertEquals("0511030094000014", n.getStructured("MREF").getNarrative());
@@ -221,7 +249,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat2_6() {
         String v = "/RETN/\n" + "/BE02/UNKNOWN BENEFICIARY\n" + "/MREF/0511030094000014";
-        Narrative n = NarrativeResolver.parse(new Field72(v));
+        Field f = new Field72(v);
+        assertEquals(2, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(3, n.getStructured().size());
         assertEquals("", n.getStructured("RETN").getNarrative());
         assertEquals("UNKNOWN BENEFICIARY", n.getStructured("BE02").getNarrative());
@@ -241,7 +271,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat2_7() {
         String v = "/RETN/\n" + "//UNKNOWN BENEFICIARY\n" + "/MREF/0511030094000014";
-        Narrative n = NarrativeResolver.parse(new Field72(v));
+        Field f = new Field72(v);
+        assertEquals(2, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(2, n.getStructured().size()); // This count only the CodeWords
         assertEquals("", n.getStructured("RETN").getNarrativeFragments().get(0));
         assertEquals(
@@ -267,7 +299,9 @@ public class NarrativeResolverTest {
                 + "//RNET CITY BRANCH, P.O. BOX 46000,\n"
                 + "//DUBAI, UAE\n"
                 + "//UNITED ARAB EMIRATES";
-        Narrative n = NarrativeResolver.parse(new Field72(v));
+        Field f = new Field72(v);
+        assertEquals(2, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size()); // This count only the CodeWords
         assertEquals(5, n.getStructured("ACC").getNarrativeFragments().size());
         assertEquals("", n.getStructured("ACC").getNarrativeFragments().get(0));
@@ -290,7 +324,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat2_8() {
         String v = "/RETN/\n" + "/ /UNKNOWN BENEFICIARY\n" + "/MREF/0511030094000014\n" + "//WELL KNOWN BENEFICIARY";
-        Narrative n = NarrativeResolver.parse(new Field72(v));
+        Field f = new Field72(v);
+        assertEquals(2, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("", n.getStructured("RETN").getNarrative());
         assertEquals("/ /UNKNOWN BENEFICIARY /MREF/0511030094000014 //WELL KNOWN BENEFICIARY", n.getUnstructured(" "));
@@ -302,7 +338,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat2_9() {
         String v = "/RETN/\n" + "//UNKNOWN BENEFICIARY\n" + "/MREF/0511030094000014";
-        Narrative n = NarrativeResolver.parse(new Field72(v));
+        Field f = new Field72(v);
+        assertEquals(2, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(2, n.getStructured().size());
         assertEquals("UNKNOWN BENEFICIARY", n.getStructured("RETN").getNarrative());
         assertEquals("0511030094000014", n.getStructured("MREF").getNarrative());
@@ -316,7 +354,9 @@ public class NarrativeResolverTest {
     public void testFormat2_10() {
         String v = "/12BNF34/1000057346REDEMPTION MERRILL L\n" + "//YNCH FUNDSFFC 123455600000078 //BAN\n"
                 + "//COFOO / FOO";
-        Narrative n = NarrativeResolver.parse(new Field72(v));
+        Field f = new Field72(v);
+        assertEquals(2, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals(
                 "1000057346REDEMPTION MERRILL LYNCH FUNDSFFC 123455600000078 //BANCOFOO / FOO",
@@ -330,7 +370,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat2_11() {
         String v = "/MYCODE/FOO BAR\n" + "//CONTINUATION OF MYCODE\n" + "FREE ADDITIONAL NARRATIVE\n" + "CONTINUATION";
-        Narrative n = NarrativeResolver.parse(new Field77J(v));
+        Field f = new Field77J(v);
+        assertEquals(2, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("FOO BAR CONTINUATION OF MYCODE", n.getStructured("MYCODE").getNarrative(" "));
         assertEquals("FREE ADDITIONAL NARRATIVE CONTINUATION", n.getUnstructured(" "));
@@ -343,7 +385,9 @@ public class NarrativeResolverTest {
     public void testFormat2_12() {
         String v = "/ACC/   \n" + "//CONTINUATION OF MYCODE";
         // Fragmento uno es    . (White spaces detectados luego del /ACC/)
-        Narrative n = NarrativeResolver.parse(new Field77J(v));
+        Field f = new Field77J(v);
+        assertEquals(2, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("   ", n.getStructured("ACC").getNarrativeFragments().get(0));
         assertEquals(
@@ -362,7 +406,9 @@ public class NarrativeResolverTest {
                 + "/MREF/XXX55444/220424\n"
                 + "/TEXT/WE CONSIDER YR MT103 AS NULL\n"
                 + "//AND VOID\n";
-        Narrative n = NarrativeResolver.parse(new Field72(v));
+        Field f = new Field72(v);
+        assertEquals(2, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
 
         assertNull(n.getUnstructured());
 
@@ -414,7 +460,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat3_1() {
         String v = "YOUR CHARGES GBP 95,\n" + "CABLE GBP10,\n" + "INTEREST GBP18,";
-        Narrative n = NarrativeResolver.parse(new Field73A(v));
+        Field f = new Field73A(v);
+        assertEquals(3, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured("\n"));
     }
@@ -425,7 +473,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat3_2() {
         String v = "COMMISSION EUR200,";
-        Narrative n = NarrativeResolver.parse(new Field73A(v));
+        Field f = new Field73A(v);
+        assertEquals(3, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured());
     }
@@ -436,7 +486,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat3_3() {
         String v = "/COMM/EUR300,\n" + "/CABLE/USD20,3";
-        Narrative n = NarrativeResolver.parse(new Field71D(v));
+        Field f = new Field71D(v);
+        assertEquals(3, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(2, n.getStructured().size());
         assertEquals("EUR", n.getStructured("COMM").getCurrency());
         assertEquals(new BigDecimal("300"), n.getStructured("COMM").getAmount());
@@ -453,7 +505,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat3_4() {
         String v = "/TELECHAR/USD21,\n" + "/COMM/USD14,";
-        Narrative n = NarrativeResolver.parse(new Field71B(v));
+        Field f = new Field71B(v);
+        assertEquals(3, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(2, n.getStructured().size());
         assertEquals("USD", n.getStructured("TELECHAR").getCurrency());
         assertEquals(new BigDecimal("21"), n.getStructured("TELECHAR").getAmount());
@@ -470,7 +524,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat3_5() {
         String v = "/COMM/EUR300,FOO BAR";
-        Narrative n = NarrativeResolver.parse(new Field71B(v));
+        Field f = new Field71B(v);
+        assertEquals(3, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("EUR", n.getStructured("COMM").getCurrency());
         assertEquals(new BigDecimal("300"), n.getStructured("COMM").getAmount());
@@ -486,7 +542,9 @@ public class NarrativeResolverTest {
         String v = "/WITX/CAPITAL GAINS TAX RELATING TO\n" + "//THE PERIOD 1998-07-01 2022-10-30\n"
                 + "//REF 009524780232\n"
                 + "//BANCA DEL TEST";
-        Narrative n = NarrativeResolver.parse(new Field71B(v));
+        Field f = new Field71B(v);
+        assertEquals(3, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(
                 "CAPITAL GAINS TAX RELATING TO",
                 n.getStructured("WITX").getNarrativeFragments().get(0));
@@ -514,7 +572,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat3Score_1() {
         String v = "/ACGH/O/EUR1,00Fees";
-        Narrative n = NarrativeResolver.parse(new Field71B(v));
+        Field f = new Field71B(v);
+        assertEquals(3, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("EUR", n.getStructured("ACGH").getCurrency());
         assertEquals(new BigDecimal("1.00"), n.getStructured("ACGH").getAmount());
@@ -529,7 +589,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat3Score_2() {
         String v = "/ACGH/B/EUR1,00Fees";
-        Narrative n = NarrativeResolver.parse(new Field71B(v));
+        Field f = new Field71B(v);
+        assertEquals(3, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("EUR", n.getStructured("ACGH").getCurrency());
         assertEquals(new BigDecimal("1.00"), n.getStructured("ACGH").getAmount());
@@ -547,7 +609,9 @@ public class NarrativeResolverTest {
                 + "/POST/O/EUR8,50\n"
                 + "//INIT OF MYCODE\n"
                 + "//CONTINUATION OF MYCODE";
-        Narrative n = NarrativeResolver.parse(new Field71B(v));
+        Field f = new Field71B(v);
+        assertEquals(3, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(3, n.getStructured().size());
         assertEquals("EUR", n.getStructured("ISSU").getCurrency());
         assertEquals("B", n.getStructured("ISSU").getBankCode());
@@ -577,7 +641,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat3Score_4() {
         String v = "/ACGH/H/EUR1,00Fees";
-        Narrative n = NarrativeResolver.parse(new Field71B(v));
+        Field f = new Field71B(v);
+        assertEquals(3, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals("H", n.getStructured("ACGH").getBankCode());
         assertEquals(1, n.getStructured().size());
         assertEquals("EUR", n.getStructured("ACGH").getCurrency());
@@ -591,7 +657,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat3Score_5() {
         String v = "/TAXES/O/0,19% MwSt 190,00 EUR";
-        Narrative n = NarrativeResolver.parse(new Field71B(v));
+        Field f = new Field71B(v);
+        assertEquals(3, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         StructuredNarrative s = n.getStructured("TAXES");
         assertEquals("O", s.getBankCode());
         assertNull(s.getCountry());
@@ -607,7 +675,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat3Score_6() {
         String v = "/TAXES/O/";
-        Narrative n = NarrativeResolver.parse(new Field71B(v));
+        Field f = new Field71B(v);
+        assertEquals(3, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         StructuredNarrative s = n.getStructured("TAXES");
         assertEquals("O", s.getBankCode());
         assertNull(s.getCountry());
@@ -633,7 +703,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat4_1() {
         String v = "61A";
-        Narrative n = NarrativeResolver.parse(new Field77B(v));
+        Field f = new Field77B(v);
+        assertEquals(4, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals("61A", n.getUnstructured());
     }
@@ -644,7 +716,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat4_2() {
         String v = "Foo bar";
-        Narrative n = NarrativeResolver.parse(new Field77B(v));
+        Field f = new Field77B(v);
+        assertEquals(4, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals("Foo bar", n.getUnstructured());
     }
@@ -655,7 +729,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat4_3() {
         String v = "/BENEFRES/IT";
-        Narrative n = NarrativeResolver.parse(new Field77B(v));
+        Field f = new Field77B(v);
+        assertEquals(4, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("IT", n.getStructured("BENEFRES").getCountry());
         assertNull(n.getStructured("BENEFRES").getNarrative());
@@ -668,7 +744,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat4_4() {
         String v = "/12NEFRES/IT//Test narrative";
-        Narrative n = NarrativeResolver.parse(new Field77B(v));
+        Field f = new Field77B(v);
+        assertEquals(4, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("IT", n.getStructured("12NEFRES").getCountry());
         assertEquals("Test narrative", n.getStructured("12NEFRES").getNarrative());
@@ -681,7 +759,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat4_5() {
         String v = "/BENEFRES/ZZ";
-        Narrative n = NarrativeResolver.parse(new Field77B(v));
+        Field f = new Field77B(v);
+        assertEquals(4, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertNull(n.getStructured("BENEFRES").getCountry());
         assertEquals("ZZ", n.getStructured("BENEFRES").getNarrative());
@@ -694,7 +774,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat4_6() {
         String v = "/HOLD/";
-        Narrative n = NarrativeResolver.parse(new Field77B(v));
+        Field f = new Field77B(v);
+        assertEquals(4, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertNotNull(n.getStructured("HOLD"));
         assertNull(n.getStructured().get(0).getCountry());
@@ -708,7 +790,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat4_7() {
         String v = "/HOLD/Foo bar";
-        Narrative n = NarrativeResolver.parse(new Field77B(v));
+        Field f = new Field77B(v);
+        assertEquals(4, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertNotNull(n.getStructured("HOLD"));
         assertEquals("Foo bar", n.getStructured("HOLD").getNarrative());
@@ -721,7 +805,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat4_8() {
         String v = "/HOLD/Foo bar\n//Hello world";
-        Narrative n = NarrativeResolver.parse(new Field77B(v));
+        Field f = new Field77B(v);
+        assertEquals(4, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertNotNull(n.getStructured("HOLD"));
         assertEquals("Foo bar Hello world", n.getStructured("HOLD").getNarrative(" "));
@@ -734,7 +820,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat4_9() {
         String v = "/HOLD/Foo bar\nHello world";
-        Narrative n = NarrativeResolver.parse(new Field77B(v));
+        Field f = new Field77B(v);
+        assertEquals(4, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertNotNull(n.getStructured("HOLD"));
         assertEquals("Foo bar", n.getStructured("HOLD").getNarrative());
@@ -754,7 +842,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat5_1() {
         String v = "/3/";
-        Narrative n = NarrativeResolver.parse(new Field75(v));
+        Field f = new Field75(v);
+        assertEquals(5, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertNotNull(n.getStructured("3"));
         assertNull(n.getStructured("3").getNarrative());
@@ -767,7 +857,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat5_2() {
         String v = "/A/";
-        Narrative n = NarrativeResolver.parse(new Field75(v));
+        Field f = new Field75(v);
+        assertEquals(5, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals("/A/", n.getUnstructured());
     }
@@ -778,7 +870,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat5_3() {
         String v = "/36/FOURTH REQUEST\n/17/";
-        Narrative n = NarrativeResolver.parse(new Field75(v));
+        Field f = new Field75(v);
+        assertEquals(5, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(2, n.getStructured().size());
         assertNotNull(n.getStructured("36"));
         assertEquals("FOURTH REQUEST", n.getStructured("36").getNarrative());
@@ -793,7 +887,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat5_4() {
         String v = "WE HAVE RECEIVED THE FOLLOWING\n" + "MESSAGE FROM BNF BANK FBACUAUX";
-        Narrative n = NarrativeResolver.parse(new Field75(v));
+        Field f = new Field75(v);
+        assertEquals(5, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured("\n"));
     }
@@ -804,7 +900,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat5_5() {
         String v = "//";
-        Narrative n = NarrativeResolver.parse(new Field75(v));
+        Field f = new Field75(v);
+        assertEquals(5, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals("//", n.getUnstructured());
     }
@@ -815,7 +913,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat5_6() {
         String v = "/1/FIRST QUERY RESPONSE\n//SECOND LINE";
-        Narrative n = NarrativeResolver.parse(new Field76(v));
+        Field f = new Field76(v);
+        assertEquals(5, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("FIRST QUERY RESPONSESECOND LINE", n.getStructured("1").getNarrative());
         assertNull(n.getUnstructured());
@@ -827,7 +927,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat5_7() {
         String v = "/1/FIRST QUERY RESPONSE/SUPPLEMENT";
-        Narrative n = NarrativeResolver.parse(new Field76(v));
+        Field f = new Field76(v);
+        assertEquals(5, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("FIRST QUERY RESPONSE", n.getStructured("1").getNarrative());
         assertEquals("SUPPLEMENT", n.getStructured("1").getNarrativeSupplement());
@@ -840,7 +942,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat5_8() {
         String v = "/1/FIRST QUERY RESPONSE/SUPPLEMENT\n//CONTINUATION OF SUPPLEMENT";
-        Narrative n = NarrativeResolver.parse(new Field76(v));
+        Field f = new Field76(v);
+        assertEquals(5, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("FIRST QUERY RESPONSE", n.getStructured("1").getNarrative(" "));
         assertEquals(
@@ -860,7 +964,9 @@ public class NarrativeResolverTest {
         String v = "/ADD/+COPY OF CERTIFICATE OF ORIGIN\n" + "SHOWING GOODS ARE OF BELGIAN ORIGIN\n"
                 + "/ADD/+COPY OF CONSULAR INVOICE MENTIONING\n"
                 + "IMPORT REGISTRATION NUMBER 123";
-        Narrative n = NarrativeResolver.parse(new Field46B(v));
+        Field f = new Field46B(v);
+        assertEquals(6, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(2, n.getStructured().size());
         assertEquals(
                 "+COPY OF CERTIFICATE OF ORIGIN SHOWING GOODS ARE OF BELGIAN ORIGIN",
@@ -880,7 +986,9 @@ public class NarrativeResolverTest {
         String v = "/ADD/+COPY OF CERTIFICATE OF ORIGIN\n" + "SHOWING GOODS ARE OF BELGIAN ORIGIN\n"
                 + "//ADD/+COPY OF CONSULAR INVOICE MENTIONING\n"
                 + "IMPORT REGISTRATION NUMBER 123";
-        Narrative n = NarrativeResolver.parse(new Field49M(v));
+        Field f = new Field49M(v);
+        assertEquals(6, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals(
                 "+COPY OF CERTIFICATE OF ORIGIN SHOWING GOODS ARE OF BELGIAN ORIGIN //ADD/+COPY OF CONSULAR INVOICE MENTIONING IMPORT REGISTRATION NUMBER 123",
@@ -895,7 +1003,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat6_3() {
         String v = "/ADD/59\n" + "/0123456789/BENEFICIARIO DESCONOCIDO\n" + "/MREF/0511030094000014";
-        Narrative n = NarrativeResolver.parse(new Field49N(v));
+        Field f = new Field49N(v);
+        assertEquals(6, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(2, n.getStructured().size());
         assertEquals(
                 "59/0123456789/BENEFICIARIO DESCONOCIDO", n.getStructured("ADD").getNarrative());
@@ -918,7 +1028,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat7_1() {
         String v = "/RFB/C767405OCP021001";
-        Narrative n = NarrativeResolver.parse(new Field77D(v));
+        Field f = new Field37N(v);
+        assertEquals(7, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("C767405OCP021001", n.getStructured("RFB").getNarrative());
         assertNull(n.getUnstructured());
@@ -927,7 +1039,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat7_2() {
         String v = "/CNC/FRA. 2213 CUENTA 18 SEPTIEMBRE\n" + "// MANT\n" + "//NIMIENTO EQUIPOS E INSTALACIONES";
-        Narrative n = NarrativeResolver.parse(new Field77D(v));
+        Field f = new Field37N(v);
+        assertEquals(7, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals(
                 "FRA. 2213 CUENTA 18 SEPTIEMBRE MANTNIMIENTO EQUIPOS E INSTALACIONES",
@@ -938,7 +1052,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat7_3() {
         String v = "RESERVATION OF HOTEL";
-        Narrative n = NarrativeResolver.parse(new Field77D(v));
+        Field f = new Field37N(v);
+        assertEquals(7, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured());
     }
@@ -946,7 +1062,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat7_4() {
         String v = "/MASTER/EMAD";
-        Narrative n = NarrativeResolver.parse(new Field77D(v));
+        Field f = new Field77D(v);
+        assertEquals(7, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(1, n.getStructured().size());
         assertEquals("EMAD", n.getStructured("MASTER").getNarrative());
         assertNull(n.getUnstructured());
@@ -955,7 +1073,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat7_5() {
         String v = "/VALD/20040509\n" + "/SETC/USD";
-        Narrative n = NarrativeResolver.parse(new Field77D(v));
+        Field f = new Field77D(v);
+        assertEquals(7, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(2, n.getStructured().size());
         assertEquals("20040509", n.getStructured("VALD").getNarrative());
         assertEquals("USD", n.getStructured("SETC").getNarrative());
@@ -969,7 +1089,9 @@ public class NarrativeResolverTest {
                 + "1997 INTERNATIONAL FOREIGN EXCHANGE\n"
                 + "MASTER AGREEMENT (IFEMA) TERMS\n"
                 + "SHALL APPLY";
-        Narrative n = NarrativeResolver.parse(new Field77D(v));
+        Field f = new Field77D(v);
+        assertEquals(7, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured("\n"));
     }
@@ -982,7 +1104,11 @@ public class NarrativeResolverTest {
     @Test
     public void testFormatField70_1() {
         String v = "/ULTD/ULTIMATE DEBTOR/GB/LONDON///U\n" + "LTB/ULTIMATE CREDITOR/JO/JORDAN";
-        Narrative n = NarrativeResolver.parse(new Field70(v));
+
+        Field f = new Field70(v);
+        assertEquals(70, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
+
         assertEquals(2, n.getStructured().size());
         assertEquals("ULTD", n.getStructured().get(0).getCodeword());
         assertEquals(
@@ -999,7 +1125,11 @@ public class NarrativeResolverTest {
         String v = "/ULTD/CITIJOAXXXX///ULTB/JIBAJOAMXX\n"
                 + "X///PURP/ACCT///PURP/PRTRY456009///\n"
                 + "ROC/2120-2102111PACS008///SRI/+";
-        Narrative n = NarrativeResolver.parse(new Field70(v));
+
+        Field f = new Field70(v);
+        assertEquals(70, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
+
         assertEquals(6, n.getStructured().size());
         assertEquals("ULTD", n.getStructured().get(0).getCodeword());
         assertEquals(
@@ -1053,7 +1183,9 @@ public class NarrativeResolverTest {
 
     @Test
     public void testFormat8_1() {
-        Narrative n = NarrativeResolver.parse(new Field29A());
+        Field f = new Field29A();
+        assertEquals(8, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertNull(n.getUnstructured());
     }
@@ -1061,7 +1193,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat8_2() {
         String v = "/NAME/Jones/DEPT/IRS Back Office";
-        Narrative n = NarrativeResolver.parse(new Field29A(v));
+        Field f = new Field29A(v);
+        assertEquals(8, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(2, n.getStructured().size());
         assertEquals("Jones", n.getStructured("NAME").getNarrative());
         assertEquals("IRS Back Office", n.getStructured("DEPT").getNarrative());
@@ -1071,7 +1205,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat8_3() {
         String v = "/NAME/Jones/Brian/DEPT/IRS Back Office\n" + " - more DEPT description";
-        Narrative n = NarrativeResolver.parse(new Field29A(v));
+        Field f = new Field29A(v);
+        assertEquals(8, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(2, n.getStructured().size());
         assertEquals("Jones/Brian", n.getStructured("NAME").getNarrative());
         assertEquals(
@@ -1083,9 +1219,11 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat8_4() {
         String v = "/NAME/Jones/Brian//DEPT/IRS Back Office\n" + " - more DEPT description/description2/GENDER/Male";
-        Narrative n = NarrativeResolver.parse(new Field29A(v));
+        Field f = new Field29A(v);
+        assertEquals(8, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(3, n.getStructured().size());
-        assertEquals("Jones/Brian/", n.getStructured("NAME").getNarrative());
+        assertEquals("Jones/Brian", n.getStructured("NAME").getNarrative());
         assertEquals(
                 "IRS Back Office - more DEPT description/description2",
                 n.getStructured("DEPT").getNarrative());
@@ -1096,7 +1234,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat8_5() {
         String v = "/unstruct/NAME/Jones/DEPT/IRS Back Office\n" + " - more DEPT description/description2/GENDER/Male";
-        Narrative n = NarrativeResolver.parse(new Field29A(v));
+        Field f = new Field29A(v);
+        assertEquals(8, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured("\n"));
     }
@@ -1104,8 +1244,9 @@ public class NarrativeResolverTest {
     @Test
     public void testFormat8_6() {
         // for field 61 the structure narrative could be part of the supplementary details
-        Narrative n =
-                NarrativeResolver.parse(new Field61("1512171218RCF23423,S202d//23sdf\n/OCMT/EUR123,4/EXCH/EUR0,01"));
+        Field f = new Field61("1512171218RCF23423,S202d//23sdf\n/OCMT/EUR123,4/EXCH/EUR0,01");
+        assertEquals(8, NarrativeResolver.formatForField(f));
+        Narrative n = NarrativeResolver.parse(f);
         assertEquals(2, n.getStructured().size());
         assertEquals("EUR123,4", n.getStructured("OCMT").getNarrative());
     }
@@ -1115,9 +1256,32 @@ public class NarrativeResolverTest {
         Narrative n = NarrativeResolver.parseFormat8(
                 "/OCMT/EUR10000,\n//CHGS/EUR100,/xxxxxxxxxx\n/CHGS/EUR50,/\n//xxxxxxxxxx");
         assertEquals(3, n.getStructured().size());
-        assertEquals("EUR10000,/", n.getStructured().get(0).getNarrative());
+        assertEquals("EUR10000,", n.getStructured().get(0).getNarrative());
         assertEquals("EUR100,/xxxxxxxxxx", n.getStructured().get(1).getNarrative());
         assertEquals("EUR50,///xxxxxxxxxx", n.getStructured().get(2).getNarrative());
+    }
+
+    @Test
+    public void testFormat8_Simple() {
+        Narrative n = NarrativeResolver.parseFormat8("/RFB/BET072");
+        assertEquals(1, n.getStructured().size());
+        assertEquals("BET072", n.getStructured().get(0).getNarrative());
+    }
+
+    @Test
+    public void testFormat8_TwoLines() {
+        Narrative n = NarrativeResolver.parseFormat8("/TSU/00000089963-0820-01/ABC-15/256\n214");
+        assertEquals(1, n.getStructured().size());
+        assertEquals(
+                "00000089963-0820-01/ABC-15/256214", n.getStructured().get(0).getNarrative());
+    }
+
+    @Test
+    public void testFormat8_tripleSlash() {
+        Narrative n = NarrativeResolver.parseFormat8("/INV/abc/SDF-96//1234-234///ROC/98I\nU87");
+        assertEquals(2, n.getStructured().size());
+        assertEquals("abc/SDF-96//1234-234", n.getStructured().get(0).getNarrative());
+        assertEquals("98IU87", n.getStructured().get(1).getNarrative());
     }
 
     @Test

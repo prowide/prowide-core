@@ -27,10 +27,10 @@ import java.util.*;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @deprecated This field has been removed since SRU2024
+ * @deprecated This field has been removed since SRU2025
  */
 @Deprecated
-@ProwideDeprecated(phase2 = TargetYear.SRU2025)
+@ProwideDeprecated(phase3 = TargetYear.SRU2026)
 public class Field39D extends Field implements Serializable, MultiLineField {
     /**
      * Constant identifying the SRU to which this class belongs to.
