@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 10.3.8 - SNAPSHOT
+  * Updated gson from 2.11.0 to 2.13.2
+
 #### 10.3.7 - November 2025
   * fix: `MT544-547` Field19 NTWK Option as per SRU2025 UG
   * (PW-2907) Fixed format for Field 31W from DATE4 to DATE2
