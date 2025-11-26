@@ -13,3 +13,6 @@ updates:
       # Jakarta Persistence 3.2+ requires Java 17, project is on Java 11
       - dependency-name: "jakarta.persistence:jakarta.persistence-api"
         update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      # JUnit Platform 6.x requires Java 17, project is on Java 11
+      - dependency-name: "org.junit.platform:junit-platform-launcher"
+        update-types: ["version-update:semver-major"]
