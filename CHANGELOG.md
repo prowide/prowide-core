@@ -1,6 +1,7 @@
 # Prowide Core - CHANGELOG
 
 #### 10.3.8 - SNAPSHOT
+  * Updated apache-commons-lang3 from 3.17.0 to 3.19.0
   * Updated gson from 2.11.0 to 2.13.2
 
 #### 10.3.7 - November 2025
