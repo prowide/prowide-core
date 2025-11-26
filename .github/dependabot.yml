@@ -16,3 +16,6 @@ updates:
       # JUnit Platform 6.x requires Java 17, project is on Java 11
       - dependency-name: "org.junit.platform:junit-platform-launcher"
         update-types: ["version-update:semver-major"]
+      # JUnit Jupiter 6.x requires Java 17, project is on Java 11
+      - dependency-name: "org.junit.jupiter:junit-jupiter"
+        update-types: ["version-update:semver-major"]
