@@ -144,11 +144,17 @@ public class Field19ATest extends AbstractFieldTest {
         assertEquals("e", f.getComponent2());
         assertEquals("rrr", f.getComponent3());
 
-        f = new Field19A(":abc//errr123aaa");
-        assertEquals("abc", f.getComponent1());
-        assertEquals("e", f.getComponent2());
-        assertEquals("rrr", f.getComponent3());
-        // assertNull(f.getComponent4());
+        f = new Field19A(":SETT//-CHF178626,04");
+        assertEquals("SETT", f.getComponent1());
+        assertEquals("-", f.getComponent2());
+        assertEquals("CHF", f.getComponent3());
+        assertEquals("178626,04", f.getComponent4());
+
+        f = new Field19A(":DEAL//USD178626,04");
+        assertEquals("DEAL", f.getComponent1());
+        assertNull(f.getComponent2());
+        assertEquals("USD", f.getComponent3());
+        assertEquals("178626,04", f.getComponent4());
     }
 
     @Test
