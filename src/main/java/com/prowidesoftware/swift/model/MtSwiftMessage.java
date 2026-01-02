@@ -288,6 +288,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
             setUuid(model.getUUID());
         }
         setDirection(model.getDirection());
+        setUetr(model.getUETR());
     }
 
     /**
