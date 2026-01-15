@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.3.8 - SNAPSHOT
+#### 10.3.8 - January 2026
   * (PW-2967) Fixed Field95D component label from "Legal Entity Identifier" to "Digital Ledger Identifier" to match XSD schema
   * Feat: `MtSwiftMessage` now automatically extracts and persists UETR from block 3 field 121 during message parsing
   * Fix: Added missing `uetr` field to `AbstractSwiftMessage` `copyTo()`, `equals()`, and `hashCode()` methods
