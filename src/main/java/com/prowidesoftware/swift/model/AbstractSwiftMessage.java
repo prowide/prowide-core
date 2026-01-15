@@ -984,6 +984,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
         msg.setAmount(getAmount());
         msg.setValueDate(getValueDate());
         msg.setTradeDate(getTradeDate());
+        msg.setUetr(getUetr());
 
         msg.setRevisions(null);
         for (SwiftMessageRevision rev : getRevisions()) {
@@ -1270,7 +1271,8 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
                 && Objects.equals(amount, that.amount)
                 && Objects.equals(revisions, that.revisions)
                 && Objects.equals(valueDate, that.valueDate)
-                && Objects.equals(tradeDate, that.tradeDate);
+                && Objects.equals(tradeDate, that.tradeDate)
+                && Objects.equals(uetr, that.uetr);
     }
 
     @Override
@@ -1296,7 +1298,8 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
                 amount,
                 revisions,
                 valueDate,
-                tradeDate);
+                tradeDate,
+                uetr);
     }
 
     /**

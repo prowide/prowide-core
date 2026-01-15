@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh pr list:*)",
+      "Bash(gh pr view:*)",
+      "Bash(git checkout:*)",
+      "Bash(./gradlew test:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh pr close:*)",
+      "Bash(xargs -I {} git push origin --delete {})",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git fetch:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:javadoc.io)",
+      "Bash(./gradlew :spotlessApply:*)",
+      "WebFetch(domain:commons.apache.org)",
+      "Bash(gh pr diff:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
