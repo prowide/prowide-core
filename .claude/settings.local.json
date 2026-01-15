@@ -17,7 +17,9 @@
       "WebFetch(domain:javadoc.io)",
       "Bash(./gradlew :spotlessApply:*)",
       "WebFetch(domain:commons.apache.org)",
-      "Bash(gh pr diff:*)"
+      "Bash(gh pr diff:*)",
+      "Bash(gh pr checkout:*)",
+      "Bash(git stash:*)"
     ],
     "deny": [],
     "ask": []
