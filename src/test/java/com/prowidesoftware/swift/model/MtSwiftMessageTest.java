@@ -221,6 +221,65 @@ public class MtSwiftMessageTest {
         assertEquals("123456789", mt798.getField20().getValue());
     }
 
+    @Test
+    void testUetrExtraction() {
+        // Message with UETR in block 3 field 121
+        String fin =
+                "{1:F01FOOUUSYYAXXX8669486760}{2:I103FOOZUSC0XXXXN}{3:{108:K77EFCX36X3Q6MOW}{121:1420a5f5-a452-436b-ab36-b2d3379c40e5}}{4:\n"
+                        + ":20:ZNOC014660-W5V4V\n"
+                        + ":23B:CRED\n"
+                        + ":32A:051018EUR3118,03\n"
+                        + ":33B:EUR3118,03\n"
+                        + ":50K:Selftrade\n"
+                        + ":53A:FOOGDEFF\n"
+                        + ":54A://RTFOO\n"
+                        + "FOOUUSYY\n"
+                        + ":59:/-\n"
+                        + "Selftrade\n"
+                        + ":70:/CS BD EMG EUR B\n"
+                        + "REDEMPTION AMLX985339\n"
+                        + ":71A:OUR\n"
+                        + "-}{5:{MAC:90BDE7AE}{CHK:7FFB29674CA0}}";
+        MtSwiftMessage mt = MtSwiftMessage.parse(fin);
+        assertEquals("1420a5f5-a452-436b-ab36-b2d3379c40e5", mt.getUetr());
+    }
+
+    @Test
+    void testUetrExtractionMissing() {
+        // Message without UETR
+        String fin =
+                "{1:F01FOOHCH20AXXX0527012180}{2:O5270750040609LRLRXXXX4A0400004386330406090954U}{3:{108:1709041144060748}}{4:\n"
+                        + ":16R:GENL\n"
+                        + ":28E:1/ONLY\n"
+                        + ":20C::SEME//MSGC001\n"
+                        + ":20C::CLCI//INSTR001\n"
+                        + ":20C::SCTR//EXPCA001\n"
+                        + ":23G:NEWM\n"
+                        + ":98A::EXRQ//20100511\n"
+                        + ":22H::CINT//INIT\n"
+                        + ":22H::COLA//REPO\n"
+                        + ":22H::REPR//PROV\n"
+                        + ":13B::ELIG//01-01JAN10\n"
+                        + ":16R:COLLPRTY\n"
+                        + ":95P::PTYA//FOOBARXX\n"
+                        + ":16S:COLLPRTY\n"
+                        + ":16R:COLLPRTY\n"
+                        + ":95P::PTYB//FOOBARYY\n"
+                        + ":16S:COLLPRTY\n"
+                        + ":16R:COLLPRTY\n"
+                        + ":95R::TRAG/CEDE/11111\n"
+                        + ":16S:COLLPRTY\n"
+                        + ":16S:GENL\n"
+                        + ":16R:DEALTRAN\n"
+                        + ":98B::TERM//OPEN\n"
+                        + ":19A::TRAA//EUR1000000,00\n"
+                        + ":92A::PRIC//0,5\n"
+                        + ":16S:DEALTRAN\n"
+                        + "-}";
+        MtSwiftMessage mt = MtSwiftMessage.parse(fin);
+        assertNull(mt.getUetr());
+    }
+
     public static class TestMtMetadataStrategy implements MessageMetadataStrategy {
 
         @Override

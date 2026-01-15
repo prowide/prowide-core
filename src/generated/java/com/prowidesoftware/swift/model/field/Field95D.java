@@ -45,7 +45,7 @@ import com.google.gson.JsonParser;
  * <p>Subfields (components) Data types
  * <ol>
  * 		<li>Component 1: Qualifier: <code>String</code></li>
- * 		<li>Component 2: LegalEntityIdentifier: <code>String</code></li>
+ * 		<li>Component 2: DigitalLedgerIdentifier: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -82,9 +82,9 @@ public class Field95D extends Field implements Serializable, GenericField {
 	public static final Integer QUALIFIER = 1;
 
 	/**
-	 * Component number for the Legal Entity Identifier subfield.
+	 * Component number for the Digital Ledger Identifier subfield.
 	 */
-	public static final Integer LEGAL_ENTITY_IDENTIFIER = 2;
+	public static final Integer DIGITAL_LEDGER_IDENTIFIER = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -277,7 +277,7 @@ public class Field95D extends Field implements Serializable, GenericField {
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
         result.add("Qualifier");
-        result.add("Legal Entity Identifier");
+        result.add("Digital Ledger Identifier");
         return result;
     }
 
@@ -289,7 +289,7 @@ public class Field95D extends Field implements Serializable, GenericField {
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "qualifier");
-        result.put(2, "legalEntityIdentifier");
+        result.put(2, "digitalLedgerIdentifier");
         return result;
     }
 
@@ -305,7 +305,7 @@ public class Field95D extends Field implements Serializable, GenericField {
         }
         super.labelMap = new HashMap<>();
         super.labelMap.put("qualifier", 1);
-        super.labelMap.put("legalentityidentifier", 2);
+        super.labelMap.put("digitalledgeridentifier", 2);
         return super.labelMap;
     }
 
@@ -326,7 +326,7 @@ public class Field95D extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the component 2 (Legal Entity Identifier).
+     * Gets the component 2 (Digital Ledger Identifier).
      * @return the component 2
      */
     public String getComponent2() {
@@ -334,10 +334,10 @@ public class Field95D extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Gets the Legal Entity Identifier (component 2).
-     * @return the Legal Entity Identifier from component 2
+     * Gets the Digital Ledger Identifier (component 2).
+     * @return the Digital Ledger Identifier from component 2
      */
-    public String getLegalEntityIdentifier() {
+    public String getDigitalLedgerIdentifier() {
         return getComponent2();
     }
 
@@ -363,9 +363,9 @@ public class Field95D extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the component 2 (Legal Entity Identifier).
+     * Set the component 2 (Digital Ledger Identifier).
      *
-     * @param component2 the Legal Entity Identifier to set
+     * @param component2 the Digital Ledger Identifier to set
      * @return the field object to enable build pattern
      */
     public Field95D setComponent2(String component2) {
@@ -374,12 +374,12 @@ public class Field95D extends Field implements Serializable, GenericField {
     }
 
     /**
-     * Set the Legal Entity Identifier (component 2).
+     * Set the Digital Ledger Identifier (component 2).
      *
-     * @param component2 the Legal Entity Identifier to set
+     * @param component2 the Digital Ledger Identifier to set
      * @return the field object to enable build pattern
      */
-    public Field95D setLegalEntityIdentifier(String component2) {
+    public Field95D setDigitalLedgerIdentifier(String component2) {
         return setComponent2(component2);
     }
 
@@ -512,10 +512,10 @@ public class Field95D extends Field implements Serializable, GenericField {
             field.setComponent1(jsonObject.get("qualifier").getAsString());
         }
 
-        // **** COMPONENT 2 - Legal Entity Identifier
+        // **** COMPONENT 2 - Digital Ledger Identifier
 
-        if (jsonObject.get("legalEntityIdentifier") != null) {
-            field.setComponent2(jsonObject.get("legalEntityIdentifier").getAsString());
+        if (jsonObject.get("digitalLedgerIdentifier") != null) {
+            field.setComponent2(jsonObject.get("digitalLedgerIdentifier").getAsString());
         }
 
         return field;
