@@ -62,4 +62,38 @@ public class AbstractSwiftMessageTest {
         mt.setIdentifier("fin.103");
         assertEquals("1", mt.getCategory());
     }
+
+    @Test
+    public void copyTo() {
+        String fin =
+                "{1:F01ABCDEFGHAXXX8669486760}{2:I103XYZWABCDXXXXN}{3:{108:REF123}{121:eb6305c9-1f7f-49de-aed0-16487c27b42d}}{4:\n"
+                        + ":20:REFERENCE123\n"
+                        + ":23B:CRED\n"
+                        + ":32A:251018EUR1234,56\n"
+                        + ":50K:/12345678\n"
+                        + "ORDERING CUSTOMER\n"
+                        + ":59:/87654321\n"
+                        + "BENEFICIARY\n"
+                        + ":71A:OUR\n"
+                        + "-}";
+
+        MtSwiftMessage source = MtSwiftMessage.parse(fin);
+
+        MtSwiftMessage target = new MtSwiftMessage();
+        source.copyTo(target);
+
+        assertEquals(source.getMessage(), target.getMessage());
+        assertEquals(source.getIdentifier(), target.getIdentifier());
+        assertEquals(source.getSender(), target.getSender());
+        assertEquals(source.getReceiver(), target.getReceiver());
+        assertEquals(source.getDirection(), target.getDirection());
+        assertEquals(source.getChecksum(), target.getChecksum());
+        assertEquals(source.getChecksumBody(), target.getChecksumBody());
+        assertEquals(source.getReference(), target.getReference());
+        assertEquals(source.getCurrency(), target.getCurrency());
+        assertEquals(source.getAmount(), target.getAmount());
+        assertEquals(source.getValueDate(), target.getValueDate());
+        assertEquals(source.getUetr(), target.getUetr());
+        assertEquals("eb6305c9-1f7f-49de-aed0-16487c27b42d", target.getUetr());
+    }
 }

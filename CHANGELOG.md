@@ -1,6 +1,8 @@
 # Prowide Core - CHANGELOG
 
 #### 10.3.8 - SNAPSHOT
+  * Feat: `MtSwiftMessage` now automatically extracts and persists UETR from block 3 field 121 during message parsing
+  * Fix: Added missing `uetr` field to `AbstractSwiftMessage` `copyTo()`, `equals()`, and `hashCode()` methods
   * Updated apache-commons-lang3 from 3.17.0 to 3.20.0
   * Updated gson from 2.11.0 to 2.13.2
 
