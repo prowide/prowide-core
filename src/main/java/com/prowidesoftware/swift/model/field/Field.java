@@ -33,6 +33,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
@@ -817,7 +818,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      */
     public String findComponentStartingWith(final String prefix) {
         for (final String c : this.components) {
-            if (StringUtils.startsWith(c, prefix)) {
+            if (Strings.CS.startsWith(c, prefix)) {
                 return c;
             }
         }
@@ -940,7 +941,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
     public boolean isNameAnyOf(final String... names) {
         Validate.isTrue(names != null && names.length > 0, "name list must have at least one element");
         for (final String n : names) {
-            if (StringUtils.equals(getName(), n)) {
+            if (Strings.CS.equals(getName(), n)) {
                 return true;
             }
         }
@@ -958,7 +959,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @return true if the first component is equal to the parameter
      */
     public boolean is(final String compare) {
-        return StringUtils.equals(compare, getComponent(1));
+        return Strings.CS.equals(compare, getComponent(1));
     }
 
     /**
@@ -969,7 +970,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @return true if the indicated component value is equal to the parameter
      */
     public boolean is(final int componentNumber, final String compare) {
-        return StringUtils.equals(compare, getComponent(componentNumber));
+        return Strings.CS.equals(compare, getComponent(componentNumber));
     }
 
     /**
@@ -980,7 +981,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      * @return true if components 1 and 2 are equal the parameter values respectively
      */
     public boolean is(final String compare1, final String compare2) {
-        return StringUtils.equals(compare1, getComponent(1)) && StringUtils.equals(compare2, getComponent(2));
+        return Strings.CS.equals(compare1, getComponent(1)) && Strings.CS.equals(compare2, getComponent(2));
     }
 
     /**
@@ -996,7 +997,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
         final String comp1 = getComponent(1);
         if (values != null) {
             for (String value : values) {
-                if (StringUtils.equals(comp1, value)) {
+                if (Strings.CS.equals(comp1, value)) {
                     return true;
                 }
             }
@@ -1132,7 +1133,7 @@ public abstract class Field implements PatternContainer, JsonSerializable {
      */
     private String clean(final String hash, final String value) {
         // try to replace /hash first just in case the component is optional then replace the hash only if present
-        String trimmed = StringUtils.replace(StringUtils.replace(value, "/" + hash, ""), hash, "");
+        String trimmed = Strings.CS.replace(Strings.CS.replace(value, "/" + hash, ""), hash, "");
         if (StringUtils.isNotBlank(trimmed) && !onlySlashes(trimmed)) {
             /*
              * sebastian Oct 2015

@@ -37,6 +37,7 @@ import com.prowidesoftware.swift.model.field.MonetaryAmountResolver;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -116,7 +117,7 @@ public class Field32G extends Field implements Serializable, MonetaryAmountConta
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!StringUtils.equals(tag.getName(), "32G")) {
+        if (!Strings.CS.equals(tag.getName(), "32G")) {
             throw new IllegalArgumentException("cannot create field 32G from tag "+tag.getName()+", tagname must match the name of the field.");
         }
         parse(tag.getValue());

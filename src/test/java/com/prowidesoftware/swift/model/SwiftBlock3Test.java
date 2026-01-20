@@ -21,7 +21,7 @@ import com.prowidesoftware.swift.model.field.Field106;
 import com.prowidesoftware.swift.model.field.Field108;
 import com.prowidesoftware.swift.model.field.Field121;
 import com.prowidesoftware.swift.model.field.Field165;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -44,7 +44,7 @@ public class SwiftBlock3Test {
         Thread.sleep(500);
         b.generateMUR(true);
         assertFalse(
-                StringUtils.equals(current, b.getTagByName("108").getValue()),
+                Strings.CS.equals(current, b.getTagByName("108").getValue()),
                 "expected a different MUR after generateMUR(true)");
     }
 

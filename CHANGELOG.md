@@ -5,6 +5,7 @@
   * Feat: `MtSwiftMessage` now automatically extracts and persists UETR from block 3 field 121 during message parsing
   * Fix: Added missing `uetr` field to `AbstractSwiftMessage` `copyTo()`, `equals()`, and `hashCode()` methods
   * Updated apache-commons-lang3 from 3.17.0 to 3.20.0
+  * Migrated deprecated `StringUtils` methods to `Strings.CS` equivalents (equals, startsWith, endsWith, contains, replace, indexOf, lastIndexOf, remove, removeEnd)
   * Updated gson from 2.11.0 to 2.13.2
 
 #### 10.3.7 - November 2025

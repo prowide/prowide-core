@@ -18,7 +18,7 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.junit.jupiter.api.Test;
 
 public class NarrativeResolverTest {
@@ -65,8 +65,8 @@ public class NarrativeResolverTest {
         Narrative n = NarrativeResolver.parse(f);
         assertEquals(0, n.getStructured().size());
         assertEquals(v, n.getUnstructured("\n"));
-        assertEquals(StringUtils.replace(v, "\n", ""), n.getUnstructured());
-        assertEquals(StringUtils.replace(v, "\n", " "), n.getUnstructured(" "));
+        assertEquals(Strings.CS.replace(v, "\n", ""), n.getUnstructured());
+        assertEquals(Strings.CS.replace(v, "\n", " "), n.getUnstructured(" "));
     }
 
     /**

@@ -40,6 +40,7 @@ import com.prowidesoftware.swift.model.field.DateResolver;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -125,7 +126,7 @@ public class Field33C extends Field implements Serializable, MonetaryAmountConta
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!StringUtils.equals(tag.getName(), "33C")) {
+        if (!Strings.CS.equals(tag.getName(), "33C")) {
             throw new IllegalArgumentException("cannot create field 33C from tag "+tag.getName()+", tagname must match the name of the field.");
         }
         parse(tag.getValue());

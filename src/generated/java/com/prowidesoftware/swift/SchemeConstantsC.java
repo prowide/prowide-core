@@ -31,7 +31,9 @@ public interface SchemeConstantsC {
     String CANC = "CANC";
     String CNEW = "CNEW";
     String CCAN = "CCAN";
+    String CACO = "CACO";
     String CAMN = "CAMN";
+    String CCUS = "CCUS";
     String CLOSEOUT = "CLOSEOUT";
     String CANCEL = "CANCEL";
     String CLOS = "CLOS";
@@ -136,7 +138,6 @@ public interface SchemeConstantsC {
     String CASD = "CASD";
     String CNTI = "CNTI";
     String CALM = "CALM";
-    String CACO = "CACO";
     String CBON = "CBON";
     String CUTS = "CUTS";
     String CPRF = "CPRF";
@@ -222,7 +223,6 @@ public interface SchemeConstantsC {
     String CCIR = "CCIR";
     String CCPC = "CCPC";
     String CCPN = "CCPN";
-    String CCUS = "CCUS";
     String CDAC = "CDAC";
     String CDIV = "CDIV";
     String CDLR = "CDLR";
