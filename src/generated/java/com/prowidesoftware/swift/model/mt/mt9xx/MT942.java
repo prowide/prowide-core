@@ -43,7 +43,8 @@ import java.io.IOException;
 <li class="field">Field 21  (O)</li>
 <li class="field">Field 25 P,NONE (M)</li>
 <li class="field">Field 28 C (M)</li>
-<li class="field">Field 34 F (M) (repetitive)</li>
+<li class="field">Field 34 F (M)</li>
+<li class="field">Field 34 F (O)</li>
 <li class="field">Field 13 D (M)</li>
 <li class="sequence">
 Sequence _A (O) (repetitive)<ul><li class="field">Field 61  (O)</li>

@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+#### 10.3.9 - SNAPSHOT
+  * Deprecated `Field.validatorPattern()` - validation patterns moved to Integrator's `FieldPatternRegistry`
+  * Updated MT message structures from schema regeneration (MT081, MT513-MT543, MT586, MT920, MT942) 
+
 #### 10.3.8 - January 2026
   * (PW-2967) Fixed Field95D component label from "Legal Entity Identifier" to "Digital Ledger Identifier" to match XSD schema
   * Feat: `MtSwiftMessage` now automatically extracts and persists UETR from block 3 field 121 during message parsing

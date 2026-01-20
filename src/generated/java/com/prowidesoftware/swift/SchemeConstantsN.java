@@ -23,6 +23,8 @@ public interface SchemeConstantsN {
     String NETS = "NETS";
     String NAUT = "NAUT";
     String NEWT = "NEWT";
+    String NCUS = "NCUS";
+    String NACO = "NACO";
     String NEW = "NEW";
     String NETCASH = "NETCASH";
     String NINT = "NINT";
@@ -74,7 +76,6 @@ public interface SchemeConstantsN {
     String NPRT = "NPRT";
     String NMLT = "NMLT";
     String NMPT = "NMPT";
-    String NACO = "NACO";
     String NACT = "NACT";
     String NAFF = "NAFF";
     String NAMC = "NAMC";
@@ -89,7 +90,6 @@ public interface SchemeConstantsN {
     String NCRR = "NCRR";
     String NCRS = "NCRS";
     String NCSD = "NCSD";
-    String NCUS = "NCUS";
     String NDEF = "NDEF";
     String NDIS = "NDIS";
     String NDLF = "NDLF";
