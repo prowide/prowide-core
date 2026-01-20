@@ -1,6 +1,7 @@
 package com.prowidesoftware.swift.model;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 /**
  * Represents a Distinguished Name (DN) in the context of a directory service.
@@ -62,7 +63,7 @@ public class DistinguishedName {
             return null;
         }
         for (String s : StringUtils.split(dn, ",")) {
-            if (StringUtils.startsWith(s, "o=") && !StringUtils.equals(s, "o=swift")) {
+            if (Strings.CS.startsWith(s, "o=") && !Strings.CS.equals(s, "o=swift")) {
                 return StringUtils.upperCase(StringUtils.substringAfter(s, "o="));
             }
         }

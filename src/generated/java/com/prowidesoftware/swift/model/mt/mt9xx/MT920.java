@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.internal.*;
@@ -46,7 +46,8 @@ import java.io.IOException;
 <li class="sequence">
 Sequence Loop1 (M) (repetitive)<ul><li class="field">Field 12  (M)</li>
 <li class="field">Field 25  (M)</li>
-<li class="field">Field 34 F (O) (repetitive)</li>
+<li class="field">Field 34 F (O)</li>
+<li class="field">Field 34 F (O)</li>
 </ul></li>
 </ul></div>
 
@@ -150,7 +151,7 @@ public class MT920 extends AbstractMT implements Serializable {
     private void sanityCheck(final SwiftMessage param) {
     	if (param.isServiceMessage()) {
 			log.warning("Creating an MT920 object from FIN content with a Service Message. Check if the MT920 you are intended to read is prepended with and ACK.");
-		} else if (!StringUtils.equals(param.getType(), "920")) {
+		} else if (!Strings.CS.equals(param.getType(), "920")) {
 			log.warning("Creating an MT920 object from FIN content with message type "+param.getType());
 		}
     }
@@ -410,7 +411,7 @@ public class MT920 extends AbstractMT implements Serializable {
 		/**
 		 * List of optional tags after the last mandatory tag.
 		 */
-		protected static final String[] TAIL = new String[]{ "34F"   };
+		protected static final String[] TAIL = new String[]{ "34F", "34F"   };
 
 		/**
 		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes.

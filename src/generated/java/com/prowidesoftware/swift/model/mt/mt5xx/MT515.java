@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.internal.*;
@@ -151,7 +151,7 @@ Sequence D2 - Cash Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)<
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li></ul></li><li class="field">Field 98 A,C (O)</li>
+ (O)<ul><li>FieldsetItem 97 A,D,E (O)</li></ul></li><li class="field">Field 98 A,C (O)</li>
 <li class="field">Field 20 C (O)</li>
 <li class="field">Field 70 C (O)</li>
 <li class="field">Field 16 S (M)</li>
@@ -297,7 +297,7 @@ public class MT515 extends AbstractMT implements Serializable {
     private void sanityCheck(final SwiftMessage param) {
     	if (param.isServiceMessage()) {
 			log.warning("Creating an MT515 object from FIN content with a Service Message. Check if the MT515 you are intended to read is prepended with and ACK.");
-		} else if (!StringUtils.equals(param.getType(), "515")) {
+		} else if (!Strings.CS.equals(param.getType(), "515")) {
 			log.warning("Creating an MT515 object from FIN content with message type "+param.getType());
 		}
     }

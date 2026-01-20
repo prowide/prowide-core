@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.junit.jupiter.api.Test;
 
 public class Field35BTest extends AbstractFieldTest {
@@ -81,7 +81,7 @@ public class Field35BTest extends AbstractFieldTest {
         Field35B f = new Field35B();
         String v = "ISIN HELLO\nAAAA\nBBBB\nCCCC\nDDDD";
         f = new Field35B(v);
-        assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
+        assertEquals(Strings.CS.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
     }
 
     @Test
@@ -89,7 +89,7 @@ public class Field35BTest extends AbstractFieldTest {
         Field35B f = new Field35B();
         String v = "ISIN 123456789012\nAAAA\nBBBB\nCCCC\nDDDD";
         f = new Field35B(v);
-        assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
+        assertEquals(Strings.CS.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
     }
 
     @Test
@@ -97,6 +97,6 @@ public class Field35BTest extends AbstractFieldTest {
         Field35B f = new Field35B();
         String v = "AAAA\nBBBB\nCCCC\nDDDD";
         f = new Field35B(v);
-        assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
+        assertEquals(Strings.CS.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
     }
 }

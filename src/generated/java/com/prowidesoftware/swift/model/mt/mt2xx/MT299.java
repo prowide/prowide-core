@@ -20,7 +20,7 @@ package com.prowidesoftware.swift.model.mt.mt2xx;
 import com.prowidesoftware.Generated;
 import java.io.Serializable;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.*;
@@ -142,7 +142,7 @@ public class MT299 extends AbstractMT implements Serializable {
     private void sanityCheck(final SwiftMessage param) {
     	if (param.isServiceMessage()) {
 			log.warning("Creating an MT299 object from FIN content with a Service Message. Check if the MT299 you are intended to read is prepended with and ACK.");
-		} else if (!StringUtils.equals(param.getType(), "299")) {
+		} else if (!Strings.CS.equals(param.getType(), "299")) {
 			log.warning("Creating an MT299 object from FIN content with message type "+param.getType());
 		}
     }

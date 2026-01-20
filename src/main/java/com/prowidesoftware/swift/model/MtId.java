@@ -21,6 +21,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 /**
  * Structured identification of MT message types, composed by the business process, actual type and variant.
@@ -71,7 +72,7 @@ public class MtId {
      * @param variant     An MT variant (STP, REMIT, COV), a MUG identifier or null if none applies
      */
     public MtId(String messageType, String variant) {
-        if (StringUtils.startsWith(messageType, "fin.")) {
+        if (Strings.CS.startsWith(messageType, "fin.")) {
             this.messageType = StringUtils.substringAfter(messageType, "fin.");
         } else {
             this.messageType = messageType;

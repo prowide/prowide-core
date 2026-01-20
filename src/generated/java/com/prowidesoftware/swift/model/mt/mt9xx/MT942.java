@@ -22,7 +22,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.*;
@@ -43,7 +43,8 @@ import java.io.IOException;
 <li class="field">Field 21  (O)</li>
 <li class="field">Field 25 P,NONE (M)</li>
 <li class="field">Field 28 C (M)</li>
-<li class="field">Field 34 F (M) (repetitive)</li>
+<li class="field">Field 34 F (M)</li>
+<li class="field">Field 34 F (O)</li>
 <li class="field">Field 13 D (M)</li>
 <li class="sequence">
 Sequence _A (O) (repetitive)<ul><li class="field">Field 61  (O)</li>
@@ -154,7 +155,7 @@ public class MT942 extends AbstractMT implements Serializable {
     private void sanityCheck(final SwiftMessage param) {
     	if (param.isServiceMessage()) {
 			log.warning("Creating an MT942 object from FIN content with a Service Message. Check if the MT942 you are intended to read is prepended with and ACK.");
-		} else if (!StringUtils.equals(param.getType(), "942")) {
+		} else if (!Strings.CS.equals(param.getType(), "942")) {
 			log.warning("Creating an MT942 object from FIN content with message type "+param.getType());
 		}
     }

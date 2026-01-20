@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 /**
  * An MT message comparator that compares all values from block 1 2 3, 4 and 5.
@@ -157,31 +157,30 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
     }
 
     private boolean compareB2Input(final SwiftBlock2Input left, final SwiftBlock2Input right) {
-        boolean sameType = StringUtils.equals(left.getMessageType(), right.getMessageType());
+        boolean sameType = Strings.CS.equals(left.getMessageType(), right.getMessageType());
         boolean sameReceiverAddress = compareLTAddress(left.getReceiverAddress(), right.getReceiverAddress());
         boolean sameDeliveryMonitoring = ignoreBlock2OptionalFields
-                || StringUtils.equals(left.getDeliveryMonitoring(), right.getDeliveryMonitoring());
+                || Strings.CS.equals(left.getDeliveryMonitoring(), right.getDeliveryMonitoring());
         boolean sameObsolescencePeriod = ignoreBlock2OptionalFields
-                || StringUtils.equals(left.getObsolescencePeriod(), right.getObsolescencePeriod());
+                || Strings.CS.equals(left.getObsolescencePeriod(), right.getObsolescencePeriod());
         boolean samePriority =
-                ignorePriority || StringUtils.equals(left.getMessagePriority(), right.getMessagePriority());
+                ignorePriority || Strings.CS.equals(left.getMessagePriority(), right.getMessagePriority());
         return sameType && sameReceiverAddress && sameDeliveryMonitoring && sameObsolescencePeriod && samePriority;
     }
 
     private boolean compareB2Output(final SwiftBlock2Output left, final SwiftBlock2Output right) {
-        boolean sameType = StringUtils.equals(left.getMessageType(), right.getMessageType());
+        boolean sameType = Strings.CS.equals(left.getMessageType(), right.getMessageType());
         boolean sameSenderInputTime =
-                ignoreSenderInputTime || StringUtils.equals(left.getSenderInputTime(), right.getSenderInputTime());
-        boolean sameMIRDate = StringUtils.equals(left.getMIRDate(), right.getMIRDate());
+                ignoreSenderInputTime || Strings.CS.equals(left.getSenderInputTime(), right.getSenderInputTime());
+        boolean sameMIRDate = Strings.CS.equals(left.getMIRDate(), right.getMIRDate());
         boolean sameMIRLogicalTerminal = compareLTAddress(left.getMIRLogicalTerminal(), right.getMIRLogicalTerminal());
-        boolean sameMIRSessionNumber = StringUtils.equals(left.getMIRSessionNumber(), right.getMIRSessionNumber());
-        boolean sameMIRSequenceNumber = StringUtils.equals(left.getMIRSequenceNumber(), right.getMIRSequenceNumber());
-        boolean sameReceiverOutputDate =
-                StringUtils.equals(left.getReceiverOutputDate(), right.getReceiverOutputDate());
+        boolean sameMIRSessionNumber = Strings.CS.equals(left.getMIRSessionNumber(), right.getMIRSessionNumber());
+        boolean sameMIRSequenceNumber = Strings.CS.equals(left.getMIRSequenceNumber(), right.getMIRSequenceNumber());
+        boolean sameReceiverOutputDate = Strings.CS.equals(left.getReceiverOutputDate(), right.getReceiverOutputDate());
         boolean sameReceiverOutputTime = ignoreReceiverOutputTime
-                || StringUtils.equals(left.getReceiverOutputTime(), right.getReceiverOutputTime());
+                || Strings.CS.equals(left.getReceiverOutputTime(), right.getReceiverOutputTime());
         boolean samePriority =
-                ignorePriority || StringUtils.equals(left.getMessagePriority(), right.getMessagePriority());
+                ignorePriority || Strings.CS.equals(left.getMessagePriority(), right.getMessagePriority());
         return sameType
                 && sameSenderInputTime
                 && sameMIRDate
@@ -230,7 +229,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
             if (tagNameIgnored(t1.getName(), t2.getName())) {
                 log.finer("Tag ignored: " + t1.getName() + " - " + t2.getName());
             } else {
-                if (!(StringUtils.equals(t1.getName(), t2.getName()) && valuesAreEqual(t1.getValue(), t2.getValue()))) {
+                if (!(Strings.CS.equals(t1.getName(), t2.getName()) && valuesAreEqual(t1.getValue(), t2.getValue()))) {
                     count++;
                 }
             }
@@ -262,7 +261,7 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
                     final String l1 = br1.readLine();
                     final String l2 = br2.readLine();
 
-                    if (!StringUtils.equals(l1, l2)) {
+                    if (!Strings.CS.equals(l1, l2)) {
                         return false;
                     }
                     if (l1 == null && l2 == null) {
@@ -277,14 +276,14 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
                 }
             }
         } else {
-            return StringUtils.equals(value1, value2);
+            return Strings.CS.equals(value1, value2);
         }
     }
 
     private boolean tagNameIgnored(final String name1, final String name2) {
         if (this.tagnamesToIgnore != null) {
             for (final String name : this.tagnamesToIgnore) {
-                if (StringUtils.equals(name, name1) || StringUtils.equals(name, name2)) {
+                if (Strings.CS.equals(name, name1) || Strings.CS.equals(name, name2)) {
                     return true;
                 }
             }
@@ -308,12 +307,12 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
         if (left == null || right == null) {
             return false;
         }
-        boolean sameApplicationId = StringUtils.equals(left.getApplicationId(), right.getApplicationId());
-        boolean sameServiceId = StringUtils.equals(left.getServiceId(), right.getServiceId());
+        boolean sameApplicationId = Strings.CS.equals(left.getApplicationId(), right.getApplicationId());
+        boolean sameServiceId = Strings.CS.equals(left.getServiceId(), right.getServiceId());
         boolean sameSession =
-                this.ignoreHeaderSession || StringUtils.equals(left.getSessionNumber(), right.getSessionNumber());
+                this.ignoreHeaderSession || Strings.CS.equals(left.getSessionNumber(), right.getSessionNumber());
         boolean sameSequence =
-                this.ignoreHeaderSession || StringUtils.equals(left.getSequenceNumber(), right.getSequenceNumber());
+                this.ignoreHeaderSession || Strings.CS.equals(left.getSequenceNumber(), right.getSequenceNumber());
         boolean sameLTAddress = compareLTAddress(left.getLogicalTerminal(), right.getLogicalTerminal());
         return sameApplicationId && sameServiceId && sameSequence && sameSession && sameLTAddress;
     }
@@ -323,17 +322,17 @@ public class SwiftMessageComparator implements Comparator<SwiftMessage> {
         LogicalTerminalAddress rightLTAddress = new LogicalTerminalAddress(logicalTerminalRight);
         String left = String.valueOf(leftLTAddress.getLTIdentifier());
         String right = String.valueOf(rightLTAddress.getLTIdentifier());
-        boolean sameLTIdentifier = this.ignoreLT || StringUtils.equals(left, right);
+        boolean sameLTIdentifier = this.ignoreLT || Strings.CS.equals(left, right);
         boolean sameBic11 = compareBic(leftLTAddress, rightLTAddress);
         return sameLTIdentifier && sameBic11;
     }
 
     private boolean compareBic(BIC left, BIC right) {
         if (this.ignoreLocationFlag) {
-            return StringUtils.equals(
+            return Strings.CS.equals(
                     left.asTestBic().getBic11(), right.asTestBic().getBic11());
         } else {
-            return StringUtils.equals(left.getBic11(), right.getBic11());
+            return Strings.CS.equals(left.getBic11(), right.getBic11());
         }
     }
 
