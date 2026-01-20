@@ -272,8 +272,12 @@ public class Field98J extends Field implements Serializable, DateContainer, BICC
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern.
+     *
+     * @deprecated Use {@code FieldPatternRegistry.getPattern()} from the Prowide Integrator Validation module instead.
      */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2026)
     @Override
     public String validatorPattern() {
         return ":4!c//<DATE4><TIME2>/<BIC>";

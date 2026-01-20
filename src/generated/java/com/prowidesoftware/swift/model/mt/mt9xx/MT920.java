@@ -46,7 +46,8 @@ import java.io.IOException;
 <li class="sequence">
 Sequence Loop1 (M) (repetitive)<ul><li class="field">Field 12  (M)</li>
 <li class="field">Field 25  (M)</li>
-<li class="field">Field 34 F (O) (repetitive)</li>
+<li class="field">Field 34 F (O)</li>
+<li class="field">Field 34 F (O)</li>
 </ul></li>
 </ul></div>
 
@@ -410,7 +411,7 @@ public class MT920 extends AbstractMT implements Serializable {
 		/**
 		 * List of optional tags after the last mandatory tag.
 		 */
-		protected static final String[] TAIL = new String[]{ "34F"   };
+		protected static final String[] TAIL = new String[]{ "34F", "34F"   };
 
 		/**
 		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes.

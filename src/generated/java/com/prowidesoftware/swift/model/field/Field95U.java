@@ -145,7 +145,11 @@ public class Field95U extends OptionUPartyField implements Serializable, Generic
 
     /**
      * Returns the field validator pattern.
+     *
+     * @deprecated Use {@code FieldPatternRegistry.getPattern()} from the Prowide Integrator Validation module instead.
      */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2026)
     @Override
     public final String validatorPattern() {
         return ":4!c//35x[$35x]0-2(***)";

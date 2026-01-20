@@ -275,8 +275,12 @@ public class Field70G extends Field implements Serializable, GenericField, Multi
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern.
+     *
+     * @deprecated Use {@code FieldPatternRegistry.getPattern()} from the Prowide Integrator Validation module instead.
      */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2026)
     @Override
     public String validatorPattern() {
         return ":4!c//35z[$35z]0-9";

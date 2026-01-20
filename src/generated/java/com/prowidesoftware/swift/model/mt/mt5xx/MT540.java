@@ -160,7 +160,7 @@ Sequence E2 - Cash Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)<
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li></ul></li><li class="fieldset">
+ (O)<ul><li>FieldsetItem 97 A,D,E (O)</li></ul></li><li class="fieldset">
 Fieldset 70
  (O)<ul><li>FieldsetItem 70 E (O)</li><li>FieldsetItem 70 C (O)</li></ul></li><li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -170,7 +170,7 @@ Sequence E3 - Amounts (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 Fieldset 17
  (O)<ul><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li></ul></li><li class="fieldset">
 Fieldset 19
- (M) (repetitive)<ul><li>FieldsetItem 19 A (M)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="field">Field 92 B (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 19 A (M)</li><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="field">Field 92 B (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">

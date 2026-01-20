@@ -143,7 +143,11 @@ public class Field95R extends OptionRPartyField implements Serializable, Generic
 
     /**
      * Returns the field validator pattern.
+     *
+     * @deprecated Use {@code FieldPatternRegistry.getPattern()} from the Prowide Integrator Validation module instead.
      */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2026)
     @Override
     public final String validatorPattern() {
         return ":4!c/8c/34x(***)";
