@@ -43,7 +43,7 @@ import java.io.IOException;
 <li class="field">Field 203  (M)</li>
 <li class="sequence">
 Sequence _A - For FIN (M) (repetitive)<ul><li class="field">Field 305  (M)</li>
-<li class="field">Field 331  (M) (repetitive)</li>
+<li class="field">Field 331  (O) (repetitive)</li>
 <li class="field">Field 332  (M)</li>
 </ul></li>
 </ul></div>

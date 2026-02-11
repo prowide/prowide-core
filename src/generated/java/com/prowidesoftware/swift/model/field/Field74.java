@@ -151,7 +151,11 @@ public class Field74 extends StructuredNarrativeField implements Serializable, N
 
     /**
      * Returns the field validator pattern.
+     *
+     * @deprecated Use {@code FieldPatternRegistry.getPattern()} from the Prowide Integrator Validation module instead.
      */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2026)
     @Override
     public final String validatorPattern() {
         return "35x[$35x]0-5";
