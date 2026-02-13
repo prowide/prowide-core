@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.3.9 - SNAPSHOT
+#### 10.3.9 - February 2026
   * Deprecated `Field.validatorPattern()` - validation patterns moved to Integrator's `FieldPatternRegistry`
   * Updated MT message structures from schema regeneration (MT081, MT513-MT543, MT586, MT920, MT942) 
 
