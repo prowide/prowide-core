@@ -20,7 +20,7 @@ package com.prowidesoftware.swift.model.mt.mt4xx;
 import com.prowidesoftware.Generated;
 import java.io.Serializable;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.model.field.*;
@@ -151,7 +151,7 @@ public class MT400 extends AbstractMT implements Serializable {
     private void sanityCheck(final SwiftMessage param) {
     	if (param.isServiceMessage()) {
 			log.warning("Creating an MT400 object from FIN content with a Service Message. Check if the MT400 you are intended to read is prepended with and ACK.");
-		} else if (!StringUtils.equals(param.getType(), "400")) {
+		} else if (!Strings.CS.equals(param.getType(), "400")) {
 			log.warning("Creating an MT400 object from FIN content with message type "+param.getType());
 		}
     }

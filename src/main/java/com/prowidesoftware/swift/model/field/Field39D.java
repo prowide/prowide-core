@@ -24,7 +24,7 @@ import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.Tag;
 import java.io.Serializable;
 import java.util.*;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 /**
  * @deprecated This field has been removed since SRU2025
@@ -78,7 +78,7 @@ public class Field39D extends Field implements Serializable, MultiLineField {
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!StringUtils.equals(tag.getName(), "39D")) {
+        if (!Strings.CS.equals(tag.getName(), "39D")) {
             throw new IllegalArgumentException("cannot create field 39D from tag " + tag.getName()
                     + ", tagname must match the name of the field.");
         }

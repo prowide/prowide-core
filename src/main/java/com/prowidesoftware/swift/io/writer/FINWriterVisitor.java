@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.logging.Level;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 /**
  * Main class for writing SwiftMessage objects into SWIFT FIN message text.
@@ -82,7 +83,7 @@ public class FINWriterVisitor implements IMessageVisitor {
         if (b1 != null && StringUtils.isNotEmpty(b1.getValue())) {
             // check for app id and service id
             boolean isAppIdOrServiceId =
-                    !StringUtils.equals(b1.getApplicationId(), "F") || !StringUtils.equals(b1.getServiceId(), "01");
+                    !Strings.CS.equals(b1.getApplicationId(), "F") || !Strings.CS.equals(b1.getServiceId(), "01");
             if (isAppIdOrServiceId) {
                 // if app identifier NOT 'F' OR service identifier NOT '01' => USE TAG-BLOCK syntax
                 this.block4asText = false;

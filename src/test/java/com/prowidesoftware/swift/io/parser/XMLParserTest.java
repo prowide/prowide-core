@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import javax.xml.parsers.DocumentBuilder;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -127,7 +127,7 @@ public class XMLParserTest {
     @Test
     public void testCRLF_replace() {
         String text = "aaa\nbbb";
-        text = StringUtils.replace(text, "\n", FINWriterVisitor.SWIFT_EOL);
+        text = Strings.CS.replace(text, "\n", FINWriterVisitor.SWIFT_EOL);
         assertEquals("aaa\r\nbbb", text);
     }
 

@@ -36,6 +36,7 @@ import com.prowidesoftware.swift.model.field.DateResolver;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -133,7 +134,7 @@ public class Field98K extends Field implements Serializable, DateContainer, Gene
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!StringUtils.equals(tag.getName(), "98K")) {
+        if (!Strings.CS.equals(tag.getName(), "98K")) {
             throw new IllegalArgumentException("cannot create field 98K from tag "+tag.getName()+", tagname must match the name of the field.");
         }
         parse(tag.getValue());

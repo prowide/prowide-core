@@ -26,6 +26,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import javax.xml.parsers.DocumentBuilder;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.Validate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -343,7 +344,7 @@ public class XMLParser {
             if ("value".equalsIgnoreCase(n.getNodeName())) {
                 String text = unescapeXml(getText(n));
                 // normalize line feeds (DOM parser removes carriage return characters from original XML file)
-                text = StringUtils.replace(text, "\n", FINWriterVisitor.SWIFT_EOL);
+                text = Strings.CS.replace(text, "\n", FINWriterVisitor.SWIFT_EOL);
                 tag.setValue(text);
             } else if (UNPARSEDTEXTS.equalsIgnoreCase(n.getNodeName())) {
                 tag.setUnparsedTexts(getUnparsedTextsFromNode(n));
@@ -381,7 +382,7 @@ public class XMLParser {
                     if (StringUtils.isNumeric(number)) {
                         String text = unescapeXml(getText(n));
                         // normalize line feeds (DOM parser removes carriage return characters from original XML file)
-                        text = StringUtils.replace(text, "\n", FINWriterVisitor.SWIFT_EOL);
+                        text = Strings.CS.replace(text, "\n", FINWriterVisitor.SWIFT_EOL);
                         try {
                             field.setComponent(Integer.parseInt(number), text);
                         } catch (NumberFormatException e) {
