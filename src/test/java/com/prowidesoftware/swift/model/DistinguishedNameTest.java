@@ -57,4 +57,46 @@ class DistinguishedNameTest {
 
         assertNull(DistinguishedName.parseBIC("XXX"));
     }
+
+    @Test
+    void testParseBranchSingleOU() {
+        assertEquals("XXX", DistinguishedName.parseBranch("ou=xxx,o=biccode,o=swift"));
+    }
+
+    @Test
+    void testParseBranchUppercasesResult() {
+        assertEquals("XXX", DistinguishedName.parseBranch("ou=XXX,o=biccode,o=swift"));
+    }
+
+    @Test
+    void testParseBranchWithCN() {
+        assertEquals("XXX", DistinguishedName.parseBranch("cn=a,ou=xxx,o=biccode,o=swift"));
+    }
+
+    @Test
+    void testParseBranchMultipleOU() {
+        // rightmost ou (closest to o=<bic8>) is the branch; leftmost is a subdivision
+        assertEquals("BBB", DistinguishedName.parseBranch("cn=a,ou=dept,ou=bbb,o=biccode,o=swift"));
+    }
+
+    @Test
+    void testParseBranchNoOU() {
+        assertNull(DistinguishedName.parseBranch("o=biccode,o=swift"));
+    }
+
+    @Test
+    void testParseBranchNull() {
+        assertNull(DistinguishedName.parseBranch(null));
+    }
+
+    @Test
+    void testParseBranchBlank() {
+        assertNull(DistinguishedName.parseBranch(""));
+        assertNull(DistinguishedName.parseBranch("   "));
+    }
+
+    @Test
+    void testParseBranchNoMatch() {
+        assertNull(DistinguishedName.parseBranch("o=biccode,o=swift"));
+    }
 }
