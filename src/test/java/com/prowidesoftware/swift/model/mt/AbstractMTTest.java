@@ -35,7 +35,7 @@ import com.prowidesoftware.swift.model.mt.mt9xx.MT940;
 import com.prowidesoftware.swift.utils.TestUtils;
 import java.io.IOException;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.junit.jupiter.api.Test;
 
 public class AbstractMTTest {
@@ -125,11 +125,11 @@ public class AbstractMTTest {
                         + "-}";
         MT547 mt = new MT547(fin);
         String xml = mt.xml();
-        assertTrue(StringUtils.contains(xml, "<logicalTerminal>FMACUS33AXXX</logicalTerminal>"));
-        assertTrue(StringUtils.contains(xml, "<block2 type=\"output\">"));
-        assertTrue(StringUtils.contains(xml, "<MIRLogicalTerminal>CHASUSU9AXXX</MIRLogicalTerminal>"));
-        assertTrue(StringUtils.contains(xml, "<component number=\"1\">GENL</component>"));
-        assertTrue(StringUtils.contains(xml, "<name>20C</name>"));
+        assertTrue(Strings.CS.contains(xml, "<logicalTerminal>FMACUS33AXXX</logicalTerminal>"));
+        assertTrue(Strings.CS.contains(xml, "<block2 type=\"output\">"));
+        assertTrue(Strings.CS.contains(xml, "<MIRLogicalTerminal>CHASUSU9AXXX</MIRLogicalTerminal>"));
+        assertTrue(Strings.CS.contains(xml, "<component number=\"1\">GENL</component>"));
+        assertTrue(Strings.CS.contains(xml, "<name>20C</name>"));
     }
 
     @Test

@@ -33,6 +33,7 @@ import com.prowidesoftware.swift.model.field.MultiLineField;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -145,7 +146,7 @@ public class Field35B extends Field implements Serializable, MultiLineField {
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!StringUtils.equals(tag.getName(), "35B")) {
+        if (!Strings.CS.equals(tag.getName(), "35B")) {
             throw new IllegalArgumentException("cannot create field 35B from tag "+tag.getName()+", tagname must match the name of the field.");
         }
         parse(tag.getValue());
@@ -197,7 +198,7 @@ public class Field35B extends Field implements Serializable, MultiLineField {
     public void parse(final String value) {
         init(6);
         List<String> lines = SwiftParseUtils.getLines(value);
-        if (!lines.isEmpty() && StringUtils.startsWith(lines.get(0), "ISIN ")) {
+        if (!lines.isEmpty() && Strings.CS.startsWith(lines.get(0), "ISIN ")) {
             setComponent1(SwiftParseUtils.getTokenFirst(lines.get(0), " "));
             setComponent2(SwiftParseUtils.getTokenSecondLast(lines.get(0), " "));
             SwiftParseUtils.setComponentsFromLines(this, 3, null, 1, lines);

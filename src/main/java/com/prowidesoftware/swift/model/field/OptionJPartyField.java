@@ -17,6 +17,7 @@ package com.prowidesoftware.swift.model.field;
 
 import java.util.*;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 /**
  * Party Identification
@@ -256,13 +257,13 @@ public abstract class OptionJPartyField extends Field {
         if (codeword == Codeword.NETS || codeword == Codeword.SSIS) {
             return null;
         }
-        String join = StringUtils.replace(StringUtils.replace(getComponent1(), "\r", ""), "\n", "");
+        String join = Strings.CS.replace(Strings.CS.replace(getComponent1(), "\r", ""), "\n", "");
         final String[] tokens = StringUtils.split(join, "/");
         for (int i = 0; i < tokens.length; i++) {
             final String code = tokens[i];
-            if (!StringUtils.equals(code, Codeword.NETS.name()) && !StringUtils.equals(code, Codeword.SSIS.name())) {
+            if (!Strings.CS.equals(code, Codeword.NETS.name()) && !Strings.CS.equals(code, Codeword.SSIS.name())) {
                 i++;
-                if (i < tokens.length && StringUtils.equals(code, codeword.name())) {
+                if (i < tokens.length && Strings.CS.equals(code, codeword.name())) {
                     return tokens[i];
                 }
             }

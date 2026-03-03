@@ -19,7 +19,7 @@ import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.Map;
 import java.util.logging.Level;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 /**
  * Helper API to implement the http://www.prowidesoftware.com/resources/deprecation-policy
@@ -100,7 +100,7 @@ public class DeprecationUtils {
      * the given key in its value
      */
     private static boolean isSet(final EnvironmentVariableKey key) {
-        return StringUtils.containsIgnoreCase(System.getenv(PW_DEPRECATED), key.name());
+        return Strings.CI.contains(System.getenv(PW_DEPRECATED), key.name());
     }
 
     /**

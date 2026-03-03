@@ -19,6 +19,7 @@ import com.prowidesoftware.swift.model.BIC;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import java.util.*;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 /**
  * Identifier Code
@@ -97,7 +98,7 @@ public abstract class OptionAPartyField extends Field implements BICContainer, P
         }
         if (lines.get(0).startsWith("/")) {
             String party = lines.get(0);
-            if (StringUtils.startsWith(party, "/C/") || StringUtils.startsWith(party, "/D/")) {
+            if (Strings.CS.startsWith(party, "/C/") || Strings.CS.startsWith(party, "/D/")) {
                 setComponent(1, String.valueOf(party.charAt(1)));
                 setComponent(2, StringUtils.substring(party, 3));
             } else {

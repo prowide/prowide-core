@@ -35,6 +35,7 @@ import com.prowidesoftware.swift.model.field.MultiLineField;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -156,7 +157,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!StringUtils.equals(tag.getName(), "59F")) {
+        if (!Strings.CS.equals(tag.getName(), "59F")) {
             throw new IllegalArgumentException("cannot create field 59F from tag "+tag.getName()+", tagname must match the name of the field.");
         }
         parse(tag.getValue());
@@ -1265,7 +1266,7 @@ public class Field59F extends Field implements Serializable, MultiLineField {
 	 */
 	@Override
 	public String getComponentLabel(final int number) {
-		if (number == 1 && StringUtils.startsWith(getComponent1(), "/")) {
+		if (number == 1 && Strings.CS.startsWith(getComponent1(), "/")) {
 			return "Account";
 		}
 		if (number == 3 || number == 5 || number == 7) {
@@ -1337,16 +1338,16 @@ public class Field59F extends Field implements Serializable, MultiLineField {
     public List<String> detailsByNumber(int lineIdentifier) {
 		List<String> result = new ArrayList<>();
 		String number = String.valueOf(lineIdentifier);
-		if (StringUtils.equals(number, getComponent2()) && StringUtils.isNotBlank(getComponent3())) {
+		if (Strings.CS.equals(number, getComponent2()) && StringUtils.isNotBlank(getComponent3())) {
 			result.add(getComponent3());
 		}
-		if (StringUtils.equals(number, getComponent4()) && StringUtils.isNotBlank(getComponent5())) {
+		if (Strings.CS.equals(number, getComponent4()) && StringUtils.isNotBlank(getComponent5())) {
 			result.add(getComponent5());
 		}
-		if (StringUtils.equals(number, getComponent6()) && StringUtils.isNotBlank(getComponent7())) {
+		if (Strings.CS.equals(number, getComponent6()) && StringUtils.isNotBlank(getComponent7())) {
 			result.add(getComponent7());
 		}
-		if (StringUtils.equals(number, getComponent8()) && StringUtils.isNotBlank(getComponent9())) {
+		if (Strings.CS.equals(number, getComponent8()) && StringUtils.isNotBlank(getComponent9())) {
 			result.add(getComponent9());
 		}
 		return result;
@@ -1361,16 +1362,16 @@ public class Field59F extends Field implements Serializable, MultiLineField {
      */
     public boolean contains(int lineIdentifier) {
 		String number = String.valueOf(lineIdentifier);
-		if (StringUtils.equals(number, getComponent2()) && StringUtils.isNotBlank(getComponent3())) {
+		if (Strings.CS.equals(number, getComponent2()) && StringUtils.isNotBlank(getComponent3())) {
 			return true;
 		}
-		if (StringUtils.equals(number, getComponent4()) && StringUtils.isNotBlank(getComponent5())) {
+		if (Strings.CS.equals(number, getComponent4()) && StringUtils.isNotBlank(getComponent5())) {
             return true;
 		}
-		if (StringUtils.equals(number, getComponent6()) && StringUtils.isNotBlank(getComponent7())) {
+		if (Strings.CS.equals(number, getComponent6()) && StringUtils.isNotBlank(getComponent7())) {
 			return true;
 		}
-		if (StringUtils.equals(number, getComponent8()) && StringUtils.isNotBlank(getComponent9())) {
+		if (Strings.CS.equals(number, getComponent8()) && StringUtils.isNotBlank(getComponent9())) {
 			return true;
 		}
 		return false;

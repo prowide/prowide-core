@@ -1,6 +1,7 @@
 # Prowide Core - CHANGELOG
 
 #### 10.3.10 - SNAPSHOT
+  * Migrated deprecated `StringUtils` methods to `Strings.CS` equivalents (equals, startsWith, endsWith, contains, replace, indexOf, lastIndexOf, remove, removeEnd)
   * (PW-3126) Fixed DN to BIC extraction in `DistinguishedName` to include the branch code from the `ou` component
 
 #### 10.3.9 - February 2026
