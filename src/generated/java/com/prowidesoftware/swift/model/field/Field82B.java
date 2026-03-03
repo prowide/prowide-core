@@ -143,7 +143,11 @@ public class Field82B extends OptionBPartyField implements Serializable, MultiLi
 
     /**
      * Returns the field validator pattern.
+     *
+     * @deprecated Use {@code FieldPatternRegistry.getPattern()} from the Prowide Integrator Validation module instead.
      */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2026)
     @Override
     public final String validatorPattern() {
         return "[[/<DC>][/34x]$][35x](****)";

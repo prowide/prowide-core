@@ -217,8 +217,12 @@ public class Field142 extends Field implements Serializable, DateContainer {
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern.
+     *
+     * @deprecated Use {@code FieldPatternRegistry.getPattern()} from the Prowide Integrator Validation module instead.
      */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2026)
     @Override
     public String validatorPattern() {
         return "12!n";

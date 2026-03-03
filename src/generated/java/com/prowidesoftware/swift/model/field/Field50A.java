@@ -235,8 +235,12 @@ public class Field50A extends Field implements Serializable, BICContainer, Multi
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern.
+     *
+     * @deprecated Use {@code FieldPatternRegistry.getPattern()} from the Prowide Integrator Validation module instead.
      */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2026)
     @Override
     public String validatorPattern() {
         return "[/34x$]<BIC>";

@@ -1,7 +1,11 @@
 # Prowide Core - CHANGELOG
 
-#### 10.3.9 - SNAPSHOT
+#### 10.3.10 - SNAPSHOT
   * (PW-3126) Fixed DN to BIC extraction in `DistinguishedName` to include the branch code from the `ou` component
+
+#### 10.3.9 - February 2026
+  * Deprecated `Field.validatorPattern()` - validation patterns moved to Integrator's `FieldPatternRegistry`
+  * Updated MT message structures from schema regeneration (MT081, MT513-MT543, MT586, MT920, MT942) 
 
 #### 10.3.8 - January 2026
   * (PW-2967) Fixed Field95D component label from "Legal Entity Identifier" to "Digital Ledger Identifier" to match XSD schema
