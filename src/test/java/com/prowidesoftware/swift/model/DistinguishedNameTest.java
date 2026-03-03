@@ -46,10 +46,10 @@ class DistinguishedNameTest {
         assertNull(DistinguishedName.parseBIC(dn1));
 
         dn1 = "o=bic8code,o=swift";
-        assertEquals("BIC8CODE", DistinguishedName.parseBIC(dn1));
+        assertEquals("BIC8CODEXXX", DistinguishedName.parseBIC(dn1));
 
         dn1 = "ou=bar,o=bic8code,o=swift";
-        assertEquals("BIC8CODE", DistinguishedName.parseBIC(dn1));
+        assertEquals("BIC8CODEBAR", DistinguishedName.parseBIC(dn1));
 
         assertNull(DistinguishedName.parseBIC(null));
 

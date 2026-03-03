@@ -58,16 +58,40 @@ public class DistinguishedName {
         return dn.toString();
     }
 
+    /**
+     * Parses a BIC11 from a SWIFT Distinguished Name string.
+     *
+     * <p>Extracts the institution BIC8 from the {@code o=} component and the branch from the
+     * {@code ou=} component. The result is always an 11-character BIC: if no branch is present
+     * in the DN, {@code XXX} is used as the default branch code.
+     *
+     * <p>When multiple {@code ou} components are present, the one closest to {@code o=&lt;bic8&gt;}
+     * (rightmost) is used as the branch. See {@link #parseBranch(String)} for details.
+     *
+     * @param dn the Distinguished Name string, may be null or blank
+     * @return the BIC11 in uppercase, or null if no BIC8 component is found or the input is blank
+     * @see #parseBranch(String)
+     */
     public static String parseBIC(final String dn) {
         if (StringUtils.isBlank(dn)) {
             return null;
         }
+        String bic8 = null;
         for (String s : StringUtils.split(dn, ",")) {
             if (Strings.CS.startsWith(s, "o=") && !Strings.CS.equals(s, "o=swift")) {
-                return StringUtils.upperCase(StringUtils.substringAfter(s, "o="));
+                bic8 = StringUtils.upperCase(StringUtils.substringAfter(s, "o="));
+                break;
             }
         }
-        return null;
+        if (bic8 == null) {
+            return null;
+        }
+        BIC bic = new BIC(bic8);
+        String branch = parseBranch(dn);
+        if (branch != null) {
+            bic.setBranch(branch);
+        }
+        return bic.getBic11();
     }
 
     /**
