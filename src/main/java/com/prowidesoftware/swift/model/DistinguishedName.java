@@ -97,13 +97,14 @@ public class DistinguishedName {
     /**
      * Parses the branch code from a SWIFT Distinguished Name string.
      *
-     * <p>The branch is represented by the {@code ou} component. When multiple {@code ou} components
-     * are present, the one closest to {@code o=&lt;bic8&gt;} (i.e. the rightmost) is the branch code,
+     * <p>The branch is represented by the {@code ou} component. Only {@code ou} values with exactly
+     * 3 characters are considered valid; others are silently ignored. When multiple valid {@code ou}
+     * components are present, the one closest to {@code o=&lt;bic8&gt;} (i.e. the rightmost) is used,
      * as DNs are read right-to-left from least to most specific:
      * <pre>cn=a,ou=dept,ou=bbb,o=biccode,o=swift → branch is "BBB"</pre>
      *
      * @param dn the Distinguished Name string, may be null or blank
-     * @return the branch code in uppercase, or null if not present or if the input is blank
+     * @return the branch code in uppercase, or null if not present, invalid, or if the input is blank
      */
     protected static String parseBranch(final String dn) {
         if (StringUtils.isBlank(dn)) {
@@ -112,11 +113,14 @@ public class DistinguishedName {
         String branch = null;
         for (String s : StringUtils.split(dn, ",")) {
             if (Strings.CS.startsWith(s, "ou=")) {
-                // keep iterating — last match is the rightmost (closest to o=<bic8>)
-                branch = StringUtils.substringAfter(s, "ou=");
+                String value = StringUtils.substringAfter(s, "ou=");
+                if (value.length() == 3) {
+                    // keep iterating — last valid match is the rightmost (closest to o=<bic8>)
+                    branch = value;
+                }
             }
         }
-        return StringUtils.isBlank(branch) ? null : StringUtils.upperCase(branch);
+        return branch != null ? StringUtils.upperCase(branch) : null;
     }
 
     /**

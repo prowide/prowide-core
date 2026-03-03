@@ -99,4 +99,16 @@ class DistinguishedNameTest {
     void testParseBranchNoMatch() {
         assertNull(DistinguishedName.parseBranch("o=biccode,o=swift"));
     }
+
+    @Test
+    void testParseBranchIgnoresInvalidOULength() {
+        // ou values with length != 3 must be ignored
+        assertNull(DistinguishedName.parseBranch("ou=toolong,o=biccode,o=swift"));
+        assertNull(DistinguishedName.parseBranch("ou=ab,o=biccode,o=swift"));
+        assertNull(DistinguishedName.parseBranch("ou=x,o=biccode,o=swift"));
+        // valid ou present alongside invalid ones — valid one wins
+        assertEquals("XXX", DistinguishedName.parseBranch("ou=toolong,ou=xxx,o=biccode,o=swift"));
+        // multiple invalid ou, no valid one
+        assertNull(DistinguishedName.parseBranch("ou=ab,ou=toolong,o=biccode,o=swift"));
+    }
 }
