@@ -430,8 +430,9 @@ public class SwiftMessageUtils {
      *
      * @param text the text to hash
      * @return computed hash or null if exceptions are thrown reading bytes or processing the digest
+     * @since 10.3.10
      */
-    private static String md5(final String text) {
+    public static String md5(final String text) {
         try {
             byte[] bytesOfMessage = text.getBytes(StandardCharsets.UTF_8);
             MessageDigest md = MessageDigest.getInstance("MD5");
