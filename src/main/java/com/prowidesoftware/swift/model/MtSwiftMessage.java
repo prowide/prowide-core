@@ -277,8 +277,6 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
         applyStrategy(model, metadataStrategy);
 
         setFileFormat(FileFormat.FIN);
-        setChecksum(SwiftMessageUtils.calculateChecksum(model));
-        setChecksumBody(SwiftMessageUtils.calculateChecksum(model.getBlock4()));
         setLastModified(Calendar.getInstance());
         setMur(model.getMUR());
         setPde(model.getPDE());
@@ -332,6 +330,18 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
 
         // IDENTIFIER
         strategy.identifier(mt).ifPresent(this::setIdentifier);
+
+        // CHECKSUM
+        String checksum = strategy.checksum(mt);
+        if (checksum != null) {
+            setChecksum(checksum);
+        }
+
+        // CHECKSUM BODY
+        String checksumBody = strategy.checksumBody(mt);
+        if (checksumBody != null) {
+            setChecksumBody(checksumBody);
+        }
     }
 
     /**

@@ -111,6 +111,28 @@ public class DefaultMtMetadataStrategy implements MessageMetadataStrategy {
         return Optional.ofNullable(SwiftMessageUtils.identifier(asSwiftMessage(message)));
     }
 
+    /**
+     * Computes a checksum for the full MT message content using {@link SwiftMessageUtils#calculateChecksum(SwiftMessage)}
+     * @since 10.3.10
+     */
+    @Override
+    public String checksum(AbstractMessage message) {
+        return SwiftMessageUtils.calculateChecksum(asSwiftMessage(message));
+    }
+
+    /**
+     * Computes a checksum for the MT message body (block 4) using {@link SwiftMessageUtils#calculateChecksum(SwiftBlock4)}
+     * @since 10.3.10
+     */
+    @Override
+    public String checksumBody(AbstractMessage message) {
+        SwiftMessage swiftMessage = asSwiftMessage(message);
+        if (swiftMessage != null) {
+            return SwiftMessageUtils.calculateChecksum(swiftMessage.getBlock4());
+        }
+        return null;
+    }
+
     private SwiftMessage asSwiftMessage(AbstractMessage message) {
         if (message != null && message.isMT()) {
             AbstractMT mt = (AbstractMT) message;
