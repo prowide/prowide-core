@@ -426,7 +426,10 @@ public class SwiftMessageUtils {
     }
 
     /**
-     * Computes an MD5 hash on the parameter text
+     * Computes an MD5 hash on the parameter text.
+     *
+     * <p>Note: MD5 is not cryptographically secure and should not be used for security purposes.
+     * This method is intended for duplicate detection and integrity verification only.
      *
      * @param text the text to hash
      * @return computed hash or null if exceptions are thrown reading bytes or processing the digest
