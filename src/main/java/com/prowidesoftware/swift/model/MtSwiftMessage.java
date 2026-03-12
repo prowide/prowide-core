@@ -81,8 +81,9 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      * content will be stored in the message attribute but the metadata (such as the message type) will be extracted
      * from the first message only.
      *
-     * <p>Notice that if an ACK/NAK message is used as parameter, this object will represent the ACK/NAK.
-     * Even if the original message is attached after the service 21 messages.
+     * <p>If an ACK/NAK (service 21) message is used as parameter and includes an appended MT with block 2 Output,
+     * the metadata is extracted from the appended MT. For ACK/NAK with an appended MT with block 2 Input or without
+     * an appended MT, the message is represented as ACK/NAK.
      *
      * <p>File format is set to {@link FileFormat#FIN}
      *
@@ -268,25 +269,46 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      * This method extracts the metadata from the model and sets the internal attributes accordingly, using the
      * provided {@link MessageMetadataStrategy}. And on top of that, sets additional attributes such as the
      * last modified date, checksum, and MUR.
-     *
+     * <p>
+     * For ACK/NAK (service 21) messages with an appended MT that has block 2 Output, the metadata is extracted
+     * from the appended MT rather than from the ACK/NAK prefix.
      *
      * @param model            the SwiftMessage model to extract metadata from
      * @param metadataStrategy a strategy implementation to extract the metadata from the model
      */
     private void updateAttributes(final SwiftMessage model, final MessageMetadataStrategy metadataStrategy) {
-        applyStrategy(model, metadataStrategy);
+        // for ACK/NAK with an appended MT Output, use the appended MT as the effective model for metadata extraction
+        final SwiftMessage effectiveModel = resolveEffectiveModel(model);
+
+        applyStrategy(effectiveModel, metadataStrategy);
 
         setFileFormat(FileFormat.FIN);
         setLastModified(Calendar.getInstance());
-        setMur(model.getMUR());
-        setPde(model.getPDE());
-        setPdm(model.getPDM());
-        setMir(model.getMIR());
-        if (model.getBlock2() != null) {
-            setUuid(model.getUUID());
+        setMur(effectiveModel.getMUR());
+        setPde(effectiveModel.getPDE());
+        setPdm(effectiveModel.getPDM());
+        setMir(effectiveModel.getMIR());
+        if (effectiveModel.getBlock2() != null) {
+            setUuid(effectiveModel.getUUID());
         }
-        setDirection(model.getDirection());
-        setUetr(model.getUETR());
+        setDirection(effectiveModel.getDirection());
+        setUetr(effectiveModel.getUETR());
+    }
+
+    /**
+     * For ACK/NAK (service 21) messages with an appended MT that has block 2 Output, returns the appended MT model.
+     * Otherwise, returns the original model unchanged.
+     */
+    private SwiftMessage resolveEffectiveModel(final SwiftMessage model) {
+        if (model.isServiceMessage21() && model.getUnparsedTextsSize() > 0) {
+            final SwiftMessage original = model.getUnparsedTexts().getTextAsMessage(0);
+            if (original != null
+                    && original.getBlock2() != null
+                    && original.getBlock2().isOutput()) {
+                return original;
+            }
+        }
+        return model;
     }
 
     /**
