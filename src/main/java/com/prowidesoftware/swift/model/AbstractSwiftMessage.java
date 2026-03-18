@@ -28,6 +28,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Strings;
@@ -433,7 +434,12 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     /**
      * Status history for this message.
      * current status is the last one in the list.
+     *
+     * @return the status trail list
+     * @deprecated Use {@link #getStatusTrailImmutable()} instead.
+     *             In a future version, this method will be removed.
      */
+    @Deprecated(since = "10.3.11", forRemoval = true)
     public List<SwiftMessageStatusInfo> getStatusTrail() {
         return statusTrail;
     }
@@ -441,7 +447,10 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     /**
      * @param statusTrail a list with statuses information
      * @see #addStatus(SwiftMessageStatusInfo)
+     * @deprecated Use {@link #addStatus(SwiftMessageStatusInfo)} or {@link #clearStatusTrail()} instead.
+     *             In a future version, this method will be removed.
      */
+    @Deprecated(since = "10.3.11", forRemoval = true)
     public void setStatusTrail(List<SwiftMessageStatusInfo> statusTrail) {
         this.statusTrail = statusTrail;
     }
@@ -464,8 +473,12 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     }
 
     /**
+     * @param status the status to add
      * @see #addStatus(SwiftMessageStatusInfo)
+     * @deprecated Use {@link #addStatus(SwiftMessageStatusInfo)} instead.
+     *             In a future version, this method will be removed.
      */
+    @Deprecated(since = "10.3.11", forRemoval = true)
     public void setStatus(SwiftMessageStatusInfo status) {
         addStatus(status);
     }
@@ -560,12 +573,54 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      */
     public void addStatus(SwiftMessageStatusInfo status) {
         if (status != null) {
-            if (this.getStatusTrail() == null) {
-                this.setStatusTrail(new ArrayList<>());
+            if (this.statusTrail == null) {
+                this.statusTrail = new ArrayList<>();
             }
             this.statusTrail.add(status);
             setStatus(status.getName());
         }
+    }
+
+    /**
+     * Remove a status entry from the trail.
+     *
+     * @param status the status to remove
+     * @return true if the status was removed, false otherwise
+     * @since 10.3.11
+     */
+    public boolean removeStatus(SwiftMessageStatusInfo status) {
+        if (status != null && this.statusTrail != null) {
+            return this.statusTrail.remove(status);
+        }
+        return false;
+    }
+
+    /**
+     * Clear all statuses from the trail.
+     *
+     * @since 10.3.11
+     */
+    public void clearStatusTrail() {
+        if (this.statusTrail != null) {
+            this.statusTrail.clear();
+        }
+    }
+
+    /**
+     * Get an immutable view of the status trail.
+     * Entries are sorted by creation date (oldest first).
+     *
+     * @return unmodifiable list of statuses ordered by creation date
+     * @since 10.3.11
+     */
+    public List<SwiftMessageStatusInfo> getStatusTrailImmutable() {
+        if (this.statusTrail == null || this.statusTrail.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return Collections.unmodifiableList(this.statusTrail.stream()
+                .sorted(Comparator.comparing(
+                        SwiftMessageStatusInfo::getCreationDate, Comparator.nullsFirst(Comparator.naturalOrder())))
+                .collect(Collectors.toList()));
     }
 
     /**
