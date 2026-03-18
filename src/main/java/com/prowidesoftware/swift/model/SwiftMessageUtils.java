@@ -357,7 +357,9 @@ public class SwiftMessageUtils {
      * Get a string in the form of businessprocess.messagetype.variant
      *
      * <p>
-     * For acknowledges and negative acknowledges, the identifier is fixed to "ACK" and "NAK" respectively.
+     * For acknowledges and negative acknowledges with an appended MT with block 2 Input, the identifier is fixed
+     * to "ACK" and "NAK" respectively. However, if the appended MT has block 2 Output, the identifier is extracted
+     * from the appended MT message type.
      *
      * @return a string with the MT message type identification
      * @since 9.3.19
@@ -366,8 +368,16 @@ public class SwiftMessageUtils {
         if (m == null) {
             return null;
         }
-        // for ACK/NAK messages, we return the fixed identifiers
+        // for ACK/NAK messages with an appended MT with block 2 Output, we extract the identifier from the MT
         if (m.isServiceMessage21()) {
+            if (m.getUnparsedTextsSize() > 0) {
+                final SwiftMessage original = m.getUnparsedTexts().getTextAsMessage(0);
+                if (original != null
+                        && original.getBlock2() != null
+                        && original.getBlock2().isOutput()) {
+                    return identifier(original);
+                }
+            }
             if (m.isAck()) {
                 return MtSwiftMessage.IDENTIFIER_ACK;
             } else if (m.isNack()) {

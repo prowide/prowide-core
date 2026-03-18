@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+### 10.3.11 - SNAPSHOT
+  * Fix: `MtSwiftMessage` created from ACK (service 21) followed by MT with block 2 Output now extracts the message type and metadata from the appended MT instead of defaulting to ACK
+
 #### 10.3.10 - March 2026
   * Migrated deprecated `StringUtils` methods to `Strings.CS` equivalents (equals, startsWith, endsWith, contains, replace, indexOf, lastIndexOf, remove, removeEnd)
   * (PW-3126) Fixed DN to BIC extraction in `DistinguishedName` to include the branch code from the `ou` component

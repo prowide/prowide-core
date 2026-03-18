@@ -70,7 +70,8 @@ public class MtSwiftMessageTest {
     }
 
     @Test
-    public void testParseAckWithOriginalMessageCopy() {
+    public void testParseAckWithOriginalMessageCopyInput() {
+        // ACK followed by MT with block 2 Input -> identifier should be ACK
         String fin =
                 "{1:F21AAAALT2XAXXX0000000000}{4:{177:1903250612}{451:0}}{1:F01AAAALT2XAXXX1012000002}{2:I103BBBBARZZXXXXN}{4:\n"
                         + ":20:TEST\n"
@@ -101,6 +102,40 @@ public class MtSwiftMessageTest {
         // the original message has an amount, we extract it
         assertEquals(new BigDecimal("23453"), mt.getAmount());
         assertEquals("USD", mt.getCurrency());
+
+        // ACK followed by MT Input keeps the ACK identifier
+        assertEquals("ACK", mt.getIdentifier());
+    }
+
+    @Test
+    public void testParseAckWithOriginalMessageCopyOutput() {
+        // ACK followed by MT with block 2 Output -> metadata should be extracted from the appended MT
+        String fin =
+                "{1:F21AAAALT2XAXXX0000000000}{4:{177:1903250612}{451:0}}{1:F01BBBBARZZAXXX1012000002}{2:O1031200190903AAAALT2XAXXX00000000001903250612N}{3:{121:d]8b27e4-5891-4649-b1b8-22a3c0985ab2}}{4:\n"
+                        + ":20:TEST-OUT\n"
+                        + ":32A:190903EUR12345,\n"
+                        + "-}";
+        MtSwiftMessage mt = MtSwiftMessage.parse(fin);
+
+        // identifier and message type are extracted from the appended MT, not "ACK"
+        assertEquals("fin.103", mt.getIdentifier());
+        assertEquals("103", mt.getMessageType());
+
+        // reference is extracted from the appended MT
+        assertEquals("TEST-OUT", mt.getReference());
+
+        // direction is resolved from the appended MT's block 2 Output (incoming)
+        assertEquals(MessageIOType.incoming, mt.getDirection());
+
+        // value date from the appended MT
+        Calendar valueDate = mt.getValueDate();
+        assertEquals(2019, valueDate.get(Calendar.YEAR));
+        assertEquals(Calendar.SEPTEMBER, valueDate.get(Calendar.MONTH));
+        assertEquals(3, valueDate.get(Calendar.DAY_OF_MONTH));
+
+        // amount from the appended MT
+        assertEquals(new BigDecimal("12345"), mt.getAmount());
+        assertEquals("EUR", mt.getCurrency());
     }
 
     @Test
