@@ -15,10 +15,6 @@
  */
 package com.prowidesoftware.swift.model.field;
 
-import com.prowidesoftware.ProwideException;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -382,23 +378,24 @@ public class SwiftParseUtils {
 
     /**
      * Separate the given string in lines, removing trailing empty lines.
-     * <p>The implementation uses using {@link BufferedReader#readLine()} so if the string ends with a LF, the trailing
-     * "empty" line is not returned in the result.
      *
      * @return list of found lines
      */
     public static List<String> getLines(final String value) {
         final List<String> result = new ArrayList<>();
         if (value != null) {
-            final BufferedReader br = new BufferedReader(new StringReader(value));
-            try {
-                String l = br.readLine();
-                while (l != null) {
-                    result.add(l);
-                    l = br.readLine();
+            int offset = 0;
+            int index;
+            while ((index = value.indexOf('\n', offset)) != -1) {
+                if (index > 0 && value.charAt(index - 1) == '\r') {
+                    result.add(value.substring(offset, index - 1));
+                } else {
+                    result.add(value.substring(offset, index));
                 }
-            } catch (final IOException e) {
-                throw new ProwideException(e);
+                offset = index + 1;
+            }
+            if (offset < value.length()) {
+                result.add(value.substring(offset));
             }
         }
         return result;

@@ -17,6 +17,7 @@ package com.prowidesoftware.swift.model.field;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class SwiftParseUtilsTest {
@@ -332,5 +333,20 @@ public class SwiftParseUtilsTest {
         assertEquals("aaa", SwiftParseUtils.removePrefix("aaa", "/"));
         assertEquals("aaa", SwiftParseUtils.removePrefix("/aaa", "/"));
         assertEquals("/aaa", SwiftParseUtils.removePrefix("//aaa", "/"));
+    }
+
+    @Test
+    public void testGetLines() {
+        List<String> lines = SwiftParseUtils.getLines("Line 1\nLine 2\r\nLine 3\n\rLine 4");
+        assertEquals(4, lines.size());
+        assertEquals("Line 1", lines.get(0));
+        assertEquals("Line 2", lines.get(1));
+        assertEquals("Line 3", lines.get(2));
+        assertEquals("\rLine 4", lines.get(3));
+
+        lines = SwiftParseUtils.getLines("Line 1\nLine 2\n");
+        assertEquals(2, lines.size());
+        assertEquals("Line 1", lines.get(0));
+        assertEquals("Line 2", lines.get(1));
     }
 }
