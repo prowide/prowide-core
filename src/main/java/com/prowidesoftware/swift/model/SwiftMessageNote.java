@@ -76,7 +76,9 @@ public class SwiftMessageNote {
      * @param creationDate the creationDate to set
      */
     public void setCreationDate(Calendar creationDate) {
-        this.creationDate = creationDate;
+        if (creationDate != null) {
+            this.creationDate = creationDate;
+        }
     }
 
     public String getCreationUser() {
