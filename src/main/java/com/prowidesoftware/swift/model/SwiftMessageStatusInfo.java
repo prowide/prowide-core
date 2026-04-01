@@ -195,7 +195,9 @@ public class SwiftMessageStatusInfo implements Cloneable {
     }
 
     public SwiftMessageStatusInfo setCreationDate(Calendar creationDate) {
-        this.creationDate = creationDate;
+        if (creationDate != null) {
+            this.creationDate = creationDate;
+        }
         return this;
     }
 

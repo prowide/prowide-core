@@ -35,7 +35,7 @@ public class SwiftMessageNote {
     private Long id;
 
     @Column(name = "creation_date")
-    private Calendar creationDate;
+    private Calendar creationDate = Calendar.getInstance();
 
     @Column(length = 40, name = "creation_user")
     private String creationUser;
