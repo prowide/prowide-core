@@ -1,11 +1,10 @@
 # Prowide Core - CHANGELOG
 
+### 10.3.12 - SNAPSHOT
+  * Fix: Replaced `@OrderColumn` with `@OrderBy("creationDate ASC")` on `statusTrail`, `notes`, and `revisions` to prevent data loss caused by `sort_key` corruption under concurrent access. Existing `sort_key` columns must be made nullable or dropped.
+
 ### 10.3.11 - March 2026
   * Feat: `MtSwiftMessage` created from ACK (service 21) followed by MT with block 2 Output now extracts the message type and metadata from the appended MT instead of defaulting to ACK
-  * Feat: Status trail API - new methods `removeStatus()`, `clearStatusTrail()`, `getStatusTrailImmutable()` for explicit status trail manipulation
-  * Deprecated: `AbstractSwiftMessage.getStatusTrail()` - use `getStatusTrailImmutable()` instead
-  * Deprecated: `AbstractSwiftMessage.setStatusTrail()` - use `addStatus()` or `clearStatusTrail()` instead
-  * Deprecated: `AbstractSwiftMessage.setStatus(SwiftMessageStatusInfo)` - use `addStatus()` instead
 
 #### 10.3.10 - March 2026
   * Migrated deprecated `StringUtils` methods to `Strings.CS` equivalents (equals, startsWith, endsWith, contains, replace, indexOf, lastIndexOf, remove, removeEnd)
