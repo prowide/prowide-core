@@ -83,7 +83,9 @@ public class SwiftMessageStatusInfo implements Cloneable {
             String comments, Calendar creationDate, String creationUser, String name, String data) {
         this();
         this.comments = comments;
-        this.creationDate = creationDate;
+        if (creationDate != null) {
+            this.creationDate = creationDate;
+        }
         this.creationUser = creationUser;
         this.name = name;
         this.data = data;
@@ -193,7 +195,9 @@ public class SwiftMessageStatusInfo implements Cloneable {
     }
 
     public SwiftMessageStatusInfo setCreationDate(Calendar creationDate) {
-        this.creationDate = creationDate;
+        if (creationDate != null) {
+            this.creationDate = creationDate;
+        }
         return this;
     }
 

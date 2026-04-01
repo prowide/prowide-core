@@ -105,7 +105,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "msg_id", nullable = false)
-    @OrderColumn(name = "sort_key")
+    @OrderBy("creationDate ASC, id ASC")
     private List<SwiftMessageStatusInfo> statusTrail = new ArrayList<>();
 
     @Column(length = 50)
@@ -113,7 +113,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "msg_id", nullable = false)
-    @OrderColumn(name = "sort_key")
+    @OrderBy("creationDate ASC, id ASC")
     private List<SwiftMessageNote> notes = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -139,7 +139,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "msg_id", nullable = false)
-    @OrderColumn(name = "sort_key")
+    @OrderBy("creationDate ASC, id ASC")
     private List<SwiftMessageRevision> revisions = new ArrayList<>();
 
     /**
