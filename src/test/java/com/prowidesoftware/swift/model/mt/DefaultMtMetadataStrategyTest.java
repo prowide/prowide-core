@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.prowidesoftware.swift.model.Money;
 import com.prowidesoftware.swift.model.MtSwiftMessage;
+import com.prowidesoftware.swift.model.SwiftMessageUtils;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -169,6 +170,64 @@ class DefaultMtMetadataStrategyTest {
 
         assertNotNull(mt.getSender());
         assertEquals("AAAAAAAAAAA", mt.getSender());
+    }
+
+    @Test
+    public void testChecksum() throws IOException {
+        AbstractMT mt = AbstractMT.parse("{1:F01AGBLLT2XAXXX1012000002}{2:I103TESTARZZXXXXN}{3:{108:MYMUR123458}}{4:\n"
+                + ":20:TEST\n"
+                + ":32A:090903USD23453,"
+                + "-}");
+        DefaultMtMetadataStrategy strategy = new DefaultMtMetadataStrategy();
+
+        String checksum = strategy.checksum(mt);
+        assertNotNull(checksum);
+        assertEquals(32, checksum.length());
+
+        // verify it matches the direct SwiftMessageUtils computation
+        assertEquals(SwiftMessageUtils.calculateChecksum(mt.getSwiftMessage()), checksum);
+    }
+
+    @Test
+    public void testChecksumBody() throws IOException {
+        AbstractMT mt = AbstractMT.parse("{1:F01AGBLLT2XAXXX1012000002}{2:I103TESTARZZXXXXN}{3:{108:MYMUR123458}}{4:\n"
+                + ":20:TEST\n"
+                + ":32A:090903USD23453,"
+                + "-}");
+        DefaultMtMetadataStrategy strategy = new DefaultMtMetadataStrategy();
+
+        String checksumBody = strategy.checksumBody(mt);
+        assertNotNull(checksumBody);
+        assertEquals(32, checksumBody.length());
+
+        // verify it matches the direct SwiftMessageUtils computation on block 4
+        assertEquals(SwiftMessageUtils.calculateChecksum(mt.getSwiftMessage().getBlock4()), checksumBody);
+
+        // checksum and checksumBody should differ (headers are excluded from body checksum)
+        assertNotEquals(strategy.checksum(mt), checksumBody);
+    }
+
+    @Test
+    public void testChecksumWithNullMessage() {
+        DefaultMtMetadataStrategy strategy = new DefaultMtMetadataStrategy();
+        assertNull(strategy.checksum(null));
+        assertNull(strategy.checksumBody(null));
+    }
+
+    @Test
+    public void testChecksumDelegationFromMtSwiftMessage() {
+        MtSwiftMessage mtSwiftMessage =
+                MtSwiftMessage.parse("{1:F01AGBLLT2XAXXX1012000002}{2:I103TESTARZZXXXXN}{3:{108:MYMUR123458}}{4:\n"
+                        + ":20:TEST\n"
+                        + ":32A:090903USD23453,"
+                        + "-}");
+
+        // checksum and checksumBody should be populated via the strategy
+        assertNotNull(mtSwiftMessage.getChecksum());
+        assertNotNull(mtSwiftMessage.getChecksumBody());
+        assertEquals(32, mtSwiftMessage.getChecksum().length());
+        assertEquals(32, mtSwiftMessage.getChecksumBody().length());
+        assertNotEquals(mtSwiftMessage.getChecksum(), mtSwiftMessage.getChecksumBody());
     }
 
     @Test

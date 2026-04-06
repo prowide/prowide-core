@@ -70,7 +70,8 @@ public class MtSwiftMessageTest {
     }
 
     @Test
-    public void testParseAckWithOriginalMessageCopy() {
+    public void testParseAckWithOriginalMessageCopyInput() {
+        // ACK followed by MT with block 2 Input -> identifier should be ACK
         String fin =
                 "{1:F21AAAALT2XAXXX0000000000}{4:{177:1903250612}{451:0}}{1:F01AAAALT2XAXXX1012000002}{2:I103BBBBARZZXXXXN}{4:\n"
                         + ":20:TEST\n"
@@ -101,6 +102,40 @@ public class MtSwiftMessageTest {
         // the original message has an amount, we extract it
         assertEquals(new BigDecimal("23453"), mt.getAmount());
         assertEquals("USD", mt.getCurrency());
+
+        // ACK followed by MT Input keeps the ACK identifier
+        assertEquals("ACK", mt.getIdentifier());
+    }
+
+    @Test
+    public void testParseAckWithOriginalMessageCopyOutput() {
+        // ACK followed by MT with block 2 Output -> metadata should be extracted from the appended MT
+        String fin =
+                "{1:F21AAAALT2XAXXX0000000000}{4:{177:1903250612}{451:0}}{1:F01BBBBARZZAXXX1012000002}{2:O1031200190903AAAALT2XAXXX00000000001903250612N}{3:{121:d]8b27e4-5891-4649-b1b8-22a3c0985ab2}}{4:\n"
+                        + ":20:TEST-OUT\n"
+                        + ":32A:190903EUR12345,\n"
+                        + "-}";
+        MtSwiftMessage mt = MtSwiftMessage.parse(fin);
+
+        // identifier and message type are extracted from the appended MT, not "ACK"
+        assertEquals("fin.103", mt.getIdentifier());
+        assertEquals("103", mt.getMessageType());
+
+        // reference is extracted from the appended MT
+        assertEquals("TEST-OUT", mt.getReference());
+
+        // direction is resolved from the appended MT's block 2 Output (incoming)
+        assertEquals(MessageIOType.incoming, mt.getDirection());
+
+        // value date from the appended MT
+        Calendar valueDate = mt.getValueDate();
+        assertEquals(2019, valueDate.get(Calendar.YEAR));
+        assertEquals(Calendar.SEPTEMBER, valueDate.get(Calendar.MONTH));
+        assertEquals(3, valueDate.get(Calendar.DAY_OF_MONTH));
+
+        // amount from the appended MT
+        assertEquals(new BigDecimal("12345"), mt.getAmount());
+        assertEquals("EUR", mt.getCurrency());
     }
 
     @Test
@@ -219,6 +254,65 @@ public class MtSwiftMessageTest {
 
         // The content of block 4 is still available
         assertEquals("123456789", mt798.getField20().getValue());
+    }
+
+    @Test
+    void testUetrExtraction() {
+        // Message with UETR in block 3 field 121
+        String fin =
+                "{1:F01FOOUUSYYAXXX8669486760}{2:I103FOOZUSC0XXXXN}{3:{108:K77EFCX36X3Q6MOW}{121:1420a5f5-a452-436b-ab36-b2d3379c40e5}}{4:\n"
+                        + ":20:ZNOC014660-W5V4V\n"
+                        + ":23B:CRED\n"
+                        + ":32A:051018EUR3118,03\n"
+                        + ":33B:EUR3118,03\n"
+                        + ":50K:Selftrade\n"
+                        + ":53A:FOOGDEFF\n"
+                        + ":54A://RTFOO\n"
+                        + "FOOUUSYY\n"
+                        + ":59:/-\n"
+                        + "Selftrade\n"
+                        + ":70:/CS BD EMG EUR B\n"
+                        + "REDEMPTION AMLX985339\n"
+                        + ":71A:OUR\n"
+                        + "-}{5:{MAC:90BDE7AE}{CHK:7FFB29674CA0}}";
+        MtSwiftMessage mt = MtSwiftMessage.parse(fin);
+        assertEquals("1420a5f5-a452-436b-ab36-b2d3379c40e5", mt.getUetr());
+    }
+
+    @Test
+    void testUetrExtractionMissing() {
+        // Message without UETR
+        String fin =
+                "{1:F01FOOHCH20AXXX0527012180}{2:O5270750040609LRLRXXXX4A0400004386330406090954U}{3:{108:1709041144060748}}{4:\n"
+                        + ":16R:GENL\n"
+                        + ":28E:1/ONLY\n"
+                        + ":20C::SEME//MSGC001\n"
+                        + ":20C::CLCI//INSTR001\n"
+                        + ":20C::SCTR//EXPCA001\n"
+                        + ":23G:NEWM\n"
+                        + ":98A::EXRQ//20100511\n"
+                        + ":22H::CINT//INIT\n"
+                        + ":22H::COLA//REPO\n"
+                        + ":22H::REPR//PROV\n"
+                        + ":13B::ELIG//01-01JAN10\n"
+                        + ":16R:COLLPRTY\n"
+                        + ":95P::PTYA//FOOBARXX\n"
+                        + ":16S:COLLPRTY\n"
+                        + ":16R:COLLPRTY\n"
+                        + ":95P::PTYB//FOOBARYY\n"
+                        + ":16S:COLLPRTY\n"
+                        + ":16R:COLLPRTY\n"
+                        + ":95R::TRAG/CEDE/11111\n"
+                        + ":16S:COLLPRTY\n"
+                        + ":16S:GENL\n"
+                        + ":16R:DEALTRAN\n"
+                        + ":98B::TERM//OPEN\n"
+                        + ":19A::TRAA//EUR1000000,00\n"
+                        + ":92A::PRIC//0,5\n"
+                        + ":16S:DEALTRAN\n"
+                        + "-}";
+        MtSwiftMessage mt = MtSwiftMessage.parse(fin);
+        assertNull(mt.getUetr());
     }
 
     public static class TestMtMetadataStrategy implements MessageMetadataStrategy {

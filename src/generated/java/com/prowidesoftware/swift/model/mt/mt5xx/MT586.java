@@ -117,7 +117,7 @@ Sequence B4 - Financial Instrument/Account (M)<ul><li class="field">Field 16 R (
 <li class="field">Field 70 D (O)</li>
 <li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 B (O)</li></ul></li><li class="field">Field 94 B,C,F,L,T (O) (repetitive)</li>
+ (O)<ul><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 D (O)</li></ul></li><li class="field">Field 94 B,C,F,L,T (O) (repetitive)</li>
 <li class="sequence">
 Sequence B4a -  (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 B (O)</li>
@@ -1195,20 +1195,20 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97B, 
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97D, 
 	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 97B at MT586 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 97D at MT586 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field97B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field97D objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field97B> getField97B() {
-		final List<Field97B> result = new ArrayList<>();
-		final Tag[] tags = tags("97B");
+	public List<Field97D> getField97D() {
+		final List<Field97D> result = new ArrayList<>();
+		final Tag[] tags = tags("97D");
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
-                result.add(new Field97B(tag.getValue()));
+                result.add(new Field97D(tag.getValue()));
             }
 		}
 		return result;
@@ -1395,20 +1395,20 @@ public class MT586 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97D, 
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97B, 
 	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 97D at MT586 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 97B at MT586 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field97D objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field97B objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field97D> getField97D() {
-		final List<Field97D> result = new ArrayList<>();
-		final Tag[] tags = tags("97D");
+	public List<Field97B> getField97B() {
+		final List<Field97B> result = new ArrayList<>();
+		final Tag[] tags = tags("97B");
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
-                result.add(new Field97D(tag.getValue()));
+                result.add(new Field97B(tag.getValue()));
             }
 		}
 		return result;

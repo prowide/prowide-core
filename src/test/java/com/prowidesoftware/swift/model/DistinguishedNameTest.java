@@ -46,15 +46,69 @@ class DistinguishedNameTest {
         assertNull(DistinguishedName.parseBIC(dn1));
 
         dn1 = "o=bic8code,o=swift";
-        assertEquals("BIC8CODE", DistinguishedName.parseBIC(dn1));
+        assertEquals("BIC8CODEXXX", DistinguishedName.parseBIC(dn1));
 
         dn1 = "ou=bar,o=bic8code,o=swift";
-        assertEquals("BIC8CODE", DistinguishedName.parseBIC(dn1));
+        assertEquals("BIC8CODEBAR", DistinguishedName.parseBIC(dn1));
 
         assertNull(DistinguishedName.parseBIC(null));
 
         assertNull(DistinguishedName.parseBIC(""));
 
         assertNull(DistinguishedName.parseBIC("XXX"));
+    }
+
+    @Test
+    void testParseBranchSingleOU() {
+        assertEquals("XXX", DistinguishedName.parseBranch("ou=xxx,o=biccode,o=swift"));
+    }
+
+    @Test
+    void testParseBranchUppercasesResult() {
+        assertEquals("XXX", DistinguishedName.parseBranch("ou=XXX,o=biccode,o=swift"));
+    }
+
+    @Test
+    void testParseBranchWithCN() {
+        assertEquals("XXX", DistinguishedName.parseBranch("cn=a,ou=xxx,o=biccode,o=swift"));
+    }
+
+    @Test
+    void testParseBranchMultipleOU() {
+        // rightmost ou (closest to o=<bic8>) is the branch; leftmost is a subdivision
+        assertEquals("BBB", DistinguishedName.parseBranch("cn=a,ou=dept,ou=bbb,o=biccode,o=swift"));
+    }
+
+    @Test
+    void testParseBranchNoOU() {
+        assertNull(DistinguishedName.parseBranch("o=biccode,o=swift"));
+    }
+
+    @Test
+    void testParseBranchNull() {
+        assertNull(DistinguishedName.parseBranch(null));
+    }
+
+    @Test
+    void testParseBranchBlank() {
+        assertNull(DistinguishedName.parseBranch(""));
+        assertNull(DistinguishedName.parseBranch("   "));
+    }
+
+    @Test
+    void testParseBranchNoMatch() {
+        assertNull(DistinguishedName.parseBranch("o=biccode,o=swift"));
+    }
+
+    @Test
+    void testParseBranchIgnoresInvalidOULength() {
+        // ou values with length != 3 must be ignored
+        assertNull(DistinguishedName.parseBranch("ou=toolong,o=biccode,o=swift"));
+        assertNull(DistinguishedName.parseBranch("ou=ab,o=biccode,o=swift"));
+        assertNull(DistinguishedName.parseBranch("ou=x,o=biccode,o=swift"));
+        // valid ou present alongside invalid ones — valid one wins
+        assertEquals("XXX", DistinguishedName.parseBranch("ou=toolong,ou=xxx,o=biccode,o=swift"));
+        // multiple invalid ou, no valid one
+        assertNull(DistinguishedName.parseBranch("ou=ab,ou=toolong,o=biccode,o=swift"));
     }
 }

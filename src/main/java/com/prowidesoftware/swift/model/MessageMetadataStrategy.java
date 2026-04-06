@@ -75,4 +75,28 @@ public interface MessageMetadataStrategy {
     default Optional<String> identifier(AbstractMessage message) {
         return Optional.empty();
     }
+
+    /**
+     * Computes a checksum for the full message content.
+     * This can be used for duplicate detection considering the entire message.
+     * This default implementation returns null.
+     * @param message the message to compute the checksum for
+     * @return the checksum string or null if not applicable
+     * @since 10.3.10
+     */
+    default String checksum(AbstractMessage message) {
+        return null;
+    }
+
+    /**
+     * Computes a checksum for the message body/document content only, excluding headers and envelope.
+     * This can be used for duplicate detection focusing on the business content.
+     * This default implementation returns null.
+     * @param message the message to compute the checksum for
+     * @return the checksum string or null if not applicable
+     * @since 10.3.10
+     */
+    default String checksumBody(AbstractMessage message) {
+        return null;
+    }
 }

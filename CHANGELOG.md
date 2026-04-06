@@ -1,5 +1,19 @@
 # Prowide Core - CHANGELOG
 
+### 9.6.7 - SNAPSHOT
+  * Fix: Replaced `@OrderColumn` with `@OrderBy("creationDate ASC")` on `statusTrail`, `notes`, and `revisions` to prevent data loss caused by `sort_key` corruption under concurrent access. Existing `sort_key` columns must be made nullable or dropped.
+  * Feat: Improved performance of `SwiftParseUtils.getLines()` by replacing `BufferedReader` with direct string index parsing
+  * Feat: `MtSwiftMessage` created from ACK (service 21) followed by MT with block 2 Output now extracts the message type and metadata from the appended MT instead of defaulting to ACK
+  * Migrated deprecated `StringUtils` methods to `Strings.CS` equivalents (equals, startsWith, endsWith, contains, replace, indexOf, lastIndexOf, remove, removeEnd)
+  * (PW-3126) Fixed DN to BIC extraction in `DistinguishedName` to include the branch code from the `ou` component
+  * (PW-3123) Feat: Added `checksum()` and `checksumBody()` default methods to `MessageMetadataStrategy` (useful for duplicate detection)
+  * (PW-3123) Feat: Made `SwiftMessageUtils.md5()` public for checksum computation in custom implementations
+  * Deprecated `Field.validatorPattern()` - validation patterns moved to Integrator's `FieldPatternRegistry`
+  * Updated MT message structures from schema regeneration (MT081, MT513-MT543, MT586, MT920, MT942)
+  * (PW-2967) Fixed Field95D component label from "Legal Entity Identifier" to "Digital Ledger Identifier" to match XSD schema
+  * Feat: `MtSwiftMessage` now automatically extracts and persists UETR from block 3 field 121 during message parsing
+  * Fix: Added missing `uetr` field to `AbstractSwiftMessage` `copyTo()`, `equals()`, and `hashCode()` methods
+
 #### 9.6.6 - November 2025
   * fix: `MT544-547` Field19 NTWK Option as per SRU2025 UG
   * (PW-2907) Fixed format for Field 31W from DATE4 to DATE2

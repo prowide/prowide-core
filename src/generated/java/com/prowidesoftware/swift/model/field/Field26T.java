@@ -208,8 +208,12 @@ public class Field26T extends Field implements Serializable {
     }
 
     /**
-     * Returns the field validator pattern
+     * Returns the field validator pattern.
+     *
+     * @deprecated Use {@code FieldPatternRegistry.getPattern()} from the Prowide Integrator Validation module instead.
      */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2026)
     @Override
     public String validatorPattern() {
         return "3!c";

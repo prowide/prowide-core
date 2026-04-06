@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.networknt.schema.InputFormat;
 import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersion;
@@ -25,9 +26,9 @@ public class MtSwiftMessageJsonSchemaTest {
 
             JsonSchemaFactory factory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V202012);
             JsonSchema schema = factory.getSchema(schemaNode);
+            schema.initializeValidators();
 
-            JsonNode payload = mapper.readTree(jsonMsg);
-            Set<ValidationMessage> errors = schema.validate(payload);
+            Set<ValidationMessage> errors = schema.validate(jsonMsg, InputFormat.JSON);
             return errors.isEmpty();
         }
     }

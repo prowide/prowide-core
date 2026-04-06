@@ -163,7 +163,7 @@ Sequence D2 - Cash Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)<
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li></ul></li><li class="field">Field 98 A,C (O)</li>
+ (O)<ul><li>FieldsetItem 97 A,D,E (O)</li></ul></li><li class="field">Field 98 A,C (O)</li>
 <li class="field">Field 20 C (O)</li>
 <li class="field">Field 70 C (O)</li>
 <li class="field">Field 16 S (M)</li>

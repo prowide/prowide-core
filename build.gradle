@@ -36,7 +36,7 @@ scmVersion {
 }
 
 //project.version = "${SRU}-${scmVersion.version}"
-project.version = "SRU2025-9.6.6"
+project.version = "SRU2025-9.6.7-SNAPSHOT"
 
 java {
     toolchain {
@@ -73,7 +73,11 @@ dependencies {
     testImplementation 'org.xmlunit:xmlunit-assertj:2.10.0'
 }
 
-sourceSets.main.java.srcDirs = ['src/main/java', 'src/generated/java']
+sourceSets.named('main') {
+    java {
+        setSrcDirs(['src/main/java', 'src/generated/java'])
+    }
+}
 
 test {
     useJUnitPlatform()
@@ -81,17 +85,17 @@ test {
 
 tasks.withType(Jar).configureEach {
     manifest.attributes(
-            'Specification-Title': 'Prowide Core',
-            'Specification-Version': project.version,
-            'Specification-Vendor': "${SRU}",
-            'Implementation-Title': 'Prowide Core',
-            'Implementation-Version': project.version,
-            'Implementation-Vendor': 'www.prowidesoftware.com',
-            'Built-OS': System.getProperty('os.name'),
-            'Source-Compatibility': project.sourceCompatibility,
-            'Target-Compatibility': project.targetCompatibility,
-            'Built-Date': new Date().format("yyyy-MM-dd"),
-            'Automatic-Module-Name': 'com.prowidesoftware.core'
+        'Specification-Title': 'Prowide Core',
+        'Specification-Version': project.version,
+        'Specification-Vendor': "${SRU}",
+        'Implementation-Title': 'Prowide Core',
+        'Implementation-Version': project.version,
+        'Implementation-Vendor': 'www.prowidesoftware.com',
+        'Built-OS': System.getProperty('os.name'),
+        'Source-Compatibility': JavaVersion.VERSION_1_8,
+        'Target-Compatibility': JavaVersion.VERSION_1_8,
+        'Built-Date': new Date().format("yyyy-MM-dd"),
+        'Automatic-Module-Name': 'com.prowidesoftware.core'
     )
 }
 
@@ -319,12 +323,6 @@ tasks.register('bundle', Zip) {
 tasks.withType(Test).configureEach {
     doFirst {
         println 'Running test on ' + getJavaLauncher().get().getMetadata().getInstallationPath()
-    }
-}
-
-tasks.register('testOn11', Test) {
-    javaLauncher = javaToolchains.launcherFor {
-        languageVersion = JavaLanguageVersion.of(11)
     }
 }
 

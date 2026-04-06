@@ -104,7 +104,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "msg_id", nullable = false)
-    @OrderColumn(name = "sort_key")
+    @OrderBy("creationDate ASC, id ASC")
     private List<SwiftMessageStatusInfo> statusTrail = new ArrayList<>();
 
     @Column(length = 50)
@@ -112,7 +112,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "msg_id", nullable = false)
-    @OrderColumn(name = "sort_key")
+    @OrderBy("creationDate ASC, id ASC")
     private List<SwiftMessageNote> notes = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -138,7 +138,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "msg_id", nullable = false)
-    @OrderColumn(name = "sort_key")
+    @OrderBy("creationDate ASC, id ASC")
     private List<SwiftMessageRevision> revisions = new ArrayList<>();
 
     /**
@@ -984,6 +984,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
         msg.setAmount(getAmount());
         msg.setValueDate(getValueDate());
         msg.setTradeDate(getTradeDate());
+        msg.setUetr(getUetr());
 
         msg.setRevisions(null);
         for (SwiftMessageRevision rev : getRevisions()) {
@@ -1270,7 +1271,8 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
                 && Objects.equals(amount, that.amount)
                 && Objects.equals(revisions, that.revisions)
                 && Objects.equals(valueDate, that.valueDate)
-                && Objects.equals(tradeDate, that.tradeDate);
+                && Objects.equals(tradeDate, that.tradeDate)
+                && Objects.equals(uetr, that.uetr);
     }
 
     @Override
@@ -1296,7 +1298,8 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
                 amount,
                 revisions,
                 valueDate,
-                tradeDate);
+                tradeDate,
+                uetr);
     }
 
     /**
