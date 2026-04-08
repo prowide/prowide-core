@@ -32,7 +32,6 @@ import org.apache.commons.lang3.StringUtils;
  * Messaging Interface before sending to SWIFT to the corresponding LT Value.
  * A receiver LT address must have an 'X' as LT identifier.
  *
- * @author sebastian
  * @since 7.6
  */
 public class LogicalTerminalAddress extends BIC {
@@ -68,10 +67,20 @@ public class LogicalTerminalAddress extends BIC {
         }
     }
 
+    /**
+     * Returns the LT identifier character (position 9 in the full 12-character LT address).
+     *
+     * @return the LT identifier character or null if not set
+     */
     public Character getLTIdentifier() {
         return lTIdentifier;
     }
 
+    /**
+     * Sets the LT identifier character (position 9 in the full 12-character LT address).
+     *
+     * @param _lTIdentifier the LT identifier character to set
+     */
     public void setLTIdentifier(final Character _lTIdentifier) {
         lTIdentifier = _lTIdentifier;
     }

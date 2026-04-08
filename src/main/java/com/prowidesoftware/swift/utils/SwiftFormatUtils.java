@@ -52,7 +52,6 @@ import org.apache.commons.lang3.time.DateFormatUtils;
  *   <li>MOR</li>
  * </ul>
  *
- * @author sebastian
  * @since 6.0
  */
 public class SwiftFormatUtils {

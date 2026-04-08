@@ -40,7 +40,6 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 /**
  * Base class implemented by classes that provide general access to field components.
  *
- * @author sebastian
  * @since 6.0
  */
 public abstract class Field implements PatternContainer, JsonSerializable {

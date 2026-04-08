@@ -10,11 +10,10 @@ import java.util.stream.Collectors;
 public class BICResolver {
 
     /**
-     * Returns the list of BIC values (as String) given an MT Field
+     * Returns the list of BIC values (as String) for the given MT field.
      *
-     * If you want a list of BIC coes, use <code>bics</code> instead
      * @param f the field
-     * @return the list of BICs
+     * @return the list of BIC strings
      * @see #bics(Field)
      */
     public static List<String> bicStrings(final Field f) {
@@ -26,11 +25,10 @@ public class BICResolver {
     }
 
     /**
-     * Returns the list of BIC values (as BIC) given an MT Field
+     * Returns the list of BIC values (as {@link BIC}) for the given MT field.
      *
-     * If you want a list of Strings, use <code>bicStrings</code> instead
      * @param f the field
-     * @return the list of currencies
+     * @return the list of BICs
      * @see #bicStrings(Field)
      */
     public static List<BIC> bics(final Field f) {

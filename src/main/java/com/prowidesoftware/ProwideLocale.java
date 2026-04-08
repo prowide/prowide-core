@@ -22,7 +22,6 @@ import java.util.ResourceBundle;
 /**
  * Helper class to manage default supported locales
  *
- * @author miguel
  * @since 7.7
  */
 public final class ProwideLocale {
@@ -30,7 +29,7 @@ public final class ProwideLocale {
 
     /**
      * Get requested bundle or ENGLISH if missing resource for the given locale.
-     * Uses the calss FQN (with package) for the resource location.
+     * Uses the class FQN (with package) for the resource location.
      *
      * @param clazz  the class for which the resource bundle is loaded
      * @param locale a locale

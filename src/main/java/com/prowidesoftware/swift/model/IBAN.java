@@ -20,18 +20,18 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * Utility class to validate IBAN codes.
- * <p>
- * The IBAN consists of a ISO 3166-1 alpha-2 country code, followed by two check
- * digits (represented by kk in the examples below), and up to thirty alphanumeric
- * characters for the domestic bank account number, called the BBAN (Basic Bank
- * Account Number).
- * <p>
- * Exampe usage scenario<br>
- * <pre>IBAN iban = new IBAN("ES2153893489");
+ *
+ * <p>The IBAN consists of an ISO 3166-1 alpha-2 country code, followed by two check
+ * digits, and up to thirty alphanumeric characters for the domestic bank account number,
+ * called the BBAN (Basic Bank Account Number).
+ *
+ * <p>Example usage:
+ * <pre>
+ * IBAN iban = new IBAN("ES2153893489");
  * if (iban.isValid())
  *     System.out.println("ok");
  * else
- *     System.out.println("problem with iban: "+iban.getInvalidCause());
+ *     System.out.println("problem with iban: " + iban.validate());
  * </pre>
  *
  * @since 3.3
@@ -48,22 +48,21 @@ public class IBAN {
     private String iban;
 
     /**
-     * Create an IBAN object with the given iban code.
-     * This constructor does not perform any validation on the iban, only
-     * @param iban the IBAN string
+     * Creates an IBAN object with the given code.
+     * This constructor does not perform any validation on the IBAN.
      *
+     * @param iban the IBAN string
      */
     public IBAN(String iban) {
         this.iban = iban;
     }
 
     /**
-     * Gets the BBAN (custom account number) part of the given IBAN
+     * Gets the BBAN (custom account number) part of the given IBAN.
      *
      * @param iban a well-formed IBAN
      * @return the custom account part of the IBAN
      * @throws IndexOutOfBoundsException if the IBAN length is wrong
-     * @author psantamarina
      * @since 7.9.7
      */
     public static String getBban(final String iban) throws IndexOutOfBoundsException {
@@ -76,7 +75,6 @@ public class IBAN {
      * @param iban a well-formed IBAN
      * @return the check digits (two digits as String)
      * @throws IndexOutOfBoundsException if the IBAN length is wrong
-     * @author psantamarina
      * @since 7.9.7
      */
     public static String getCheckDigits(final String iban) throws IndexOutOfBoundsException {
@@ -87,9 +85,8 @@ public class IBAN {
      * Gets the country code part of the given IBAN.
      *
      * @param iban a well-formed IBAN
-     * @return the two letters ISO country code
+     * @return the two-letter ISO country code
      * @throws IndexOutOfBoundsException if the IBAN length is wrong
-     * @author psantamarina
      * @since 7.9.7
      */
     public static String getCountryCode(final String iban) throws IndexOutOfBoundsException {
@@ -126,17 +123,17 @@ public class IBAN {
     }
 
     /**
-     * Check an IBAN number throwing an exception with validation details if it is not valid.
+     * Validates the IBAN and returns the result with details if invalid.
      *
-     * <p>Validates that the length is at least 5 chars: composed by a valid 2 letters ISO country code,
-     * 2 verifying digits, and 1 BBAN. The verification digits are also computed and verified.
-     * For the BBAN validation the specific per country structure must be defined either in the
-     * BbanStructureValidations.json file or by API in the {@link BbanStructureValidations} instance.
+     * <p>Validates that the length is at least 5 chars: a valid 2-letter ISO country code,
+     * 2 check digits, and 1 or more BBAN characters. The check digits are also computed and verified.
+     * For BBAN validation, the country-specific structure must be defined either in the
+     * BbanStructureValidations.json file or via the {@link BbanStructureValidations} API.
      *
-     * <p>Non alpha-numeric characters are removed from the code prior to validation. Meaning an IBAN
+     * <p>Non-alphanumeric characters are removed from the code prior to validation, so an IBAN
      * such as "ES64 0049 6170 68 2810279951" will be considered valid.
      *
-     * @return IbanFormatStatus with detailed information of the validation problem found
+     * @return {@link IbanValidationResult#OK} if valid, or a specific result describing the validation problem
      */
     public IbanValidationResult validate() {
         if (this.iban == null) {
@@ -148,17 +145,18 @@ public class IBAN {
     }
 
     /**
-     * Check an IBAN code throwing an exception with validation details if it is not valid.
+     * Validates the given IBAN code and returns the result with details if invalid.
      *
-     * <p>Validates that the length is at least 5 chars: composed by a valid 2 letters ISO country code,
-     * 2 verifying digits, and 1 BBAN. The verification digits are also computed and verified.
-     * For the BBAN validation the specific per country structure must be defined either in the
-     * BbanStructureValidations.json file or by API in the {@link BbanStructureValidations} instance.
+     * <p>Validates that the length is at least 5 chars: a valid 2-letter ISO country code,
+     * 2 check digits, and 1 or more BBAN characters. The check digits are also computed and verified.
+     * For BBAN validation, the country-specific structure must be defined either in the
+     * BbanStructureValidations.json file or via the {@link BbanStructureValidations} API.
      *
-     * <p>Non alpha-numeric characters are removed from the code prior to validation. Meaning an IBAN
-     * such as "ES64 0049 6170 68 2810279951" will be considered valid.
+     * <p>Non-alphanumeric characters are <strong>not</strong> removed in this static variant;
+     * the caller is expected to pass a clean IBAN code.
      *
-     * @return IbanFormatStatus with detailed information of the validation problem found
+     * @param code the IBAN code to validate
+     * @return {@link IbanValidationResult#OK} if valid, or a specific result describing the validation problem
      */
     public static IbanValidationResult validate(String code) {
         if (code == null) {
@@ -221,9 +219,11 @@ public class IBAN {
     }
 
     /**
-     * Translate letters to numbers, also ignoring non alphanumeric characters
+     * Translates letters to their numeric values (A=10, B=11, ..., Z=35) and keeps digits as-is.
+     * Non-alphanumeric characters are ignored.
+     *
      * @param str input string
-     * @return the translated value
+     * @return the translated numeric string
      */
     public String translateChars(final StringBuilder str) {
         final StringBuilder result = new StringBuilder();
@@ -239,9 +239,10 @@ public class IBAN {
     }
 
     /**
-     * Removes all non alpha-numeric characters in the IBAN code
+     * Removes all non-alphanumeric characters from the given IBAN string.
+     *
      * @param iban IBAN string
-     * @return the resulting IBAN
+     * @return the IBAN containing only letters and digits
      */
     public String removeNonAlpha(final String iban) {
         final StringBuilder result = new StringBuilder();
@@ -255,10 +256,10 @@ public class IBAN {
     }
 
     /**
-     * Gets the BBAN (custom account number) part of the IBAN
+     * Gets the BBAN (custom account number) part of the IBAN.
      *
-     * @return the custom account part of the IBAN or null if the IBAN has an invalid length
-     * @author psantamarina
+     * @return the custom account part of the IBAN, or null if the IBAN has an invalid length
+     * @see #getBban(String)
      * @since 7.9.7
      */
     public String getBban() {
@@ -273,10 +274,10 @@ public class IBAN {
     }
 
     /**
-     * Gets the check digits part of the IBAN
+     * Gets the check digits part of the IBAN.
      *
-     * @return the check digits (two digits as String) of the IBAN or null if the IBAN has an invalid length
-     * @author psantamarina
+     * @return the check digits (two digits as String), or null if the IBAN has an invalid length
+     * @see #getCheckDigits(String)
      * @since 7.9.7
      */
     public String getCheckDigits() {
@@ -291,10 +292,10 @@ public class IBAN {
     }
 
     /**
-     * Gets the country code part of the IBAN
+     * Gets the country code part of the IBAN.
      *
-     * @return the two letters ISO country code of the IBAN or null if the IBAN has an invalid length
-     * @author psantamarina
+     * @return the two-letter ISO country code, or null if the IBAN has an invalid length
+     * @see #getCountryCode(String)
      * @since 7.9.7
      */
     public String getCountryCode() {

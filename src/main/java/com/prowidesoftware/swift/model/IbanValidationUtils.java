@@ -20,7 +20,6 @@ import com.prowidesoftware.swift.utils.IsoUtils;
 /**
  * Helper API for IBAN validation
  *
- * @author psantamarina
  * @since 7.9.7
  */
 class IbanValidationUtils {

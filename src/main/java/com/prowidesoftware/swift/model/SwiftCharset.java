@@ -18,7 +18,6 @@ package com.prowidesoftware.swift.model;
 /**
  * SWIFT character sets named after the User Handbook.
  *
- * @author sebastian
  */
 public enum SwiftCharset {
     n,

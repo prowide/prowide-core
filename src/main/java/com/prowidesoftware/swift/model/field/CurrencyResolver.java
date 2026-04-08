@@ -60,20 +60,44 @@ public class CurrencyResolver {
         return values.stream().map(SwiftFormatUtils::getCurrency).collect(Collectors.toList());
     }
 
+    /**
+     * Returns the first currency from the given container, or null if none is present.
+     *
+     * @param o the container to resolve the currency from
+     * @return the first currency or null
+     */
     public static Currency resolveCurrency(CurrencyContainer o) {
         List<Currency> currencies = o.currencies();
         return currencies != null && !currencies.isEmpty() ? currencies.get(0) : null;
     }
 
+    /**
+     * Returns the first currency string from the given container, or null if none is present.
+     *
+     * @param o the container to resolve the currency from
+     * @return the first currency as a string or null
+     */
     public static String resolveCurrencyString(CurrencyContainer o) {
         List<String> currencies = o.currencyStrings();
         return currencies != null && !currencies.isEmpty() ? currencies.get(0) : null;
     }
 
+    /**
+     * Sets the currency on the given container using the ISO 4217 code derived from the Currency object.
+     *
+     * @param cc  the container on which to set the currency
+     * @param cur the currency to set
+     */
     public static void resolveSetCurrency(final CurrencyContainer cc, final Currency cur) {
         resolveSetCurrency(cc, cur.toString());
     }
 
+    /**
+     * Sets the currency ISO 4217 code on all currency components of the given container.
+     *
+     * @param cc  the container on which to set the currency
+     * @param cur the ISO 4217 currency code to set
+     */
     public static void resolveSetCurrency(final CurrencyContainer cc, final String cur) {
 
         // sanity check

@@ -24,7 +24,6 @@ import java.util.Map.Entry;
 /**
  * To indicate the validation problem found when validating an IBAN
  *
- * @author psantamarina
  * @see IBAN#validate()
  * @since 7.9.7
  */

@@ -24,7 +24,6 @@ import org.apache.commons.lang3.Strings;
 /**
  * Helper API to implement the http://www.prowidesoftware.com/resources/deprecation-policy
  *
- * @author sebastian
  * @since 7.8.9
  */
 public class DeprecationUtils {

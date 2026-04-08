@@ -18,7 +18,6 @@ package com.prowidesoftware.swift.model;
 /**
  * This class models and parses the Message Output Reference (MOR).
  *
- * @author sebastian
  * @see MIR
  * @since 7.4
  */

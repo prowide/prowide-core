@@ -18,7 +18,6 @@ package com.prowidesoftware.swift.model;
 /**
  * Supported file formats in the {@link AbstractSwiftMessage} hierarchy.
  *
- * @author sebastian
  * @since 7.8.4
  */
 public enum FileFormat {

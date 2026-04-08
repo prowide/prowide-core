@@ -34,7 +34,6 @@ import org.apache.commons.lang3.Strings;
  * The BBAN is the last part of the IBAN when used for international funds transfers.
  * Every country has it's specific BBAN format and length depending on it's own standards.
  *
- * @author psantamarina
  * @since 7.9.7
  */
 public final class BbanStructureValidations {

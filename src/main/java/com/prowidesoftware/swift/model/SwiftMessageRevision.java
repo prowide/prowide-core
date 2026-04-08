@@ -27,7 +27,6 @@ import java.util.Objects;
  *
  * <p>XML metadata may be used to override or augment these JPA annotations.
  *
- * @author sebastian
  * @since 7.8
  */
 @Entity

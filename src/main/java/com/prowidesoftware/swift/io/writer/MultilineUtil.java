@@ -23,7 +23,6 @@ import java.util.logging.Level;
 /**
  * Helper class to deal with swift fields that allow many lines of text
  *
- * @author sebastian
  */
 // Sebastian Feb 2016: make this API static
 public class MultilineUtil {

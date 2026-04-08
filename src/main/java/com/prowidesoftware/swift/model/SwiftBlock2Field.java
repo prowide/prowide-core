@@ -18,7 +18,6 @@ package com.prowidesoftware.swift.model;
 /**
  * Full qualified names for attributes in block 2.
  *
- * @author sebastian
  * @since 7.7
  */
 public enum SwiftBlock2Field {

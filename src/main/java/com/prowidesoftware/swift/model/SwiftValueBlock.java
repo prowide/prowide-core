@@ -22,7 +22,6 @@ import java.util.logging.Level;
  * Base class for SWIFT blocks that contain its fields concatenated as a single <b>fixed length</b> value; blocks 1 and 2.<br>
  * This is an <b>abstract</b> class so specific block classes for each block should be instantiated.
  *
- * @author sebastian
  * @since 4.0
  */
 public abstract class SwiftValueBlock extends SwiftBlock implements Serializable {

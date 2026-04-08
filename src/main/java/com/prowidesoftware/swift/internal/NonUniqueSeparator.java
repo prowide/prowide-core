@@ -24,7 +24,6 @@ import java.lang.annotation.RetentionPolicy;
  * which separator is shared with other sequences within the same message.
  * Special care must be taken when dealing with these sequences.
  *
- * @author miguel
  * @since 7.8.1
  */
 @Documented

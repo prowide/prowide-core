@@ -39,7 +39,6 @@ import org.apache.commons.lang3.StringUtils;
  * Base class for specific MTs.<br>
  * This class implements several high level delegate methods of SwiftMessage.
  *
- * @author sebastian
  * @since 6.0
  */
 public abstract class AbstractMT extends AbstractMessage implements JsonSerializable {
@@ -589,10 +588,10 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
     }
 
     /**
-     * Test if the MT class contains a getSequenceXList method
+     * Tests if the MT class contains a getSequenceXList method.
      *
-     * @param name the sequence alpha numeric identifier such as A1a
-     * @return found sequences or empty list
+     * @param name the sequence alphanumeric identifier such as A1a
+     * @return true if the method exists, false otherwise
      * @see #getSequenceList(String)
      * @since 7.8
      */
@@ -606,10 +605,10 @@ public abstract class AbstractMT extends AbstractMessage implements JsonSerializ
     }
 
     /**
-     * Test if the MT class contains a getSequenceX method
+     * Tests if the MT class contains a getSequenceX method.
      *
-     * @param name the sequence alpha numeric identifier such as A1a
-     * @return found sequences or empty list
+     * @param name the sequence alphanumeric identifier such as A1a
+     * @return true if the method exists, false otherwise
      * @see #getSequence(String)
      * @since 7.8
      */

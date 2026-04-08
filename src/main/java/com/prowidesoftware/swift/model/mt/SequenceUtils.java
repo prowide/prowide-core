@@ -112,7 +112,7 @@ public class SequenceUtils {
         final List<SequenceB> result = new ArrayList<>();
 
         // We first remove everything after and including C or D
-        // Then we use use the standard getter for B
+        // Then we use the standard getter for B
         List<SwiftTagListBlock> raw = mt.getSubBlockBeforeFirst(Field16R.tag(MT537.SequenceC.START_END_16RS), false)
                 .getSubBlockBeforeFirst(Field16R.tag(MT537.SequenceD.START_END_16RS), false)
                 .getSubBlocks(MT537.SequenceB.START_END_16RS);

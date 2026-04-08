@@ -26,7 +26,6 @@ import java.lang.annotation.Target;
  * Marker annotation for generated classes.
  * For compatibility before java 1.6
  *
- * @author miguel
  * @since 7.8
  */
 @Documented

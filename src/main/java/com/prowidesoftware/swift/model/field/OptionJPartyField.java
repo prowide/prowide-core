@@ -133,7 +133,7 @@ public abstract class OptionJPartyField extends Field {
     }
 
     /**
-     * Returns the field validator pattern, that could vary er specific field
+     * Returns the field validator pattern, that could vary for each specific field
      */
     @Override
     public abstract String validatorPattern();

@@ -26,7 +26,6 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * Utility methods for test cases
  *
- * @author sebastian
  */
 public class TestUtils {
 

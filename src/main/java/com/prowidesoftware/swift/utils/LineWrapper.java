@@ -22,7 +22,6 @@ import org.apache.commons.lang3.StringUtils;
  * Static utility class to wrap character data into lines.
  *
  * @since 9.2.11
- * @author Markus Spann
  */
 public final class LineWrapper {
 

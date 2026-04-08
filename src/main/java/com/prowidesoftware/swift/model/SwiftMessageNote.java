@@ -23,7 +23,6 @@ import java.util.Calendar;
  *
  * <p>XML metadata may be used to override or augment these JPA annotations.
  *
- * @author sebastian
  * @since 7.0
  */
 @Entity

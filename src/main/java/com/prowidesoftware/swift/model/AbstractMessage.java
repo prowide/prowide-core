@@ -18,7 +18,6 @@ package com.prowidesoftware.swift.model;
 /**
  * Base class for hierarchy of specific MT and MX classes.
  *
- * @author sebastian
  */
 public abstract class AbstractMessage {
 

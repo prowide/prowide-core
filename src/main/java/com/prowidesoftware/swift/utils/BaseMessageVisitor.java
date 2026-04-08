@@ -21,7 +21,6 @@ import com.prowidesoftware.swift.model.*;
  * Base class for a IMessageVisitor. This class does nothing, implements all
  * methods empty. All methods may be overwritten.
  *
- * @author sebastian
  */
 // TODO: complete javadocs
 public class BaseMessageVisitor implements IMessageVisitor {
