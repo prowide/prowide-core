@@ -35,7 +35,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.Level;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -604,7 +603,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
         // start scanning the list
         for (int i = 0; i < this.userBlocks.size(); i++) {
             final SwiftBlockUser userBlock = this.userBlocks.get(i);
-            if (userBlock != null && Strings.CS.equals(userBlock.getName(), blockName)) {
+            if (userBlock != null && StringUtils.equals(userBlock.getName(), blockName)) {
                 return i;
             }
         }
@@ -1718,7 +1717,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
             if (this.block4 == null) {
                 return false;
             }
-            return Strings.CS.equals(this.block4.getTagValue(Field451.NAME), "0");
+            return StringUtils.equals(this.block4.getTagValue(Field451.NAME), "0");
         }
         return false;
     }
@@ -1736,7 +1735,7 @@ public class SwiftMessage implements Serializable, JsonSerializable {
             if (this.block4 == null) {
                 return false;
             }
-            return Strings.CS.equals(this.block4.getTagValue(Field451.NAME), "1");
+            return StringUtils.equals(this.block4.getTagValue(Field451.NAME), "1");
         }
         return false;
     }

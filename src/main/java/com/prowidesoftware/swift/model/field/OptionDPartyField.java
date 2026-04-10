@@ -17,7 +17,6 @@ package com.prowidesoftware.swift.model.field;
 
 import java.util.*;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Strings;
 
 /**
  * Name and Address
@@ -99,7 +98,7 @@ public abstract class OptionDPartyField extends Field implements PartyIdentifier
         }
         if (lines.get(0).startsWith("/")) {
             String party = lines.get(0);
-            if (Strings.CS.startsWith(party, "/C/") || Strings.CS.startsWith(party, "/D/")) {
+            if (StringUtils.startsWith(party, "/C/") || StringUtils.startsWith(party, "/D/")) {
                 setComponent(1, String.valueOf(party.charAt(1)));
                 setComponent(2, StringUtils.substring(party, 3));
             } else {

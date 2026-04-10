@@ -17,7 +17,7 @@ package com.prowidesoftware.swift.model;
 
 import java.io.Serializable;
 import java.util.Objects;
-import org.apache.commons.lang3.Strings;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
@@ -261,7 +261,7 @@ public abstract class SwiftBlock implements Serializable {
      */
     @Deprecated
     public Boolean getInput() {
-        return Strings.CS.equals(getBlockType(), "2I");
+        return StringUtils.equals(getBlockType(), "2I");
     }
 
     /**
@@ -281,7 +281,7 @@ public abstract class SwiftBlock implements Serializable {
      */
     @Deprecated
     public Boolean getOutput() {
-        return Strings.CS.equals(getBlockType(), "2O");
+        return StringUtils.equals(getBlockType(), "2O");
     }
 
     /**

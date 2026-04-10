@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Stack;
-import org.apache.commons.lang3.Strings;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -76,7 +76,7 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
         List<Tag> result = new ArrayList<>();
         Tag lastTag = null;
         for (Tag t : b4.getTags()) {
-            if (Strings.CS.startsWith(t.getName(), "16")
+            if (StringUtils.startsWith(t.getName(), "16")
                     && lastTag != null
                     && t.getName().equals(lastTag.getName())
                     && t.getValue().equals(lastTag.getValue())) {
@@ -110,9 +110,9 @@ public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {
         final Stack<Tag> stack = new Stack<>();
         for (Tag t : b4.getTags()) {
             if (!stack.isEmpty()
-                    && Strings.CS.equals(t.getName(), "16S")
-                    && Strings.CS.equals(stack.peek().getName(), "16R")
-                    && Strings.CS.equals(stack.peek().getValue(), t.getValue())) {
+                    && StringUtils.equals(t.getName(), "16S")
+                    && StringUtils.equals(stack.peek().getName(), "16R")
+                    && StringUtils.equals(stack.peek().getValue(), t.getValue())) {
                 /*
                  * found an empty 16R 16S pair
                  */

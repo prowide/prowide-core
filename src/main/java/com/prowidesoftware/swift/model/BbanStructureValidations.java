@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
-import org.apache.commons.lang3.Strings;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * This singleton handles all the available BBAN structure entries.
@@ -98,7 +98,7 @@ public final class BbanStructureValidations {
         BbanStructureDTO bbanStructure = null;
         if (this.bbanStructures != null) {
             for (BbanStructureDTO structure : this.bbanStructures) {
-                if (Strings.CS.equals(structure.getCountry_coode(), countryCode)) {
+                if (StringUtils.equals(structure.getCountry_coode(), countryCode)) {
                     bbanStructure = structure;
                     break;
                 }

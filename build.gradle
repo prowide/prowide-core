@@ -4,10 +4,10 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath 'ru.vyarus:gradle-quality-plugin:6.1.0'
-        classpath 'pl.allegro.tech.build:axion-release-plugin:1.18.18'
+        classpath 'ru.vyarus:gradle-quality-plugin:5.0.0'
+        classpath 'pl.allegro.tech.build:axion-release-plugin:1.14.5' // starting with version 15.* requires Java 11
         classpath 'io.github.gradle-nexus:publish-plugin:2.0.0'
-        classpath 'com.diffplug.spotless:spotless-plugin-gradle:7.0.3'
+        classpath 'com.diffplug.spotless:spotless-plugin-gradle:6.13.0' // above this version requires Java 11
     }
 }
 apply plugin: 'pl.allegro.tech.build.axion-release'
@@ -34,11 +34,13 @@ scmVersion {
         versionSeparator = '-'
     }
 }
-project.version = "${SRU}-${scmVersion.version}"
+
+//project.version = "${SRU}-${scmVersion.version}"
+project.version = "SRU2025-9.6.7"
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
+        languageVersion.set(JavaLanguageVersion.of(8))
     }
 }
 
@@ -54,24 +56,21 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.apache.commons:commons-lang3:3.20.0'
-    implementation 'com.google.code.gson:gson:2.13.2'
+    implementation 'org.apache.commons:commons-lang3:3.17.0'
+    implementation 'com.google.code.gson:gson:2.13.1'
 
-    // jakarta is only used for annotations, we do not add it as implementation dependency on purpose to avoid forcing
-    // users to use jakarta jars in their project when they might not even be using JPA or JAXB at all
-    compileOnly 'jakarta.persistence:jakarta.persistence-api:3.1.0' // jakarta 3.1 is Jakarta EE 10, jakarta 3.2 would imply migration to Jakarta EE 11
-    compileOnly 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.5'
-    compileOnly 'jakarta.validation:jakarta.validation-api:3.1.1'
+    compileOnly 'javax.persistence:javax.persistence-api:2.2'
+    compileOnly 'javax.xml.bind:jaxb-api:2.3.1'
+    compileOnly 'javax.validation:validation-api:2.0.1.Final'
 
-    testImplementation 'com.networknt:json-schema-validator:2.0.1'
-    testImplementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
-    testImplementation 'jakarta.validation:jakarta.validation-api:3.1.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.14.3'
-    testImplementation 'org.junit.platform:junit-platform-launcher:1.14.3'
-    testImplementation 'org.assertj:assertj-core:3.27.6'
-    testImplementation 'org.xmlunit:xmlunit-core:2.11.0'
-    testImplementation 'org.xmlunit:xmlunit-matchers:2.11.0'
-    testImplementation 'org.xmlunit:xmlunit-assertj:2.11.0'
+    testImplementation 'javax.validation:validation-api:2.0.1.Final'
+    testImplementation 'javax.persistence:javax.persistence-api:2.2'
+    testImplementation 'com.networknt:json-schema-validator:1.5.8'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+    testImplementation 'org.assertj:assertj-core:3.27.2'
+    testImplementation 'org.xmlunit:xmlunit-core:2.10.0'
+    testImplementation 'org.xmlunit:xmlunit-matchers:2.10.0'
+    testImplementation 'org.xmlunit:xmlunit-assertj:2.10.0'
 }
 
 sourceSets.named('main') {
@@ -93,8 +92,8 @@ tasks.withType(Jar).configureEach {
         'Implementation-Version': project.version,
         'Implementation-Vendor': 'www.prowidesoftware.com',
         'Built-OS': System.getProperty('os.name'),
-        'Source-Compatibility': JavaVersion.VERSION_11,
-        'Target-Compatibility': JavaVersion.VERSION_11,
+        'Source-Compatibility': JavaVersion.VERSION_1_8,
+        'Target-Compatibility': JavaVersion.VERSION_1_8,
         'Built-Date': new Date().format("yyyy-MM-dd"),
         'Automatic-Module-Name': 'com.prowidesoftware.core'
     )

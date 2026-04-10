@@ -1,7 +1,6 @@
 package com.prowidesoftware.swift.model;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Strings;
 
 /**
  * Represents a Distinguished Name (DN) in the context of a directory service.
@@ -78,7 +77,7 @@ public class DistinguishedName {
         }
         String bic8 = null;
         for (String s : StringUtils.split(dn, ",")) {
-            if (Strings.CS.startsWith(s, "o=") && !Strings.CS.equals(s, "o=swift")) {
+            if (StringUtils.startsWith(s, "o=") && !StringUtils.equals(s, "o=swift")) {
                 bic8 = StringUtils.upperCase(StringUtils.substringAfter(s, "o="));
                 break;
             }
@@ -112,7 +111,7 @@ public class DistinguishedName {
         }
         String branch = null;
         for (String s : StringUtils.split(dn, ",")) {
-            if (Strings.CS.startsWith(s, "ou=")) {
+            if (StringUtils.startsWith(s, "ou=")) {
                 String value = StringUtils.substringAfter(s, "ou=");
                 if (value.length() == 3) {
                     // keep iterating — last valid match is the rightmost (closest to o=<bic8>)

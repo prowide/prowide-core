@@ -19,8 +19,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.prowidesoftware.JsonSerializable;
 import com.prowidesoftware.swift.utils.Lib;
-import jakarta.persistence.*;
-import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,9 +26,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.*;
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Strings;
 
 /**
  * Base entity for MT and MX message persistence.
@@ -602,7 +601,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @param status a status name
      */
     public boolean isStatus(String status) {
-        return Strings.CS.equals(status, getStatus());
+        return StringUtils.equals(status, getStatus());
     }
 
     /**
@@ -653,7 +652,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
         if (l != null) {
             for (SwiftMessageStatusInfo s : getStatusTrail()) {
                 for (Enum e : statuses) {
-                    if (e != null && Strings.CS.equals(s.getName(), e.name())) {
+                    if (e != null && StringUtils.equals(s.getName(), e.name())) {
                         result = true;
                     }
                 }
@@ -673,7 +672,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
         if (l != null) {
             for (SwiftMessageStatusInfo s : getStatusTrail()) {
                 for (String e : statuses) {
-                    if (e != null && Strings.CS.equals(s.getName(), e)) {
+                    if (e != null && StringUtils.equals(s.getName(), e)) {
                         result = true;
                     }
                 }
@@ -905,7 +904,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @since 7.10.4
      */
     public boolean propertyEquals(String key, String expectedValue) {
-        return Strings.CS.equals(expectedValue, getProperty(key));
+        return StringUtils.equals(expectedValue, getProperty(key));
     }
 
     /**
@@ -1244,7 +1243,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @since 7.8.8
      */
     public boolean identifiedAsACK() {
-        return Strings.CS.equals(this.identifier, IDENTIFIER_ACK);
+        return StringUtils.equals(this.identifier, IDENTIFIER_ACK);
     }
 
     @Override
@@ -1316,7 +1315,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @since 7.8.8
      */
     public boolean identifiedAsNAK() {
-        return Strings.CS.equals(this.identifier, IDENTIFIER_NAK);
+        return StringUtils.equals(this.identifier, IDENTIFIER_NAK);
     }
 
     /**

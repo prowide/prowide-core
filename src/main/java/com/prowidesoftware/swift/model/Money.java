@@ -23,7 +23,7 @@ import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Objects;
 import java.util.logging.Logger;
-import org.apache.commons.lang3.Strings;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * A simple POJO to represent money, an amount associated with a currency.
@@ -129,9 +129,9 @@ public final class Money implements Serializable {
             boolean negative = false;
             if ("62F".equals(field.getName()) || "62M".equals(field.getName())) {
                 currency = field.getComponent(3);
-                negative = Strings.CS.equals("D", field.getComponent(1));
+                negative = StringUtils.equals("D", field.getComponent(1));
             } else if ("19A".equals(field.getName())) {
-                negative = Strings.CS.equals("N", field.getComponent(2));
+                negative = StringUtils.equals("N", field.getComponent(2));
             } else if ("33B".equals(field.getName())) {
                 currency = field.getComponent(1);
             }
@@ -192,7 +192,7 @@ public final class Money implements Serializable {
             if (total == null) {
                 total = money.getAmount();
                 currency = money.getCurrency();
-            } else if (Strings.CS.equals(currency, money.getCurrency())) {
+            } else if (StringUtils.equals(currency, money.getCurrency())) {
                 total = total.add(money.getAmount());
             } else {
                 log.warning("cannot sum amounts with different currencies, expected " + currency + " and found "

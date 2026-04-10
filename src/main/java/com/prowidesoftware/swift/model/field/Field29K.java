@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import org.apache.commons.lang3.Strings;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @deprecated This field has been removed since SRU2025
@@ -87,7 +87,7 @@ public class Field29K extends Field implements Serializable {
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!Strings.CS.equals(tag.getName(), "29K")) {
+        if (!StringUtils.equals(tag.getName(), "29K")) {
             throw new IllegalArgumentException("cannot create field 29K from tag " + tag.getName()
                     + ", tagname must match the name of the field.");
         }

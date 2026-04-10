@@ -20,7 +20,6 @@ import com.prowidesoftware.swift.utils.LineWrapper;
 import java.math.BigDecimal;
 import java.util.*;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Strings;
 
 /**
  * Models the value of fields containing narrative content. The content is normally text wrapped in lines but they also
@@ -143,7 +142,7 @@ public class Narrative {
     public StructuredNarrative getStructured(String codeword) {
         if (this.structured != null) {
             for (StructuredNarrative structured : this.structured) {
-                if (Strings.CS.equals(codeword, structured.getCodeword())) {
+                if (StringUtils.equals(codeword, structured.getCodeword())) {
                     return structured;
                 }
             }
@@ -161,7 +160,7 @@ public class Narrative {
         int count = 0;
         if (this.structured != null) {
             for (StructuredNarrative structured : this.structured) {
-                if (Strings.CS.equals(codeword, structured.getCodeword())) {
+                if (StringUtils.equals(codeword, structured.getCodeword())) {
                     count++;
                 }
             }
