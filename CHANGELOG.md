@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+### 10.3.13 - SNAPSHOT
+  * (PW-3185) Calendar fields in JSON serialization now use 1-based months (January=1, December=12) instead of Java Calendar's 0-based convention. Added `CalendarTypeAdapter` for Gson, registered in `AbstractSwiftMessage.toJson()` and `MtSwiftMessage.fromJson()`. JSON produced by previous versions (with 0-based months) is **not compatible** with `fromJson()` in this version; stored JSON must be migrated.
+
 ### 10.3.12 - March 2026
   * Fix: Replaced `@OrderColumn` with `@OrderBy("creationDate ASC")` on `statusTrail`, `notes`, and `revisions` to prevent data loss caused by `sort_key` corruption under concurrent access. Existing `sort_key` columns must be made nullable or dropped.
   * Feat: Improved performance of `SwiftParseUtils.getLines()` by replacing `BufferedReader` with direct string index parsing

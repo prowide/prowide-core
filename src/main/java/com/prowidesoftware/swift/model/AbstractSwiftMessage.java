@@ -1411,7 +1411,10 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @since 7.10.6
      */
     protected String toJsonImpl() {
-        final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        final Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeHierarchyAdapter(Calendar.class, CalendarTypeAdapter.INSTANCE)
+                .create();
         return gson.toJson(this);
     }
 
