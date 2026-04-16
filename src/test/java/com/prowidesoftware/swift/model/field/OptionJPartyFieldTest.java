@@ -43,6 +43,15 @@ public class OptionJPartyFieldTest {
         assertEquals("12345xxxxx12345xxxxx12345+++++123", f.getValueByCodeword(Codeword.ADD2));
     }
 
+    @Test
+    public void testGetValueByCodewordCTRY() {
+        TestPartyField f = new TestPartyField("/ABIC/CHASUS33/NAME/CHASE HQ/CITY/NEW YORK/CTRY/US");
+        assertEquals("CHASUS33", f.getValueByCodeword(Codeword.ABIC));
+        assertEquals("CHASE HQ", f.getValueByCodeword(Codeword.NAME));
+        assertEquals("NEW YORK", f.getValueByCodeword(Codeword.CITY));
+        assertEquals("US", f.getValueByCodeword(Codeword.CTRY));
+    }
+
     private static class TestPartyField extends OptionJPartyField {
 
         TestPartyField(String value) {
