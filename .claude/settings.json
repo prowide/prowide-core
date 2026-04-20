@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew test:*)",
+      "Bash(./gradlew :spotlessApply:*)",
+      "Bash(git fetch:*)",
+      "Bash(git pull:*)",
+      "Bash(git checkout:*)",
+      "Bash(git stash:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr diff:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:javadoc.io)",
+      "WebFetch(domain:commons.apache.org)",
+      "WebFetch(domain:docs.gradle.org)",
+      "WebFetch(domain:junit.org)",
+      "WebFetch(domain:docs.junit.org)",
+      "WebFetch(domain:jakarta.ee)",
+      "WebFetch(domain:central.sonatype.com)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
