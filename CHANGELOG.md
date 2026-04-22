@@ -3,6 +3,7 @@
 ### 10.4.0 - SNAPSHOT
   * SWIFT Standard release update 2026 (live 14 November 2026)
   * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
+  * `DeprecationUtils` runtime flags now use the JVM system property `PW_DEPRECATED` (also still honored as OS env var); removes the illegal-reflective-access warning.
 
 ### 10.3.12 - March 2026
   * Fix: Replaced `@OrderColumn` with `@OrderBy("creationDate ASC")` on `statusTrail`, `notes`, and `revisions` to prevent data loss caused by `sort_key` corruption under concurrent access. Existing `sort_key` columns must be made nullable or dropped.

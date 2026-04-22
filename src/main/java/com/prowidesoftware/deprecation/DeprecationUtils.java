@@ -15,9 +15,6 @@
  */
 package com.prowidesoftware.deprecation;
 
-import java.lang.reflect.Field;
-import java.util.Collections;
-import java.util.Map;
 import java.util.logging.Level;
 import org.apache.commons.lang3.Strings;
 
@@ -95,20 +92,31 @@ public class DeprecationUtils {
     }
 
     /**
-     * Returns true if the environment variable {@link #PW_DEPRECATED} contains
-     * the given key in its value
+     * Returns true if the {@link #PW_DEPRECATED} configuration contains the given key.
+     *
+     * <p>The configuration is read from two channels, in this order of precedence:
+     * <ol>
+     *     <li>JVM system property {@code -DPW_DEPRECATED=...} or values set via {@link #setEnv(EnvironmentVariableKey...)}</li>
+     *     <li>OS environment variable {@code PW_DEPRECATED}</li>
+     * </ol>
+     * A key is considered active if it appears (case-insensitive) in either source.
      */
     private static boolean isSet(final EnvironmentVariableKey key) {
-        return Strings.CI.contains(System.getenv(PW_DEPRECATED), key.name());
+        return Strings.CI.contains(System.getProperty(PW_DEPRECATED), key.name())
+                || Strings.CI.contains(System.getenv(PW_DEPRECATED), key.name());
     }
 
     /**
-     * Helper hack to set the environment variable from Java.
+     * Enables the given deprecation flags at runtime from Java code by setting
+     * the JVM system property {@link #PW_DEPRECATED}.
      *
-     * <p>For example if all keys are passed as parameter, this will set
-     * the environment variable PW_DEPRECATED=nolog,nodelay,noexception
+     * <p>For example, if all keys are passed as parameter, this will set the
+     * system property to {@code PW_DEPRECATED=nolog,nodelay,noexception}.
      *
-     * @param keys the variables to set in the environment variable
+     * <p>Any value previously set in the OS environment variable {@link #PW_DEPRECATED}
+     * is still honored in addition to the flags set through this method.
+     *
+     * @param keys the variables to enable
      */
     public static void setEnv(EnvironmentVariableKey... keys) {
         if (keys != null && keys.length > 0) {
@@ -119,54 +127,18 @@ public class DeprecationUtils {
                 }
                 value.append(key.name().toLowerCase());
             }
-            setEnv(PW_DEPRECATED, value.toString());
+            System.setProperty(PW_DEPRECATED, value.toString());
         }
     }
 
     /**
-     * Sets the environment variable PW_DEPRECATED to an empty string, meaning
-     * all flags corresponding to the deprecation phase will be active by default.
+     * Clears any deprecation flags previously enabled through {@link #setEnv(EnvironmentVariableKey...)}.
+     *
+     * <p>Note that this does not override flags set via the OS environment variable
+     * {@link #PW_DEPRECATED}; those remain in effect for the lifetime of the JVM.
      */
     public static void clearEnv() {
-        setEnv(PW_DEPRECATED, "");
-    }
-
-    /**
-     * Helper hack to set environment variables from Java code
-     */
-    @SuppressWarnings({"unchecked", "rawtypes"})
-    private static void setEnv(final String key, final String value) {
-        try {
-            Class<?> processEnvironmentClass = Class.forName("java.lang.ProcessEnvironment");
-            Field theEnvironmentField = processEnvironmentClass.getDeclaredField("theEnvironment");
-            theEnvironmentField.setAccessible(true);
-            Map<String, String> env = (Map<String, String>) theEnvironmentField.get(null);
-            env.put(key, value);
-            Field theCaseInsensitiveEnvironmentField =
-                    processEnvironmentClass.getDeclaredField("theCaseInsensitiveEnvironment");
-            theCaseInsensitiveEnvironmentField.setAccessible(true);
-            Map<String, String> cienv = (Map<String, String>) theCaseInsensitiveEnvironmentField.get(null);
-            cienv.put(key, value);
-        } catch (NoSuchFieldException e) {
-            try {
-                Class[] classes = Collections.class.getDeclaredClasses();
-                Map<String, String> env = System.getenv();
-                for (Class cl : classes) {
-                    if ("java.util.Collections$UnmodifiableMap".equals(cl.getName())) {
-                        Field field = cl.getDeclaredField("m");
-                        field.setAccessible(true);
-                        Object obj = field.get(env);
-                        Map<String, String> map = (Map<String, String>) obj;
-                        map.clear();
-                        map.put(key, value);
-                    }
-                }
-            } catch (Exception e2) {
-                log.log(Level.WARNING, e2.getMessage(), e2);
-            }
-        } catch (Exception e1) {
-            log.log(Level.WARNING, e1.getMessage(), e1);
-        }
+        System.clearProperty(PW_DEPRECATED);
     }
 
     /**
