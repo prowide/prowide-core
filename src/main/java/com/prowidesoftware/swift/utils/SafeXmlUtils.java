@@ -16,9 +16,6 @@
 package com.prowidesoftware.swift.utils;
 
 import com.prowidesoftware.ProwideException;
-import com.prowidesoftware.deprecation.DeprecationUtils;
-import com.prowidesoftware.deprecation.ProwideDeprecated;
-import com.prowidesoftware.deprecation.TargetYear;
 import java.util.logging.Level;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.*;
@@ -27,12 +24,8 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
-import javax.xml.validation.Validator;
 import org.apache.commons.lang3.ArrayUtils;
 import org.xml.sax.SAXException;
-import org.xml.sax.SAXNotRecognizedException;
-import org.xml.sax.SAXNotSupportedException;
 import org.xml.sax.XMLReader;
 
 /**
@@ -235,65 +228,6 @@ public class SafeXmlUtils {
 
         } catch (TransformerConfigurationException e) {
             throw logAndCreateException(e, feature, Transformer.class.getName());
-        }
-    }
-
-    /**
-     * @deprecated use the default SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI) instead, there is no need to prevent XXE attacks in the schema factory
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2026)
-    public static SchemaFactory schemaFactory() {
-        DeprecationUtils.phase2(
-                SafeXmlUtils.class,
-                "schemaFactory",
-                "use SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI) instead");
-        String feature = null;
-        try {
-            SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-
-            // https://stackoverflow.com/questions/58374278/org-xml-sax-saxnotrecognizedexception-property-http-javax-xml-xmlconstants-p
-            feature = XMLConstants.ACCESS_EXTERNAL_DTD;
-            if (applyFeature(feature)) {
-                factory.setProperty(feature, "");
-            }
-
-            // we keep this one for the moment because it is needed in MX xsys validation
-            // feature = XMLConstants.ACCESS_EXTERNAL_SCHEMA;
-            // factory.setProperty(feature, "");
-
-            return factory;
-
-        } catch (SAXNotRecognizedException | SAXNotSupportedException e) {
-            throw logAndCreateException(e, feature, SchemaFactory.class.getName());
-        }
-    }
-
-    /**
-     * @deprecated use the default schema.newValidator() instead, there is no need to prevent XXE attacks in validation
-     */
-    @Deprecated
-    @ProwideDeprecated(phase4 = TargetYear.SRU2026)
-    public static Validator validator(Schema schema) {
-        DeprecationUtils.phase3(SafeXmlUtils.class, "validator", "use schema.newValidator() instead");
-        String feature = null;
-        try {
-            Validator validator = schema.newValidator();
-
-            feature = XMLConstants.ACCESS_EXTERNAL_DTD;
-            if (applyFeature(feature)) {
-                validator.setProperty(feature, "");
-            }
-
-            feature = XMLConstants.ACCESS_EXTERNAL_SCHEMA;
-            if (applyFeature(feature)) {
-                validator.setProperty(feature, "");
-            }
-
-            return validator;
-
-        } catch (SAXNotRecognizedException | SAXNotSupportedException e) {
-            throw logAndCreateException(e, feature, Validator.class.getName());
         }
     }
 
