@@ -223,7 +223,9 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      * @since 7.10.3
      */
     public static MtSwiftMessage fromJson(String json) {
-        final Gson gson = new GsonBuilder().create();
+        final Gson gson = new GsonBuilder()
+                .registerTypeHierarchyAdapter(Calendar.class, CalendarTypeAdapter.INSTANCE)
+                .create();
         return gson.fromJson(json, MtSwiftMessage.class);
     }
 
