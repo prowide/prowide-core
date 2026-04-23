@@ -20,28 +20,23 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests for Field59E introduced in SRU2026 (MTs 760/765/767/785).
- * Pattern: [/34x$]35x (optional account + name/address).
+ * Tests for Field50S introduced in SRU2026 (Applicant in MT 700/705/707/710/720).
+ * Pattern: 35z[$35z]0-3 (up to 4 narrative lines, structured).
  */
-public class Field59ETest extends AbstractFieldTest {
+public class Field50STest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("59E", "Beneficiary name", "/12345678\nBeneficiary name");
+        testSerializationImpl("50S", "line1", "line1\nline2", "line1\nline2\nline3\nline4");
     }
 
     @Test
-    public void testParse_withAccount() {
-        Field59E f = new Field59E("/12345678\nBeneficiary name");
-        assertEquals("12345678", f.getComponent1());
-        assertEquals("Beneficiary name", f.getComponent2());
-    }
-
-    @Test
-    public void testParse_nameOnly() {
-        Field59E f = new Field59E("Beneficiary name");
-        assertNull(f.getComponent1());
-        assertEquals("Beneficiary name", f.getComponent2());
+    public void testParse_multiLine() {
+        Field50S f = new Field50S("NAME ACME CORP\nADDRESS 123 MAIN ST\nCITY LONDON\nCOUNTRY UK");
+        assertEquals("NAME ACME CORP", f.getComponent1());
+        assertEquals("ADDRESS 123 MAIN ST", f.getComponent2());
+        assertEquals("CITY LONDON", f.getComponent3());
+        assertEquals("COUNTRY UK", f.getComponent4());
     }
 }

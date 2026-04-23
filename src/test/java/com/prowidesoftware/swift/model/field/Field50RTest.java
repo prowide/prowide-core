@@ -17,46 +17,30 @@ package com.prowidesoftware.swift.model.field;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class Field44JTest extends AbstractFieldTest {
-    Field44J f = null;
-
-    @BeforeEach
-    public void setup() {
-        f = null;
-    }
+/**
+ * Tests for Field50R introduced in SRU2026 (Applicant in MT 700/705/707/710/720).
+ * Pattern: &lt;CC&gt; (ISO country code, 2!a).
+ */
+public class Field50RTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("44J", "US/FOOBAR");
+        testSerializationImpl("50R", "US", "GB", "AR");
     }
 
     @Test
-    public void testParse1() {
-        f = new Field44J("NL");
-        assertEquals("NL", f.getComponent1());
-        assertNull(f.getComponent2());
+    public void testParse() {
+        Field50R f = new Field50R("US");
+        assertEquals("US", f.getComponent1());
     }
 
     @Test
-    public void testParse2() {
-        f = new Field44J("NL/foo bar");
-        assertEquals("NL", f.getComponent1());
-        assertEquals("foo bar", f.getComponent2());
-    }
-
-    @Test
-    public void testGetValue() {
-        f = new Field44J("NL/foo bar");
-        assertEquals("NL/foo bar", f.getValue());
-    }
-
-    @Test
-    public void testGetValue2() {
-        f = new Field44J("NL");
-        assertEquals("NL", f.getValue());
+    public void testSetComponent() {
+        Field50R f = new Field50R();
+        f.setComponent1("FR");
+        assertEquals("FR", f.getValue());
     }
 }

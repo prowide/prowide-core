@@ -17,46 +17,30 @@ package com.prowidesoftware.swift.model.field;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class Field44JTest extends AbstractFieldTest {
-    Field44J f = null;
-
-    @BeforeEach
-    public void setup() {
-        f = null;
-    }
+/**
+ * Tests for Field59T introduced in SRU2026 (Beneficiary in MT 700/705/707/710/720/740/760/765/767/785).
+ * Pattern: 35z (single narrative, max 35 chars).
+ */
+public class Field59TTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("44J", "US/FOOBAR");
+        testSerializationImpl("59T", "JANE DOE", "BETA CORPORATION LTD");
     }
 
     @Test
-    public void testParse1() {
-        f = new Field44J("NL");
-        assertEquals("NL", f.getComponent1());
-        assertNull(f.getComponent2());
+    public void testParse() {
+        Field59T f = new Field59T("JANE DOE");
+        assertEquals("JANE DOE", f.getComponent1());
     }
 
     @Test
-    public void testParse2() {
-        f = new Field44J("NL/foo bar");
-        assertEquals("NL", f.getComponent1());
-        assertEquals("foo bar", f.getComponent2());
-    }
-
-    @Test
-    public void testGetValue() {
-        f = new Field44J("NL/foo bar");
-        assertEquals("NL/foo bar", f.getValue());
-    }
-
-    @Test
-    public void testGetValue2() {
-        f = new Field44J("NL");
-        assertEquals("NL", f.getValue());
+    public void testSetComponent() {
+        Field59T f = new Field59T();
+        f.setComponent1("DOE JANE");
+        assertEquals("DOE JANE", f.getValue());
     }
 }

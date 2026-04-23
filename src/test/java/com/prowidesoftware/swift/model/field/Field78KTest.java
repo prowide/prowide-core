@@ -17,46 +17,32 @@ package com.prowidesoftware.swift.model.field;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class Field44JTest extends AbstractFieldTest {
-    Field44J f = null;
-
-    @BeforeEach
-    public void setup() {
-        f = null;
-    }
+/**
+ * Tests for Field78K introduced in SRU2026 (documentary credit narrative in MT 700/707/710/720).
+ * Pattern: 65z[$65z]0-29 (up to 30 narrative lines).
+ */
+public class Field78KTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("44J", "US/FOOBAR");
+        testSerializationImpl("78K", "line1", "line1\nline2\nline3");
     }
 
     @Test
-    public void testParse1() {
-        f = new Field44J("NL");
-        assertEquals("NL", f.getComponent1());
+    public void testParse_singleLine() {
+        Field78K f = new Field78K("DOCUMENTARY CREDIT TERMS");
+        assertEquals("DOCUMENTARY CREDIT TERMS", f.getComponent1());
         assertNull(f.getComponent2());
     }
 
     @Test
-    public void testParse2() {
-        f = new Field44J("NL/foo bar");
-        assertEquals("NL", f.getComponent1());
-        assertEquals("foo bar", f.getComponent2());
-    }
-
-    @Test
-    public void testGetValue() {
-        f = new Field44J("NL/foo bar");
-        assertEquals("NL/foo bar", f.getValue());
-    }
-
-    @Test
-    public void testGetValue2() {
-        f = new Field44J("NL");
-        assertEquals("NL", f.getValue());
+    public void testParse_multiLine() {
+        Field78K f = new Field78K("LINE1\nLINE2\nLINE3");
+        assertEquals("LINE1", f.getComponent1());
+        assertEquals("LINE2", f.getComponent2());
+        assertEquals("LINE3", f.getComponent3());
     }
 }

@@ -20,28 +20,20 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests for Field59E introduced in SRU2026 (MTs 760/765/767/785).
- * Pattern: [/34x$]35x (optional account + name/address).
+ * Tests for Field51T introduced in SRU2026 (Obligor/Instructing Party in MT 760/767).
+ * Pattern: 35z (single narrative, max 35 chars).
  */
-public class Field59ETest extends AbstractFieldTest {
+public class Field51TTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("59E", "Beneficiary name", "/12345678\nBeneficiary name");
+        testSerializationImpl("51T", "OBLIGOR NAME", "INSTRUCTING PARTY LTD");
     }
 
     @Test
-    public void testParse_withAccount() {
-        Field59E f = new Field59E("/12345678\nBeneficiary name");
-        assertEquals("12345678", f.getComponent1());
-        assertEquals("Beneficiary name", f.getComponent2());
-    }
-
-    @Test
-    public void testParse_nameOnly() {
-        Field59E f = new Field59E("Beneficiary name");
-        assertNull(f.getComponent1());
-        assertEquals("Beneficiary name", f.getComponent2());
+    public void testParse() {
+        Field51T f = new Field51T("OBLIGOR NAME");
+        assertEquals("OBLIGOR NAME", f.getComponent1());
     }
 }

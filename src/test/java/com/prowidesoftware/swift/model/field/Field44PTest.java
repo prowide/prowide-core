@@ -17,46 +17,30 @@ package com.prowidesoftware.swift.model.field;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class Field44JTest extends AbstractFieldTest {
-    Field44J f = null;
-
-    @BeforeEach
-    public void setup() {
-        f = null;
-    }
+/**
+ * Tests for Field44P introduced in SRU2026 (MT 760).
+ * Pattern: 65x (single narrative).
+ */
+public class Field44PTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("44J", "US/FOOBAR");
+        testSerializationImpl("44P", "NARRATIVE LINE");
     }
 
     @Test
-    public void testParse1() {
-        f = new Field44J("NL");
-        assertEquals("NL", f.getComponent1());
-        assertNull(f.getComponent2());
+    public void testParse() {
+        Field44P f = new Field44P("DELIVERY TERMS");
+        assertEquals("DELIVERY TERMS", f.getComponent1());
     }
 
     @Test
-    public void testParse2() {
-        f = new Field44J("NL/foo bar");
-        assertEquals("NL", f.getComponent1());
-        assertEquals("foo bar", f.getComponent2());
-    }
-
-    @Test
-    public void testGetValue() {
-        f = new Field44J("NL/foo bar");
-        assertEquals("NL/foo bar", f.getValue());
-    }
-
-    @Test
-    public void testGetValue2() {
-        f = new Field44J("NL");
-        assertEquals("NL", f.getValue());
+    public void testSetComponent() {
+        Field44P f = new Field44P();
+        f.setComponent1("PORT OF LOADING");
+        assertEquals("PORT OF LOADING", f.getValue());
     }
 }
