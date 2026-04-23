@@ -93,7 +93,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2025</strong>
+ * This source code is specific to release <strong>SRU 2026</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -102,7 +102,7 @@ public class MT510 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2025;
+	public static final int SRU = 2026;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT510.class.getName());
 	
@@ -971,7 +971,7 @@ public class MT510 extends AbstractMT implements Serializable {
     public SequenceA getSequenceGENL() {
         return getSequenceA();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1556,7 +1556,7 @@ public class MT510 extends AbstractMT implements Serializable {
     public SequenceB getSequenceREGDET() {
         return getSequenceB();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB delimited by 16R/16S the value of SequenceB#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1694,7 +1694,7 @@ public class MT510 extends AbstractMT implements Serializable {
     public SequenceC getSequenceADDINFO() {
         return getSequenceC();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceC delimited by 16R/16S the value of SequenceC#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.

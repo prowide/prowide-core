@@ -115,8 +115,6 @@ public interface SchemeConstantsC {
     String CONFDET = "CONFDET";
     String CBCH = "CBCH";
     String CREB = "CREB";
-    String CPN = "CPN";
-    String CER = "CER";
     String CLPB = "CLPB";
     String CLPA = "CLPA";
     String CSMV = "CSMV";

@@ -61,7 +61,7 @@ import com.google.gson.JsonParser;
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2025</strong>
+ * This class complies with standard release <strong>SRU2026</strong>
  */
 @SuppressWarnings("unused")
 @Generated
@@ -69,7 +69,7 @@ public class Field90K extends Field implements Serializable, AmountContainer, Ge
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2025;
+	public static final int SRU = 2026;
 
 	private static final long serialVersionUID = 1L;
 	/**

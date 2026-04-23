@@ -25,8 +25,6 @@ public interface SchemeConstantsU {
     String UNAD = "UNAD";
     String UNWEIGHT = "UNWEIGHT";
     String UNDE = "UNDE";
-    String UNT = "UNT";
-    String UNKNOWN = "UNKNOWN";
     String UPDT = "UPDT";
     String UNAF = "UNAF";
     String UNBA = "UNBA";
@@ -35,6 +33,7 @@ public interface SchemeConstantsU {
     String UNFR = "UNFR";
     String UNDL = "UNDL";
     String UNALL = "UNALL";
+    String UNT = "UNT";
     String UDTP = "UDTP";
     String UCPURR_LATEST_VERSION = "UCPURR_LATEST_VERSION";
     String UCP_LATEST_VERSION = "UCP_LATEST_VERSION";

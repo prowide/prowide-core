@@ -53,7 +53,6 @@ public interface SchemeConstantsF {
     String FORF = "FORF";
     String FROM = "FROM";
     String FORC = "FORC";
-    String FMT = "FMT";
     String FFRD = "FFRD";
     String FSBN = "FSBN";
     String FSSA = "FSSA";

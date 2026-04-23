@@ -28,7 +28,6 @@ import java.util.Map;
 import java.util.HashMap;
 
 
-import com.prowidesoftware.swift.model.field.MultiLineField;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
@@ -47,26 +46,25 @@ import com.google.gson.JsonParser;
  * <ol>
  * 		<li>Component 1: CountryCode: <code>String</code></li>
  * 		<li>Component 2: CountrySubDivision: <code>String</code></li>
- * 		<li>Component 3: Narrative: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>&lt;CC&gt;[/35x][$/65x]</code></li>
- * 		<li>parser pattern: <code>S[/S][$/S]</code></li>
- * 		<li>components pattern: <code>SSS</code></li>
+ * 		<li>validation pattern: <code>&lt;CC&gt;[/35x]</code></li>
+ * 		<li>parser pattern: <code>S[/S]</code></li>
+ * 		<li>components pattern: <code>SS</code></li>
  * </ul>
  *
  * <p>
- * This class complies with standard release <strong>SRU2025</strong>
+ * This class complies with standard release <strong>SRU2026</strong>
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field44J extends Field implements Serializable, MultiLineField {
+public class Field44J extends Field implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2025;
+	public static final int SRU = 2026;
 
 	private static final long serialVersionUID = 1L;
 	/**
@@ -88,16 +86,11 @@ public class Field44J extends Field implements Serializable, MultiLineField {
 	 */
 	public static final Integer COUNTRY_SUB_DIVISION = 2;
 
-	/**
-	 * Component number for the Narrative subfield.
-	 */
-	public static final Integer NARRATIVE = 3;
-
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
     public Field44J() {
-        super(3);
+        super(2);
     }
 
     /**
@@ -169,13 +162,9 @@ public class Field44J extends Field implements Serializable, MultiLineField {
      */
     @Override
     public void parse(final String value) {
-        init(3);
-        List<String> lines = SwiftParseUtils.getLines(value);
-        if (!lines.isEmpty()) {
-            setComponent1(SwiftParseUtils.getTokenFirst(lines.get(0), "/", "/"));
-            setComponent2(SwiftParseUtils.getTokenSecondLast(lines.get(0), "/"));
-            SwiftParseUtils.setComponentsFromLines(this, 3, null, 1, lines);
-        }
+        init(2);
+        setComponent1(SwiftParseUtils.getTokenFirst(value, "/"));
+        setComponent2(SwiftParseUtils.getTokenSecondLast(value, "/"));
     }
 
     /**
@@ -187,10 +176,6 @@ public class Field44J extends Field implements Serializable, MultiLineField {
         append(result, 1);
         if (getComponent2() != null) {
             result.append("/").append(getComponent2());
-        }
-        if (getComponent3() != null) {
-            result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-            result.append(getComponent3());
         }
         return result.toString();
     }
@@ -206,20 +191,16 @@ public class Field44J extends Field implements Serializable, MultiLineField {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 3) {
+        if (component < 1 || component > 2) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 44J");
         }
         if (component == 1) {
             //default format (as is)
             return getComponent(1);
         }
-        if (component == 2) {
-            //default format (as is)
-            return getComponent(2);
-        }
         // This is the last component, return directly without `if`
         //default format (as is)
-        return getComponent(3);
+        return getComponent(2);
     }
 
     /**
@@ -231,7 +212,7 @@ public class Field44J extends Field implements Serializable, MultiLineField {
      */
     @Override
     public String typesPattern() {
-        return "SSS";
+        return "SS";
     }
 
     /**
@@ -239,7 +220,7 @@ public class Field44J extends Field implements Serializable, MultiLineField {
      */
     @Override
     public String parserPattern() {
-        return "S[/S][$/S]";
+        return "S[/S]";
     }
 
     /**
@@ -251,7 +232,7 @@ public class Field44J extends Field implements Serializable, MultiLineField {
     @ProwideDeprecated(phase2 = TargetYear.SRU2026)
     @Override
     public String validatorPattern() {
-        return "<CC>[/35x][$/65x]";
+        return "<CC>[/35x]";
     }
 
     /**
@@ -267,9 +248,6 @@ public class Field44J extends Field implements Serializable, MultiLineField {
     @Override
     public boolean isOptional(int component) {
         if (component == 2) {
-            return true;
-        }
-        if (component == 3) {
             return true;
         }
         return false;
@@ -292,7 +270,7 @@ public class Field44J extends Field implements Serializable, MultiLineField {
      */
     @Override
     public int componentsSize() {
-        return 3;
+        return 2;
     }
 
     /**
@@ -307,7 +285,6 @@ public class Field44J extends Field implements Serializable, MultiLineField {
         List<String> result = new ArrayList<>();
         result.add("Country Code");
         result.add("Country Sub Division");
-        result.add("Narrative");
         return result;
     }
 
@@ -320,7 +297,6 @@ public class Field44J extends Field implements Serializable, MultiLineField {
         Map<Integer, String> result = new HashMap<>();
         result.put(1, "countryCode");
         result.put(2, "countrySubDivision");
-        result.put(3, "narrative");
         return result;
     }
 
@@ -337,7 +313,6 @@ public class Field44J extends Field implements Serializable, MultiLineField {
         super.labelMap = new HashMap<>();
         super.labelMap.put("countrycode", 1);
         super.labelMap.put("countrysubdivision", 2);
-        super.labelMap.put("narrative", 3);
         return super.labelMap;
     }
 
@@ -371,22 +346,6 @@ public class Field44J extends Field implements Serializable, MultiLineField {
      */
     public String getCountrySubDivision() {
         return getComponent2();
-    }
-
-    /**
-     * Gets the component 3 (Narrative).
-     * @return the component 3
-     */
-    public String getComponent3() {
-        return getComponent(3);
-    }
-
-    /**
-     * Gets the Narrative (component 3).
-     * @return the Narrative from component 3
-     */
-    public String getNarrative() {
-        return getComponent3();
     }
 
     /**
@@ -429,27 +388,6 @@ public class Field44J extends Field implements Serializable, MultiLineField {
      */
     public Field44J setCountrySubDivision(String component2) {
         return setComponent2(component2);
-    }
-
-    /**
-     * Set the component 3 (Narrative).
-     *
-     * @param component3 the Narrative to set
-     * @return the field object to enable build pattern
-     */
-    public Field44J setComponent3(String component3) {
-        setComponent(3, component3);
-        return this;
-    }
-
-    /**
-     * Set the Narrative (component 3).
-     *
-     * @param component3 the Narrative to set
-     * @return the field object to enable build pattern
-     */
-    public Field44J setNarrative(String component3) {
-        return setComponent3(component3);
     }
 
 
@@ -526,90 +464,6 @@ public class Field44J extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Returns a specific line from the field's value.
-     *
-     * @see MultiLineField#getLine(int)
-     * @param line a reference to a specific line in the field, first line being 1
-     * @return line content or null if not present or if line number is above the expected
-     * @since 7.7
-     */
-    @Override
-    public String getLine(int line) {
-        return getLine(line, 0);
-    }
-
-    /**
-     * Returns a specific line from the field's value.
-     *
-     * @see MultiLineField#getLine(int, int)
-     * @param line a reference to a specific line in the field, first line being 1
-     * @param offset an optional component number used as offset when counting lines
-     * @return line content or null if not present or if line number is above the expected
-     * @since 7.7
-     */
-    @Override
-    public String getLine(int line, int offset) {
-        Field44J cp = newInstance(this);
-        return getLine(cp, line, null, offset);
-    }
-
-    /**
-     * Returns the field value split into lines.
-     *
-     * @see MultiLineField#getLines()
-     * @return lines content or empty list if field's value is empty
-     * @since 7.7
-     */
-    @Override
-    public List<String> getLines() {
-        return SwiftParseUtils.getLines(getValue());
-    }
-
-    /**
-     * Returns the field value starting at the offset component, split into lines.
-     *
-     * @see MultiLineField#getLines(int)
-     * @param offset an optional component number used as offset when counting lines
-     * @return found lines or empty list if lines are not present or the offset is invalid
-     * @since 7.7
-     */
-    @Override
-    public List<String> getLines(int offset) {
-        Field44J cp = newInstance(this);
-        return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
-    }
-
-    /**
-     * Returns a specific subset of lines from the field's value, given a range.
-     *
-     * @see MultiLineField#getLinesBetween(int, int )
-     * @param start a reference to a specific line in the field, first line being 1
-     * @param end a reference to a specific line in the field, must be greater than start
-     * @return found lines or empty list if value is empty
-     * @since 7.7
-     */
-    @Override
-    public List<String> getLinesBetween(int start, int end) {
-        return getLinesBetween(start, end, 0);
-    }
-
-    /**
-     * Returns a specific subset of lines from the field's value, starting at the offset component.
-     *
-     * @see MultiLineField#getLinesBetween(int start, int end, int offset)
-     * @param start a reference to a specific line in the field, first line being 1
-     * @param end a reference to a specific line in the field, must be greater than start
-     * @param offset an optional component number used as offset when counting lines
-     * @return found lines or empty list if lines are not present or the offset is invalid
-     * @since 7.7
-     */
-    @Override
-    public List<String> getLinesBetween(int start, int end, int offset) {
-        Field44J cp = newInstance(this);
-        return SwiftParseUtils.getLines(getLine(cp, start, end, offset));
-    }
-
-    /**
      * This method deserializes the JSON data into a Field44J object.
      * @param json JSON structure including tuples with label and value for all field components
      * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
@@ -632,12 +486,6 @@ public class Field44J extends Field implements Serializable, MultiLineField {
 
         if (jsonObject.get("countrySubDivision") != null) {
             field.setComponent2(jsonObject.get("countrySubDivision").getAsString());
-        }
-
-        // **** COMPONENT 3 - Narrative
-
-        if (jsonObject.get("narrative") != null) {
-            field.setComponent3(jsonObject.get("narrative").getAsString());
         }
 
         return field;

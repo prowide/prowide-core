@@ -165,7 +165,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2025</strong>
+ * This source code is specific to release <strong>SRU 2026</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -174,7 +174,7 @@ public class MT505 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2025;
+	public static final int SRU = 2026;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT505.class.getName());
 	
@@ -1043,7 +1043,7 @@ public class MT505 extends AbstractMT implements Serializable {
     public SequenceA getSequenceGENL() {
         return getSequenceA();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2671,7 +2671,7 @@ public class MT505 extends AbstractMT implements Serializable {
     public SequenceC getSequenceSETDET1() {
         return getSequenceC();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceC delimited by 16R/16S the value of SequenceC#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2958,7 +2958,7 @@ public class MT505 extends AbstractMT implements Serializable {
     public SequenceD getSequenceCASHSET1() {
         return getSequenceD();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceD delimited by 16R/16S the value of SequenceD#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -3245,7 +3245,7 @@ public class MT505 extends AbstractMT implements Serializable {
     public SequenceE getSequenceADDINFO() {
         return getSequenceE();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceE delimited by 16R/16S the value of SequenceE#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.

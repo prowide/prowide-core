@@ -53,7 +53,7 @@ Sequence A1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 </ul></li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P (M)</li><li>FieldsetItem 95 Q (O) (repetitive)</li><li>FieldsetItem 95 P,Q (O) (repetitive)</li></ul></li><li class="field">Field 22 F (M)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 P (M)</li><li>FieldsetItem 95 Q (O) (repetitive)</li><li>FieldsetItem 95 P,Q,Z (O) (repetitive)</li></ul></li><li class="field">Field 22 F (M)</li>
 <li class="field">Field 97 A (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -69,7 +69,7 @@ Fieldset 22
 Sequence B1 - Cash Parties (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M) (repetitive)</li><li>FieldsetItem 95 S (O) (repetitive)</li></ul></li><li class="field">Field 97 A (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,Z (M) (repetitive)</li><li>FieldsetItem 95 S (O) (repetitive)</li></ul></li><li class="field">Field 97 A (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
@@ -92,7 +92,7 @@ Sequence C - Other Details (O)<ul><li class="field">Field 16 R (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2025</strong>
+ * This source code is specific to release <strong>SRU 2026</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -101,7 +101,7 @@ public class MT671 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2025;
+	public static final int SRU = 2026;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT671.class.getName());
 	
@@ -454,6 +454,26 @@ public class MT671 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95Z, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 95Z at MT671 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field95Z objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field95Z> getField95Z() {
+		final List<Field95Z> result = new ArrayList<>();
+		final Tag[] tags = tags("95Z");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field95Z(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 22H, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 22H at MT671 are expected at one sequence or across several sequences.
@@ -722,7 +742,7 @@ public class MT671 extends AbstractMT implements Serializable {
     public SequenceA getSequenceGENL() {
         return getSequenceA();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1313,7 +1333,7 @@ public class MT671 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT671GetSequenceB2List_sru2025(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT671GetSequenceB2List_sru2026(this);
 	}
 
 
@@ -1461,19 +1481,10 @@ public class MT671 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT671GetSequenceC_sru2025(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT671GetSequenceC_sru2026(this);
 	}
 
-    /**
-     * Same as getSequenceC using the sequence delimiter field qualifier
-     * @see SequenceC#getSequenceC()
-     * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
-     * @since 9.2.18
-     */
-    public SequenceC getSequenceOTHRDET() {
-        return getSequenceC();
-    }
-	
+
 	/**
 	 * Get the single occurrence of SequenceC delimited by 16R/16S the value of SequenceC#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1491,16 +1502,6 @@ public class MT671 extends AbstractMT implements Serializable {
 		return s;
 	}
 
-    /**
-	 * Same as getSequenceC using the sequence delimiter field qualifier
-	 * @see SequenceC#getSequenceC(SwiftTagListBlock)
-	 * @param parentSequence a not null parent sequence to find SequenceC within it
-	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
-	 * @since 9.2.18
-	 */
-	public static SequenceC getSequenceOTHRDET(SwiftTagListBlock parentSequence) {
-		return getSequenceC(parentSequence);
-	}
  
 
 

@@ -94,11 +94,18 @@ Fieldset 99
  (O)<ul><li>FieldsetItem 99 A (O)</li><li>FieldsetItem 99 A (O)</li></ul></li><li class="fieldset">
 Fieldset 94
  (O) (repetitive)<ul><li>FieldsetItem 94 B,L (O) (repetitive)</li><li>FieldsetItem 94 B,C,F,L,T (O) (repetitive)</li></ul></li><li class="field">Field 19 A (O)</li>
+<li class="sequence">
+Sequence C2 - Digital Payment Settlement Details (O)<ul><li class="field">Field 16 R (M)</li>
+<li class="field">Field 35 B (M)</li>
+<li class="field">Field 36 D (M)</li>
+<li class="field">Field 94 F,L,T (O)</li>
+<li class="field">Field 16 S (M)</li>
+</ul></li>
 <li class="fieldset">
 Fieldset 22
  (M) (repetitive)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="field">Field 11 A (O)</li>
 <li class="sequence">
-Sequence C2 - Confirmation Parties (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence C3 - Confirmation Parties (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="fieldset">
@@ -114,7 +121,7 @@ Fieldset 22
 <li class="field">Field 36 B,D (M)</li>
 <li class="field">Field 35 B (M)</li>
 <li class="sequence">
-Sequence C3 - Financial Instrument Attributes (O)<ul><li class="field">Field 16 R (M)</li>
+Sequence C4 - Financial Instrument Attributes (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 94 B (O)</li>
 <li class="fieldset">
 Fieldset 22
@@ -178,6 +185,13 @@ Fieldset 19
 <li class="field">Field 92 B (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
+<li class="sequence">
+Sequence D4 - Digital Payment Settlement Details (O)<ul><li class="field">Field 16 R (M)</li>
+<li class="field">Field 35 B (M)</li>
+<li class="field">Field 36 D (M)</li>
+<li class="field">Field 94 F,L,T (O)</li>
+<li class="field">Field 16 S (M)</li>
+</ul></li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
@@ -211,7 +225,7 @@ Fieldset 19
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2025</strong>
+ * This source code is specific to release <strong>SRU 2026</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -220,7 +234,7 @@ public class MT513 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2025;
+	public static final int SRU = 2026;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT513.class.getName());
 	
@@ -1313,6 +1327,26 @@ public class MT513 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 35B, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 35B at MT513 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field35B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field35B> getField35B() {
+		final List<Field35B> result = new ArrayList<>();
+		final Tag[] tags = tags("35B");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field35B(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 12A, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 12A at MT513 are expected at one sequence or across several sequences.
@@ -1407,26 +1441,6 @@ public class MT513 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field17B(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 35B, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 35B at MT513 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field35B objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field35B> getField35B() {
-		final List<Field35B> result = new ArrayList<>();
-		final Tag[] tags = tags("35B");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field35B(tag.getValue()));
             }
 		}
 		return result;
@@ -1681,7 +1695,7 @@ public class MT513 extends AbstractMT implements Serializable {
     public SequenceA getSequenceGENL() {
         return getSequenceA();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1968,7 +1982,7 @@ public class MT513 extends AbstractMT implements Serializable {
     public SequenceB getSequenceRCAP() {
         return getSequenceB();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB delimited by 16R/16S the value of SequenceB#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2255,7 +2269,7 @@ public class MT513 extends AbstractMT implements Serializable {
     public SequenceC getSequenceORDRDET() {
         return getSequenceC();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceC delimited by 16R/16S the value of SequenceC#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2438,6 +2452,7 @@ public class MT513 extends AbstractMT implements Serializable {
 	 * Class to model Sequence "C2" in MT 513.
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
+	@NonUniqueSeparator
 	public static class SequenceC2 extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
@@ -2457,9 +2472,9 @@ public class MT513 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>CONFPRTY</em>.
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>DIGPAYSETT</em>.
 		 */
-		public static final String START_END_16RS = "CONFPRTY";
+		public static final String START_END_16RS = "DIGPAYSETT";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
 		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
 
@@ -2468,6 +2483,7 @@ public class MT513 extends AbstractMT implements Serializable {
 		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
+	    @NonUniqueSeparator
 		@SequenceStyle(Type.GENERATED_16RS)
 		public static SequenceC2 newInstance(final Tag... tags) {
 			final SequenceC2 result = new SequenceC2();
@@ -2522,65 +2538,48 @@ public class MT513 extends AbstractMT implements Serializable {
 		}
 
 	}
-
 	/**
-	 * Get the list of SequenceC2 delimited by 16R/16S with value specified in {@link SequenceC2#START_END_16RS}.
-	 *
-	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
-     * @return the found sequences or an empty list if none is found
+	 * Get the single occurrence of SequenceC2 delimited by 16R/16S the value of SequenceC2#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @return the found sequence or an empty sequence if none is found
+     *
+     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
+     * present inside its parent sequences.
+     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     *
 	 * @see SequenceC2#START_END_16RS
 	 */
+	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_16RS)
-	public List<SequenceC2> getSequenceC2List() {
-		return getSequenceC2List(super.getSwiftMessageNotNullOrException().getBlock4());
+	public SequenceC2 getSequenceC2() {
+		/*
+		 * The delimiter DIGPAYSETT is not unique across all sequences, this api can not be resolved without considering nested sequences
+		 * In Sequence C2
+		 */
+		if (this.getSwiftMessage() == null) {
+			return null;
+		}
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT513GetSequenceC2_sru2026(this);
 	}
 
-    /**
-     * Same as getSequenceC2List using the sequence delimiter field qualifier
-     * @see SequenceC2#getSequenceC2List()
-     * @return the found sequences or an empty list if none is found
-     * @since 9.2.18
-     */
-     public List<SequenceC2> getSequenceCONFPRTYList() {
-        return getSequenceC2List();
-     }
 
 	/**
-	 * Get the list of SequenceC2 delimited by 16R/16S with value specified in {@link SequenceC2#START_END_16RS}.
-	 *
-	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the single occurrence of SequenceC2 delimited by 16R/16S the value of SequenceC2#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * @see SequenceC2#START_END_16RS
 	 * @param parentSequence a not null parent sequence to find SequenceC2 within it
-	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public static List<SequenceC2> getSequenceC2List(final SwiftTagListBlock parentSequence) {
-	    if (parentSequence != null) {
-            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC2.START_END_16RS);
-            if (blocks != null && !blocks.isEmpty()) {
-                final List<SequenceC2> result = new ArrayList<>(blocks.size());
-                for (final SwiftTagListBlock b : blocks) {
-                    final SequenceC2 s = new SequenceC2();
-                    s.setTags(b.getSubBlock(SequenceC2.START_END_16RS).getTags());
-                    result.add(s);
-                }
-                return result;
-            }
+	public static SequenceC2 getSequenceC2(SwiftTagListBlock parentSequence) {
+		final SequenceC2 s = new SequenceC2();
+		if (parentSequence != null) {
+		    s.setTags(parentSequence.getSubBlock(SequenceC2.START_END_16RS).getTags());
 		}
-		return Collections.emptyList();
+		return s;
 	}
 
-    /**
-     * Same as getSequenceC2List using the sequence delimiter field qualifier
-     * @see SequenceC2#getSequenceC2List(SwiftTagListBlock)
-     * @param parentSequence a not null parent sequence to find SequenceC2 within it
-     * @return the found sequences or an empty list if none is found
-     * @since 9.2.18
-     */
-     public static List<SequenceC2> getSequenceCONFPRTYList(final SwiftTagListBlock parentSequence) {
-        return getSequenceC2List(parentSequence);
-    }
  
 
 	/**
@@ -2606,9 +2605,9 @@ public class MT513 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>FIA</em>.
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>CONFPRTY</em>.
 		 */
-		public static final String START_END_16RS = "FIA";
+		public static final String START_END_16RS = "CONFPRTY";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
 		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
 
@@ -2671,53 +2670,202 @@ public class MT513 extends AbstractMT implements Serializable {
 		}
 
 	}
+
 	/**
-	 * Get the single occurrence of SequenceC3 delimited by 16R/16S the value of SequenceC3#START_END_16RS.
-	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
-	 * @return the found sequence or an empty sequence if none is found
+	 * Get the list of SequenceC3 delimited by 16R/16S with value specified in {@link SequenceC3#START_END_16RS}.
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     * @return the found sequences or an empty list if none is found
 	 * @see SequenceC3#START_END_16RS
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public SequenceC3 getSequenceC3() {
-		return new SequenceC3(super.getSwiftMessageNotNullOrException());
+	public List<SequenceC3> getSequenceC3List() {
+		return getSequenceC3List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 
     /**
-     * Same as getSequenceC3 using the sequence delimiter field qualifier
-     * @see SequenceC3#getSequenceC3()
+     * Same as getSequenceC3List using the sequence delimiter field qualifier
+     * @see SequenceC3#getSequenceC3List()
+     * @return the found sequences or an empty list if none is found
+     * @since 9.2.18
+     */
+     public List<SequenceC3> getSequenceCONFPRTYList() {
+        return getSequenceC3List();
+     }
+
+	/**
+	 * Get the list of SequenceC3 delimited by 16R/16S with value specified in {@link SequenceC3#START_END_16RS}.
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * @see SequenceC3#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceC3 within it
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static List<SequenceC3> getSequenceC3List(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC3.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceC3> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceC3 s = new SequenceC3();
+                    s.setTags(b.getSubBlock(SequenceC3.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
+		}
+		return Collections.emptyList();
+	}
+
+    /**
+     * Same as getSequenceC3List using the sequence delimiter field qualifier
+     * @see SequenceC3#getSequenceC3List(SwiftTagListBlock)
+     * @param parentSequence a not null parent sequence to find SequenceC3 within it
+     * @return the found sequences or an empty list if none is found
+     * @since 9.2.18
+     */
+     public static List<SequenceC3> getSequenceCONFPRTYList(final SwiftTagListBlock parentSequence) {
+        return getSequenceC3List(parentSequence);
+    }
+ 
+
+	/**
+	 * Class to model Sequence "C4" in MT 513.
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static class SequenceC4 extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence.
+		 */
+	    private SequenceC4() {
+			super(new ArrayList<>());
+		}
+
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private SequenceC4(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>FIA</em>.
+		 */
+		public static final String START_END_16RS = "FIA";
+		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
+		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
+		/**
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+		@SequenceStyle(Type.GENERATED_16RS)
+		public static SequenceC4 newInstance(final Tag... tags) {
+			final SequenceC4 result = new SequenceC4();
+			result.append(START_TAG);
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
+		public static SequenceC4 newInstance() {
+			final SequenceC4 result = new SequenceC4();
+			result.append(START_TAG);
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
+		public static SequenceC4 newInstance(final SwiftTagListBlock... sequences) {
+			final SequenceC4 result = new SequenceC4();
+			result.append(START_TAG);
+			if (sequences != null && sequences.length > 0) {
+				for (final SwiftTagListBlock s : sequences) {
+					result.addTags(s.getTags());
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		@SequenceStyle(Type.GENERATED_16RS)
+		private SequenceC4(final SwiftMessage m) {
+			super();
+			if (m.getBlock4() != null) {
+				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
+			}
+		}
+
+	}
+	/**
+	 * Get the single occurrence of SequenceC4 delimited by 16R/16S the value of SequenceC4#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @return the found sequence or an empty sequence if none is found
+	 * @see SequenceC4#START_END_16RS
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public SequenceC4 getSequenceC4() {
+		return new SequenceC4(super.getSwiftMessageNotNullOrException());
+	}
+
+    /**
+     * Same as getSequenceC4 using the sequence delimiter field qualifier
+     * @see SequenceC4#getSequenceC4()
      * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
      * @since 9.2.18
      */
-    public SequenceC3 getSequenceFIA() {
-        return getSequenceC3();
+    public SequenceC4 getSequenceFIA() {
+        return getSequenceC4();
     }
-	
+
 	/**
-	 * Get the single occurrence of SequenceC3 delimited by 16R/16S the value of SequenceC3#START_END_16RS.
+	 * Get the single occurrence of SequenceC4 delimited by 16R/16S the value of SequenceC4#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
-	 * @see SequenceC3#START_END_16RS
-	 * @param parentSequence a not null parent sequence to find SequenceC3 within it
+	 * @see SequenceC4#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceC4 within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public static SequenceC3 getSequenceC3(SwiftTagListBlock parentSequence) {
-		final SequenceC3 s = new SequenceC3();
+	public static SequenceC4 getSequenceC4(SwiftTagListBlock parentSequence) {
+		final SequenceC4 s = new SequenceC4();
 		if (parentSequence != null) {
-		    s.setTags(parentSequence.getSubBlock(SequenceC3.START_END_16RS).getTags());
+		    s.setTags(parentSequence.getSubBlock(SequenceC4.START_END_16RS).getTags());
 		}
 		return s;
 	}
 
     /**
-	 * Same as getSequenceC3 using the sequence delimiter field qualifier
-	 * @see SequenceC3#getSequenceC3(SwiftTagListBlock)
-	 * @param parentSequence a not null parent sequence to find SequenceC3 within it
+	 * Same as getSequenceC4 using the sequence delimiter field qualifier
+	 * @see SequenceC4#getSequenceC4(SwiftTagListBlock)
+	 * @param parentSequence a not null parent sequence to find SequenceC4 within it
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 9.2.18
 	 */
-	public static SequenceC3 getSequenceFIA(SwiftTagListBlock parentSequence) {
-		return getSequenceC3(parentSequence);
+	public static SequenceC4 getSequenceFIA(SwiftTagListBlock parentSequence) {
+		return getSequenceC4(parentSequence);
 	}
  
 
@@ -2829,7 +2977,7 @@ public class MT513 extends AbstractMT implements Serializable {
     public SequenceD getSequenceSETDET() {
         return getSequenceD();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceD delimited by 16R/16S the value of SequenceD#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -3307,6 +3455,140 @@ public class MT513 extends AbstractMT implements Serializable {
  
 
 	/**
+	 * Class to model Sequence "D4" in MT 513.
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	@NonUniqueSeparator
+	public static class SequenceD4 extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence.
+		 */
+	    private SequenceD4() {
+			super(new ArrayList<>());
+		}
+
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private SequenceD4(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>DIGPAYSETT</em>.
+		 */
+		public static final String START_END_16RS = "DIGPAYSETT";
+		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
+		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
+		/**
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+	    @NonUniqueSeparator
+		@SequenceStyle(Type.GENERATED_16RS)
+		public static SequenceD4 newInstance(final Tag... tags) {
+			final SequenceD4 result = new SequenceD4();
+			result.append(START_TAG);
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
+		public static SequenceD4 newInstance() {
+			final SequenceD4 result = new SequenceD4();
+			result.append(START_TAG);
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
+		public static SequenceD4 newInstance(final SwiftTagListBlock... sequences) {
+			final SequenceD4 result = new SequenceD4();
+			result.append(START_TAG);
+			if (sequences != null && sequences.length > 0) {
+				for (final SwiftTagListBlock s : sequences) {
+					result.addTags(s.getTags());
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		@SequenceStyle(Type.GENERATED_16RS)
+		private SequenceD4(final SwiftMessage m) {
+			super();
+			if (m.getBlock4() != null) {
+				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
+			}
+		}
+
+	}
+	/**
+	 * Get the single occurrence of SequenceD4 delimited by 16R/16S the value of SequenceD4#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @return the found sequence or an empty sequence if none is found
+     *
+     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
+     * present inside its parent sequences.
+     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     *
+	 * @see SequenceD4#START_END_16RS
+	 */
+	@NonUniqueSeparator
+	@SequenceStyle(Type.GENERATED_16RS)
+	public SequenceD4 getSequenceD4() {
+		/*
+		 * The delimiter DIGPAYSETT is not unique across all sequences, this api can not be resolved without considering nested sequences
+		 * In Sequence D4
+		 */
+		if (this.getSwiftMessage() == null) {
+			return null;
+		}
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT513GetSequenceD4_sru2026(this);
+	}
+
+
+	/**
+	 * Get the single occurrence of SequenceD4 delimited by 16R/16S the value of SequenceD4#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @see SequenceD4#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceD4 within it
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static SequenceD4 getSequenceD4(SwiftTagListBlock parentSequence) {
+		final SequenceD4 s = new SequenceD4();
+		if (parentSequence != null) {
+		    s.setTags(parentSequence.getSubBlock(SequenceD4.START_END_16RS).getTags());
+		}
+		return s;
+	}
+
+ 
+
+	/**
 	 * Class to model Sequence "E" in MT 513.
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
@@ -3563,7 +3845,7 @@ public class MT513 extends AbstractMT implements Serializable {
     public SequenceF getSequenceREPO() {
         return getSequenceF();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceF delimited by 16R/16S the value of SequenceF#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.

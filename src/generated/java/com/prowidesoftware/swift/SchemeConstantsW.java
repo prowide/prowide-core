@@ -20,7 +20,6 @@ public interface SchemeConstantsW {
     String WEIGHTED = "WEIGHTED";
     String WRTS = "WRTS";
     String WITH = "WITH";
-    String WTS = "WTS";
     String WAPA = "WAPA";
     String WTHD = "WTHD";
     String WITL = "WITL";
