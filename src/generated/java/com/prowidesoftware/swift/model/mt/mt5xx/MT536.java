@@ -107,7 +107,7 @@ Sequence B1a2A - Digital Payment Settlement Details (O)<ul><li class="field">Fie
 Fieldset 22
  (M) (repetitive)<ul><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 98
- (M) (repetitive)<ul><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,C (M)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="field">Field 25 D (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 A,C (M)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="field">Field 25 D (O)</li>
 <li class="field">Field 70 E (O)</li>
 <li class="sequence">
 Sequence B1a2B - Settlement Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
@@ -427,24 +427,6 @@ public class MT536 extends AbstractMT implements Serializable {
 		final Tag t = tag("23G");
 		if (t != null) {
 			return new Field23G(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
-	 * Iterates through block4 fields and return the first one whose name matches 98E, 
-	 * or null if none is found.
-	 * The first occurrence of field 98E at MT536 is expected to be the only one.
-	 * 
-	 * @return a Field98E object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field98E getField98E() {
-		final Tag t = tag("98E");
-		if (t != null) {
-			return new Field98E(t.getValue());
 		} else {
 			return null;
 		}
@@ -1195,6 +1177,26 @@ public class MT536 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field98B(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 98E, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 98E at MT536 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field98E objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field98E> getField98E() {
+		final List<Field98E> result = new ArrayList<>();
+		final Tag[] tags = tags("98E");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field98E(tag.getValue()));
             }
 		}
 		return result;

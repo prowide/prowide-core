@@ -147,7 +147,7 @@ Fieldset 22
 Sequence E1 - Settlement Parties (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C,D (M)</li><li>FieldsetItem 95 L,S (O)</li></ul></li><li class="field">Field 97 A,B,D (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C,D (M)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="field">Field 97 A,B,D (O)</li>
 <li class="field">Field 98 A,C (O)</li>
 <li class="field">Field 20 C (O)</li>
 <li class="fieldset">
@@ -160,7 +160,7 @@ Sequence E2 - Cash Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)<
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 D (O)</li></ul></li><li class="fieldset">
+ (O) (repetitive)<ul><li>FieldsetItem 97 A,D,E (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li></ul></li><li class="fieldset">
 Fieldset 70
  (O)<ul><li>FieldsetItem 70 E (O)</li><li>FieldsetItem 70 C (O)</li></ul></li><li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -187,7 +187,7 @@ Sequence E4 - Digital Payment Settlement Details (O) (repetitive)<ul><li class="
 Sequence F - Other Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 C,P,Q,R (M) (repetitive)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="field">Field 97 A,B (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 C,P,Q,R (M) (repetitive)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="field">Field 97 A,D (O)</li>
 <li class="fieldset">
 Fieldset 70
  (O)<ul><li>FieldsetItem 70 E (O)</li><li>FieldsetItem 70 D (O)</li><li>FieldsetItem 70 C (O)</li></ul></li><li class="field">Field 20 C (O)</li>

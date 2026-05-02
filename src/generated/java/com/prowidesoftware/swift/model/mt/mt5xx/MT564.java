@@ -117,7 +117,7 @@ Sequence D - Corporate Action Details (O)<ul><li class="field">Field 16 R (M)</l
 Fieldset 98
  (O)<ul><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li></ul></li><li class="fieldset">
 Fieldset 69
- (O)<ul><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,F,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li></ul></li><li class="field">Field 99 A (O)</li>
+ (O)<ul><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li><li>FieldsetItem 69 A,C,E,J (O)</li></ul></li><li class="field">Field 99 A (O)</li>
 <li class="fieldset">
 Fieldset 92
  (O)<ul><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F,K (O)</li><li>FieldsetItem 92 A,F,K,P (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F,K (O)</li></ul></li><li class="fieldset">
@@ -201,7 +201,7 @@ Fieldset 22
  (M) (repetitive)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="field">Field 94 C (O)</li>
 <li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 D (O)</li></ul></li><li class="fieldset">
+ (O)<ul><li>FieldsetItem 97 A,E,D (O)</li></ul></li><li class="fieldset">
 Fieldset 19
  (O)<ul><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li></ul></li><li class="fieldset">
 Fieldset 98
@@ -1317,26 +1317,6 @@ public class MT564 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 69F, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 69F at MT564 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field69F objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field69F> getField69F() {
-		final List<Field69F> result = new ArrayList<>();
-		final Tag[] tags = tags("69F");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field69F(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 92F, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 92F at MT564 are expected at one sequence or across several sequences.
@@ -1671,6 +1651,26 @@ public class MT564 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field69D(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 69F, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 69F at MT564 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field69F objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field69F> getField69F() {
+		final List<Field69F> result = new ArrayList<>();
+		final Tag[] tags = tags("69F");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field69F(tag.getValue()));
             }
 		}
 		return result;

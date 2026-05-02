@@ -87,7 +87,7 @@ Fieldset 17
 Fieldset 90
  (O)<ul><li>FieldsetItem 90 A,B (O)</li><li>FieldsetItem 90 A,B (O)</li></ul></li><li class="fieldset">
 Fieldset 36
- (O)<ul><li>FieldsetItem 36 B,C (O)</li><li>FieldsetItem 36 B,C (O)</li></ul></li><li class="field">Field 35 B (O) (repetitive)</li>
+ (O)<ul><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="field">Field 35 B (O) (repetitive)</li>
 <li class="field">Field 70 E (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -101,7 +101,7 @@ Fieldset 70
 Sequence C - Financial Instrument/Account (M)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 36
- (M) (repetitive)<ul><li>FieldsetItem 36 B,C (M) (repetitive)</li><li>FieldsetItem 36 B,C (O)</li><li>FieldsetItem 36 B,C (O)</li></ul></li><li class="fieldset">
+ (M) (repetitive)<ul><li>FieldsetItem 36 B,D (M) (repetitive)</li><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="fieldset">
 Fieldset 19
  (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="field">Field 70 D (O)</li>
 <li class="field">Field 13 B (O) (repetitive)</li>
@@ -113,7 +113,7 @@ Fieldset 97
 <li class="sequence">
 Sequence C1 -  (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 B (O)</li>
-<li class="field">Field 36 B,C (O)</li>
+<li class="field">Field 36 B,D (O)</li>
 <li class="field">Field 98 A,C,E (O)</li>
 <li class="field">Field 90 A,B (O)</li>
 <li class="fieldset">
@@ -160,7 +160,7 @@ Sequence E2 - Cash Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)<
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 D (O)</li></ul></li><li class="field">Field 20 C (O)</li>
+ (O) (repetitive)<ul><li>FieldsetItem 97 A,D,E (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li></ul></li><li class="field">Field 20 C (O)</li>
 <li class="fieldset">
 Fieldset 70
  (O)<ul><li>FieldsetItem 70 E (O)</li><li>FieldsetItem 70 C (O)</li></ul></li><li class="field">Field 16 S (M)</li>
@@ -976,20 +976,20 @@ public class MT547 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 36C, 
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 36D, 
 	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 36C at MT547 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 36D at MT547 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field36C objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field36D objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field36C> getField36C() {
-		final List<Field36C> result = new ArrayList<>();
-		final Tag[] tags = tags("36C");
+	public List<Field36D> getField36D() {
+		final List<Field36D> result = new ArrayList<>();
+		final Tag[] tags = tags("36D");
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
-                result.add(new Field36C(tag.getValue()));
+                result.add(new Field36D(tag.getValue()));
             }
 		}
 		return result;
@@ -1430,26 +1430,6 @@ public class MT547 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field92B(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 36D, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 36D at MT547 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field36D objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field36D> getField36D() {
-		final List<Field36D> result = new ArrayList<>();
-		final Tag[] tags = tags("36D");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field36D(tag.getValue()));
             }
 		}
 		return result;

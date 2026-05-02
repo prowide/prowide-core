@@ -104,7 +104,7 @@ Sequence B1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 <li class="field">Field 17 S (O)</li>
 <li class="field">Field 17 X (O)</li>
 <li class="field">Field 34 C (O) (repetitive)</li>
-<li class="field">Field 17 A (O)</li>
+<li class="field">Field 77 A (O)</li>
 </ul></li>
 </ul></div>
 
@@ -1326,18 +1326,18 @@ public class MT601 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 17A, 
+	 * Iterates through block4 fields and return the first one whose name matches 77A, 
 	 * or null if none is found.
-	 * The first occurrence of field 17A at MT601 is expected to be the only one.
+	 * The first occurrence of field 77A at MT601 is expected to be the only one.
 	 * 
-	 * @return a Field17A object or null if the field is not found
+	 * @return a Field77A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public Field17A getField17A() {
-		final Tag t = tag("17A");
+	public Field77A getField77A() {
+		final Tag t = tag("77A");
 		if (t != null) {
-			return new Field17A(t.getValue());
+			return new Field77A(t.getValue());
 		} else {
 			return null;
 		}

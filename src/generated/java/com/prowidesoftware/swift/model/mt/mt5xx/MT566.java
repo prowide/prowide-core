@@ -86,7 +86,7 @@ Fieldset 36
 </ul></li>
 <li class="fieldset">
 Fieldset 93
- (O) (repetitive)<ul><li>FieldsetItem 93 B,C,E,F (O) (repetitive)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O) (repetitive)</li><li>FieldsetItem 93 B,C,E (O) (repetitive)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O) (repetitive)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li></ul></li><li class="field">Field 16 S (M)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 93 B,C,E,F (O) (repetitive)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O) (repetitive)</li><li>FieldsetItem 93 B,C,E (O) (repetitive)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O) (repetitive)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (M)</li><li>FieldsetItem 93 B,C,E (O)</li><li>FieldsetItem 93 B,C,E (O)</li></ul></li><li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
 Sequence C - Corporate Action Details (O)<ul><li class="field">Field 16 R (M)</li>
@@ -107,7 +107,7 @@ Fieldset 22
  (O) (repetitive)<ul><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
-Sequence D - Corporate Action Confirmation (O)<ul><li class="field">Field 16 R (M)</li>
+Sequence D - Corporate Action Confirmation (M)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 A (M)</li>
 <li class="fieldset">
 Fieldset 22
@@ -139,7 +139,7 @@ Fieldset 92
 Fieldset 36
  (O)<ul><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="field">Field 16 S (M)</li>
 </ul></li>
-<li class="field">Field 36 B,D (O) (repetitive)</li>
+<li class="field">Field 36 B,D (M) (repetitive)</li>
 <li class="fieldset">
 Fieldset 94
  (O)<ul><li>FieldsetItem 94 B,C,F,T (O)</li><li>FieldsetItem 94 C (O)</li></ul></li><li class="field">Field 22 F (O)</li>
@@ -169,13 +169,13 @@ Fieldset 22
  (M) (repetitive)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O) (repetitive)</li></ul></li><li class="field">Field 94 C (O)</li>
 <li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 D (O)</li></ul></li><li class="sequence">
+ (O)<ul><li>FieldsetItem 97 A,E,D (O)</li></ul></li><li class="sequence">
 Sequence D2a - Cash Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 S (O)</li></ul></li><li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 D (O)</li></ul></li><li class="field">Field 20 C (O)</li>
+ (O)<ul><li>FieldsetItem 97 A,E,D (O)</li></ul></li><li class="field">Field 20 C (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="fieldset">

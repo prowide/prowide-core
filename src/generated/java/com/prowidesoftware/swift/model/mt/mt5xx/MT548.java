@@ -89,7 +89,7 @@ Fieldset 95
 Fieldset 22
  (M) (repetitive)<ul><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (O) (repetitive)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 98
- (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C,E (O)</li></ul></li><li class="field">Field 70 E (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C,E (O)</li></ul></li><li class="field">Field 70 E (O)</li>
 <li class="sequence">
 Sequence B2 - Settlement Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
@@ -107,20 +107,20 @@ Sequence C - Penalties (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
  (O)<ul><li>FieldsetItem 95 P (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="sequence">
-Sequence C1 - Penalties per Currency for a Party (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence C1 - Penalties per Currency for a Party (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 11 A (O)</li>
 <li class="field">Field 98 A,C (O)</li>
 <li class="fieldset">
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 P,Q (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 22 F (M)</li>
 <li class="sequence">
-Sequence C1a - Penalties per Counterparty (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence C1a - Penalties per Counterparty (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 L (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 22 F (M)</li>
 <li class="field">Field 19 A (M)</li>
 <li class="sequence">
-Sequence C1a1 - Penalty Details (O)<ul><li class="field">Field 16 R (M)</li>
+Sequence C1a1 - Penalty Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 20
  (M) (repetitive)<ul><li>FieldsetItem 20 C (M)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li></ul></li><li class="fieldset">
@@ -160,14 +160,14 @@ Fieldset 19
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
-Sequence C1a1B - Related Transaction (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence C1a1B - Related Transaction (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 20
  (M) (repetitive)<ul><li>FieldsetItem 20 C (M)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C,U (O)</li></ul></li><li class="sequence">
-Sequence C1a1B1 - Transaction Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence C1a1B1 - Transaction Details (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 22
- (M) (repetitive)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
+ (M) (repetitive)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 98
  (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="fieldset">
 Fieldset 97
@@ -513,18 +513,18 @@ public class MT548 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 99A, 
+	 * Iterates through block4 fields and return the first one whose name matches 11A, 
 	 * or null if none is found.
-	 * The first occurrence of field 99A at MT548 is expected to be the only one.
+	 * The first occurrence of field 11A at MT548 is expected to be the only one.
 	 * 
-	 * @return a Field99A object or null if the field is not found
+	 * @return a Field11A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public Field99A getField99A() {
-		final Tag t = tag("99A");
+	public Field11A getField11A() {
+		final Tag t = tag("11A");
 		if (t != null) {
-			return new Field99A(t.getValue());
+			return new Field11A(t.getValue());
 		} else {
 			return null;
 		}
@@ -1303,26 +1303,6 @@ public class MT548 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 11A, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 11A at MT548 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field11A objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field11A> getField11A() {
-		final List<Field11A> result = new ArrayList<>();
-		final Tag[] tags = tags("11A");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field11A(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 17B, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 17B at MT548 are expected at one sequence or across several sequences.
@@ -1337,6 +1317,26 @@ public class MT548 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field17B(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 99A, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 99A at MT548 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field99A objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field99A> getField99A() {
+		final List<Field99A> result = new ArrayList<>();
+		final Tag[] tags = tags("99A");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field99A(tag.getValue()));
             }
 		}
 		return result;
@@ -2683,65 +2683,54 @@ public class MT548 extends AbstractMT implements Serializable {
 		}
 
 	}
-
 	/**
-	 * Get the list of SequenceC1 delimited by 16R/16S with value specified in {@link SequenceC1#START_END_16RS}.
-	 *
-	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
-     * @return the found sequences or an empty list if none is found
+	 * Get the single occurrence of SequenceC1 delimited by 16R/16S the value of SequenceC1#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @return the found sequence or an empty sequence if none is found
 	 * @see SequenceC1#START_END_16RS
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public List<SequenceC1> getSequenceC1List() {
-		return getSequenceC1List(super.getSwiftMessageNotNullOrException().getBlock4());
+	public SequenceC1 getSequenceC1() {
+		return new SequenceC1(super.getSwiftMessageNotNullOrException());
 	}
 
     /**
-     * Same as getSequenceC1List using the sequence delimiter field qualifier
-     * @see SequenceC1#getSequenceC1List()
-     * @return the found sequences or an empty list if none is found
+     * Same as getSequenceC1 using the sequence delimiter field qualifier
+     * @see SequenceC1#getSequenceC1()
+     * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
      * @since 9.2.18
      */
-     public List<SequenceC1> getSequencePENACURList() {
-        return getSequenceC1List();
-     }
+    public SequenceC1 getSequencePENACUR() {
+        return getSequenceC1();
+    }
 
 	/**
-	 * Get the list of SequenceC1 delimited by 16R/16S with value specified in {@link SequenceC1#START_END_16RS}.
-	 *
-	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the single occurrence of SequenceC1 delimited by 16R/16S the value of SequenceC1#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * @see SequenceC1#START_END_16RS
 	 * @param parentSequence a not null parent sequence to find SequenceC1 within it
-	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public static List<SequenceC1> getSequenceC1List(final SwiftTagListBlock parentSequence) {
-	    if (parentSequence != null) {
-            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC1.START_END_16RS);
-            if (blocks != null && !blocks.isEmpty()) {
-                final List<SequenceC1> result = new ArrayList<>(blocks.size());
-                for (final SwiftTagListBlock b : blocks) {
-                    final SequenceC1 s = new SequenceC1();
-                    s.setTags(b.getSubBlock(SequenceC1.START_END_16RS).getTags());
-                    result.add(s);
-                }
-                return result;
-            }
+	public static SequenceC1 getSequenceC1(SwiftTagListBlock parentSequence) {
+		final SequenceC1 s = new SequenceC1();
+		if (parentSequence != null) {
+		    s.setTags(parentSequence.getSubBlock(SequenceC1.START_END_16RS).getTags());
 		}
-		return Collections.emptyList();
+		return s;
 	}
 
     /**
-     * Same as getSequenceC1List using the sequence delimiter field qualifier
-     * @see SequenceC1#getSequenceC1List(SwiftTagListBlock)
-     * @param parentSequence a not null parent sequence to find SequenceC1 within it
-     * @return the found sequences or an empty list if none is found
-     * @since 9.2.18
-     */
-     public static List<SequenceC1> getSequencePENACURList(final SwiftTagListBlock parentSequence) {
-        return getSequenceC1List(parentSequence);
-    }
+	 * Same as getSequenceC1 using the sequence delimiter field qualifier
+	 * @see SequenceC1#getSequenceC1(SwiftTagListBlock)
+	 * @param parentSequence a not null parent sequence to find SequenceC1 within it
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 9.2.18
+	 */
+	public static SequenceC1 getSequencePENACUR(SwiftTagListBlock parentSequence) {
+		return getSequenceC1(parentSequence);
+	}
  
 
 	/**
@@ -2832,65 +2821,54 @@ public class MT548 extends AbstractMT implements Serializable {
 		}
 
 	}
-
 	/**
-	 * Get the list of SequenceC1a delimited by 16R/16S with value specified in {@link SequenceC1a#START_END_16RS}.
-	 *
-	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
-     * @return the found sequences or an empty list if none is found
+	 * Get the single occurrence of SequenceC1a delimited by 16R/16S the value of SequenceC1a#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @return the found sequence or an empty sequence if none is found
 	 * @see SequenceC1a#START_END_16RS
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public List<SequenceC1a> getSequenceC1aList() {
-		return getSequenceC1aList(super.getSwiftMessageNotNullOrException().getBlock4());
+	public SequenceC1a getSequenceC1a() {
+		return new SequenceC1a(super.getSwiftMessageNotNullOrException());
 	}
 
     /**
-     * Same as getSequenceC1aList using the sequence delimiter field qualifier
-     * @see SequenceC1a#getSequenceC1aList()
-     * @return the found sequences or an empty list if none is found
+     * Same as getSequenceC1a using the sequence delimiter field qualifier
+     * @see SequenceC1a#getSequenceC1a()
+     * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
      * @since 9.2.18
      */
-     public List<SequenceC1a> getSequencePENACOUNTList() {
-        return getSequenceC1aList();
-     }
+    public SequenceC1a getSequencePENACOUNT() {
+        return getSequenceC1a();
+    }
 
 	/**
-	 * Get the list of SequenceC1a delimited by 16R/16S with value specified in {@link SequenceC1a#START_END_16RS}.
-	 *
-	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the single occurrence of SequenceC1a delimited by 16R/16S the value of SequenceC1a#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * @see SequenceC1a#START_END_16RS
 	 * @param parentSequence a not null parent sequence to find SequenceC1a within it
-	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public static List<SequenceC1a> getSequenceC1aList(final SwiftTagListBlock parentSequence) {
-	    if (parentSequence != null) {
-            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceC1a.START_END_16RS);
-            if (blocks != null && !blocks.isEmpty()) {
-                final List<SequenceC1a> result = new ArrayList<>(blocks.size());
-                for (final SwiftTagListBlock b : blocks) {
-                    final SequenceC1a s = new SequenceC1a();
-                    s.setTags(b.getSubBlock(SequenceC1a.START_END_16RS).getTags());
-                    result.add(s);
-                }
-                return result;
-            }
+	public static SequenceC1a getSequenceC1a(SwiftTagListBlock parentSequence) {
+		final SequenceC1a s = new SequenceC1a();
+		if (parentSequence != null) {
+		    s.setTags(parentSequence.getSubBlock(SequenceC1a.START_END_16RS).getTags());
 		}
-		return Collections.emptyList();
+		return s;
 	}
 
     /**
-     * Same as getSequenceC1aList using the sequence delimiter field qualifier
-     * @see SequenceC1a#getSequenceC1aList(SwiftTagListBlock)
-     * @param parentSequence a not null parent sequence to find SequenceC1a within it
-     * @return the found sequences or an empty list if none is found
-     * @since 9.2.18
-     */
-     public static List<SequenceC1a> getSequencePENACOUNTList(final SwiftTagListBlock parentSequence) {
-        return getSequenceC1aList(parentSequence);
-    }
+	 * Same as getSequenceC1a using the sequence delimiter field qualifier
+	 * @see SequenceC1a#getSequenceC1a(SwiftTagListBlock)
+	 * @param parentSequence a not null parent sequence to find SequenceC1a within it
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 9.2.18
+	 */
+	public static SequenceC1a getSequencePENACOUNT(SwiftTagListBlock parentSequence) {
+		return getSequenceC1a(parentSequence);
+	}
  
 
 	/**

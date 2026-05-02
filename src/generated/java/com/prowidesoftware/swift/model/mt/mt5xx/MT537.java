@@ -181,7 +181,7 @@ Sequence D1 - Penalties per Currency for a Party (O) (repetitive)<ul><li class="
 Fieldset 98
  (O)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A (O)</li></ul></li><li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 B (O)</li></ul></li><li class="field">Field 20 C (M)</li>
+ (O)<ul><li>FieldsetItem 97 A,E,D (O)</li></ul></li><li class="field">Field 20 C (O)</li>
 <li class="fieldset">
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 P,Q (O)</li><li>FieldsetItem 95 P,Q (O)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 22 F (M)</li>
@@ -242,7 +242,7 @@ Fieldset 20
 Sequence D1a1B1 - Transaction Details (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 22
- (M) (repetitive)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (O)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
+ (M) (repetitive)<ul><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 H (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (M)</li><li>FieldsetItem 22 F (O)</li></ul></li><li class="fieldset">
 Fieldset 98
  (M) (repetitive)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 C,E (O)</li><li>FieldsetItem 98 C (O)</li><li>FieldsetItem 98 A,B,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="fieldset">
 Fieldset 97
@@ -281,7 +281,7 @@ Sequence D1a1B1a1 - Reason (O) (repetitive)<ul><li class="field">Field 16 R (M)<
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
-Sequence E - Additional Information (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence E - Additional Information (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
  (O)<ul><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 P,Q,R (O)</li></ul></li><li class="field">Field 16 S (M)</li>
@@ -5525,65 +5525,54 @@ public class MT537 extends AbstractMT implements Serializable {
 		}
 
 	}
-
 	/**
-	 * Get the list of SequenceE delimited by 16R/16S with value specified in {@link SequenceE#START_END_16RS}.
-	 *
-	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
-     * @return the found sequences or an empty list if none is found
+	 * Get the single occurrence of SequenceE delimited by 16R/16S the value of SequenceE#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @return the found sequence or an empty sequence if none is found
 	 * @see SequenceE#START_END_16RS
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public List<SequenceE> getSequenceEList() {
-		return getSequenceEList(super.getSwiftMessageNotNullOrException().getBlock4());
+	public SequenceE getSequenceE() {
+		return new SequenceE(super.getSwiftMessageNotNullOrException());
 	}
 
     /**
-     * Same as getSequenceEList using the sequence delimiter field qualifier
-     * @see SequenceE#getSequenceEList()
-     * @return the found sequences or an empty list if none is found
+     * Same as getSequenceE using the sequence delimiter field qualifier
+     * @see SequenceE#getSequenceE()
+     * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
      * @since 9.2.18
      */
-     public List<SequenceE> getSequenceADDINFOList() {
-        return getSequenceEList();
-     }
+    public SequenceE getSequenceADDINFO() {
+        return getSequenceE();
+    }
 
 	/**
-	 * Get the list of SequenceE delimited by 16R/16S with value specified in {@link SequenceE#START_END_16RS}.
-	 *
-	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+	 * Get the single occurrence of SequenceE delimited by 16R/16S the value of SequenceE#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * @see SequenceE#START_END_16RS
 	 * @param parentSequence a not null parent sequence to find SequenceE within it
-	 * @return the found sequences or an empty list if none is found or parent sequence is null
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public static List<SequenceE> getSequenceEList(final SwiftTagListBlock parentSequence) {
-	    if (parentSequence != null) {
-            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceE.START_END_16RS);
-            if (blocks != null && !blocks.isEmpty()) {
-                final List<SequenceE> result = new ArrayList<>(blocks.size());
-                for (final SwiftTagListBlock b : blocks) {
-                    final SequenceE s = new SequenceE();
-                    s.setTags(b.getSubBlock(SequenceE.START_END_16RS).getTags());
-                    result.add(s);
-                }
-                return result;
-            }
+	public static SequenceE getSequenceE(SwiftTagListBlock parentSequence) {
+		final SequenceE s = new SequenceE();
+		if (parentSequence != null) {
+		    s.setTags(parentSequence.getSubBlock(SequenceE.START_END_16RS).getTags());
 		}
-		return Collections.emptyList();
+		return s;
 	}
 
     /**
-     * Same as getSequenceEList using the sequence delimiter field qualifier
-     * @see SequenceE#getSequenceEList(SwiftTagListBlock)
-     * @param parentSequence a not null parent sequence to find SequenceE within it
-     * @return the found sequences or an empty list if none is found
-     * @since 9.2.18
-     */
-     public static List<SequenceE> getSequenceADDINFOList(final SwiftTagListBlock parentSequence) {
-        return getSequenceEList(parentSequence);
-    }
+	 * Same as getSequenceE using the sequence delimiter field qualifier
+	 * @see SequenceE#getSequenceE(SwiftTagListBlock)
+	 * @param parentSequence a not null parent sequence to find SequenceE within it
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 9.2.18
+	 */
+	public static SequenceE getSequenceADDINFO(SwiftTagListBlock parentSequence) {
+		return getSequenceE(parentSequence);
+	}
  
 
 
