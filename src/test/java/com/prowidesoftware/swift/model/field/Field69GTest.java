@@ -21,19 +21,23 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Tests for Field69G introduced in SRU2026 (MT 564).
- * Pattern: :4!c//&lt;DATE4&gt;&lt;TIME2&gt;[,3n][/[&lt;N&gt;]&lt;TIME3&gt;]//&lt;DATE4&gt;&lt;TIME2&gt;[,3n][/[&lt;N&gt;]&lt;TIME3&gt;]
+ * Pattern: :4!c//&lt;DATE4&gt;&lt;TIME2&gt;/[3n][/[N]&lt;TIME3&gt;]&lt;DATE4&gt;&lt;TIME2&gt;/[/3n][/[N]&lt;TIME3&gt;]
  */
 public class Field69GTest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("69G", ":TRDP//20260101120000//20260102120000");
+        testSerializationImpl(
+                "69G",
+                ":TRDP//20260101120000/20260102120000/",
+                ":TRDP//20260101120000/50020260102120000//250",
+                ":TRDP//20260101120000/500/N123020260102120000//250/N0100");
     }
 
     @Test
     public void testParse_simple() {
-        Field69G f = new Field69G(":TRDP//20260101120000//20260102120000");
+        Field69G f = new Field69G(":TRDP//20260101120000/20260102120000/");
         assertEquals("TRDP", f.getComponent1());
         assertEquals("20260101", f.getComponent2());
         assertEquals("120000", f.getComponent3());
@@ -43,7 +47,7 @@ public class Field69GTest extends AbstractFieldTest {
 
     @Test
     public void testParse_withDecimals() {
-        Field69G f = new Field69G(":TRDP//20260101120000,500//20260102120000,250");
+        Field69G f = new Field69G(":TRDP//20260101120000/50020260102120000//250");
         assertEquals("TRDP", f.getComponent1());
         assertEquals("500", f.getComponent4());
         assertEquals("250", f.getComponent9());
