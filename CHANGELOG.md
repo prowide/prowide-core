@@ -2,6 +2,7 @@
 
 ### 10.3.13 - SNAPSHOT
   * (PW-3185) `MtSwiftMessage.toJson()` now uses 1-based months (January=1) for Calendar fields and emits a `schemaVersion` marker. `fromJson()` reads both new and legacy (0-based) payloads transparently
+  * Migrated XML escape/unescape from deprecated `org.apache.commons.lang3.StringEscapeUtils` to `org.apache.commons.text.StringEscapeUtils`. Adds new runtime dependency on `org.apache.commons:commons-text:1.15.0`
   * Updated gson from 2.13.2 to 2.14.0
 
 ### 10.3.12 - March 2026

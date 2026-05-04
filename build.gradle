@@ -55,6 +55,7 @@ repositories {
 
 dependencies {
     implementation 'org.apache.commons:commons-lang3:3.20.0'
+    implementation 'org.apache.commons:commons-text:1.15.0'
     implementation 'com.google.code.gson:gson:2.14.0'
 
     // jakarta is only used for annotations, we do not add it as implementation dependency on purpose to avoid forcing
@@ -322,6 +323,10 @@ tasks.register('bundle', Zip) {
 }
 
 tasks.withType(Test).configureEach {
+    // DeprecationUtils#setEnv reflects into java.lang.ProcessEnvironment (and falls back to
+    // java.util.Collections$UnmodifiableMap) on purpose; open both packages so the JVM does
+    // not print illegal-access warnings on JDK 11+.
+    jvmArgs '--add-opens=java.base/java.lang=ALL-UNNAMED', '--add-opens=java.base/java.util=ALL-UNNAMED'
     doFirst {
         println 'Running test on ' + getJavaLauncher().get().getMetadata().getInstallationPath()
     }
