@@ -1,7 +1,10 @@
 # Prowide Core - CHANGELOG
 
+### 10.3.13 - SNAPSHOT
+  * (PW-3185) `MtSwiftMessage.toJson()` now uses 1-based months (January=1) for Calendar fields and emits a `schemaVersion` marker. `fromJson()` reads both new and legacy (0-based) payloads transparently
+
 ### 10.3.12 - March 2026
-  * Fix: Replaced `@OrderColumn` with `@OrderBy("creationDate ASC")` on `statusTrail`, `notes`, and `revisions` to prevent data loss caused by `sort_key` corruption under concurrent access. Existing `sort_key` columns must be made nullable or dropped.
+  * Fix: Replaced `@OrderColumn` with `@OrderBy("creationDate ASC")` on `statusTrail`, `notes`, and `revisions` to prevent data loss caused by `sort_key` corruption under concurrent access. Existing `sort_key` columns must be made nullable or dropped
   * Feat: Improved performance of `SwiftParseUtils.getLines()` by replacing `BufferedReader` with direct string index parsing
 
 ### 10.3.11 - March 2026
