@@ -50,7 +50,7 @@ Sequence A - General Information (M)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 22 F (M)</li>
 <li class="sequence">
 Sequence A1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
-<li class="field">Field 22 F (M)</li>
+<li class="field">Field 22 F (O)</li>
 <li class="field">Field 13 A,B (O)</li>
 <li class="field">Field 20 C (M)</li>
 <li class="field">Field 16 S (M)</li>
@@ -101,7 +101,7 @@ Sequence B2 - Financial Instrument/Account (M)<ul><li class="field">Field 16 R (
 <li class="sequence">
 Sequence C - Client Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="sequence">
-Sequence C1 - Address (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence C1 - Address (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 17 B (M)</li>
 <li class="fieldset">
 Fieldset 22
@@ -956,6 +956,26 @@ public class MT500 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94G, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 94G at MT500 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field94G objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field94G> getField94G() {
+		final List<Field94G> result = new ArrayList<>();
+		final Tag[] tags = tags("94G");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field94G(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94C, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 94C at MT500 are expected at one sequence or across several sequences.
@@ -990,26 +1010,6 @@ public class MT500 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field94D(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94G, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 94G at MT500 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field94G objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field94G> getField94G() {
-		final List<Field94G> result = new ArrayList<>();
-		final Tag[] tags = tags("94G");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field94G(tag.getValue()));
             }
 		}
 		return result;
