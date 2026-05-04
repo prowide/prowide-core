@@ -223,8 +223,8 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
      * <p>The deserializer is backward compatible with JSON produced by previous library versions:
      * payloads without a top-level {@code schemaVersion} marker are interpreted as the legacy
      * format (Java {@link Calendar} months stored 0-based, January=0). Payloads carrying
-     * {@code schemaVersion >= }{@link AbstractSwiftMessage#JSON_SCHEMA_VERSION} are interpreted
-     * with the new 1-based month format produced by the current {@code toJson()}.
+     * {@code schemaVersion >= }{@value #ONE_BASED_MONTH_MIN_VERSION} are interpreted with the
+     * new 1-based month format produced by the current {@code toJson()}.
      *
      * @param json JSON representation
      * @return message object
@@ -239,6 +239,14 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
         return builder.create().fromJson(element, MtSwiftMessage.class);
     }
 
+    /**
+     * Minimum {@code schemaVersion} that indicates the 1-based month Calendar format introduced
+     * in 10.3.13. Kept as a literal (independent of {@link AbstractSwiftMessage#JSON_SCHEMA_VERSION})
+     * so that future schema bumps for unrelated reasons do not silently misclassify v4 payloads
+     * as legacy on read.
+     */
+    private static final int ONE_BASED_MONTH_MIN_VERSION = 4;
+
     private static boolean hasNewCalendarFormat(JsonObject obj) {
         JsonElement v = obj.get("schemaVersion");
         if (v == null
@@ -247,7 +255,7 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
                 || !v.getAsJsonPrimitive().isNumber()) {
             return false;
         }
-        return v.getAsInt() >= AbstractSwiftMessage.JSON_SCHEMA_VERSION;
+        return v.getAsInt() >= ONE_BASED_MONTH_MIN_VERSION;
     }
 
     /**
