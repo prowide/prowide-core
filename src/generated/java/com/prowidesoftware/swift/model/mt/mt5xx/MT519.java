@@ -89,7 +89,7 @@ Fieldset 36
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
-Sequence B2 - Financial Instrument/Account (M)<ul><li class="field">Field 16 R (M)</li>
+Sequence B2 - Financial Instrument/Account (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 95 P,R (O)</li>
 <li class="field">Field 97 A,D (O)</li>
 <li class="field">Field 16 S (M)</li>
@@ -99,7 +99,7 @@ Sequence B2 - Financial Instrument/Account (M)<ul><li class="field">Field 16 R (
 <li class="sequence">
 Sequence C - Client Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="sequence">
-Sequence C1 - Address (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence C1 - Address (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 17
  (M) (repetitive)<ul><li>FieldsetItem 17 B (M)</li><li>FieldsetItem 17 B (O)</li></ul></li><li class="fieldset">
@@ -966,6 +966,26 @@ public class MT519 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94G, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 94G at MT519 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field94G objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field94G> getField94G() {
+		final List<Field94G> result = new ArrayList<>();
+		final Tag[] tags = tags("94G");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field94G(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94C, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 94C at MT519 are expected at one sequence or across several sequences.
@@ -1000,26 +1020,6 @@ public class MT519 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field94D(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94G, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 94G at MT519 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field94G objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field94G> getField94G() {
-		final List<Field94G> result = new ArrayList<>();
-		final Tag[] tags = tags("94G");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field94G(tag.getValue()));
             }
 		}
 		return result;

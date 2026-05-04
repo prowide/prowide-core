@@ -53,7 +53,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>&lt;DATE4&gt;/&lt;DATE4&gt;</code></li>
+ * 		<li>validation pattern: <code>&lt;DATE4&gt;[/&lt;DATE4&gt;]</code></li>
  * 		<li>parser pattern: <code>S/S</code></li>
  * 		<li>components pattern: <code>DD</code></li>
  * </ul>
@@ -255,7 +255,7 @@ public class Field30K extends Field implements Serializable, DateContainer {
     @ProwideDeprecated(phase2 = TargetYear.SRU2026)
     @Override
     public String validatorPattern() {
-        return "<DATE4>/<DATE4>";
+        return "<DATE4>[/<DATE4>]";
     }
 
     /**
@@ -270,6 +270,9 @@ public class Field30K extends Field implements Serializable, DateContainer {
      */
     @Override
     public boolean isOptional(int component) {
+        if (component == 2) {
+            return true;
+        }
         return false;
     }
 

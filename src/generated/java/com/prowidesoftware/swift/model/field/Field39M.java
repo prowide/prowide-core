@@ -49,7 +49,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>2!a</code></li>
+ * 		<li>validation pattern: <code>&lt;CC&gt;</code></li>
  * 		<li>parser pattern: <code>S</code></li>
  * 		<li>components pattern: <code>S</code></li>
  * </ul>
@@ -217,7 +217,7 @@ public class Field39M extends Field implements Serializable {
     @ProwideDeprecated(phase2 = TargetYear.SRU2026)
     @Override
     public String validatorPattern() {
-        return "2!a";
+        return "<CC>";
     }
 
     /**

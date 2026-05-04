@@ -65,7 +65,7 @@ Sequence B - Confirmation Details (M)<ul><li class="field">Field 16 R (M)</li>
 Fieldset 98
  (M) (repetitive)<ul><li>FieldsetItem 98 A,B,C,E (M)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="fieldset">
 Fieldset 90
- (O)<ul><li>FieldsetItem 90 A (O)</li><li>FieldsetItem 90 A (O)</li></ul></li><li class="fieldset">
+ (O)<ul><li>FieldsetItem 90 A,B (O)</li><li>FieldsetItem 90 A,B (O)</li></ul></li><li class="fieldset">
 Fieldset 92
  (O)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li></ul></li><li class="fieldset">
 Fieldset 99
@@ -86,7 +86,7 @@ Fieldset 97
 <li class="field">Field 20 C (O)</li>
 <li class="fieldset">
 Fieldset 70
- (O)<ul><li>FieldsetItem 70 C (O)</li><li>FieldsetItem 70 E (O)</li></ul></li><li class="field">Field 22 F (O) (repetitive)</li>
+ (O)<ul><li>FieldsetItem 70 C (O)</li><li>FieldsetItem 70 E (O)</li></ul></li><li class="field">Field 22 F (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="fieldset">
@@ -142,7 +142,7 @@ Sequence C2 - Cash Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)<
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 L,S (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,D,E (O)</li></ul></li><li class="field">Field 98 A,C (O)</li>
+ (O) (repetitive)<ul><li>FieldsetItem 97 A,D,E (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 A,E (O)</li></ul></li><li class="field">Field 98 A,C (O)</li>
 <li class="field">Field 20 C (O)</li>
 <li class="field">Field 70 C (O)</li>
 <li class="field">Field 16 S (M)</li>
@@ -712,6 +712,26 @@ public class MT514 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 90B, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 90B at MT514 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field90B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field90B> getField90B() {
+		final List<Field90B> result = new ArrayList<>();
+		final Tag[] tags = tags("90B");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field90B(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 92A, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 92A at MT514 are expected at one sequence or across several sequences.
@@ -1246,26 +1266,6 @@ public class MT514 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field17B(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 90B, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 90B at MT514 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field90B objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field90B> getField90B() {
-		final List<Field90B> result = new ArrayList<>();
-		final Tag[] tags = tags("90B");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field90B(tag.getValue()));
             }
 		}
 		return result;

@@ -67,16 +67,16 @@ Sequence A2a - Reason (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
-Sequence B - Registration Details (M)<ul><li class="field">Field 16 R (M)</li>
+Sequence B - Registration Details (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 20
- (M) (repetitive)<ul><li>FieldsetItem 20 D (M)</li><li>FieldsetItem 20 D (O)</li><li>FieldsetItem 20 D (O)</li></ul></li><li class="fieldset">
+ (O) (repetitive)<ul><li>FieldsetItem 20 D (O)</li><li>FieldsetItem 20 D (O)</li><li>FieldsetItem 20 D (O)</li></ul></li><li class="fieldset">
 Fieldset 95
  (O) (repetitive)<ul><li>FieldsetItem 95 P,R,U (O)</li><li>FieldsetItem 95 S (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 94
  (O)<ul><li>FieldsetItem 94 G (O)</li><li>FieldsetItem 94 D (O)</li><li>FieldsetItem 94 C (O)</li><li>FieldsetItem 94 G (O)</li><li>FieldsetItem 94 D (O)</li></ul></li><li class="fieldset">
-Fieldset 94
- (O)<ul><li>FieldsetItem 94 B (O)</li><li>FieldsetItem 94 B (O)</li><li>FieldsetItem 94 B (O)</li></ul></li><li class="fieldset">
+Fieldset 13
+ (O)<ul><li>FieldsetItem 13 B (O)</li><li>FieldsetItem 13 B (O)</li><li>FieldsetItem 13 B (O)</li></ul></li><li class="fieldset">
 Fieldset 98
  (O)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="field">Field 35 B (O)</li>
 <li class="field">Field 36 B,D (O)</li>
@@ -777,26 +777,6 @@ public class MT510 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field94D(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 94B, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 94B at MT510 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field94B objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field94B> getField94B() {
-		final List<Field94B> result = new ArrayList<>();
-		final Tag[] tags = tags("94B");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field94B(tag.getValue()));
             }
 		}
 		return result;
