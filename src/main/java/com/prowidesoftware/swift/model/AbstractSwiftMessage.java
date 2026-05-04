@@ -17,6 +17,7 @@ package com.prowidesoftware.swift.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.prowidesoftware.JsonSerializable;
 import com.prowidesoftware.swift.utils.Lib;
 import jakarta.persistence.*;
@@ -63,6 +64,16 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @since 7.8.8
      */
     public static final String IDENTIFIER_NAK = "NAK";
+
+    /**
+     * Version of the JSON serialization format emitted by {@link #toJson()}. The value is
+     * written as a top-level {@code schemaVersion} field. {@link MtSwiftMessage#fromJson(String)}
+     * uses its presence to discriminate the new 1-based-month Calendar format from the legacy
+     * 0-based format produced by previous library versions.
+     *
+     * @since 10.3.13
+     */
+    public static final int JSON_SCHEMA_VERSION = 4;
 
     private static final transient java.util.logging.Logger log =
             java.util.logging.Logger.getLogger(AbstractSwiftMessage.class.getName());
@@ -1407,6 +1418,10 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
     /**
      * Isolated Json implementation, useful for mocked test
      *
+     * <p>The output includes a top-level {@code schemaVersion} field set to {@link #JSON_SCHEMA_VERSION}.
+     * This marker is used by {@link MtSwiftMessage#fromJson(String)} to discriminate the new 1-based-month
+     * Calendar format from the legacy 0-based format produced by previous library versions.
+     *
      * @return json serialization using Gson
      * @since 7.10.6
      */
@@ -1415,7 +1430,9 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
                 .setPrettyPrinting()
                 .registerTypeHierarchyAdapter(Calendar.class, CalendarTypeAdapter.INSTANCE)
                 .create();
-        return gson.toJson(this);
+        JsonObject root = gson.toJsonTree(this).getAsJsonObject();
+        root.addProperty("schemaVersion", JSON_SCHEMA_VERSION);
+        return gson.toJson(root);
     }
 
     /**

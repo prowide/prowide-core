@@ -93,7 +93,8 @@ public class MtSwiftMessageJsonTest {
 
     @Test
     public void testMtSwiftMessageFromJson() {
-        String json = "{\n" + "  \"uuid\": \"IBBBBUSC0FFF103TBEXO200909031\",\n"
+        String json = "{\n" + "  \"schemaVersion\": 4,\n"
+                + "  \"uuid\": \"IBBBBUSC0FFF103TBEXO200909031\",\n"
                 + "  \"message\": \"{1:F01AAAAUSC0ADDD0344000050}{2:I103BBBBUSC0XFFFN}{4:\\n:20:TBEXO200909031\\n:23B:CRED\\n:32A:090903USD23453,\\n:50K:/01111001759234567890\\nROMAN GUILLEN DOBOZI \\nR00000V0574734\\n:53B:/00010013800002001234\\nMI BANCO\\n:59:/00013500510020179998\\nFOO CORP\\nR00000V000034534\\n:71A:OUR\\n:72:/TIPO/422\\n-}\",\n"
                 + "  \"identifier\": \"fin.103\",\n"
                 + "  \"sender\": \"AAAAUSC0DDD\",\n"

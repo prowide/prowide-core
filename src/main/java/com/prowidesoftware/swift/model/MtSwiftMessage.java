@@ -15,8 +15,10 @@
  */
 package com.prowidesoftware.swift.model;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.prowidesoftware.swift.io.ConversionService;
 import com.prowidesoftware.swift.model.mt.AbstractMT;
 import com.prowidesoftware.swift.model.mt.DefaultMtMetadataStrategy;
@@ -218,15 +220,34 @@ public class MtSwiftMessage extends AbstractSwiftMessage {
     /**
      * This method deserializes the JSON data into an MT message object.
      *
+     * <p>The deserializer is backward compatible with JSON produced by previous library versions:
+     * payloads without a top-level {@code schemaVersion} marker are interpreted as the legacy
+     * format (Java {@link Calendar} months stored 0-based, January=0). Payloads carrying
+     * {@code schemaVersion >= }{@link AbstractSwiftMessage#JSON_SCHEMA_VERSION} are interpreted
+     * with the new 1-based month format produced by the current {@code toJson()}.
+     *
      * @param json JSON representation
      * @return message object
      * @since 7.10.3
      */
     public static MtSwiftMessage fromJson(String json) {
-        final Gson gson = new GsonBuilder()
-                .registerTypeHierarchyAdapter(Calendar.class, CalendarTypeAdapter.INSTANCE)
-                .create();
-        return gson.fromJson(json, MtSwiftMessage.class);
+        JsonElement element = JsonParser.parseString(json);
+        GsonBuilder builder = new GsonBuilder();
+        if (element.isJsonObject() && hasNewCalendarFormat(element.getAsJsonObject())) {
+            builder.registerTypeHierarchyAdapter(Calendar.class, CalendarTypeAdapter.INSTANCE);
+        }
+        return builder.create().fromJson(element, MtSwiftMessage.class);
+    }
+
+    private static boolean hasNewCalendarFormat(JsonObject obj) {
+        JsonElement v = obj.get("schemaVersion");
+        if (v == null
+                || v.isJsonNull()
+                || !v.isJsonPrimitive()
+                || !v.getAsJsonPrimitive().isNumber()) {
+            return false;
+        }
+        return v.getAsInt() >= AbstractSwiftMessage.JSON_SCHEMA_VERSION;
     }
 
     /**

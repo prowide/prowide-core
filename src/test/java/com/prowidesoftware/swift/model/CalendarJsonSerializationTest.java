@@ -117,6 +117,7 @@ class CalendarJsonSerializationTest {
     @Test
     void fromJson_deserializesOneBasedMonth() {
         String json = "{\n"
+                + "  \"schemaVersion\": 4,\n"
                 + "  \"message\": \"{1:F01AAAAUSC0ADDD0344000050}{2:I103BBBBUSC0XFFFN}{4:\\n:20:TBEXO200909031\\n:23B:CRED\\n:32A:090903USD23453,\\n:50K:/01111001759234567890\\nJOE DOE\\nR00000V0574734\\n:53B:/00010013800002001234\\nMI BANCO\\n:59:/00013500510020179998\\nFOO CORP\\nR00000V000034534\\n:71A:OUR\\n:72:/TIPO/422\\n-}\",\n"
                 + "  \"identifier\": \"fin.103\",\n"
                 + "  \"creationDate\": {\n"
@@ -164,6 +165,7 @@ class CalendarJsonSerializationTest {
         // GregorianCalendar is lenient by default; month 0 rolls to Dec of previous year,
         // month 13 rolls to Jan of next year. This test documents the behavior.
         String json = "{\n"
+                + "  \"schemaVersion\": 4,\n"
                 + "  \"message\": \"{1:F01AAAAUSC0ADDD0344000050}{2:I103BBBBUSC0XFFFN}{4:\\n:20:TBEXO200909031\\n:23B:CRED\\n:32A:090903USD23453,\\n:50K:/01111001759234567890\\nJOE DOE\\nR00000V0574734\\n:53B:/00010013800002001234\\nMI BANCO\\n:59:/00013500510020179998\\nFOO CORP\\nR00000V000034534\\n:71A:OUR\\n:72:/TIPO/422\\n-}\",\n"
                 + "  \"identifier\": \"fin.103\",\n"
                 + "  \"creationDate\": {\n"
@@ -272,6 +274,91 @@ class CalendarJsonSerializationTest {
         assertEquals(0, cal.get(Calendar.HOUR_OF_DAY));
         assertEquals(0, cal.get(Calendar.MINUTE));
         assertEquals(0, cal.get(Calendar.SECOND));
+    }
+
+    @Test
+    void toJson_includesSchemaVersionMarker() {
+        MtSwiftMessage m = new MtSwiftMessage(FIN);
+
+        String json = m.toJson();
+        JsonObject root = JsonParser.parseString(json).getAsJsonObject();
+
+        assertTrue(root.has("schemaVersion"), "toJson output must include the schemaVersion marker");
+        assertEquals(
+                AbstractSwiftMessage.JSON_SCHEMA_VERSION,
+                root.get("schemaVersion").getAsInt(),
+                "schemaVersion must match AbstractSwiftMessage.JSON_SCHEMA_VERSION");
+    }
+
+    @Test
+    void fromJson_legacyPayloadWithoutMarker_deserializesZeroBasedMonth() {
+        // Legacy format: month is 0-based (January=0, December=11), no schemaVersion marker.
+        // Month 7 in legacy JSON corresponds to Calendar.AUGUST (which is also 7 in 0-based).
+        String json = "{\n"
+                + "  \"message\": \"{1:F01AAAAUSC0ADDD0344000050}{2:I103BBBBUSC0XFFFN}{4:\\n:20:TBEXO200909031\\n:23B:CRED\\n:32A:090903USD23453,\\n:50K:/01111001759234567890\\nJOE DOE\\nR00000V0574734\\n:53B:/00010013800002001234\\nMI BANCO\\n:59:/00013500510020179998\\nFOO CORP\\nR00000V000034534\\n:71A:OUR\\n:72:/TIPO/422\\n-}\",\n"
+                + "  \"identifier\": \"fin.103\",\n"
+                + "  \"creationDate\": {\n"
+                + "    \"year\": 2025,\n"
+                + "    \"month\": 7,\n"
+                + "    \"dayOfMonth\": 15,\n"
+                + "    \"hourOfDay\": 14,\n"
+                + "    \"minute\": 30,\n"
+                + "    \"second\": 0\n"
+                + "  }\n"
+                + "}";
+
+        MtSwiftMessage msg = MtSwiftMessage.fromJson(json);
+
+        assertEquals(2025, msg.getCreationDate().get(Calendar.YEAR));
+        assertEquals(Calendar.AUGUST, msg.getCreationDate().get(Calendar.MONTH));
+        assertEquals(15, msg.getCreationDate().get(Calendar.DAY_OF_MONTH));
+    }
+
+    @Test
+    void fromJson_payloadWithMarker_deserializesOneBasedMonth() {
+        // New format: month is 1-based (January=1, December=12), schemaVersion marker present.
+        // Month 8 in new JSON corresponds to Calendar.AUGUST (which is 7 in 0-based).
+        String json = "{\n"
+                + "  \"schemaVersion\": 4,\n"
+                + "  \"message\": \"{1:F01AAAAUSC0ADDD0344000050}{2:I103BBBBUSC0XFFFN}{4:\\n:20:TBEXO200909031\\n:23B:CRED\\n:32A:090903USD23453,\\n:50K:/01111001759234567890\\nJOE DOE\\nR00000V0574734\\n:53B:/00010013800002001234\\nMI BANCO\\n:59:/00013500510020179998\\nFOO CORP\\nR00000V000034534\\n:71A:OUR\\n:72:/TIPO/422\\n-}\",\n"
+                + "  \"identifier\": \"fin.103\",\n"
+                + "  \"creationDate\": {\n"
+                + "    \"year\": 2025,\n"
+                + "    \"month\": 8,\n"
+                + "    \"dayOfMonth\": 15,\n"
+                + "    \"hourOfDay\": 14,\n"
+                + "    \"minute\": 30,\n"
+                + "    \"second\": 0\n"
+                + "  }\n"
+                + "}";
+
+        MtSwiftMessage msg = MtSwiftMessage.fromJson(json);
+
+        assertEquals(2025, msg.getCreationDate().get(Calendar.YEAR));
+        assertEquals(Calendar.AUGUST, msg.getCreationDate().get(Calendar.MONTH));
+        assertEquals(15, msg.getCreationDate().get(Calendar.DAY_OF_MONTH));
+    }
+
+    @Test
+    void fromJson_legacyPayloadWithJanuary_deserializesAsJanuary() {
+        // In legacy format, January is encoded as month 0 (Calendar.JANUARY).
+        // This is the most sensitive case: under the new adapter, month 0 would be lenient-rolled
+        // to December of the previous year. The marker-based discrimination must prevent that.
+        String json = "{\n"
+                + "  \"message\": \"{1:F01AAAAUSC0ADDD0344000050}{2:I103BBBBUSC0XFFFN}{4:\\n:20:TBEXO200909031\\n:23B:CRED\\n:32A:090903USD23453,\\n:50K:/01111001759234567890\\nJOE DOE\\nR00000V0574734\\n:53B:/00010013800002001234\\nMI BANCO\\n:59:/00013500510020179998\\nFOO CORP\\nR00000V000034534\\n:71A:OUR\\n:72:/TIPO/422\\n-}\",\n"
+                + "  \"identifier\": \"fin.103\",\n"
+                + "  \"creationDate\": {\n"
+                + "    \"year\": 2024,\n"
+                + "    \"month\": 0,\n"
+                + "    \"dayOfMonth\": 20\n"
+                + "  }\n"
+                + "}";
+
+        MtSwiftMessage msg = MtSwiftMessage.fromJson(json);
+
+        assertEquals(2024, msg.getCreationDate().get(Calendar.YEAR));
+        assertEquals(Calendar.JANUARY, msg.getCreationDate().get(Calendar.MONTH));
+        assertEquals(20, msg.getCreationDate().get(Calendar.DAY_OF_MONTH));
     }
 
     @Test
