@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+### 10.3.14 - SNAPSHOT
+  * Fix: Fixed Fields and Schemas with latest SRU2025 definition
+
 ### 10.3.13 - May 2026
   * (PW-3185) `MtSwiftMessage.toJson()` now uses 1-based months (January=1) for Calendar fields and emits a `schemaVersion` marker. `fromJson()` reads both new and legacy (0-based) payloads transparently
   * Migrated XML escape/unescape from deprecated `org.apache.commons.lang3.StringEscapeUtils` to `org.apache.commons.text.StringEscapeUtils`. Adds new runtime dependency on `org.apache.commons:commons-text:1.15.0`
