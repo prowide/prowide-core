@@ -260,6 +260,9 @@ public class Field30I extends Field implements Serializable, DateContainer {
      */
     @Override
     public boolean isOptional(int component) {
+        if (component == 2) {
+            return true;
+        }
         return false;
     }
 

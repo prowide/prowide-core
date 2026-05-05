@@ -141,7 +141,7 @@ Fieldset 19
 <li class="sequence">
 Sequence B1c - Quantity Breakdown (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 B (O)</li>
-<li class="field">Field 93 B (O)</li>
+<li class="field">Field 93 B,F (O)</li>
 <li class="field">Field 98 A,C,E (O)</li>
 <li class="field">Field 90 A,B (O)</li>
 <li class="field">Field 22 F (O)</li>

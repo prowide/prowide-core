@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+### 10.3.14 - SNAPSHOT
+  * Fix: Fields definitions alignment: `Field30I` and `Field30K` component 2 made optional (and `Field30K` validation pattern updated to `<DATE4>[/<DATE4>]`), `Field39M` validation pattern updated to `<CC>`, and `Field56B` name & address component made optional
+  * Fix: Minor changes in MT message structures from SRU2025 schema: MT306, MT340, MT500-MT502, MT504, MT508, MT510, MT513-MT515, MT518, MT519, MT524, MT527, MT530, MT535-MT538, MT540-MT548, MT558, MT564-MT566, MT575, MT578, MT586, MT600, MT601, MT671
+
 ### 10.3.13 - May 2026
   * (PW-3185) `MtSwiftMessage.toJson()` now uses 1-based months (January=1) for Calendar fields and emits a `schemaVersion` marker. `fromJson()` reads both new and legacy (0-based) payloads transparently
   * Migrated XML escape/unescape from deprecated `org.apache.commons.lang3.StringEscapeUtils` to `org.apache.commons.text.StringEscapeUtils`. Adds new runtime dependency on `org.apache.commons:commons-text:1.15.0`
