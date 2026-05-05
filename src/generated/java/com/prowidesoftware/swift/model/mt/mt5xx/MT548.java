@@ -1305,18 +1305,18 @@ public class MT548 extends AbstractMT implements Serializable {
 	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 17B, 
 	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 17B at MT548 are expected at one sequence or across several sequences.
+	 * Multiple occurrences of field 99A at MT548 are expected at one sequence or across several sequences.
 	 * 
-	 * @return a List of Field17B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @return a List of Field99A objects or <code>Collections.emptyList()</code> if none is not found
 	 * @see SwiftTagListBlock#getTagsByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public List<Field17B> getField17B() {
-		final List<Field17B> result = new ArrayList<>();
-		final Tag[] tags = tags("17B");
+	public List<Field99A> getField99A() {
+		final List<Field99A> result = new ArrayList<>();
+		final Tag[] tags = tags("99A");
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
-                result.add(new Field17B(tag.getValue()));
+                result.add(new Field99A(tag.getValue()));
             }
 		}
 		return result;

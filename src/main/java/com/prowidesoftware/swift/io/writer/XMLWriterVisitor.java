@@ -15,7 +15,7 @@
  */
 package com.prowidesoftware.swift.io.writer;
 
-import static org.apache.commons.lang3.StringEscapeUtils.escapeXml11;
+import static org.apache.commons.text.StringEscapeUtils.escapeXml11;
 
 import com.prowidesoftware.ProwideException;
 import com.prowidesoftware.swift.model.*;

@@ -18,3 +18,4 @@ release.sh
 .idea/*
 *.pb
 .java-version
+**/.claude/settings.local.json
