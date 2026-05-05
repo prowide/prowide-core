@@ -15,7 +15,7 @@
  */
 package com.prowidesoftware.swift.io.parser;
 
-import static org.apache.commons.lang3.StringEscapeUtils.unescapeXml;
+import static org.apache.commons.text.StringEscapeUtils.unescapeXml;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
 import com.prowidesoftware.swift.model.*;
