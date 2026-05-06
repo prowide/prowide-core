@@ -281,6 +281,7 @@ public abstract class OptionJPartyField extends Field {
         ADD1,
         ADD2,
         CITY,
+        CTRY,
         USFW,
         USCH,
         GBSC,

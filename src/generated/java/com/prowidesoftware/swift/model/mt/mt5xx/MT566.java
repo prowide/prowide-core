@@ -92,9 +92,7 @@ Fieldset 93
 Sequence C - Corporate Action Details (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 98
- (O)<ul><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li></ul></li><li class="fieldset">
-Fieldset 69
- (O)<ul><li>FieldsetItem 69 A,B,C,D,E,F (O)</li><li>FieldsetItem 69 A,B,C,D,E,F (O)</li><li>FieldsetItem 69 A,B,C,D,E,F (O)</li><li>FieldsetItem 69 A,B,C,D,E,F (O)</li><li>FieldsetItem 69 A,B,C,D,E,F (O)</li></ul></li><li class="field">Field 99 A (O)</li>
+ (O)<ul><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li></ul></li><li class="field">Field 99 A (O)</li>
 <li class="fieldset">
 Fieldset 92
  (O)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 F,P (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F (O)</li></ul></li><li class="fieldset">
@@ -117,10 +115,8 @@ Fieldset 22
 <li class="fieldset">
 Fieldset 98
  (O)<ul><li>FieldsetItem 98 A,B,C,E (O)</li><li>FieldsetItem 98 A,B,C,E (O)</li></ul></li><li class="fieldset">
-Fieldset 69
- (O)<ul><li>FieldsetItem 69 A,B,C,D,E,F (O)</li><li>FieldsetItem 69 A,B,C,D,E,F (O)</li><li>FieldsetItem 69 A,B,C,D,E,F (O)</li></ul></li><li class="fieldset">
 Fieldset 92
- (O) (repetitive)<ul><li>FieldsetItem 92 F,H,J (O) (repetitive)</li><li>FieldsetItem 92 A,F,R (O) (repetitive)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A,F,J (O) (repetitive)</li><li>FieldsetItem 92 J (O) (repetitive)</li><li>FieldsetItem 92 F,H,J (O) (repetitive)</li><li>FieldsetItem 92 A,F,R (O) (repetitive)</li></ul></li><li class="fieldset">
+ (O) (repetitive)<ul><li>FieldsetItem 92 F,H,J (O) (repetitive)</li><li>FieldsetItem 92 A,F,R (O) (repetitive)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A,K (O)</li><li>FieldsetItem 92 A,F,J (O) (repetitive)</li><li>FieldsetItem 92 J (O) (repetitive)</li><li>FieldsetItem 92 F,H,J (O) (repetitive)</li><li>FieldsetItem 92 A,F,R (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 90
  (O)<ul><li>FieldsetItem 90 A,B (O)</li><li>FieldsetItem 90 A,B (O)</li></ul></li><li class="field">Field 94 B (O)</li>
 <li class="sequence">
@@ -188,14 +184,13 @@ Fieldset 19
 Fieldset 98
  (M) (repetitive)<ul><li>FieldsetItem 98 A,C (M)</li><li>FieldsetItem 98 A (O)</li><li>FieldsetItem 98 A (O)</li><li>FieldsetItem 98 A,C,E (O)</li><li>FieldsetItem 98 A (O)</li></ul></li><li class="fieldset">
 Fieldset 92
- (O) (repetitive)<ul><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 F (O)</li><li>FieldsetItem 92 A,F,M (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 F,H,J (O) (repetitive)</li><li>FieldsetItem 92 B (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F,J (O) (repetitive)</li><li>FieldsetItem 92 F,H,J (O) (repetitive)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A,F,M (O)</li><li>FieldsetItem 92 A,F (O) (repetitive)</li><li>FieldsetItem 92 A,F,R (O) (repetitive)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A,F,R (O) (repetitive)</li><li>FieldsetItem 92 A,F,J,R (O) (repetitive)</li></ul></li><li class="fieldset">
+ (O) (repetitive)<ul><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 F (O)</li><li>FieldsetItem 92 A,F,M (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 F,H,J (O) (repetitive)</li><li>FieldsetItem 92 B (O)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F,J (O) (repetitive)</li><li>FieldsetItem 92 F,H,J (O) (repetitive)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A,F,M (O)</li><li>FieldsetItem 92 A,F (O) (repetitive)</li><li>FieldsetItem 92 A,F,R (O) (repetitive)</li><li>FieldsetItem 92 A,F (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A,F,R (O) (repetitive)</li><li>FieldsetItem 92 A,F,J,R (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 90
  (O)<ul><li>FieldsetItem 90 A,B,F,J,L (O)</li><li>FieldsetItem 90 A,B,K (O)</li><li>FieldsetItem 90 A,B (O)</li></ul></li><li class="sequence">
-Sequence D2b - Tax Voucher Details (O)<ul><li class="field">Field 16 R (M)</li>
-<li class="field">Field 20 C (M)</li>
+Sequence D2b - Tax Documentation Details (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
-Fieldset 98
- (O)<ul><li>FieldsetItem 98 A,C (O)</li><li>FieldsetItem 98 A,C (O)</li></ul></li><li class="field">Field 16 S (M)</li>
+Fieldset 20
+ (O) (repetitive)<ul><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li></ul></li><li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -213,7 +208,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2025</strong>
+ * This source code is specific to release <strong>SRU 2026</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -222,7 +217,7 @@ public class MT566 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2025;
+	public static final int SRU = 2026;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT566.class.getName());
 	
@@ -903,126 +898,6 @@ public class MT566 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field98B(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 69A, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 69A at MT566 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field69A objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field69A> getField69A() {
-		final List<Field69A> result = new ArrayList<>();
-		final Tag[] tags = tags("69A");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field69A(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 69B, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 69B at MT566 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field69B objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field69B> getField69B() {
-		final List<Field69B> result = new ArrayList<>();
-		final Tag[] tags = tags("69B");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field69B(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 69C, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 69C at MT566 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field69C objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field69C> getField69C() {
-		final List<Field69C> result = new ArrayList<>();
-		final Tag[] tags = tags("69C");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field69C(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 69D, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 69D at MT566 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field69D objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field69D> getField69D() {
-		final List<Field69D> result = new ArrayList<>();
-		final Tag[] tags = tags("69D");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field69D(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 69E, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 69E at MT566 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field69E objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field69E> getField69E() {
-		final List<Field69E> result = new ArrayList<>();
-		final Tag[] tags = tags("69E");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field69E(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 69F, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 69F at MT566 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field69F objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field69F> getField69F() {
-		final List<Field69F> result = new ArrayList<>();
-		final Tag[] tags = tags("69F");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field69F(tag.getValue()));
             }
 		}
 		return result;
@@ -1877,7 +1752,7 @@ public class MT566 extends AbstractMT implements Serializable {
     public SequenceA getSequenceGENL() {
         return getSequenceA();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2164,7 +2039,7 @@ public class MT566 extends AbstractMT implements Serializable {
     public SequenceA2 getSequenceREVR() {
         return getSequenceA2();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceA2 delimited by 16R/16S the value of SequenceA2#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2302,7 +2177,7 @@ public class MT566 extends AbstractMT implements Serializable {
     public SequenceB getSequenceUSECU() {
         return getSequenceB();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB delimited by 16R/16S the value of SequenceB#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2443,19 +2318,10 @@ public class MT566 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT566GetSequenceB1_sru2025(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT566GetSequenceB1_sru2026(this);
 	}
 
-    /**
-     * Same as getSequenceB1 using the sequence delimiter field qualifier
-     * @see SequenceB1#getSequenceB1()
-     * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
-     * @since 9.2.18
-     */
-    public SequenceB1 getSequenceFIA() {
-        return getSequenceB1();
-    }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB1 delimited by 16R/16S the value of SequenceB1#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2473,16 +2339,6 @@ public class MT566 extends AbstractMT implements Serializable {
 		return s;
 	}
 
-    /**
-	 * Same as getSequenceB1 using the sequence delimiter field qualifier
-	 * @see SequenceB1#getSequenceB1(SwiftTagListBlock)
-	 * @param parentSequence a not null parent sequence to find SequenceB1 within it
-	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
-	 * @since 9.2.18
-	 */
-	public static SequenceB1 getSequenceFIA(SwiftTagListBlock parentSequence) {
-		return getSequenceB1(parentSequence);
-	}
  
 
 	/**
@@ -2593,7 +2449,7 @@ public class MT566 extends AbstractMT implements Serializable {
     public SequenceC getSequenceCADETL() {
         return getSequenceC();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceC delimited by 16R/16S the value of SequenceC#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2731,7 +2587,7 @@ public class MT566 extends AbstractMT implements Serializable {
     public SequenceD getSequenceCACONF() {
         return getSequenceD();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceD delimited by 16R/16S the value of SequenceD#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -3024,7 +2880,7 @@ public class MT566 extends AbstractMT implements Serializable {
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT566GetSequenceD1aList_sru2025(this);
+		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT566GetSequenceD1aList_sru2026(this);
 	}
 
 
@@ -3531,9 +3387,9 @@ public class MT566 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>TAXVODET</em>.
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>TAXDODET</em>.
 		 */
-		public static final String START_END_16RS = "TAXVODET";
+		public static final String START_END_16RS = "TAXDODET";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
 		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
 
@@ -3615,7 +3471,7 @@ public class MT566 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public List<SequenceD2b> getSequenceTAXVODETList() {
+     public List<SequenceD2b> getSequenceTAXDODETList() {
         return getSequenceD2bList();
      }
 
@@ -3652,7 +3508,7 @@ public class MT566 extends AbstractMT implements Serializable {
      * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-     public static List<SequenceD2b> getSequenceTAXVODETList(final SwiftTagListBlock parentSequence) {
+     public static List<SequenceD2b> getSequenceTAXDODETList(final SwiftTagListBlock parentSequence) {
         return getSequenceD2bList(parentSequence);
     }
  
@@ -3765,7 +3621,7 @@ public class MT566 extends AbstractMT implements Serializable {
     public SequenceE getSequenceADDINFO() {
         return getSequenceE();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceE delimited by 16R/16S the value of SequenceE#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.

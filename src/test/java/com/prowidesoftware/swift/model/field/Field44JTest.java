@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006-2026 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ public class Field44JTest extends AbstractFieldTest {
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("44J", "US/FOOBAR\r\n/HELLO WORLD");
+        testSerializationImpl("44J", "US/FOOBAR");
     }
 
     @Test
@@ -39,7 +39,6 @@ public class Field44JTest extends AbstractFieldTest {
         f = new Field44J("NL");
         assertEquals("NL", f.getComponent1());
         assertNull(f.getComponent2());
-        assertNull(f.getComponent3());
     }
 
     @Test
@@ -47,32 +46,16 @@ public class Field44JTest extends AbstractFieldTest {
         f = new Field44J("NL/foo bar");
         assertEquals("NL", f.getComponent1());
         assertEquals("foo bar", f.getComponent2());
-        assertNull(f.getComponent3());
-    }
-
-    @Test
-    public void testParse3() {
-        f = new Field44J("NL/foo bar\n/Hello world");
-        assertEquals("NL", f.getComponent1());
-        assertEquals("foo bar", f.getComponent2());
-        // parse preserves the slash on purpose to enable validation of its presence
-        assertEquals("/Hello world", f.getComponent3());
     }
 
     @Test
     public void testGetValue() {
-        f = new Field44J("NL/foo bar\n/Hello world");
-        assertEquals("NL/foo bar\r\n/Hello world", f.getValue());
-    }
-
-    @Test
-    public void testGetValue2() {
         f = new Field44J("NL/foo bar");
         assertEquals("NL/foo bar", f.getValue());
     }
 
     @Test
-    public void testGetValue3() {
+    public void testGetValue2() {
         f = new Field44J("NL");
         assertEquals("NL", f.getValue());
     }

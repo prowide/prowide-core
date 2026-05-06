@@ -174,9 +174,10 @@ Fieldset 19
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
-Sequence E4 - Digital Network Fee (O)<ul><li class="field">Field 16 R (M)</li>
+Sequence E4 - Digital Payment Settlement Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 35 B (M)</li>
 <li class="field">Field 36 D (M)</li>
+<li class="field">Field 94 F,L,T (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="field">Field 16 S (M)</li>
@@ -195,7 +196,7 @@ Fieldset 70
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2025</strong>
+ * This source code is specific to release <strong>SRU 2026</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -204,7 +205,7 @@ public class MT540 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2025;
+	public static final int SRU = 2026;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT540.class.getName());
 	
@@ -1563,7 +1564,7 @@ public class MT540 extends AbstractMT implements Serializable {
     public SequenceA getSequenceGENL() {
         return getSequenceA();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1850,7 +1851,7 @@ public class MT540 extends AbstractMT implements Serializable {
     public SequenceB getSequenceTRADDET() {
         return getSequenceB();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB delimited by 16R/16S the value of SequenceB#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1988,7 +1989,7 @@ public class MT540 extends AbstractMT implements Serializable {
     public SequenceB1 getSequenceFIA() {
         return getSequenceB1();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB1 delimited by 16R/16S the value of SequenceB1#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2126,7 +2127,7 @@ public class MT540 extends AbstractMT implements Serializable {
     public SequenceC getSequenceFIAC() {
         return getSequenceC();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceC delimited by 16R/16S the value of SequenceC#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2413,7 +2414,7 @@ public class MT540 extends AbstractMT implements Serializable {
     public SequenceD getSequenceREPO() {
         return getSequenceD();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceD delimited by 16R/16S the value of SequenceD#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2551,7 +2552,7 @@ public class MT540 extends AbstractMT implements Serializable {
     public SequenceE getSequenceSETDET() {
         return getSequenceE();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceE delimited by 16R/16S the value of SequenceE#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -3051,9 +3052,9 @@ public class MT540 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>NTWKFEE</em>.
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>DIGPAYSETT</em>.
 		 */
-		public static final String START_END_16RS = "NTWKFEE";
+		public static final String START_END_16RS = "DIGPAYSETT";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
 		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
 
@@ -3116,54 +3117,65 @@ public class MT540 extends AbstractMT implements Serializable {
 		}
 
 	}
+
 	/**
-	 * Get the single occurrence of SequenceE4 delimited by 16R/16S the value of SequenceE4#START_END_16RS.
-	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
-	 * @return the found sequence or an empty sequence if none is found
+	 * Get the list of SequenceE4 delimited by 16R/16S with value specified in {@link SequenceE4#START_END_16RS}.
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
+     * @return the found sequences or an empty list if none is found
 	 * @see SequenceE4#START_END_16RS
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public SequenceE4 getSequenceE4() {
-		return new SequenceE4(super.getSwiftMessageNotNullOrException());
+	public List<SequenceE4> getSequenceE4List() {
+		return getSequenceE4List(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 
     /**
-     * Same as getSequenceE4 using the sequence delimiter field qualifier
-     * @see SequenceE4#getSequenceE4()
-     * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+     * Same as getSequenceE4List using the sequence delimiter field qualifier
+     * @see SequenceE4#getSequenceE4List()
+     * @return the found sequences or an empty list if none is found
      * @since 9.2.18
      */
-    public SequenceE4 getSequenceNTWKFEE() {
-        return getSequenceE4();
-    }
-	
+     public List<SequenceE4> getSequenceDIGPAYSETTList() {
+        return getSequenceE4List();
+     }
+
 	/**
-	 * Get the single occurrence of SequenceE4 delimited by 16R/16S the value of SequenceE4#START_END_16RS.
-	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * Get the list of SequenceE4 delimited by 16R/16S with value specified in {@link SequenceE4#START_END_16RS}.
+	 *
+	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * @see SequenceE4#START_END_16RS
 	 * @param parentSequence a not null parent sequence to find SequenceE4 within it
-	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_16RS)
-	public static SequenceE4 getSequenceE4(SwiftTagListBlock parentSequence) {
-		final SequenceE4 s = new SequenceE4();
-		if (parentSequence != null) {
-		    s.setTags(parentSequence.getSubBlock(SequenceE4.START_END_16RS).getTags());
+	public static List<SequenceE4> getSequenceE4List(final SwiftTagListBlock parentSequence) {
+	    if (parentSequence != null) {
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocks(SequenceE4.START_END_16RS);
+            if (blocks != null && !blocks.isEmpty()) {
+                final List<SequenceE4> result = new ArrayList<>(blocks.size());
+                for (final SwiftTagListBlock b : blocks) {
+                    final SequenceE4 s = new SequenceE4();
+                    s.setTags(b.getSubBlock(SequenceE4.START_END_16RS).getTags());
+                    result.add(s);
+                }
+                return result;
+            }
 		}
-		return s;
+		return Collections.emptyList();
 	}
 
     /**
-	 * Same as getSequenceE4 using the sequence delimiter field qualifier
-	 * @see SequenceE4#getSequenceE4(SwiftTagListBlock)
-	 * @param parentSequence a not null parent sequence to find SequenceE4 within it
-	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
-	 * @since 9.2.18
-	 */
-	public static SequenceE4 getSequenceNTWKFEE(SwiftTagListBlock parentSequence) {
-		return getSequenceE4(parentSequence);
-	}
+     * Same as getSequenceE4List using the sequence delimiter field qualifier
+     * @see SequenceE4#getSequenceE4List(SwiftTagListBlock)
+     * @param parentSequence a not null parent sequence to find SequenceE4 within it
+     * @return the found sequences or an empty list if none is found
+     * @since 9.2.18
+     */
+     public static List<SequenceE4> getSequenceDIGPAYSETTList(final SwiftTagListBlock parentSequence) {
+        return getSequenceE4List(parentSequence);
+    }
  
 
 	/**

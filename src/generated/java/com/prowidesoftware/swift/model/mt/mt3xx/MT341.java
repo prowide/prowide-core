@@ -52,8 +52,8 @@ Sequence A (M)<ul><li class="field">Field 15 A (M)</li>
 <li class="field">Field 23 D (M)</li>
 <li class="field">Field 21 N (O)</li>
 <li class="field">Field 21 B (O)</li>
-<li class="field">Field 82 A,D (M)</li>
-<li class="field">Field 87 A,D (M)</li>
+<li class="field">Field 82 A,D,J (M)</li>
+<li class="field">Field 87 A,D,J (M)</li>
 <li class="field">Field 29 A (O)</li>
 <li class="field">Field 72  (O)</li>
 </ul></li>
@@ -120,7 +120,7 @@ Sequence D1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2025</strong>
+ * This source code is specific to release <strong>SRU 2026</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -129,7 +129,7 @@ public class MT341 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2025;
+	public static final int SRU = 2026;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT341.class.getName());
 	
@@ -562,6 +562,24 @@ public class MT341 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return the first one whose name matches 82J, 
+	 * or null if none is found.
+	 * The first occurrence of field 82J at MT341 is expected to be the only one.
+	 * 
+	 * @return a Field82J object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field82J getField82J() {
+		final Tag t = tag("82J");
+		if (t != null) {
+			return new Field82J(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
 	 * Iterates through block4 fields and return the first one whose name matches 87A, 
 	 * or null if none is found.
 	 * The first occurrence of field 87A at MT341 is expected to be the only one.
@@ -592,6 +610,24 @@ public class MT341 extends AbstractMT implements Serializable {
 		final Tag t = tag("87D");
 		if (t != null) {
 			return new Field87D(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 87J, 
+	 * or null if none is found.
+	 * The first occurrence of field 87J at MT341 is expected to be the only one.
+	 * 
+	 * @return a Field87J object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field87J getField87J() {
+		final Tag t = tag("87J");
+		if (t != null) {
+			return new Field87J(t.getValue());
 		} else {
 			return null;
 		}

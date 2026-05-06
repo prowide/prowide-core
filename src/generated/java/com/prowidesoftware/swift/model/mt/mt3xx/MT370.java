@@ -55,7 +55,7 @@ Sequence A1 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 95 P (M)</li>
 <li class="sequence">
 Sequence A2 - Order Party (O)<ul><li class="field">Field 16 R (M)</li>
-<li class="field">Field 95 P,Q,R (M)</li>
+<li class="field">Field 95 P,Q,R,Z (M)</li>
 <li class="field">Field 97 A (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -75,7 +75,7 @@ Sequence B - Net Position Details (M)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 70 E (O) (repetitive)</li>
 <li class="sequence">
 Sequence B1 - Cash Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
-<li class="field">Field 95 P,Q,R (M)</li>
+<li class="field">Field 95 P,Q,R,Z (M)</li>
 <li class="field">Field 97 A (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -85,7 +85,7 @@ Sequence B1 - Cash Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)<
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2025</strong>
+ * This source code is specific to release <strong>SRU 2026</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -94,7 +94,7 @@ public class MT370 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2025;
+	public static final int SRU = 2026;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT370.class.getName());
 	
@@ -656,6 +656,26 @@ public class MT370 extends AbstractMT implements Serializable {
 		return result;
 	}
 	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95Z, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 95Z at MT370 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field95Z objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field95Z> getField95Z() {
+		final List<Field95Z> result = new ArrayList<>();
+		final Tag[] tags = tags("95Z");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field95Z(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
 
 	/**
 	 * Class to model Sequence "A" in MT 370.
@@ -765,7 +785,7 @@ public class MT370 extends AbstractMT implements Serializable {
     public SequenceA getSequenceGENL() {
         return getSequenceA();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1052,7 +1072,7 @@ public class MT370 extends AbstractMT implements Serializable {
     public SequenceA2 getSequenceORDRPRTY() {
         return getSequenceA2();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceA2 delimited by 16R/16S the value of SequenceA2#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1190,7 +1210,7 @@ public class MT370 extends AbstractMT implements Serializable {
     public SequenceB getSequenceNETPOS() {
         return getSequenceB();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB delimited by 16R/16S the value of SequenceB#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.

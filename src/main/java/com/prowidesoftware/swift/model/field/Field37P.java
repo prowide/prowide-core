@@ -17,6 +17,7 @@ package com.prowidesoftware.swift.model.field;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.prowidesoftware.deprecation.DeprecationUtils;
 import com.prowidesoftware.deprecation.ProwideDeprecated;
 import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.SwiftMessage;
@@ -33,7 +34,7 @@ import org.apache.commons.lang3.Strings;
  * @deprecated This field has been removed since SRU2025
  */
 @Deprecated
-@ProwideDeprecated(phase3 = TargetYear.SRU2026)
+@ProwideDeprecated(phase4 = TargetYear.SRU2027)
 public class Field37P extends Field implements Serializable, AmountContainer {
     /**
      * Constant identifying the SRU to which this class belongs to.
@@ -60,6 +61,7 @@ public class Field37P extends Field implements Serializable, AmountContainer {
      */
     public Field37P() {
         super(1);
+        DeprecationUtils.phase3(Field37P.class, null, "this field has been removed from the standard since SRU2025");
     }
 
     /**
@@ -68,6 +70,7 @@ public class Field37P extends Field implements Serializable, AmountContainer {
      */
     public Field37P(final String value) {
         super(value);
+        DeprecationUtils.phase3(Field37P.class, null, "this field has been removed from the standard since SRU2025");
     }
 
     /**

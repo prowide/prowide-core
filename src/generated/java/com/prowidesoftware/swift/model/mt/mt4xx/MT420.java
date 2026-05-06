@@ -48,13 +48,19 @@ Sequence Loop1 (M) (repetitive)<ul><li class="field">Field 20  (M)</li>
 <li class="field">Field 32 A,B,K (M)</li>
 </ul></li>
 <li class="field">Field 30  (O)</li>
-<li class="field">Field 59  (O)</li>
+<li class="sequence">
+Sequence B - Drawee (O)<ul><li class="field">Field 59 N (M)</li>
+<li class="field">Field 59 S (M)</li>
+<li class="field">Field 59 T (M)</li>
+<li class="field">Field 59 P (O)</li>
+<li class="field">Field 59 R (M)</li>
+</ul></li>
 <li class="field">Field 72  (O)</li>
 </ul></div>
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2025</strong>
+ * This source code is specific to release <strong>SRU 2026</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -63,7 +69,7 @@ public class MT420 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2025;
+	public static final int SRU = 2026;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT420.class.getName());
 	
@@ -316,18 +322,90 @@ public class MT420 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 59, 
+	 * Iterates through block4 fields and return the first one whose name matches 59N, 
 	 * or null if none is found.
-	 * The first occurrence of field 59 at MT420 is expected to be the only one.
+	 * The first occurrence of field 59N at MT420 is expected to be the only one.
 	 * 
-	 * @return a Field59 object or null if the field is not found
+	 * @return a Field59N object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public Field59 getField59() {
-		final Tag t = tag("59");
+	public Field59N getField59N() {
+		final Tag t = tag("59N");
 		if (t != null) {
-			return new Field59(t.getValue());
+			return new Field59N(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 59S, 
+	 * or null if none is found.
+	 * The first occurrence of field 59S at MT420 is expected to be the only one.
+	 * 
+	 * @return a Field59S object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field59S getField59S() {
+		final Tag t = tag("59S");
+		if (t != null) {
+			return new Field59S(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 59T, 
+	 * or null if none is found.
+	 * The first occurrence of field 59T at MT420 is expected to be the only one.
+	 * 
+	 * @return a Field59T object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field59T getField59T() {
+		final Tag t = tag("59T");
+		if (t != null) {
+			return new Field59T(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 59P, 
+	 * or null if none is found.
+	 * The first occurrence of field 59P at MT420 is expected to be the only one.
+	 * 
+	 * @return a Field59P object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field59P getField59P() {
+		final Tag t = tag("59P");
+		if (t != null) {
+			return new Field59P(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 59R, 
+	 * or null if none is found.
+	 * The first occurrence of field 59R at MT420 is expected to be the only one.
+	 * 
+	 * @return a Field59R object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field59R getField59R() {
+		final Tag t = tag("59R");
+		if (t != null) {
+			return new Field59R(t.getValue());
 		} else {
 			return null;
 		}
@@ -559,6 +637,121 @@ public class MT420 extends AbstractMT implements Serializable {
             }
         }
         return Collections.emptyList();
+	}
+ 
+
+	/**
+	 * Class to model Sequence "B" in MT 420.
+	 */
+	public static class SequenceB extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence.
+		 */
+	    private SequenceB() {
+			super(new ArrayList<>());
+		}
+
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private SequenceB(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * First mandatory tag name of the sequence: <em>"59N"  </em>.
+		 * Array format is for cases when more than one letter options is allowed
+		 */
+		public static final String[] START = { "59N"   } ;
+
+		/**
+		 * Last mandatory tag name of the sequence: <em>"59R"  </em>
+		 * Array format is for cases when more than one letter options is allowed
+		 */
+		protected static final String[] END = { "59R"   };
+
+		/**
+		 * List of optional tags after the last mandatory tag.
+		 */
+		protected static final String[] TAIL = new String[]{  };
+
+		/**
+		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes.
+		 * @param tags the list of tags to set as sequence content
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
+		public static SequenceB newInstance(final Tag... tags) {
+			return newInstance(0, 0, tags);
+		}
+
+		/**
+		 * Creates a sequence with starting and ending tags set to the indicated tags in from the
+		 * {@link #START} and {@link #END} lists of mandatory fields, and with the content between
+		 * the starting and ending tag initialized with the given optional tags.
+		 *
+		 * @param start a zero-based index within the list of mandatory starting tags in the sequence
+		 * @param end a zero-based index within the list of mandatory ending tags in the sequence
+		 * @param tags the list of tags to set as sequence content
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
+		public static SequenceB newInstance(final int start, final int end, final Tag... tags) {
+			final SequenceB result = new SequenceB();
+			result.append(new Tag(START[start], ""));
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(new Tag(END[end], ""));
+			return result;
+		}
+	}
+	/**
+	 * Get the single occurrence of SequenceB delimited by leading tag and end, with an optional tail.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * If block 4 is empty this method returns null.
+	 *
+	 * @return the found sequence or an empty sequence if none is found
+	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
+	 */
+	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
+	public SequenceB getSequenceB() {
+		return getSequenceB(super.getSwiftMessageNotNullOrException().getBlock4());
+	}
+	
+	/**
+	 * Get the single occurrence of SequenceB delimited by leading tag and end, with an optional tail.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * If block 4 is empty this method returns null.
+	 *
+	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
+	 * @param parentSequence a not null parent sequence to find SequenceB within it
+	 * @return the found sequence or an empty sequence if none is found, or null if the parent sequence is null or empty
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
+	public SequenceB getSequenceB(SwiftTagListBlock parentSequence) {
+		if (parentSequence != null && !parentSequence.isEmpty()) {
+			final SwiftTagListBlock content = parentSequence.getSubBlockDelimitedWithOptionalTail(SequenceB.START, SequenceB.END, SequenceB.TAIL);
+			if (log.isLoggable(java.util.logging.Level.FINE)) {
+				if (content == null) {
+					log.fine("content for sequence SequenceB: is null");
+				} else {
+					log.fine("content for sequence SequenceB: "+content.tagNamesList());
+				}
+			}
+			if (content == null) {
+				return new SequenceB();
+			} else {
+				return new SequenceB(content);
+			}
+		}
+		return null;
 	}
  
 

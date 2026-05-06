@@ -94,9 +94,16 @@ Fieldset 22
 Fieldset 36
  (O) (repetitive)<ul><li>FieldsetItem 36 B,D (O) (repetitive)</li><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="fieldset">
 Fieldset 19
- (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="field">Field 35 B (M)</li>
+ (O)<ul><li>FieldsetItem 19 A (O)</li><li>FieldsetItem 19 A (O)</li></ul></li><li class="sequence">
+Sequence B3 - Digital Payment Settlement Details (O)<ul><li class="field">Field 16 R (M)</li>
+<li class="field">Field 35 B (M)</li>
+<li class="field">Field 36 D (M)</li>
+<li class="field">Field 94 F,L,T (O)</li>
+<li class="field">Field 16 S (M)</li>
+</ul></li>
+<li class="field">Field 35 B (M)</li>
 <li class="sequence">
-Sequence B3 - Financial Instrument Attributes (O)<ul><li class="field">Field 16 R (M)</li>
+Sequence B4 - Financial Instrument Attributes (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 94 B (O)</li>
 <li class="fieldset">
 Fieldset 22
@@ -194,7 +201,7 @@ Fieldset 19
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2025</strong>
+ * This source code is specific to release <strong>SRU 2026</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -203,7 +210,7 @@ public class MT502 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2025;
+	public static final int SRU = 2026;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT502.class.getName());
 	
@@ -1114,6 +1121,26 @@ public class MT502 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 35B, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 35B at MT502 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field35B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field35B> getField35B() {
+		final List<Field35B> result = new ArrayList<>();
+		final Tag[] tags = tags("35B");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field35B(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 12A, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 12A at MT502 are expected at one sequence or across several sequences.
@@ -1208,26 +1235,6 @@ public class MT502 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field17B(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 35B, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 35B at MT502 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field35B objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field35B> getField35B() {
-		final List<Field35B> result = new ArrayList<>();
-		final Tag[] tags = tags("35B");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field35B(tag.getValue()));
             }
 		}
 		return result;
@@ -1462,7 +1469,7 @@ public class MT502 extends AbstractMT implements Serializable {
     public SequenceA getSequenceGENL() {
         return getSequenceA();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1749,7 +1756,7 @@ public class MT502 extends AbstractMT implements Serializable {
     public SequenceB getSequenceORDRDET() {
         return getSequenceB();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB delimited by 16R/16S the value of SequenceB#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2100,9 +2107,9 @@ public class MT502 extends AbstractMT implements Serializable {
 		}
 
 		/**
-		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>FIA</em>.
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>DIGPAYSETT</em>.
 		 */
-		public static final String START_END_16RS = "FIA";
+		public static final String START_END_16RS = "DIGPAYSETT";
 		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
 		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
 
@@ -2182,10 +2189,10 @@ public class MT502 extends AbstractMT implements Serializable {
      * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
      * @since 9.2.18
      */
-    public SequenceB3 getSequenceFIA() {
+    public SequenceB3 getSequenceDIGPAYSETT() {
         return getSequenceB3();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB3 delimited by 16R/16S the value of SequenceB3#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2210,8 +2217,146 @@ public class MT502 extends AbstractMT implements Serializable {
 	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
 	 * @since 9.2.18
 	 */
-	public static SequenceB3 getSequenceFIA(SwiftTagListBlock parentSequence) {
+	public static SequenceB3 getSequenceDIGPAYSETT(SwiftTagListBlock parentSequence) {
 		return getSequenceB3(parentSequence);
+	}
+ 
+
+	/**
+	 * Class to model Sequence "B4" in MT 502.
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static class SequenceB4 extends SwiftTagListBlock {
+		private static final long serialVersionUID = 1L;
+		
+		/**
+		 * Constructs an empty sequence.
+		 */
+	    private SequenceB4() {
+			super(new ArrayList<>());
+		}
+
+		/**
+		 * Creates a sequence with the given content.
+		 * @see SwiftTagListBlock
+		 */
+		private SequenceB4(final SwiftTagListBlock content) {
+			super(content.getTags());
+		}
+
+		/**
+		 * Value for the qualifier of the 16R / 16S tag that indicates start and end of this sequence <em>FIA</em>.
+		 */
+		public static final String START_END_16RS = "FIA";
+		public static final Tag START_TAG = new Tag(Field16R.NAME, START_END_16RS);
+		public static final Tag END_TAG = new Tag(Field16S.NAME, START_END_16RS);
+
+		/**
+		 * Creates a new instance of this sequence with the given tags inside.
+		 * @param tags may be null, an empty sequence containing only start and end sequence tags will be returned
+		 * @return a new instance of the sequence, initialized with the parameter tags
+		 */
+		@SequenceStyle(Type.GENERATED_16RS)
+		public static SequenceB4 newInstance(final Tag... tags) {
+			final SequenceB4 result = new SequenceB4();
+			result.append(START_TAG);
+			if (tags != null && tags.length > 0) {
+				for (final Tag t : tags) {
+					result.append(t);
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create an empty $sequenceClassname.
+		 * This method is intended to avoid disambiguation for the newInstance() with variable list of blocks or tags
+		 * @return a new instance of the sequence
+		 * @since 7.6
+		 */
+		public static SequenceB4 newInstance() {
+			final SequenceB4 result = new SequenceB4();
+			result.append(START_TAG);
+			result.append(END_TAG);
+			return result;
+		}
+
+		/**
+		 * Create a new instance of $sequenceClassname and add the contents of all sequences given inside.
+		 * Mainly intended to create a sequence by adding subsequences
+		 * @param sequences a list of blocks to set as the new sequence content
+		 * @return a new instance of the sequence, initialized with the parameter sequences content
+		 * @since 7.6
+		 */
+		public static SequenceB4 newInstance(final SwiftTagListBlock... sequences) {
+			final SequenceB4 result = new SequenceB4();
+			result.append(START_TAG);
+			if (sequences != null && sequences.length > 0) {
+				for (final SwiftTagListBlock s : sequences) {
+					result.addTags(s.getTags());
+				}
+			}
+			result.append(END_TAG);
+			return result;
+		}
+
+		@SequenceStyle(Type.GENERATED_16RS)
+		private SequenceB4(final SwiftMessage m) {
+			super();
+			if (m.getBlock4() != null) {
+				setTags(m.getBlock4().getSubBlock(START_END_16RS).getTags());
+			}
+		}
+
+	}
+	/**
+	 * Get the single occurrence of SequenceB4 delimited by 16R/16S the value of SequenceB4#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @return the found sequence or an empty sequence if none is found
+	 * @see SequenceB4#START_END_16RS
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public SequenceB4 getSequenceB4() {
+		return new SequenceB4(super.getSwiftMessageNotNullOrException());
+	}
+
+    /**
+     * Same as getSequenceB4 using the sequence delimiter field qualifier
+     * @see SequenceB4#getSequenceB4()
+     * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+     * @since 9.2.18
+     */
+    public SequenceB4 getSequenceFIA() {
+        return getSequenceB4();
+    }
+
+	/**
+	 * Get the single occurrence of SequenceB4 delimited by 16R/16S the value of SequenceB4#START_END_16RS.
+	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
+	 * @see SequenceB4#START_END_16RS
+	 * @param parentSequence a not null parent sequence to find SequenceB4 within it
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 7.7
+	 */
+	@SequenceStyle(Type.GENERATED_16RS)
+	public static SequenceB4 getSequenceB4(SwiftTagListBlock parentSequence) {
+		final SequenceB4 s = new SequenceB4();
+		if (parentSequence != null) {
+		    s.setTags(parentSequence.getSubBlock(SequenceB4.START_END_16RS).getTags());
+		}
+		return s;
+	}
+
+    /**
+	 * Same as getSequenceB4 using the sequence delimiter field qualifier
+	 * @see SequenceB4#getSequenceB4(SwiftTagListBlock)
+	 * @param parentSequence a not null parent sequence to find SequenceB4 within it
+	 * @return the found sequence or an empty sequence if none is found, <em>never returns null</em>
+	 * @since 9.2.18
+	 */
+	public static SequenceB4 getSequenceFIA(SwiftTagListBlock parentSequence) {
+		return getSequenceB4(parentSequence);
 	}
  
 
@@ -2323,7 +2468,7 @@ public class MT502 extends AbstractMT implements Serializable {
     public SequenceC getSequenceSETDET() {
         return getSequenceC();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceC delimited by 16R/16S the value of SequenceC#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -3057,7 +3202,7 @@ public class MT502 extends AbstractMT implements Serializable {
     public SequenceE getSequenceREPO() {
         return getSequenceE();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceE delimited by 16R/16S the value of SequenceE#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.

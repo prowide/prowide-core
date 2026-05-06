@@ -1,5 +1,10 @@
 # Prowide Core - CHANGELOG
 
+### 10.4.0 - SNAPSHOT
+  * SWIFT Standard release update 2026 (live 14 November 2026)
+  * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
+  * `DeprecationUtils` runtime flags now use the JVM system property `PW_DEPRECATED` (also still honored as OS env var); removes the illegal-reflective-access warning.
+ 
 ### 10.3.14 - May 2026
   * Fix: Fields definitions alignment: `Field30I` and `Field30K` component 2 made optional (and `Field30K` validation pattern updated to `<DATE4>[/<DATE4>]`), `Field39M` validation pattern updated to `<CC>`, and `Field56B` name & address component made optional
   * Fix: Minor changes in MT message structures from SRU2025 schema: MT306, MT340, MT500-MT502, MT504, MT508, MT510, MT513-MT515, MT518, MT519, MT524, MT527, MT530, MT535-MT538, MT540-MT548, MT558, MT564-MT566, MT575, MT578, MT586, MT600, MT601, MT671

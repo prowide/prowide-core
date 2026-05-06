@@ -73,12 +73,12 @@ Fieldset 19
 <li class="field">Field 94 C (O)</li>
 <li class="sequence">
 Sequence B1 - Loan/Deposit Parties 1 (M)<ul><li class="field">Field 16 R (M)</li>
-<li class="field">Field 95 P,Q,R (M)</li>
+<li class="field">Field 95 P,Q,R,Z (M)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
 Sequence B2 - Loan/Deposit Parties 2 (M)<ul><li class="field">Field 16 R (M)</li>
-<li class="field">Field 95 P,Q,R (O)</li>
+<li class="field">Field 95 P,Q,R,Z (O)</li>
 <li class="field">Field 97 A (M)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -86,7 +86,7 @@ Sequence B2 - Loan/Deposit Parties 2 (M)<ul><li class="field">Field 16 R (M)</li
 Sequence B3 - Other Parties (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (O)<ul><li>FieldsetItem 95 P,Q,R (O)</li><li>FieldsetItem 95 P,Q,R (O)</li></ul></li><li class="field">Field 16 S (M)</li>
+ (O)<ul><li>FieldsetItem 95 P,Q,R,Z (O)</li><li>FieldsetItem 95 P,Q,R,Z (O)</li></ul></li><li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -97,7 +97,7 @@ Sequence C - Settlement Details (M) (repetitive)<ul><li class="field">Field 16 R
 Sequence C1 - Settlement Parties (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R (M)</li><li>FieldsetItem 95 R (O)</li></ul></li><li class="field">Field 97 A (O)</li>
+ (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,Z (M)</li><li>FieldsetItem 95 L,R (O)</li></ul></li><li class="field">Field 97 A (O)</li>
 <li class="field">Field 70 C (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
@@ -107,7 +107,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2025</strong>
+ * This source code is specific to release <strong>SRU 2026</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -116,7 +116,7 @@ public class MT321 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2025;
+	public static final int SRU = 2026;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT321.class.getName());
 	
@@ -645,6 +645,46 @@ public class MT321 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95Z, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 95Z at MT321 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field95Z objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field95Z> getField95Z() {
+		final List<Field95Z> result = new ArrayList<>();
+		final Tag[] tags = tags("95Z");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field95Z(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 95L, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 95L at MT321 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field95L objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field95L> getField95L() {
+		final List<Field95L> result = new ArrayList<>();
+		final Tag[] tags = tags("95L");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field95L(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
 	 * Iterates through block4 fields and return all occurrences of fields whose names matches 97A, 
 	 * or <code>Collections.emptyList()</code> if none is found.
 	 * Multiple occurrences of field 97A at MT321 are expected at one sequence or across several sequences.
@@ -793,7 +833,7 @@ public class MT321 extends AbstractMT implements Serializable {
     public SequenceA getSequenceGENL() {
         return getSequenceA();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1080,7 +1120,7 @@ public class MT321 extends AbstractMT implements Serializable {
     public SequenceB getSequenceLDDET() {
         return getSequenceB();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB delimited by 16R/16S the value of SequenceB#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1218,7 +1258,7 @@ public class MT321 extends AbstractMT implements Serializable {
     public SequenceB1 getSequenceLDPRTY1() {
         return getSequenceB1();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB1 delimited by 16R/16S the value of SequenceB1#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1356,7 +1396,7 @@ public class MT321 extends AbstractMT implements Serializable {
     public SequenceB2 getSequenceLDPRTY2() {
         return getSequenceB2();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB2 delimited by 16R/16S the value of SequenceB2#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1494,7 +1534,7 @@ public class MT321 extends AbstractMT implements Serializable {
     public SequenceB3 getSequenceOTHRPRTY() {
         return getSequenceB3();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB3 delimited by 16R/16S the value of SequenceB3#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.

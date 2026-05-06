@@ -42,7 +42,6 @@ public interface SchemeConstantsM {
     String MADW = "MADW";
     String MAUP = "MAUP";
     String MACO = "MACO";
-    String MSC = "MSC";
     String MTAC = "MTAC";
     String MNPE = "MNPE";
     String MACL = "MACL";
@@ -67,6 +66,9 @@ public interface SchemeConstantsM {
     String MFDV = "MFDV";
     String MET2 = "MET2";
     String MET3 = "MET3";
+    String MPRC = "MPRC";
+    String MKSI = "MKSI";
+    String MKCDETL = "MKCDETL";
     String MVBF = "MVBF";
     String MKTB = "MKTB";
     String MKTP = "MKTP";
@@ -111,7 +113,6 @@ public interface SchemeConstantsM {
     String MODC = "MODC";
     String MONT = "MONT";
     String MONY = "MONY";
-    String MPRC = "MPRC";
     String MPUT = "MPUT";
     String MR01 = "MR01";
     String MRGR = "MRGR";

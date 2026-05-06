@@ -69,9 +69,6 @@ public interface SchemeConstantsP {
     String PREA = "PREA";
     String PRWI = "PRWI";
     String PRMA = "PRMA";
-    String PRC = "PRC";
-    String PCT = "PCT";
-    String PRS = "PRS";
     String PRSS = "PRSS";
     String PRBN = "PRBN";
     String PRTL = "PRTL";

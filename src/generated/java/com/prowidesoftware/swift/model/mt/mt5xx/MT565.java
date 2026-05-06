@@ -90,7 +90,7 @@ Fieldset 93
 Sequence C - Beneficial Owners' Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
- (M) (repetitive)<ul><li>FieldsetItem 95 L,P,R,S,V (M) (repetitive)</li><li>FieldsetItem 95 S (O) (repetitive)</li></ul></li><li class="fieldset">
+ (M) (repetitive)<ul><li>FieldsetItem 95 L,P,R,S,V (M) (repetitive)</li><li>FieldsetItem 95 L,R,S (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 94
  (O) (repetitive)<ul><li>FieldsetItem 94 C (O)</li><li>FieldsetItem 94 C (O) (repetitive)</li></ul></li><li class="field">Field 36 B,D (M)</li>
 <li class="field">Field 22 F (O) (repetitive)</li>
@@ -132,7 +132,7 @@ Fieldset 95
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2025</strong>
+ * This source code is specific to release <strong>SRU 2026</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -141,7 +141,7 @@ public class MT565 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2025;
+	public static final int SRU = 2026;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT565.class.getName());
 	
@@ -1444,7 +1444,7 @@ public class MT565 extends AbstractMT implements Serializable {
     public SequenceA getSequenceGENL() {
         return getSequenceA();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1731,7 +1731,7 @@ public class MT565 extends AbstractMT implements Serializable {
     public SequenceB getSequenceUSECU() {
         return getSequenceB();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB delimited by 16R/16S the value of SequenceB#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -1869,7 +1869,7 @@ public class MT565 extends AbstractMT implements Serializable {
     public SequenceB1 getSequenceFIA() {
         return getSequenceB1();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB1 delimited by 16R/16S the value of SequenceB1#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2007,7 +2007,7 @@ public class MT565 extends AbstractMT implements Serializable {
     public SequenceB2 getSequenceACCTINFO() {
         return getSequenceB2();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceB2 delimited by 16R/16S the value of SequenceB2#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2294,7 +2294,7 @@ public class MT565 extends AbstractMT implements Serializable {
     public SequenceD getSequenceCAINST() {
         return getSequenceD();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceD delimited by 16R/16S the value of SequenceD#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2432,7 +2432,7 @@ public class MT565 extends AbstractMT implements Serializable {
     public SequenceE getSequenceADDINFO() {
         return getSequenceE();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceE delimited by 16R/16S the value of SequenceE#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
