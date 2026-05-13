@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,15 @@ public class OptionJPartyFieldTest {
         assertEquals("12345xxxxx12345xxxxx12345", f.getValueByCodeword(Codeword.ACCT));
         assertEquals("12345xxxxx12345xxxxx12345+++++12345", f.getValueByCodeword(Codeword.ADD1));
         assertEquals("12345xxxxx12345xxxxx12345+++++123", f.getValueByCodeword(Codeword.ADD2));
+    }
+
+    @Test
+    public void testGetValueByCodewordCTRY() {
+        TestPartyField f = new TestPartyField("/ABIC/CHASUS33/NAME/CHASE HQ/CITY/NEW YORK/CTRY/US");
+        assertEquals("CHASUS33", f.getValueByCodeword(Codeword.ABIC));
+        assertEquals("CHASE HQ", f.getValueByCodeword(Codeword.NAME));
+        assertEquals("NEW YORK", f.getValueByCodeword(Codeword.CITY));
+        assertEquals("US", f.getValueByCodeword(Codeword.CTRY));
     }
 
     private static class TestPartyField extends OptionJPartyField {

@@ -83,6 +83,7 @@ public interface SchemeConstantsS {
     String SPRC = "SPRC";
     String SMAF = "SMAF";
     String SAPP = "SAPP";
+    String SECA = "SECA";
     String SUSP = "SUSP";
     String SOFE = "SOFE";
     String SOIC = "SOIC";
