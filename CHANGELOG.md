@@ -4,6 +4,7 @@
   * SWIFT Standard release update 2026 (live 14 November 2026)
   * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
   * `DeprecationUtils` runtime flags now use the JVM system property `PW_DEPRECATED` (also still honored as OS env var); removes the illegal-reflective-access warning.
+  * Localized label files (`pw_swift_labels_de/es/fr/it/ru.properties`) aligned with the English baseline; missing keys appended with the English value as a fallback pending translation
  
 ### 10.3.14 - May 2026
   * Fix: Fields definitions alignment: `Field30I` and `Field30K` component 2 made optional (and `Field30K` validation pattern updated to `<DATE4>[/<DATE4>]`), `Field39M` validation pattern updated to `<CC>`, and `Field56B` name & address component made optional
