@@ -39,6 +39,7 @@ public interface SchemeConstantsB {
     String BASK = "BASK";
     String BCOL = "BCOL";
     String BAKL = "BAKL";
+    String BON = "BON";
     String BREAK = "BREAK";
     String BORR = "BORR";
     String BYIY = "BYIY";

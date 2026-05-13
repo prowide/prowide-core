@@ -37,6 +37,8 @@ public interface SchemeConstantsO {
     String ONLY = "ONLY";
     String OPCA = "OPCA";
     String ODDL = "ODDL";
+    String OPC = "OPC";
+    String OPS = "OPS";
     String OFRF = "OFRF";
     String OKPE = "OKPE";
     String OMAT = "OMAT";

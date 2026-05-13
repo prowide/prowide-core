@@ -62,6 +62,7 @@ public interface SchemeConstantsS {
     String STAT = "STAT";
     String SEBL = "SEBL";
     String SUBS = "SUBS";
+    String SHS = "SHS";
     String SPIA = "SPIA";
     String SECMOVE = "SECMOVE";
     String STTP = "STTP";

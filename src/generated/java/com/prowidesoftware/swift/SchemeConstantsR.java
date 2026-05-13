@@ -71,6 +71,8 @@ public interface SchemeConstantsR {
     String RATE = "RATE";
     String REMU = "REMU";
     String REDM = "REDM";
+    String RTE = "RTE";
+    String RTS = "RTS";
     String REQD = "REQD";
     String REDE = "REDE";
     String REMO = "REMO";

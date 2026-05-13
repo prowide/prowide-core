@@ -42,6 +42,7 @@ public interface SchemeConstantsM {
     String MADW = "MADW";
     String MAUP = "MAUP";
     String MACO = "MACO";
+    String MSC = "MSC";
     String MTAC = "MTAC";
     String MNPE = "MNPE";
     String MACL = "MACL";
