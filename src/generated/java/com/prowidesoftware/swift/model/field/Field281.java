@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2025 Prowide
+ * Copyright 2006 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -264,7 +264,7 @@ public class Field281 extends Field implements Serializable {
      * @deprecated Use {@code FieldPatternRegistry.getPattern()} from the Prowide Integrator Validation module instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2026)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2027)
     @Override
     public String validatorPattern() {
         return "<HHMM><MOR>1!a[3!c]";

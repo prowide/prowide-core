@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2025 Prowide
+ * Copyright 2006 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -287,7 +287,7 @@ public class Field98K extends Field implements Serializable, DateContainer, Gene
      * @deprecated Use {@code FieldPatternRegistry.getPattern()} from the Prowide Integrator Validation module instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2026)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2027)
     @Override
     public String validatorPattern() {
         return ":4!c/8c/<DATE4><TIME2>/34x(***)";

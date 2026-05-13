@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2025 Prowide
+ * Copyright 2006 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -156,7 +156,7 @@ public class Field77D extends StructuredNarrativeField implements Serializable, 
      * @deprecated Use {@code FieldPatternRegistry.getPattern()} from the Prowide Integrator Validation module instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2026)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2027)
     @Override
     public final String validatorPattern() {
         return "35x[$35x]0-5";

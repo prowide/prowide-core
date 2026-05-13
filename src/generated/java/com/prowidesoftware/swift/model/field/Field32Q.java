@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2025 Prowide
+ * Copyright 2006 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -231,7 +231,7 @@ public class Field32Q extends Field implements Serializable, CurrencyContainer {
      * @deprecated Use {@code FieldPatternRegistry.getPattern()} from the Prowide Integrator Validation module instead.
      */
     @Deprecated
-    @ProwideDeprecated(phase2 = TargetYear.SRU2026)
+    @ProwideDeprecated(phase3 = TargetYear.SRU2027)
     @Override
     public String validatorPattern() {
         return "<CUR>/<CUR>";
