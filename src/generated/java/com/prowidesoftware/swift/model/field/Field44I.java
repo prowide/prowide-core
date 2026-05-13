@@ -45,7 +45,7 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: Code: <code>String</code></li>
+ * 		<li>Component 1: IncotermsCodes: <code>String</code></li>
  * 		<li>Component 2: Narrative: <code>String</code></li>
  * 		<li>Component 3: Narrative2: <code>String</code></li>
  * </ol>
@@ -79,10 +79,9 @@ public class Field44I extends Field implements Serializable, MultiLineField {
     public static final String F_44I = "44I";
 
 	/**
-	 * Component number for the Code subfield.
+	 * Component number for the Incoterms Codes subfield.
 	 */
-	public static final Integer CODE = 1;
-
+	public static final Integer INCOTERMS_CODES = 1;
 
 	/**
 	 * Component number for the Narrative subfield.
@@ -290,7 +289,7 @@ public class Field44I extends Field implements Serializable, MultiLineField {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Code");
+        result.add("Incoterms Codes");
         result.add("Narrative");
         result.add("Narrative 2");
         return result;
@@ -303,7 +302,7 @@ public class Field44I extends Field implements Serializable, MultiLineField {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "code");
+        result.put(1, "incotermsCodes");
         result.put(2, "narrative");
         result.put(3, "narrative2");
         return result;
@@ -320,16 +319,14 @@ public class Field44I extends Field implements Serializable, MultiLineField {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
-        super.labelMap.put("code", 1);
-        // alias name
-        super.labelMap.put("incoterms", 1);
+        super.labelMap.put("incotermscodes", 1);
         super.labelMap.put("narrative", 2);
         super.labelMap.put("narrative2", 3);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 (Code).
+     * Gets the component 1 (Incoterms Codes).
      * @return the component 1
      */
     public String getComponent1() {
@@ -337,13 +334,12 @@ public class Field44I extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Gets the Code (component 1).
-     * @return the Code from component 1
+     * Gets the Incoterms Codes (component 1).
+     * @return the Incoterms Codes from component 1
      */
-    public String getCode() {
+    public String getIncotermsCodes() {
         return getComponent1();
     }
-
 
     /**
      * Gets the component 2 (Narrative).
@@ -406,9 +402,9 @@ public class Field44I extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the component 1 (Code).
+     * Set the component 1 (Incoterms Codes).
      *
-     * @param component1 the Code to set
+     * @param component1 the Incoterms Codes to set
      * @return the field object to enable build pattern
      */
     public Field44I setComponent1(String component1) {
@@ -417,12 +413,12 @@ public class Field44I extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the Code (component 1).
+     * Set the Incoterms Codes (component 1).
      *
-     * @param component1 the Code to set
+     * @param component1 the Incoterms Codes to set
      * @return the field object to enable build pattern
      */
-    public Field44I setCode(String component1) {
+    public Field44I setIncotermsCodes(String component1) {
         return setComponent1(component1);
     }
 
@@ -650,16 +646,10 @@ public class Field44I extends Field implements Serializable, MultiLineField {
 
         final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-        // **** COMPONENT 1 - Code
+        // **** COMPONENT 1 - Incoterms Codes
 
-        // first try using alias's names (including deprecated ones, if any)
-        if (jsonObject.get("incoterms") != null) {
-            field.setComponent1(jsonObject.get("incoterms").getAsString());
-        }
-
-        // last try using the official component's name (overwrites alternatives and DEPRECATED)
-        if (jsonObject.get("code") != null) {
-            field.setComponent1(jsonObject.get("code").getAsString());
+        if (jsonObject.get("incotermsCodes") != null) {
+            field.setComponent1(jsonObject.get("incotermsCodes").getAsString());
         }
 
         // **** COMPONENT 2 - Narrative

@@ -45,10 +45,10 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: Narrative: <code>String</code></li>
- * 		<li>Component 2: Narrative2: <code>String</code></li>
- * 		<li>Component 3: Narrative3: <code>String</code></li>
- * 		<li>Component 4: Narrative4: <code>String</code></li>
+ * 		<li>Component 1: NameAndAddress: <code>String</code></li>
+ * 		<li>Component 2: NameAndAddress2: <code>String</code></li>
+ * 		<li>Component 3: NameAndAddress3: <code>String</code></li>
+ * 		<li>Component 4: NameAndAddress4: <code>String</code></li>
  * </ol>
  *
  * <p>Structure definition
@@ -80,9 +80,9 @@ public class Field50N extends Field implements Serializable, MultiLineField {
     public static final String F_50N = "50N";
 
 	/**
-	 * Component number for the Narrative subfield.
+	 * Component number for the Name And Address subfield.
 	 */
-	public static final Integer NARRATIVE = 1;
+	public static final Integer NAME_AND_ADDRESS = 1;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
@@ -292,10 +292,10 @@ public class Field50N extends Field implements Serializable, MultiLineField {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Narrative");
-        result.add("Narrative 2");
-        result.add("Narrative 3");
-        result.add("Narrative 4");
+        result.add("Name And Address");
+        result.add("Name And Address 2");
+        result.add("Name And Address 3");
+        result.add("Name And Address 4");
         return result;
     }
 
@@ -306,10 +306,10 @@ public class Field50N extends Field implements Serializable, MultiLineField {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "narrative");
-        result.put(2, "narrative2");
-        result.put(3, "narrative3");
-        result.put(4, "narrative4");
+        result.put(1, "nameAndAddress");
+        result.put(2, "nameAndAddress2");
+        result.put(3, "nameAndAddress3");
+        result.put(4, "nameAndAddress4");
         return result;
     }
 
@@ -324,15 +324,15 @@ public class Field50N extends Field implements Serializable, MultiLineField {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
-        super.labelMap.put("narrative", 1);
-        super.labelMap.put("narrative2", 2);
-        super.labelMap.put("narrative3", 3);
-        super.labelMap.put("narrative4", 4);
+        super.labelMap.put("nameandaddress", 1);
+        super.labelMap.put("nameandaddress2", 2);
+        super.labelMap.put("nameandaddress3", 3);
+        super.labelMap.put("nameandaddress4", 4);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 (Narrative).
+     * Gets the component 1 (Name And Address).
      * @return the component 1
      */
     public String getComponent1() {
@@ -340,29 +340,29 @@ public class Field50N extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Gets the Narrative (component 1).
-     * @return the Narrative from component 1
+     * Gets the Name And Address (component 1).
+     * @return the Name And Address from component 1
      */
-    public String getNarrativeLine1() {
+    public String getNameAndAddressLine1() {
         return getComponent1();
     }
 
     /**
-     * Gets the Narrative as a concatenation of component 1 to component 4.
-     * @return the Narrative from components
+     * Gets the Name And Address as a concatenation of component 1 to component 4.
+     * @return the Name And Address from components
      */
-    public String getNarrative() {
-        return getNarrative(null);
+    public String getNameAndAddress() {
+        return getNameAndAddress(null);
     }
 
     /**
-     * Gets the Narrative as a concatenation of component 1 to component 4 joined together with a copy of the
+     * Gets the Name And Address as a concatenation of component 1 to component 4 joined together with a copy of the
      * specified delimiter.
      * @param deli the delimiter that separates each component
-     * @return the Narrative from components
+     * @return the Name And Address from components
      * @since 9.1.4
      */
-    public String getNarrative(CharSequence deli) {
+    public String getNameAndAddress(CharSequence deli) {
         StringBuilder result = new StringBuilder();
         for (int i = 1; i < 5; i++) {
             if (getComponent(i) != null) {
@@ -376,7 +376,7 @@ public class Field50N extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Gets the component 2 (Narrative 2).
+     * Gets the component 2 (Name And Address 2).
      * @return the component 2
      */
     public String getComponent2() {
@@ -384,15 +384,15 @@ public class Field50N extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Gets the Narrative 2 (component 2).
-     * @return the Narrative 2 from component 2
+     * Gets the Name And Address 2 (component 2).
+     * @return the Name And Address 2 from component 2
      */
-    public String getNarrativeLine2() {
+    public String getNameAndAddressLine2() {
         return getComponent2();
     }
 
     /**
-     * Gets the component 3 (Narrative 3).
+     * Gets the component 3 (Name And Address 3).
      * @return the component 3
      */
     public String getComponent3() {
@@ -400,15 +400,15 @@ public class Field50N extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Gets the Narrative 3 (component 3).
-     * @return the Narrative 3 from component 3
+     * Gets the Name And Address 3 (component 3).
+     * @return the Name And Address 3 from component 3
      */
-    public String getNarrativeLine3() {
+    public String getNameAndAddressLine3() {
         return getComponent3();
     }
 
     /**
-     * Gets the component 4 (Narrative 4).
+     * Gets the component 4 (Name And Address 4).
      * @return the component 4
      */
     public String getComponent4() {
@@ -416,17 +416,17 @@ public class Field50N extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Gets the Narrative 4 (component 4).
-     * @return the Narrative 4 from component 4
+     * Gets the Name And Address 4 (component 4).
+     * @return the Name And Address 4 from component 4
      */
-    public String getNarrativeLine4() {
+    public String getNameAndAddressLine4() {
         return getComponent4();
     }
 
     /**
-     * Set the component 1 (Narrative).
+     * Set the component 1 (Name And Address).
      *
-     * @param component1 the Narrative to set
+     * @param component1 the Name And Address to set
      * @return the field object to enable build pattern
      */
     public Field50N setComponent1(String component1) {
@@ -435,31 +435,31 @@ public class Field50N extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the Narrative (component 1).
+     * Set the Name And Address (component 1).
      *
-     * @param component1 the Narrative to set
+     * @param component1 the Name And Address to set
      * @return the field object to enable build pattern
      */
-    public Field50N setNarrativeLine1(String component1) {
+    public Field50N setNameAndAddressLine1(String component1) {
         return setComponent1(component1);
     }
 
     /**
-     * Set the Narrative splitting the parameter lines into components 1 to 4.
+     * Set the Name And Address splitting the parameter lines into components 1 to 4.
      *
-     * @param value the Narrative to set, may contain line ends and each line will be set to its correspondent component attribute
+     * @param value the Name And Address to set, may contain line ends and each line will be set to its correspondent component attribute
      * @return the field object to enable build pattern
      */
-    public Field50N setNarrative(String value) {
+    public Field50N setNameAndAddress(String value) {
         List<String> lines = SwiftParseUtils.getLines(value);
         SwiftParseUtils.setComponentsFromLines(this, 1, 4, 0, lines);
         return this;
     }
 
     /**
-     * Set the component 2 (Narrative 2).
+     * Set the component 2 (Name And Address 2).
      *
-     * @param component2 the Narrative 2 to set
+     * @param component2 the Name And Address 2 to set
      * @return the field object to enable build pattern
      */
     public Field50N setComponent2(String component2) {
@@ -468,19 +468,19 @@ public class Field50N extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the Narrative 2 (component 2).
+     * Set the Name And Address 2 (component 2).
      *
-     * @param component2 the Narrative 2 to set
+     * @param component2 the Name And Address 2 to set
      * @return the field object to enable build pattern
      */
-    public Field50N setNarrativeLine2(String component2) {
+    public Field50N setNameAndAddressLine2(String component2) {
         return setComponent2(component2);
     }
 
     /**
-     * Set the component 3 (Narrative 3).
+     * Set the component 3 (Name And Address 3).
      *
-     * @param component3 the Narrative 3 to set
+     * @param component3 the Name And Address 3 to set
      * @return the field object to enable build pattern
      */
     public Field50N setComponent3(String component3) {
@@ -489,19 +489,19 @@ public class Field50N extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the Narrative 3 (component 3).
+     * Set the Name And Address 3 (component 3).
      *
-     * @param component3 the Narrative 3 to set
+     * @param component3 the Name And Address 3 to set
      * @return the field object to enable build pattern
      */
-    public Field50N setNarrativeLine3(String component3) {
+    public Field50N setNameAndAddressLine3(String component3) {
         return setComponent3(component3);
     }
 
     /**
-     * Set the component 4 (Narrative 4).
+     * Set the component 4 (Name And Address 4).
      *
-     * @param component4 the Narrative 4 to set
+     * @param component4 the Name And Address 4 to set
      * @return the field object to enable build pattern
      */
     public Field50N setComponent4(String component4) {
@@ -510,12 +510,12 @@ public class Field50N extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the Narrative 4 (component 4).
+     * Set the Name And Address 4 (component 4).
      *
-     * @param component4 the Narrative 4 to set
+     * @param component4 the Name And Address 4 to set
      * @return the field object to enable build pattern
      */
-    public Field50N setNarrativeLine4(String component4) {
+    public Field50N setNameAndAddressLine4(String component4) {
         return setComponent4(component4);
     }
 
@@ -689,28 +689,28 @@ public class Field50N extends Field implements Serializable, MultiLineField {
 
         final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-        // **** COMPONENT 1 - Narrative
+        // **** COMPONENT 1 - Name And Address
 
-        if (jsonObject.get("narrative") != null) {
-            field.setComponent1(jsonObject.get("narrative").getAsString());
+        if (jsonObject.get("nameAndAddress") != null) {
+            field.setComponent1(jsonObject.get("nameAndAddress").getAsString());
         }
 
-        // **** COMPONENT 2 - Narrative 2
+        // **** COMPONENT 2 - Name And Address 2
 
-        if (jsonObject.get("narrative2") != null) {
-            field.setComponent2(jsonObject.get("narrative2").getAsString());
+        if (jsonObject.get("nameAndAddress2") != null) {
+            field.setComponent2(jsonObject.get("nameAndAddress2").getAsString());
         }
 
-        // **** COMPONENT 3 - Narrative 3
+        // **** COMPONENT 3 - Name And Address 3
 
-        if (jsonObject.get("narrative3") != null) {
-            field.setComponent3(jsonObject.get("narrative3").getAsString());
+        if (jsonObject.get("nameAndAddress3") != null) {
+            field.setComponent3(jsonObject.get("nameAndAddress3").getAsString());
         }
 
-        // **** COMPONENT 4 - Narrative 4
+        // **** COMPONENT 4 - Name And Address 4
 
-        if (jsonObject.get("narrative4") != null) {
-            field.setComponent4(jsonObject.get("narrative4").getAsString());
+        if (jsonObject.get("nameAndAddress4") != null) {
+            field.setComponent4(jsonObject.get("nameAndAddress4").getAsString());
         }
 
         return field;
