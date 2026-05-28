@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-### 10.4.0 - SNAPSHOT
+### 10.4.0 - May 2026
   * SWIFT Standard release update 2026 (live 14 November 2026)
   * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
   * `DeprecationUtils` runtime flags now use the JVM system property `PW_DEPRECATED` (also still honored as OS env var); removes the illegal-reflective-access warning.
