@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+### 10.4.1 - SNAPSHOT
+  * Fix: Minor scheme fix, 59A in MT760/765/767/785 
+
 ### 10.4.0 - May 2026
   * SWIFT Standard release update 2026 (live 14 November 2026)
   * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)

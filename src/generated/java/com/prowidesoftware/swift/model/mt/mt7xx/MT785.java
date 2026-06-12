@@ -53,7 +53,7 @@ Sequence A - Beneficiary (O)<ul><li class="field">Field 59 N (M)</li>
 <li class="field">Field 59 P (O)</li>
 <li class="field">Field 59 R (M)</li>
 </ul></li>
-<li class="field">Field 59 E (O)</li>
+<li class="field">Field 59 A (O)</li>
 <li class="field">Field 56 A,D (O)</li>
 <li class="field">Field 57 A,D (O)</li>
 <li class="field">Field 31 E (O)</li>
@@ -487,18 +487,18 @@ public class MT785 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 59E, 
+	 * Iterates through block4 fields and return the first one whose name matches 59A, 
 	 * or null if none is found.
-	 * The first occurrence of field 59E at MT785 is expected to be the only one.
+	 * The first occurrence of field 59A at MT785 is expected to be the only one.
 	 * 
-	 * @return a Field59E object or null if the field is not found
+	 * @return a Field59A object or null if the field is not found
 	 * @see SwiftTagListBlock#getTagByName(String)
 	 * @throws IllegalStateException if SwiftMessage object is not initialized
 	 */
-	public Field59E getField59E() {
-		final Tag t = tag("59E");
+	public Field59A getField59A() {
+		final Tag t = tag("59A");
 		if (t != null) {
-			return new Field59E(t.getValue());
+			return new Field59A(t.getValue());
 		} else {
 			return null;
 		}
