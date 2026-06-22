@@ -2,6 +2,7 @@
 
 ### 10.4.1 - SNAPSHOT
   * Fix: Minor scheme fix, 59A in MT760/765/767/785 
+  * Fix: `SwiftTagListBlock.getFieldsByNumber(int)` no longer throws `IllegalArgumentException` when a matching tag cannot be converted into a `Field`; such tags are now logged and skipped, consistently with the name-based lookups
 
 ### 10.4.0 - May 2026
   * SWIFT Standard release update 2026 (live 14 November 2026)

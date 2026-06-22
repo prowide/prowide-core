@@ -480,6 +480,9 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
      * Get all Fields of a given number.<br>
      * For example: for 59 will return any of 59, 59A, 59F, etc...
      *
+     * <p>Tags that match the number but cannot be converted into a {@link Field} (for example a newer letter option
+     * not known to the current library version) are logged and skipped, consistently with {@link #getFieldsByName(String, String)}.
+     *
      * @param fieldNumber the field number to search
      * @return the fields matching the given number or an empty list if none is found.
      * @see #getTagsByNumber(int)
@@ -489,7 +492,7 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
         for (Tag tag : getTagsByNumber(fieldNumber)) {
             final Field f = tag.asField();
             if (f == null) {
-                throw new IllegalArgumentException("Unable to create field for tagname " + tag.getName());
+                log.warning("Could not create field instance of " + tag);
             } else {
                 result.add(f);
             }
@@ -500,6 +503,10 @@ public class SwiftTagListBlock extends SwiftBlock implements Serializable, Itera
     /**
      * Gets the first field matching the given number and component value.
      * For example: for 59 will return any of 59, 59A, 59F, etc...
+     *
+     * <p>Tags that share the requested number but cannot be converted into a {@link Field} (for example a newer
+     * letter option not known to the current library version) are skipped, so a single unknown sibling
+     * tag does not prevent matching a known one.
      *
      * @param fieldNumber    the field number to search
      * @param componentValue expected value for component 1 in the matched field
