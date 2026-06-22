@@ -65,6 +65,28 @@ public class SwiftTagListBlockTest {
     }
 
     @Test
+    public void testGetFieldsByNumberSkipsUnknownLetterOption() {
+        // an unknown letter option (no Field20Z class) must be skipped instead of aborting the conversion
+        b.append(new Tag("20", "REF1"));
+        b.append(new Tag("20Z", "SOMETHING"));
+        b.append(new Tag("20C", ":SEME//REF2"));
+
+        List<? extends Field> fields = b.getFieldsByNumber(20);
+        assertEquals(2, fields.size());
+    }
+
+    @Test
+    public void testGetFieldByNumberAndComponentValueSkipsUnknownSibling() {
+        // an unknown letter option (no Field20Z class) must not prevent matching a known sibling such as 20C
+        b.append(new Tag("20Z", "SOMETHING"));
+        b.append(new Tag("20C", ":SEME//REFERENCE"));
+
+        Field f = b.getFieldByNumber(20, "SEME");
+        assertNotNull(f);
+        assertEquals("REFERENCE", f.getComponent(2));
+    }
+
+    @Test
     public void testContainsAll() {
         b.append(t);
         b.append(new Tag("1", "val"));
