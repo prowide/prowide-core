@@ -62,6 +62,7 @@ public interface SchemeConstantsB {
     String BORE = "BORE";
     String BPAS = "BPAS";
     String BYPR = "BYPR";
+    String BPAL = "BPAL";
     String BMRB = "BMRB";
     String BRIT = "BRIT";
     String BUY = "BUY";

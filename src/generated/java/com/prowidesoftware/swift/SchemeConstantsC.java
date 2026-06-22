@@ -191,8 +191,8 @@ public interface SchemeConstantsC {
     String CORO = "CORO";
     String CFR = "CFR";
     String COPP = "COPP";
-    String CONDITIONAL = "CONDITIONAL";
     String CONFIRM = "CONFIRM";
+    String CONDITIONAL = "CONDITIONAL";
     String CLM = "CLM";
     String COUR = "COUR";
     String CLSVOPEN = "CLSVOPEN";

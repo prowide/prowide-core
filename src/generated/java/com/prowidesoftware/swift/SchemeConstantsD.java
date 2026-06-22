@@ -85,10 +85,12 @@ public interface SchemeConstantsD {
     String DEQ = "DEQ";
     String DES = "DES";
     String DISPAR = "DISPAR";
+    String DPU = "DPU";
+    String DAP = "DAP";
     String DELETE = "DELETE";
     String DIFF = "DIFF";
-    String DGAR = "DGAR";
     String DOCR = "DOCR";
+    String DGAR = "DGAR";
     String DAYS = "DAYS";
     String DEPU = "DEPU";
     String DPAY = "DPAY";
