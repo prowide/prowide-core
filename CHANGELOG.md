@@ -1,7 +1,7 @@
 # Prowide Core - CHANGELOG
 
 #### 10.3.15 - SNAPSHOT
-  * feat: adding new labels for spanish properties file
+  * feat: Completed and consolidated the field labels across all language bundles (de, en, es, fr, it, ru), filling in missing translations and replacing redundant message-specific entries with generic field names
   * Fix: `SwiftTagListBlock.getFieldsByNumber(int)` no longer throws `IllegalArgumentException` when a matching tag cannot be converted into a `Field`; such tags are now logged and skipped, consistently with the name-based lookups
 
 #### 10.3.14 - May 2026
