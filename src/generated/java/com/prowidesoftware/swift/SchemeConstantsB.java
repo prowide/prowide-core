@@ -59,8 +59,10 @@ public interface SchemeConstantsB {
     String BLOK = "BLOK";
     String BAIN = "BAIN";
     String BENODET = "BENODET";
-    String BAST = "BAST";
-    String BAGA = "BAGA";
+    String BORE = "BORE";
+    String BPAS = "BPAS";
+    String BYPR = "BYPR";
+    String BPAL = "BPAL";
     String BMRB = "BMRB";
     String BRIT = "BRIT";
     String BUY = "BUY";

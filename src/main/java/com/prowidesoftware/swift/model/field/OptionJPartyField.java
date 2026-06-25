@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -281,6 +281,7 @@ public abstract class OptionJPartyField extends Field {
         ADD1,
         ADD2,
         CITY,
+        CTRY,
         USFW,
         USCH,
         GBSC,
