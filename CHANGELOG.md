@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+### 10.4.2 - SNAPSHOT
+  * Fix: Updating Field 59E due specs update 
+
 ### 10.4.1 - June 2026
   * Fix: Minor scheme fix, 59A in MT760/765/767/785 
   * Fix: `SwiftTagListBlock.getFieldsByNumber(int)` no longer throws `IllegalArgumentException` when a matching tag cannot be converted into a `Field`; such tags are now logged and skipped, consistently with the name-based lookups

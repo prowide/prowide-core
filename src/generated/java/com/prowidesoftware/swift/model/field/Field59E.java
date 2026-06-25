@@ -27,8 +27,10 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
+import com.prowidesoftware.swift.model.BIC;
 
-import com.prowidesoftware.swift.model.field.MultiLineField;
+import com.prowidesoftware.swift.model.field.BICContainer;
+import com.prowidesoftware.swift.model.field.BICResolver;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
@@ -45,15 +47,14 @@ import com.google.gson.JsonParser;
  *
  * <p>Subfields (components) Data types
  * <ol>
- * 		<li>Component 1: Account: <code>String</code></li>
- * 		<li>Component 2: NameAndAddress: <code>String</code></li>
+ * 		<li>Component 1: IdentifierCode: <code>BIC</code></li>
  * </ol>
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>[/34x$]35x</code></li>
- * 		<li>parser pattern: <code>[/S$]S</code></li>
- * 		<li>components pattern: <code>SS</code></li>
+ * 		<li>validation pattern: <code>&lt;BIC&gt;</code></li>
+ * 		<li>parser pattern: <code>S</code></li>
+ * 		<li>components pattern: <code>B</code></li>
  * </ul>
  *
  * <p>
@@ -61,7 +62,7 @@ import com.google.gson.JsonParser;
  */
 @SuppressWarnings("unused")
 @Generated
-public class Field59E extends Field implements Serializable, MultiLineField {
+public class Field59E extends Field implements Serializable, BICContainer {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
@@ -78,20 +79,16 @@ public class Field59E extends Field implements Serializable, MultiLineField {
     public static final String F_59E = "59E";
 
 	/**
-	 * Component number for the Account subfield.
+	 * Component number for the Identifier Code subfield.
 	 */
-	public static final Integer ACCOUNT = 1;
+	public static final Integer IDENTIFIER_CODE = 1;
 
-	/**
-	 * Component number for the Name And Address subfield.
-	 */
-	public static final Integer NAME_AND_ADDRESS = 2;
 
     /**
      * Default constructor. Creates a new field setting all components to null.
      */
     public Field59E() {
-        super(2);
+        super(1);
     }
 
     /**
@@ -163,16 +160,8 @@ public class Field59E extends Field implements Serializable, MultiLineField {
      */
     @Override
     public void parse(final String value) {
-        init(2);
-        List<String> lines = SwiftParseUtils.getLines(value);
-        if (!lines.isEmpty()) {
-            if (lines.get(0).startsWith("/")) {
-                  setComponent1(StringUtils.substring(lines.get(0), 1));
-                  SwiftParseUtils.setComponentsFromLines(this, 2, null, 1, lines);
-             } else {
-                  SwiftParseUtils.setComponentsFromLines(this, 2, null, 0, lines);
-             }
-        }
+        init(1);
+        setComponent1(value);
     }
 
     /**
@@ -181,10 +170,7 @@ public class Field59E extends Field implements Serializable, MultiLineField {
     @Override
     public String getValue() {
         final StringBuilder result = new StringBuilder();
-        if (getComponent1() != null) {
-            result.append("/").append(getComponent1());
-        }
-        appendInLines(result, getComponent2());
+        append(result, 1);
         return result.toString();
     }
 
@@ -199,16 +185,11 @@ public class Field59E extends Field implements Serializable, MultiLineField {
      */
     @Override
     public String getValueDisplay(int component, Locale locale) {
-        if (component < 1 || component > 2) {
+        if (component != 1) {
             throw new IllegalArgumentException("invalid component number " + component + " for field 59E");
         }
-        if (component == 1) {
-            //default format (as is)
-            return getComponent(1);
-        }
-        // This is the last component, return directly without `if`
         //default format (as is)
-        return getComponent(2);
+        return getComponent(1);
     }
 
     /**
@@ -220,7 +201,7 @@ public class Field59E extends Field implements Serializable, MultiLineField {
      */
     @Override
     public String typesPattern() {
-        return "SS";
+        return "B";
     }
 
     /**
@@ -228,7 +209,7 @@ public class Field59E extends Field implements Serializable, MultiLineField {
      */
     @Override
     public String parserPattern() {
-        return "[/S$]S";
+        return "S";
     }
 
     /**
@@ -240,7 +221,7 @@ public class Field59E extends Field implements Serializable, MultiLineField {
     @ProwideDeprecated(phase3 = TargetYear.SRU2027)
     @Override
     public String validatorPattern() {
-        return "[/34x$]35x";
+        return "<BIC>";
     }
 
     /**
@@ -255,9 +236,6 @@ public class Field59E extends Field implements Serializable, MultiLineField {
      */
     @Override
     public boolean isOptional(int component) {
-        if (component == 1) {
-            return true;
-        }
         return false;
     }
 
@@ -278,7 +256,7 @@ public class Field59E extends Field implements Serializable, MultiLineField {
      */
     @Override
     public int componentsSize() {
-        return 2;
+        return 1;
     }
 
     /**
@@ -291,8 +269,7 @@ public class Field59E extends Field implements Serializable, MultiLineField {
     @Override
     public List<String> getComponentLabels() {
         List<String> result = new ArrayList<>();
-        result.add("Account");
-        result.add("Name And Address");
+        result.add("Identifier Code");
         return result;
     }
 
@@ -303,8 +280,7 @@ public class Field59E extends Field implements Serializable, MultiLineField {
     @Override
     protected Map<Integer, String> getComponentMap() {
         Map<Integer, String> result = new HashMap<>();
-        result.put(1, "account");
-        result.put(2, "nameAndAddress");
+        result.put(1, "identifierCode");
         return result;
     }
 
@@ -319,13 +295,14 @@ public class Field59E extends Field implements Serializable, MultiLineField {
             return super.labelMap;
         }
         super.labelMap = new HashMap<>();
-        super.labelMap.put("account", 1);
-        super.labelMap.put("nameandaddress", 2);
+        super.labelMap.put("identifiercode", 1);
+        // alias name
+        super.labelMap.put("bic", 1);
         return super.labelMap;
     }
 
     /**
-     * Gets the component 1 (Account).
+     * Gets the component 1 (Identifier Code).
      * @return the component 1
      */
     public String getComponent1() {
@@ -333,42 +310,35 @@ public class Field59E extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Gets the Account (component 1) removing its starting slashes if any.
-     * @return the Account from component 1
-     */
-    public String getAccount() {
-        String account = getComponent(1);
-        if (account != null) {
-            for(int i = 0; i < account.length(); i++) {
-                if (account.charAt(i) != '/') {
-                    return account.substring(i);
-                }
-            }
-            return "";
-        }
-        return null;
-    }
-
-    /**
-     * Gets the component 2 (Name And Address).
-     * @return the component 2
-     */
-    public String getComponent2() {
-        return getComponent(2);
-    }
-
-    /**
-     * Gets the Name And Address (component 2).
-     * @return the Name And Address from component 2
-     */
-    public String getNameAndAddress() {
-        return getComponent2();
-    }
-
-    /**
-     * Set the component 1 (Account).
+     * Get the component 1 as BIC
      *
-     * @param component1 the Account to set
+     * @return the component 1 converted to BIC or null if cannot be converted
+     */
+    public com.prowidesoftware.swift.model.BIC getComponent1AsBIC() {
+        return SwiftFormatUtils.getBIC(getComponent(1));
+    }
+
+    /**
+     * Gets the Identifier Code (component 1).
+     * @return the Identifier Code from component 1
+     */
+    public String getIdentifierCode() {
+        return getComponent1();
+    }
+
+
+    /**
+     * Get the Identifier Code (component 1) as BIC
+     * @return the Identifier Code from component 1 converted to BIC or null if cannot be converted
+     */
+    public com.prowidesoftware.swift.model.BIC getIdentifierCodeAsBIC() {
+        return getComponent1AsBIC();
+    }
+
+    /**
+     * Set the component 1 (Identifier Code).
+     *
+     * @param component1 the Identifier Code to set
      * @return the field object to enable build pattern
      */
     public Field59E setComponent1(String component1) {
@@ -377,36 +347,48 @@ public class Field59E extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Set the Account (component 1).
+     * Set the component1 from a BIC object.
      *
-     * @param component1 the Account to set
+     * @param component1 the BIC with the Identifier Code content to set
      * @return the field object to enable build pattern
      */
-    public Field59E setAccount(String component1) {
-        return setComponent1(component1);
-    }
-
-    /**
-     * Set the component 2 (Name And Address).
-     *
-     * @param component2 the Name And Address to set
-     * @return the field object to enable build pattern
-     */
-    public Field59E setComponent2(String component2) {
-        setComponent(2, component2);
+    public Field59E setComponent1(com.prowidesoftware.swift.model.BIC component1) {
+        setComponent(1, SwiftFormatUtils.getBIC(component1));
         return this;
     }
 
     /**
-     * Set the Name And Address (component 2).
+     * Set the Identifier Code (component 1).
      *
-     * @param component2 the Name And Address to set
+     * @param component1 the Identifier Code to set
      * @return the field object to enable build pattern
      */
-    public Field59E setNameAndAddress(String component2) {
-        return setComponent2(component2);
+    public Field59E setIdentifierCode(String component1) {
+        return setComponent1(component1);
     }
 
+    /**
+     * Set the Identifier Code (component 1) from a BIC object.
+     *
+     * @see #setComponent1(com.prowidesoftware.swift.model.BIC)
+     *
+     * @param component1 BIC with the Identifier Code content to set
+     * @return the field object to enable build pattern
+     */
+    public Field59E setIdentifierCode(com.prowidesoftware.swift.model.BIC component1) {
+        return setComponent1(component1);
+    }
+
+
+    @Override
+    public List<BIC> bics() {
+        return BICResolver.bics(this);
+    }
+
+    @Override
+    public List<String> bicStrings () {
+        return BICResolver.bicStrings(this);
+    }
 
 
     /**
@@ -481,90 +463,6 @@ public class Field59E extends Field implements Serializable, MultiLineField {
     }
 
     /**
-     * Returns a specific line from the field's value.
-     *
-     * @see MultiLineField#getLine(int)
-     * @param line a reference to a specific line in the field, first line being 1
-     * @return line content or null if not present or if line number is above the expected
-     * @since 7.7
-     */
-    @Override
-    public String getLine(int line) {
-        return getLine(line, 0);
-    }
-
-    /**
-     * Returns a specific line from the field's value.
-     *
-     * @see MultiLineField#getLine(int, int)
-     * @param line a reference to a specific line in the field, first line being 1
-     * @param offset an optional component number used as offset when counting lines
-     * @return line content or null if not present or if line number is above the expected
-     * @since 7.7
-     */
-    @Override
-    public String getLine(int line, int offset) {
-        Field59E cp = newInstance(this);
-        return getLine(cp, line, null, offset);
-    }
-
-    /**
-     * Returns the field value split into lines.
-     *
-     * @see MultiLineField#getLines()
-     * @return lines content or empty list if field's value is empty
-     * @since 7.7
-     */
-    @Override
-    public List<String> getLines() {
-        return SwiftParseUtils.getLines(getValue());
-    }
-
-    /**
-     * Returns the field value starting at the offset component, split into lines.
-     *
-     * @see MultiLineField#getLines(int)
-     * @param offset an optional component number used as offset when counting lines
-     * @return found lines or empty list if lines are not present or the offset is invalid
-     * @since 7.7
-     */
-    @Override
-    public List<String> getLines(int offset) {
-        Field59E cp = newInstance(this);
-        return SwiftParseUtils.getLines(getLine(cp, null, null, offset));
-    }
-
-    /**
-     * Returns a specific subset of lines from the field's value, given a range.
-     *
-     * @see MultiLineField#getLinesBetween(int, int )
-     * @param start a reference to a specific line in the field, first line being 1
-     * @param end a reference to a specific line in the field, must be greater than start
-     * @return found lines or empty list if value is empty
-     * @since 7.7
-     */
-    @Override
-    public List<String> getLinesBetween(int start, int end) {
-        return getLinesBetween(start, end, 0);
-    }
-
-    /**
-     * Returns a specific subset of lines from the field's value, starting at the offset component.
-     *
-     * @see MultiLineField#getLinesBetween(int start, int end, int offset)
-     * @param start a reference to a specific line in the field, first line being 1
-     * @param end a reference to a specific line in the field, must be greater than start
-     * @param offset an optional component number used as offset when counting lines
-     * @return found lines or empty list if lines are not present or the offset is invalid
-     * @since 7.7
-     */
-    @Override
-    public List<String> getLinesBetween(int start, int end, int offset) {
-        Field59E cp = newInstance(this);
-        return SwiftParseUtils.getLines(getLine(cp, start, end, offset));
-    }
-
-    /**
      * This method deserializes the JSON data into a Field59E object.
      * @param json JSON structure including tuples with label and value for all field components
      * @return a new field instance with the JSON data parsed into field components or an empty field id the JSON is invalid
@@ -577,16 +475,16 @@ public class Field59E extends Field implements Serializable, MultiLineField {
 
         final JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-        // **** COMPONENT 1 - Account
+        // **** COMPONENT 1 - Identifier Code
 
-        if (jsonObject.get("account") != null) {
-            field.setComponent1(jsonObject.get("account").getAsString());
+        // first try using alias's names (including deprecated ones, if any)
+        if (jsonObject.get("bIC") != null) {
+            field.setComponent1(jsonObject.get("bIC").getAsString());
         }
 
-        // **** COMPONENT 2 - Name And Address
-
-        if (jsonObject.get("nameAndAddress") != null) {
-            field.setComponent2(jsonObject.get("nameAndAddress").getAsString());
+        // last try using the official component's name (overwrites alternatives and DEPRECATED)
+        if (jsonObject.get("identifierCode") != null) {
+            field.setComponent1(jsonObject.get("identifierCode").getAsString());
         }
 
         return field;
