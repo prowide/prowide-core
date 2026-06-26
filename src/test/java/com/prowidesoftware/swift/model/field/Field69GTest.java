@@ -21,7 +21,9 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Tests for Field69G introduced in SRU2026 (MT 564).
- * Pattern: :4!c//&lt;DATE4&gt;&lt;TIME2&gt;/[3n][/[N]&lt;TIME3&gt;]&lt;DATE4&gt;&lt;TIME2&gt;/[/3n][/[N]&lt;TIME3&gt;]
+ * SR2026 corrected syntax (Updates to the MFVR §2.4 / SRG §2.5.2 / XSD fin.564 F69G_Type):
+ * :4!c//&lt;DATE4&gt;&lt;TIME2&gt;[,3n][/[N]&lt;TIME3&gt;]//&lt;DATE4&gt;&lt;TIME2&gt;[,3n][/[N]&lt;TIME3&gt;]
+ * i.e. the two date/time blocks are separated by "//" and the fractional seconds use a "," prefix.
  */
 public class Field69GTest extends AbstractFieldTest {
 
@@ -30,14 +32,14 @@ public class Field69GTest extends AbstractFieldTest {
     public void testSerialization() {
         testSerializationImpl(
                 "69G",
-                ":TRDP//20260101120000/20260102120000/",
-                ":TRDP//20260101120000/50020260102120000//250",
-                ":TRDP//20260101120000/500/N123020260102120000//250/N0100");
+                ":TRDP//20260101120000//20260102120000",
+                ":TRDP//20260101120000,500//20260102120000,250",
+                ":TRDP//20260101120000,500/N1230//20260102120000,250/N0100");
     }
 
     @Test
     public void testParse_simple() {
-        Field69G f = new Field69G(":TRDP//20260101120000/20260102120000/");
+        Field69G f = new Field69G(":TRDP//20260101120000//20260102120000");
         assertEquals("TRDP", f.getComponent1());
         assertEquals("20260101", f.getComponent2());
         assertEquals("120000", f.getComponent3());
@@ -47,9 +49,26 @@ public class Field69GTest extends AbstractFieldTest {
 
     @Test
     public void testParse_withDecimals() {
-        Field69G f = new Field69G(":TRDP//20260101120000/50020260102120000//250");
+        Field69G f = new Field69G(":TRDP//20260101120000,500//20260102120000,250");
         assertEquals("TRDP", f.getComponent1());
         assertEquals("500", f.getComponent4());
         assertEquals("250", f.getComponent9());
+    }
+
+    @Test
+    public void testParse_withOffsets() {
+        Field69G f = new Field69G(":SETT//20260415143000,123/0600//20260416143000,456/N0700");
+        // block 1: date/time/decimals + positive offset (no sign)
+        assertEquals("20260415", f.getComponent2());
+        assertEquals("143000", f.getComponent3());
+        assertEquals("123", f.getComponent4());
+        assertNull(f.getComponent5());
+        assertEquals("0600", f.getComponent6());
+        // block 2: date/time/decimals + negative offset (sign N)
+        assertEquals("20260416", f.getComponent7());
+        assertEquals("143000", f.getComponent8());
+        assertEquals("456", f.getComponent9());
+        assertEquals("N", f.getComponent10());
+        assertEquals("0700", f.getComponent11());
     }
 }

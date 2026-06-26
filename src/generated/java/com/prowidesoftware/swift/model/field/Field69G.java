@@ -65,8 +65,8 @@ import com.google.gson.JsonParser;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>:4!c//&lt;DATE4&gt;&lt;TIME2&gt;/[3n][/[N]&lt;TIME3&gt;]&lt;DATE4&gt;&lt;TIME2&gt;/[/3n][/[N]&lt;TIME3&gt;]</code></li>
- * 		<li>parser pattern: <code>:S//&lt;DATE4&gt;&lt;TIME2&gt;/[S][/[c]&lt;TIME3&gt;]&lt;DATE4&gt;&lt;TIME2&gt;/[/S][/[c]&lt;TIME3&gt;]</code></li>
+ * 		<li>validation pattern: <code>:4!c//&lt;DATE4&gt;&lt;TIME2&gt;[,3n][/[N]&lt;TIME3&gt;]//&lt;DATE4&gt;&lt;TIME2&gt;[,3n][/[N]&lt;TIME3&gt;]</code></li>
+ * 		<li>parser pattern: <code>:S//&lt;DATE4&gt;&lt;TIME2&gt;[,S][/[c]&lt;TIME3&gt;]//&lt;DATE4&gt;&lt;TIME2&gt;[,S][/[c]&lt;TIME3&gt;]</code></li>
  * 		<li>components pattern: <code>SDTNSWDTNSW</code></li>
  * </ul>
  *
@@ -223,91 +223,61 @@ public class Field69G extends Field implements Serializable, DateContainer, Gene
     @Override
     public void parse(final String value) {
         init(11);
+        /* SR2026 corrected 69G (MFVR Updates 2.4 / SRG 2.5.2, XSD fin.564 F69G_Type): two date/time
+           blocks separated by "//": <DATE4><TIME2>[,3n][/[N]<TIME3>]//<DATE4><TIME2>[,3n][/[N]<TIME3>] */
         setComponent1(SwiftParseUtils.getTokenFirst(value, ":", "//"));
-        String toparse = SwiftParseUtils.getTokenSecondLast(value, "//");
-        /* <DATE4><TIME2>/[3n][/[N]<TIME3>]<DATE4><TIME2>/[/3n][/[N]<TIME3>] */
-        if (toparse != null && toparse.length() >= 14) {
-            setComponent2(StringUtils.substring(toparse, 0, 8));
-            setComponent3(StringUtils.substring(toparse, 8, 14));
-            if (toparse.length() > 15 && toparse.charAt(14) == '/') {
-                String rest = StringUtils.substring(toparse, 15);
-                // Locate Date2: first occurrence of 14 consecutive digits followed by '/' or end-of-string,
-                // scanning candidate offsets 0..9 (max length of first-half optional block: 3 decimals + '/' + sign + 4 TIME3)
-                int date2Start = -1;
-                for (int cand = 0; cand <= rest.length() - 14 && cand <= 9; cand++) {
-                    boolean digits = true;
-                    for (int k = 0; k < 14 && digits; k++) {
-                        if (!Character.isDigit(rest.charAt(cand + k))) {
-                            digits = false;
+        String afterQualifier = SwiftParseUtils.getTokenSecondLast(value, "//"); /* block1//block2 */
+        if (afterQualifier != null) {
+            String block1 = SwiftParseUtils.getTokenFirst(afterQualifier, "//");
+            String block2 = SwiftParseUtils.getTokenSecondLast(afterQualifier, "//");
+            if (block1 != null) {
+                if (block1.length() >= 8) {
+                    setComponent2(StringUtils.substring(block1, 0, 8));
+                }
+                if (block1.length() >= 14) {
+                    setComponent3(StringUtils.substring(block1, 8, 14));
+                }
+                if (block1.length() > 14) {
+                    String tail1 = StringUtils.substring(block1, 14);
+                    setComponent4(SwiftParseUtils.getTokenFirst(tail1, ",", "/"));
+                    String off1 = SwiftParseUtils.getTokenSecondLast(tail1, "/");
+                    if (off1 != null) {
+                        if (off1.length() < 2) {
+                            setComponent5(off1);
+                        } else if (off1.length() == 2 || off1.length() == 4) {
+                            setComponent6(off1);
+                        } else if (off1.length() == 3 || off1.length() == 5) {
+                            setComponent5(StringUtils.substring(off1, 0, 1));
+                            setComponent6(StringUtils.substring(off1, 1));
+                        } else if (off1.length() > 4) {
+                            setComponent5(SwiftParseUtils.getAlphaPrefixTrimSlash(off1));
+                            setComponent6(SwiftParseUtils.getNumericSuffix(off1));
                         }
-                    }
-                    if (digits && (cand + 14 == rest.length() || rest.charAt(cand + 14) == '/')) {
-                        date2Start = cand;
-                        break;
                     }
                 }
-                if (date2Start >= 0) {
-                    // First-half optionals: [3n][/[N]<TIME3>]
-                    String firstOpt = StringUtils.substring(rest, 0, date2Start);
-                    int sl1 = firstOpt.indexOf('/');
-                    if (sl1 < 0) {
-                        if (!firstOpt.isEmpty()) {
-                            setComponent4(firstOpt);
-                        }
-                    } else {
-                        if (sl1 > 0) {
-                            setComponent4(StringUtils.substring(firstOpt, 0, sl1));
-                        }
-                        String off1 = StringUtils.substring(firstOpt, sl1 + 1);
-                        if (!off1.isEmpty()) {
-                            if (Character.isDigit(off1.charAt(0))) {
-                                setComponent6(off1);
-                            } else {
-                                setComponent5(StringUtils.substring(off1, 0, 1));
-                                if (off1.length() > 1) {
-                                    setComponent6(StringUtils.substring(off1, 1));
-                                }
-                            }
-                        }
-                    }
-                    // Date2 + Time2
-                    setComponent7(StringUtils.substring(rest, date2Start, date2Start + 8));
-                    setComponent8(StringUtils.substring(rest, date2Start + 8, date2Start + 14));
-                    // Second-half optionals (after the mandatory '/' post Time2): [/3n][/[N]<TIME3>]
-                    if (rest.length() > date2Start + 15) {
-                        String secondOpt = StringUtils.substring(rest, date2Start + 15);
-                        if (secondOpt.startsWith("/")) {
-                            String afterSlash = StringUtils.substring(secondOpt, 1);
-                            int sl2 = afterSlash.indexOf('/');
-                            if (sl2 < 0) {
-                                // Single chunk: decimals2 (1-3 digits) OR offset2
-                                if (afterSlash.length() <= 3 && SwiftParseUtils.isAllAsciiDigits(afterSlash)) {
-                                    setComponent9(afterSlash);
-                                } else if (!afterSlash.isEmpty()) {
-                                    if (Character.isDigit(afterSlash.charAt(0))) {
-                                        setComponent11(afterSlash);
-                                    } else {
-                                        setComponent10(StringUtils.substring(afterSlash, 0, 1));
-                                        if (afterSlash.length() > 1) {
-                                            setComponent11(StringUtils.substring(afterSlash, 1));
-                                        }
-                                    }
-                                }
-                            } else {
-                                // Two chunks: decimals2 / offset2
-                                setComponent9(StringUtils.substring(afterSlash, 0, sl2));
-                                String off2 = StringUtils.substring(afterSlash, sl2 + 1);
-                                if (!off2.isEmpty()) {
-                                    if (Character.isDigit(off2.charAt(0))) {
-                                        setComponent11(off2);
-                                    } else {
-                                        setComponent10(StringUtils.substring(off2, 0, 1));
-                                        if (off2.length() > 1) {
-                                            setComponent11(StringUtils.substring(off2, 1));
-                                        }
-                                    }
-                                }
-                            }
+            }
+            if (block2 != null) {
+                if (block2.length() >= 8) {
+                    setComponent7(StringUtils.substring(block2, 0, 8));
+                }
+                if (block2.length() >= 14) {
+                    setComponent8(StringUtils.substring(block2, 8, 14));
+                }
+                if (block2.length() > 14) {
+                    String tail2 = StringUtils.substring(block2, 14);
+                    setComponent9(SwiftParseUtils.getTokenFirst(tail2, ",", "/"));
+                    String off2 = SwiftParseUtils.getTokenSecondLast(tail2, "/");
+                    if (off2 != null) {
+                        if (off2.length() < 2) {
+                            setComponent10(off2);
+                        } else if (off2.length() == 2 || off2.length() == 4) {
+                            setComponent11(off2);
+                        } else if (off2.length() == 3 || off2.length() == 5) {
+                            setComponent10(StringUtils.substring(off2, 0, 1));
+                            setComponent11(StringUtils.substring(off2, 1));
+                        } else if (off2.length() > 4) {
+                            setComponent10(SwiftParseUtils.getAlphaPrefixTrimSlash(off2));
+                            setComponent11(SwiftParseUtils.getNumericSuffix(off2));
                         }
                     }
                 }
@@ -321,25 +291,25 @@ public class Field69G extends Field implements Serializable, DateContainer, Gene
     @Override
     public String getValue() {
         final StringBuilder result = new StringBuilder();
+        /* SR2026 corrected 69G: two date/time blocks separated by "//", decimals after "," */
         result.append(":");
         append(result, 1);
         result.append("//");
         append(result, 2);
         append(result, 3);
-        result.append("/");
         if (getComponent4() != null) {
-            append(result, 4);
+            result.append(",").append(getComponent4());
         }
         if (getComponent5() != null || getComponent6() != null) {
             result.append("/");
             append(result, 5);
             append(result, 6);
         }
+        result.append("//");
         append(result, 7);
         append(result, 8);
-        result.append("/");
         if (getComponent9() != null) {
-            result.append("/").append(getComponent9());
+            result.append(",").append(getComponent9());
         }
         if (getComponent10() != null || getComponent11() != null) {
             result.append("/");
@@ -450,7 +420,7 @@ public class Field69G extends Field implements Serializable, DateContainer, Gene
      */
     @Override
     public String parserPattern() {
-        return ":S//<DATE4><TIME2>/[S][/[c]<TIME3>]<DATE4><TIME2>/[/S][/[c]<TIME3>]";
+        return ":S//<DATE4><TIME2>[,S][/[c]<TIME3>]//<DATE4><TIME2>[,S][/[c]<TIME3>]";
     }
 
     /**
@@ -462,7 +432,7 @@ public class Field69G extends Field implements Serializable, DateContainer, Gene
     @ProwideDeprecated(phase3 = TargetYear.SRU2027)
     @Override
     public String validatorPattern() {
-        return ":4!c//<DATE4><TIME2>/[3n][/[N]<TIME3>]<DATE4><TIME2>/[/3n][/[N]<TIME3>]";
+        return ":4!c//<DATE4><TIME2>[,3n][/[N]<TIME3>]//<DATE4><TIME2>[,3n][/[N]<TIME3>]";
     }
 
     /**
