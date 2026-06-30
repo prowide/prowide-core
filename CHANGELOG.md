@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-### 10.4.2 - SNAPSHOT
+### 10.4.2 - June 2026
   * Fix: Corrected Field 69G structure per SRU2026 specs update
   * Fix: Updating Field 59E due specs update 
 
