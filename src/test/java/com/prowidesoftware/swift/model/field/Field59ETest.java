@@ -21,27 +21,26 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Tests for Field59E introduced in SRU2026 (MTs 760/765/767/785).
- * Pattern: [/34x$]35x (optional account + name/address).
+ * Definition (swift_fields.csv l.432): {@code 59,E,B,S,<BIC>} — a single
+ * {@code <CONNECTED/NON-CONNECTED BIC>} component ("Identifier Code").
  */
 public class Field59ETest extends AbstractFieldTest {
 
     @Override
     @Test
     public void testSerialization() {
-        testSerializationImpl("59E", "Beneficiary name", "/12345678\nBeneficiary name");
+        testSerializationImpl("59E", "ABNANL2A", "ABNANL2AXXX");
     }
 
     @Test
-    public void testParse_withAccount() {
-        Field59E f = new Field59E("/12345678\nBeneficiary name");
-        assertEquals("12345678", f.getComponent1());
-        assertEquals("Beneficiary name", f.getComponent2());
+    public void testParse() {
+        Field59E f = new Field59E("ABNANL2A");
+        assertEquals("ABNANL2A", f.getComponent1());
     }
 
     @Test
-    public void testParse_nameOnly() {
-        Field59E f = new Field59E("Beneficiary name");
-        assertNull(f.getComponent1());
-        assertEquals("Beneficiary name", f.getComponent2());
+    public void testParse_full11() {
+        Field59E f = new Field59E("ABNANL2AXXX");
+        assertEquals("ABNANL2AXXX", f.getComponent1());
     }
 }
