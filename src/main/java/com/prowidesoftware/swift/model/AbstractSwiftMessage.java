@@ -31,6 +31,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 /**
  * Base entity for MT and MX message persistence.
@@ -612,7 +613,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @param status a status name
      */
     public boolean isStatus(String status) {
-        return StringUtils.equals(status, getStatus());
+        return Strings.CS.equals(status, getStatus());
     }
 
     /**
@@ -663,7 +664,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
         if (l != null) {
             for (SwiftMessageStatusInfo s : getStatusTrail()) {
                 for (Enum e : statuses) {
-                    if (e != null && StringUtils.equals(s.getName(), e.name())) {
+                    if (e != null && Strings.CS.equals(s.getName(), e.name())) {
                         result = true;
                     }
                 }
@@ -683,7 +684,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
         if (l != null) {
             for (SwiftMessageStatusInfo s : getStatusTrail()) {
                 for (String e : statuses) {
-                    if (e != null && StringUtils.equals(s.getName(), e)) {
+                    if (e != null && Strings.CS.equals(s.getName(), e)) {
                         result = true;
                     }
                 }
@@ -915,7 +916,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @since 7.10.4
      */
     public boolean propertyEquals(String key, String expectedValue) {
-        return StringUtils.equals(expectedValue, getProperty(key));
+        return Strings.CS.equals(expectedValue, getProperty(key));
     }
 
     /**
@@ -1254,7 +1255,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @since 7.8.8
      */
     public boolean identifiedAsACK() {
-        return StringUtils.equals(this.identifier, IDENTIFIER_ACK);
+        return Strings.CS.equals(this.identifier, IDENTIFIER_ACK);
     }
 
     @Override
@@ -1326,7 +1327,7 @@ public abstract class AbstractSwiftMessage implements Serializable, JsonSerializ
      * @since 7.8.8
      */
     public boolean identifiedAsNAK() {
-        return StringUtils.equals(this.identifier, IDENTIFIER_NAK);
+        return Strings.CS.equals(this.identifier, IDENTIFIER_NAK);
     }
 
     /**

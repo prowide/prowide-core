@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.internal.*;
@@ -263,7 +263,7 @@ public class MT505 extends AbstractMT implements Serializable {
     private void sanityCheck(final SwiftMessage param) {
     	if (param.isServiceMessage()) {
 			log.warning("Creating an MT505 object from FIN content with a Service Message. Check if the MT505 you are intended to read is prepended with and ACK.");
-		} else if (!StringUtils.equals(param.getType(), "505")) {
+		} else if (!Strings.CS.equals(param.getType(), "505")) {
 			log.warning("Creating an MT505 object from FIN content with message type "+param.getType());
 		}
     }

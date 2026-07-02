@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.junit.jupiter.api.Test;
 
 public class Field133Test extends AbstractFieldTest {
@@ -110,7 +110,7 @@ public class Field133Test extends AbstractFieldTest {
         Field133 f = new Field133();
         String v = EXAMPLE1_FIELD_133;
         f = new Field133(v);
-        assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
+        assertEquals(Strings.CS.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
     }
 
     @Test
@@ -118,7 +118,7 @@ public class Field133Test extends AbstractFieldTest {
         Field133 f = new Field133();
         String v = EXAMPLE2_FIELD_133;
         f = new Field133(v);
-        assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
+        assertEquals(Strings.CS.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
     }
 
     @Test
@@ -126,7 +126,7 @@ public class Field133Test extends AbstractFieldTest {
         Field133 f = new Field133();
         String v = EXAMPLE3_FIELD_133;
         f = new Field133(v);
-        assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
+        assertEquals(Strings.CS.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
     }
 
     @Test
@@ -134,6 +134,6 @@ public class Field133Test extends AbstractFieldTest {
         Field133 f = new Field133();
         String v = EXAMPLE4_FIELD_133;
         f = new Field133(v);
-        assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
+        assertEquals(Strings.CS.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
     }
 }

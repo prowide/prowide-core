@@ -28,6 +28,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -82,14 +83,14 @@ public class SwiftMessageUtils {
         }
         final Tag start = sequence.getTag(0);
         final Tag end = sequence.getTag(sequence.size() - 1);
-        if (!StringUtils.equals("16R", start.getName())) {
+        if (!Strings.CS.equals("16R", start.getName())) {
             throw new IllegalArgumentException(
                     "Starting tag of sequence must be 16R (and was " + start.getName() + ")");
         }
-        if (!StringUtils.equals("16S", end.getName())) {
+        if (!Strings.CS.equals("16S", end.getName())) {
             throw new IllegalArgumentException("Ending tag of sequence must be 16S (and was " + end.getName() + ")");
         }
-        if (!StringUtils.equals(start.getValue(), end.getValue())) {
+        if (!Strings.CS.equals(start.getValue(), end.getValue())) {
             throw new IllegalArgumentException("The qualifier of the starting block " + start
                     + " must match the qualifier of the ending block " + end);
         }
@@ -97,14 +98,14 @@ public class SwiftMessageUtils {
         String qualifier = null;
         for (int i = 0; i < sequence.getTags().size(); i++) {
             final Tag t = sequence.getTags().get(i);
-            if (i > 0 && qualifier == null && StringUtils.equals(t.getName(), "16R")) {
+            if (i > 0 && qualifier == null && Strings.CS.equals(t.getName(), "16R")) {
                 /*
                  * found sequence start
                  */
                 qualifier = t.getValue();
             } else if (qualifier != null
-                    && StringUtils.equals(t.getName(), "16S")
-                    && StringUtils.equals(t.getValue(), qualifier)) {
+                    && Strings.CS.equals(t.getName(), "16S")
+                    && Strings.CS.equals(t.getValue(), qualifier)) {
                 /*
                  * found sequence end
                  */

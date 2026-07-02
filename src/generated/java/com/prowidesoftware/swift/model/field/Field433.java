@@ -32,6 +32,7 @@ import java.util.HashMap;
 import com.prowidesoftware.swift.model.*;
 import com.prowidesoftware.swift.utils.SwiftFormatUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -111,7 +112,7 @@ public class Field433 extends Field implements Serializable {
         if (tag == null) {
             throw new IllegalArgumentException("tag cannot be null.");
         }
-        if (!StringUtils.equals(tag.getName(), "433")) {
+        if (!Strings.CS.equals(tag.getName(), "433")) {
             throw new IllegalArgumentException("cannot create field 433 from tag "+tag.getName()+", tagname must match the name of the field.");
         }
         parse(tag.getValue());

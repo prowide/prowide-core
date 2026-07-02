@@ -18,7 +18,7 @@ package com.prowidesoftware.swift.model;
 import com.prowidesoftware.swift.model.field.Field;
 import java.io.Serializable;
 import java.util.Objects;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 /**
  * Representation of an MT field in a message as a plain key/value tuple.
@@ -358,7 +358,7 @@ public class Tag implements Serializable {
         } else if (!unparsedTexts.equals(other.unparsedTexts)) return false;
         if (value == null) {
             return other.value == null;
-        } else return StringUtils.replace(value, "\r", "").equals(StringUtils.replace(other.value, "\r", ""));
+        } else return Strings.CS.replace(value, "\r", "").equals(Strings.CS.replace(other.value, "\r", ""));
     }
 
     /**
@@ -444,7 +444,7 @@ public class Tag implements Serializable {
         if (values != null && values.length > 0) {
             final String _v = getValue();
             for (String v : values) {
-                if (StringUtils.contains(_v, v)) {
+                if (Strings.CS.contains(_v, v)) {
                     return true;
                 }
             }
@@ -464,17 +464,17 @@ public class Tag implements Serializable {
     }
 
     /**
-     * equivalent to StringUtils.startsWith(tag.getValue(), prefix)
+     * equivalent to Strings.CS.startsWith(tag.getValue(), prefix)
      */
     public boolean startsWith(String prefix) {
-        return StringUtils.startsWith(getValue(), prefix);
+        return Strings.CS.startsWith(getValue(), prefix);
     }
 
     /**
-     * equivalent to StringUtils.contains(tag.getValue(), searchStr)
+     * equivalent to Strings.CS.contains(tag.getValue(), searchStr)
      */
     public boolean contains(String searchStr) {
-        return StringUtils.contains(getValue(), searchStr);
+        return Strings.CS.contains(getValue(), searchStr);
     }
 
     /**

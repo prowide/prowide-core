@@ -18,6 +18,7 @@ package com.prowidesoftware.swift.model;
 import com.prowidesoftware.ProwideException;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 /**
  * Helper class to validate SWIFT char sets (named after the SWIFT User Handbook).
@@ -315,9 +316,9 @@ public class SwiftCharsetUtils {
                 throw new ProwideException("Unexpected charset value " + charset);
             }
         }
-        result = StringUtils.replace(result, getAsString(get_n()), "[0-9]");
-        result = StringUtils.replace(result, getAsString(get_a()), "[A-Z]");
-        return StringUtils.replace(result, getAsString(azLowerCase), "[a-z]");
+        result = Strings.CS.replace(result, getAsString(get_n()), "[0-9]");
+        result = Strings.CS.replace(result, getAsString(get_a()), "[A-Z]");
+        return Strings.CS.replace(result, getAsString(azLowerCase), "[a-z]");
     }
 
     /**

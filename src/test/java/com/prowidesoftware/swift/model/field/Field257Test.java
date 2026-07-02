@@ -18,7 +18,7 @@ package com.prowidesoftware.swift.model.field;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.prowidesoftware.swift.io.writer.FINWriterVisitor;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.junit.jupiter.api.Test;
 
 public class Field257Test extends AbstractFieldTest {
@@ -101,7 +101,7 @@ public class Field257Test extends AbstractFieldTest {
         Field257 f = new Field257();
         String v = EXAMPLE1_FIELD_257;
         f = new Field257(v);
-        assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
+        assertEquals(Strings.CS.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
     }
 
     @Test
@@ -109,6 +109,6 @@ public class Field257Test extends AbstractFieldTest {
         Field257 f = new Field257();
         String v = EXAMPLE2_FIELD_257;
         f = new Field257(v);
-        assertEquals(StringUtils.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
+        assertEquals(Strings.CS.replace(v, "\n", FINWriterVisitor.SWIFT_EOL), f.getValue());
     }
 }
