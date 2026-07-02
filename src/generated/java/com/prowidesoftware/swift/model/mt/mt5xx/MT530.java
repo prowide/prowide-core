@@ -53,7 +53,7 @@ Fieldset 95
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
-Sequence B - Request Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence B - Request Details (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 20
  (O)<ul><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C,U (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li></ul></li><li class="fieldset">
@@ -74,7 +74,7 @@ Sequence C - Additional Information (O) (repetitive)<ul><li class="field">Field 
 <li class="field">Field 97 A,B,D (O)</li>
 <li class="field">Field 35 B (O)</li>
 <li class="field">Field 36 B,D (O)</li>
-<li class="field">Field 90 A,B (M)</li>
+<li class="field">Field 90 A,B (O)</li>
 <li class="field">Field 19 A (O)</li>
 <li class="fieldset">
 Fieldset 98

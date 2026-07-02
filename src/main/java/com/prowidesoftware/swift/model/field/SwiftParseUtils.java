@@ -22,7 +22,6 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * This class provides methods to parse field components.
  *
- * @author sebastian
  * @since 6.0
  */
 public class SwiftParseUtils {
@@ -114,7 +113,11 @@ public class SwiftParseUtils {
     }
 
     /**
-     * @return s
+     * Removes the given prefix from the value if present.
+     *
+     * @param value  the string to process
+     * @param prefix the prefix to remove
+     * @return the value without the prefix, or the original value if the prefix is not present
      */
     public static String removePrefix(final String value, final String prefix) {
         if (StringUtils.isNotBlank(value) && StringUtils.isNotBlank(prefix) && value.startsWith(prefix)) {
@@ -132,7 +135,9 @@ public class SwiftParseUtils {
      * <li>for the literal "abc/foo/def/ghi" will return "foo".</li>
      * </ul>
      *
-     * @return s
+     * @param line      the string to parse
+     * @param separator the components separator
+     * @return the second token found or null
      */
     public static String getTokenSecond(final String line, final String separator) {
         // notice we cannot use String.split nor StringUtils.split because in that implementations two adjacent
@@ -150,7 +155,9 @@ public class SwiftParseUtils {
      * <li>for the literal "abc/foo/def/ghi" will return "foo/def/ghi".</li>
      * </ul>
      *
-     * @return s
+     * @param line      the string to parse
+     * @param separator the components separator
+     * @return the second token (including remaining separators) or null
      */
     public static String getTokenSecondLast(final String line, final String separator) {
         String result = StringUtils.substringAfter(line, separator);
@@ -199,7 +206,9 @@ public class SwiftParseUtils {
      * <li>for the literal "abc/def/foo/ghi" will return "foo".</li>
      * </ul>
      *
-     * @return s
+     * @param line      the string to parse
+     * @param separator the components separator
+     * @return the third token found or null
      */
     public static String getTokenThird(final String line, final String separator) {
         return getTokenSecond(getTokenSecondLast(line, separator), separator);
@@ -216,7 +225,9 @@ public class SwiftParseUtils {
      * <li>for the literal "abc/def/foo/ghi" will return "foo/ghi".</li>
      * </ul>
      *
-     * @return s
+     * @param line      the string to parse
+     * @param separator the components separator
+     * @return the third token (including remaining separators) or null
      */
     public static String getTokenThirdLast(final String line, final String separator) {
         String result = null;
@@ -231,8 +242,8 @@ public class SwiftParseUtils {
     }
 
     /**
-     * Split components of a line using the parameter separator and returns the forth token found or null if
-     * forth component is missing. Two adjacent separators are NOT treated as one.<br>
+     * Split components of a line using the parameter separator and returns the fourth token found or null if
+     * the fourth component is missing. Two adjacent separators are NOT treated as one.<br>
      * Examples with slash as separator:<ul>
      * <li>for the literal "abc/def/ghi//ghi" will return null.</li>
      * <li>for the literal "abc/foo/ghi" will return "null".</li>
@@ -240,15 +251,17 @@ public class SwiftParseUtils {
      * <li>for the literal "abc/def/ghi/foo/ghi" will return "foo".</li>
      * </ul>
      *
-     * @return s
+     * @param line      the string to parse
+     * @param separator the components separator
+     * @return the fourth token found or null
      */
     public static String getTokenForth(final String line, final String separator) {
         return getTokenSecond(getTokenThirdLast(line, separator), separator);
     }
 
     /**
-     * Split components of a line using the parameter separator and returns the forth token found or null if
-     * forth component is missing. Two adjacent separators are NOT treated as one. The forth component is assumed as the
+     * Split components of a line using the parameter separator and returns the fourth token found or null if
+     * the fourth component is missing. Two adjacent separators are NOT treated as one. The fourth component is assumed as the
      * last one so its content may have additional separators if present.<br>
      * Examples with slash as separator:<ul>
      * <li>for the literal "abc/def/ghi//ghi" will return null.</li>
@@ -257,7 +270,9 @@ public class SwiftParseUtils {
      * <li>for the literal "abc/def/ghi/foo/ghi" will return "foo/ghi".</li>
      * </ul>
      *
-     * @return s
+     * @param line      the string to parse
+     * @param separator the components separator
+     * @return the fourth token (including remaining separators) or null
      */
     public static String getTokenForthLast(final String line, final String separator) {
         String result = null;
@@ -275,10 +290,11 @@ public class SwiftParseUtils {
      * Returns the alphabetic starting substring of the value.
      * The split is made when the first numeric character is found.
      * For example:<br>
-     * ABCD2345,33 will be return ABCD<br>
+     * ABCD2345,33 will return ABCD<br>
      * If the value does not contain any alphabetic character null is returned.
      *
-     * @return s
+     * @param value the string to process
+     * @return the alphabetic prefix or null
      */
     public static String getAlphaPrefix(final String value) {
         if (value != null && value.length() > 0) {
@@ -312,10 +328,11 @@ public class SwiftParseUtils {
      * Returns the numeric starting substring of the value.
      * The split is made when the first alpha character (not number or comma) is found.
      * For example:<br>
-     * 2345,33ABCD will be return 2345,33<br>
+     * 2345,33ABCD will return 2345,33<br>
      * If the value does not contain any numeric or comma character null is returned.
      *
-     * @return s
+     * @param value the string to process
+     * @return the numeric prefix (digits and commas) or null
      */
     public static String getNumericPrefix(final String value) {
         if (value != null && value.length() > 0) {
@@ -335,10 +352,11 @@ public class SwiftParseUtils {
      * Returns the numeric suffix of the value.
      * The split is made when the first numeric character is found.
      * For example:<br>
-     * ABCD2345,33 will be return 2345,33<br>
+     * ABCD2345,33 will return 2345,33<br>
      * If the value does not contain any numeric character null is returned.
      *
-     * @return s
+     * @param value the string to process
+     * @return the numeric suffix (digits and commas) or null
      */
     public static String getNumericSuffix(final String value) {
         if (value != null && value.length() > 0) {
@@ -355,12 +373,13 @@ public class SwiftParseUtils {
 
     /**
      * Returns the alpha suffix of the value.
-     * The split is made when the first alpha (not numetic or comma) character is found.
+     * The split is made when the first alpha (not numeric or comma) character is found.
      * For example:<br>
-     * 2345,33ABCD will be return ABCD<br>
+     * 2345,33ABCD will return ABCD<br>
      * If the value does not contain any alpha character null is returned.
      *
-     * @return s
+     * @param value the string to process
+     * @return the alphabetic suffix or null
      */
     public static String getAlphaSuffix(final String value) {
         if (value != null && value.length() > 0) {
@@ -429,7 +448,7 @@ public class SwiftParseUtils {
     }
 
     /**
-     * Populates field with content from of a String splited into fixed length tokens.
+     * Populates field with content from a String split into fixed-length tokens.
      *
      * @param f                       field to populate with components' values
      * @param startingComponentNumber first component number to be set, then it will increment on each token added

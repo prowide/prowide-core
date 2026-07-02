@@ -51,8 +51,8 @@ import com.google.gson.JsonParser;
  *
  * <p>Structure definition
  * <ul>
- * 		<li>validation pattern: <code>[[/&lt;DC&gt;][/34x]$]35x</code></li>
- * 		<li>parser pattern: <code>[[/c][/S]$]S</code></li>
+ * 		<li>validation pattern: <code>[[/&lt;DC&gt;][/34x]$][35x]</code></li>
+ * 		<li>parser pattern: <code>[[/c][/S]$][S]</code></li>
  * 		<li>components pattern: <code>SSS</code></li>
  * </ul>
  *
@@ -150,7 +150,7 @@ public class Field56B extends OptionBPartyField implements Serializable, MultiLi
     @ProwideDeprecated(phase2 = TargetYear.SRU2026)
     @Override
     public final String validatorPattern() {
-        return "[[/<DC>][/34x]$]35x";
+        return "[[/<DC>][/34x]$][35x]";
     }
 
     /**

@@ -41,7 +41,6 @@ import org.w3c.dom.NodeList;
  * This implementation should be used by calling some of the the conversion
  * services.
  *
- * @author sebastian
  * @see com.prowidesoftware.swift.io.IConversionService
  * @since 5.0
  */

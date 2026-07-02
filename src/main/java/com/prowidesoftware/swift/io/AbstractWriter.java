@@ -33,7 +33,6 @@ import java.nio.charset.StandardCharsets;
  * the write methods and closing the writer when all messages has been written</li>
  * </ul>
  *
- * @author sebastian
  * @since 7.8
  */
 public abstract class AbstractWriter {

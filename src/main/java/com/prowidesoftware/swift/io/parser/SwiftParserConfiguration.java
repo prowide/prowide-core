@@ -19,7 +19,6 @@ package com.prowidesoftware.swift.io.parser;
  * Container class for MT parser parameters.
  * This can be passed to the parser to control fine grain details of the process.
  *
- * @author sebastian
  * @since 7.8
  */
 public class SwiftParserConfiguration {

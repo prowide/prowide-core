@@ -31,7 +31,6 @@ import org.apache.commons.lang3.StringUtils;
  * Main class for XML generation, that is called from {@link SwiftMessage#visit(IMessageVisitor)}.
  * Presence of blocks is checked by the calling class so the methods below asume that blocks are not null.
  *
- * @author sebastian
  */
 public class XMLWriterVisitor implements IMessageVisitor {
     private static final transient java.util.logging.Logger log =

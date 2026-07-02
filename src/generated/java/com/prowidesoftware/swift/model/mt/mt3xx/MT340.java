@@ -148,7 +148,7 @@ Sequence G1a1 (O) (repetitive)<ul><li class="field">Field 22 P (M)</li>
 <li class="field">Field 17 Q (O)</li>
 <li class="field">Field 17 S (O)</li>
 <li class="field">Field 17 X (O)</li>
-<li class="field">Field 34 C (O)</li>
+<li class="field">Field 34 C (O) (repetitive)</li>
 <li class="field">Field 77 A (O)</li>
 </ul></li>
 </ul></div>
@@ -1461,24 +1461,6 @@ public class MT340 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 34C, 
-	 * or null if none is found.
-	 * The first occurrence of field 34C at MT340 is expected to be the only one.
-	 * 
-	 * @return a Field34C object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field34C getField34C() {
-		final Tag t = tag("34C");
-		if (t != null) {
-			return new Field34C(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
 	 * Iterates through block4 fields and return the first one whose name matches 77A, 
 	 * or null if none is found.
 	 * The first occurrence of field 77A at MT340 is expected to be the only one.
@@ -2051,6 +2033,26 @@ public class MT340 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field22S(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 34C, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 34C at MT340 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field34C objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field34C> getField34C() {
+		final List<Field34C> result = new ArrayList<>();
+		final Tag[] tags = tags("34C");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field34C(tag.getValue()));
             }
 		}
 		return result;

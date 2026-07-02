@@ -24,7 +24,6 @@ import java.lang.reflect.Type;
 /**
  * Basic Bank Account Number Entry Types.
  *
- * @author psantamarina
  * @since 7.9.7
  */
 public enum BbanEntryType {

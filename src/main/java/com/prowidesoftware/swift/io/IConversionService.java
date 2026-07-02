@@ -25,7 +25,6 @@ import com.prowidesoftware.swift.model.SwiftMessage;
  *   <li><b>SwiftMessage</b>: WIFE's java object model of SWIFT messages.</li>
  * </ul>
  *
- * @author sebastian
  */
 public interface IConversionService {
 

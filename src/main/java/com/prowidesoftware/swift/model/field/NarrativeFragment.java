@@ -51,6 +51,11 @@ public class NarrativeFragment {
         this.lineLength = lineLength;
     }
 
+    /**
+     * Returns the narrative text for this fragment.
+     *
+     * @return the fragment text
+     */
     public String getText() {
         return text;
     }

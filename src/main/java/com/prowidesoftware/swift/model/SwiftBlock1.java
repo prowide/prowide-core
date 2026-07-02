@@ -34,7 +34,6 @@ import org.apache.commons.lang3.Validate;
  * of the block value.<br>
  * This block is mandatory for all SWIFT messages.
  *
- * @author sebastian
  * @since 4.0
  */
 // TODO: add parameter checks (Validate.*) and complete javadocs

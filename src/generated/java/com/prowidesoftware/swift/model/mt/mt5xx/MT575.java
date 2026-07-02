@@ -48,7 +48,7 @@ Sequence A - General Information (M)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 A (O)</li>
 <li class="field">Field 20 C (M)</li>
 <li class="field">Field 23 G (M)</li>
-<li class="field">Field 98 A,C (O)</li>
+<li class="field">Field 98 A,C,E (O)</li>
 <li class="field">Field 69 A,B (M)</li>
 <li class="fieldset">
 Fieldset 22
@@ -146,7 +146,7 @@ Fieldset 98
  (M) (repetitive)<ul><li>FieldsetItem 98 A,C (M)</li><li>FieldsetItem 98 A,B,C (O)</li><li>FieldsetItem 98 A,B,C (O)</li></ul></li><li class="field">Field 25 D (O)</li>
 <li class="field">Field 70 E (O)</li>
 <li class="sequence">
-Sequence C2a - Settlement Parties (O)<ul><li class="field">Field 16 R (M)</li>
+Sequence C2a - Settlement Parties (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 95
  (M) (repetitive)<ul><li>FieldsetItem 95 P,Q,R,C,D (M)</li><li>FieldsetItem 95 L (O)</li></ul></li><li class="field">Field 97 A,B,D (O)</li>
@@ -440,6 +440,24 @@ public class MT575 extends AbstractMT implements Serializable {
 		final Tag t = tag("23G");
 		if (t != null) {
 			return new Field23G(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 98E, 
+	 * or null if none is found.
+	 * The first occurrence of field 98E at MT575 is expected to be the only one.
+	 * 
+	 * @return a Field98E object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field98E getField98E() {
+		final Tag t = tag("98E");
+		if (t != null) {
+			return new Field98E(t.getValue());
 		} else {
 			return null;
 		}

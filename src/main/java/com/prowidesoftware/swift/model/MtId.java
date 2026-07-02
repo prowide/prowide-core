@@ -28,7 +28,6 @@ import org.apache.commons.lang3.StringUtils;
  * The business process is currently set to a fixed value "fin", however it is kept as
  * class attribute because eventually could be used also for "apc".
  *
- * @author sebastian
  * @since 7.8.4
  */
 public class MtId {
@@ -38,7 +37,7 @@ public class MtId {
     private String variant;
 
     /**
-     * @since @since 8.0.3
+     * @since 8.0.3
      */
     public MtId() {}
 

@@ -142,7 +142,7 @@ public class Lib {
      * Read the content of the given stream into a string.
      *
      * @param stream    the contents to read
-     * @param enconding encoding to use, , may be null in which case UTF-8 is used as default
+     * @param enconding encoding to use; may be null, in which case UTF-8 is used as default
      * @return the read content
      * @throws IOException if the resource stream cannot be read
      * @since 7.7

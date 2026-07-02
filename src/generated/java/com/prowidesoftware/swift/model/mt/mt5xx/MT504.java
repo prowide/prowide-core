@@ -71,7 +71,7 @@ Sequence A2 - Linkages (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 </ul></li>
 <li class="sequence">
 Sequence B - Summary (M)<ul><li class="field">Field 16 R (M)</li>
-<li class="field">Field 95 P,Q,R (O)</li>
+<li class="field">Field 95 P,Q,R (M)</li>
 <li class="fieldset">
 Fieldset 19
  (M) (repetitive)<ul><li>FieldsetItem 19 B (M)</li><li>FieldsetItem 19 B (M)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li><li>FieldsetItem 19 B (O)</li></ul></li><li class="sequence">
@@ -85,7 +85,7 @@ Fieldset 98
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="sequence">
-Sequence C - Collateral Details (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
+Sequence C - Collateral Details (M) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 20 C (M)</li>
 <li class="fieldset">
 Fieldset 22

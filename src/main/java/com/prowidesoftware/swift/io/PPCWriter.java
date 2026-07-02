@@ -23,7 +23,6 @@ import java.util.Objects;
 /**
  * Helper API to write MT messages into DOS-PCC files.
  *
- * @author sebastian
  * @see AbstractWriter
  * @since 7.8
  */

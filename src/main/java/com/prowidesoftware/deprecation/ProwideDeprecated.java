@@ -29,7 +29,6 @@ import java.lang.annotation.RetentionPolicy;
  * source code administration. It may suffer incompatible changes
  * without prior notice.
  *
- * @author miguel
  * @since 7.8.1
  */
 @Retention(RetentionPolicy.SOURCE)

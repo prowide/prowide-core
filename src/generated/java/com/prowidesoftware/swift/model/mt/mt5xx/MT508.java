@@ -78,15 +78,16 @@ Fieldset 12
 Fieldset 98
  (O)<ul><li>FieldsetItem 98 A (O)</li><li>FieldsetItem 98 A (O)</li><li>FieldsetItem 98 A (O)</li><li>FieldsetItem 98 A (O)</li><li>FieldsetItem 98 A (O)</li><li>FieldsetItem 98 A (O)</li><li>FieldsetItem 98 A (O)</li><li>FieldsetItem 98 A (O)</li><li>FieldsetItem 98 A (O)</li></ul></li><li class="fieldset">
 Fieldset 92
- (O)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li></ul></li><li class="fieldset">
+ (O)<ul><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li><li>FieldsetItem 92 A (O)</li></ul></li><li class="fieldset">
 Fieldset 13
- (O)<ul><li>FieldsetItem 13 A,B (O)</li><li>FieldsetItem 13 B (O)</li><li>FieldsetItem 13 B,K (O)</li></ul></li><li class="fieldset">
+ (O) (repetitive)<ul><li>FieldsetItem 13 A,B (O)</li><li>FieldsetItem 13 B (O)</li><li>FieldsetItem 13 B,K (O) (repetitive)</li></ul></li><li class="fieldset">
 Fieldset 17
  (O)<ul><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li><li>FieldsetItem 17 B (O)</li></ul></li><li class="fieldset">
 Fieldset 90
  (O)<ul><li>FieldsetItem 90 A,B (O)</li><li>FieldsetItem 90 A,B (O)</li></ul></li><li class="fieldset">
 Fieldset 36
- (O)<ul><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="field">Field 70 E (O)</li>
+ (O)<ul><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="field">Field 35 B (O) (repetitive)</li>
+<li class="field">Field 70 E (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="fieldset">
@@ -514,24 +515,6 @@ public class MT508 extends AbstractMT implements Serializable {
 	}
 	
 	/**
-	 * Iterates through block4 fields and return the first one whose name matches 35B, 
-	 * or null if none is found.
-	 * The first occurrence of field 35B at MT508 is expected to be the only one.
-	 * 
-	 * @return a Field35B object or null if the field is not found
-	 * @see SwiftTagListBlock#getTagByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public Field35B getField35B() {
-		final Tag t = tag("35B");
-		if (t != null) {
-			return new Field35B(t.getValue());
-		} else {
-			return null;
-		}
-	}
-	
-	/**
 	 * Iterates through block4 fields and return the first one whose name matches 11A, 
 	 * or null if none is found.
 	 * The first occurrence of field 11A at MT508 is expected to be the only one.
@@ -904,6 +887,26 @@ public class MT508 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field90B(tag.getValue()));
+            }
+		}
+		return result;
+	}
+	
+	/**
+	 * Iterates through block4 fields and return all occurrences of fields whose names matches 35B, 
+	 * or <code>Collections.emptyList()</code> if none is found.
+	 * Multiple occurrences of field 35B at MT508 are expected at one sequence or across several sequences.
+	 * 
+	 * @return a List of Field35B objects or <code>Collections.emptyList()</code> if none is not found
+	 * @see SwiftTagListBlock#getTagsByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public List<Field35B> getField35B() {
+		final List<Field35B> result = new ArrayList<>();
+		final Tag[] tags = tags("35B");
+		if (tags != null && tags.length > 0) {
+            for (Tag tag : tags) {
+                result.add(new Field35B(tag.getValue()));
             }
 		}
 		return result;

@@ -22,7 +22,6 @@ import java.util.Objects;
 /**
  * To indicate the validation problem found when validating a BIC
  *
- * @author sebastian
  * @see BIC#validate()
  * @since 7.10.3
  */

@@ -46,7 +46,7 @@ import java.io.IOException;
 Sequence A - General Information (M)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 28 E (M)</li>
 <li class="field">Field 13 A,J (O)</li>
-<li class="field">Field 20 C (O)</li>
+<li class="field">Field 20 C (M)</li>
 <li class="field">Field 23 G (M)</li>
 <li class="fieldset">
 Fieldset 98
@@ -106,7 +106,8 @@ Fieldset 17
 Fieldset 90
  (O)<ul><li>FieldsetItem 90 A,B (O)</li><li>FieldsetItem 90 A,B (O)</li></ul></li><li class="fieldset">
 Fieldset 36
- (O)<ul><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="field">Field 70 E (O)</li>
+ (O)<ul><li>FieldsetItem 36 B,D (O)</li><li>FieldsetItem 36 B,D (O)</li></ul></li><li class="field">Field 35 B (O) (repetitive)</li>
+<li class="field">Field 70 E (O)</li>
 <li class="field">Field 16 S (M)</li>
 </ul></li>
 <li class="fieldset">
@@ -117,7 +118,7 @@ Sequence B4 - Financial Instrument/Account (M)<ul><li class="field">Field 16 R (
 <li class="field">Field 70 D (O)</li>
 <li class="fieldset">
 Fieldset 97
- (O)<ul><li>FieldsetItem 97 A,E (O)</li><li>FieldsetItem 97 D (O)</li></ul></li><li class="field">Field 94 B,C,F,L,T (O) (repetitive)</li>
+ (O)<ul><li>FieldsetItem 97 A,E,D (O)</li></ul></li><li class="field">Field 94 B,C,F,L,T (O) (repetitive)</li>
 <li class="sequence">
 Sequence B4a -  (O) (repetitive)<ul><li class="field">Field 16 R (M)</li>
 <li class="field">Field 13 B (O)</li>

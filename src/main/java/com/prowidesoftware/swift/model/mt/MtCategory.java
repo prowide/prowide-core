@@ -21,7 +21,6 @@ package com.prowidesoftware.swift.model.mt;
  * The category is also included in the message type, as the first digit. For example
  * for an MT103 the corresponding category is 1.
  *
- * @author sebastian
  * @since 7.8.8
  */
 public enum MtCategory {

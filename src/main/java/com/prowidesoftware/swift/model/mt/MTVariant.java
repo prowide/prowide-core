@@ -20,7 +20,6 @@ import java.util.Optional;
 /**
  * Official variants for MT messages (not including closed user groups version of messages)
  *
- * @author sebastian
  * @since 7.8
  */
 public enum MTVariant {

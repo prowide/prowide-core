@@ -35,7 +35,6 @@ import org.apache.commons.lang3.Validate;
  * way (for example: add block 9 for some local information or block "S" for system reference).<br>
  * <br>
  *
- * @author sebastian
  * @since 5.0
  */
 public class SwiftBlockUser extends SwiftTagListBlock implements Serializable {

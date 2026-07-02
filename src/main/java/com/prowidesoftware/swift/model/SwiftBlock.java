@@ -31,7 +31,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * However, not all the base list methods have been implemented. If you need to use not
  * exposed functionality, retrieve the underlying list with (see getUnparsedTexts method)<br>
  *
- * @author sebastian
  */
 // TODO: add parameter checks (Validate.*) and complete javadocs
 public abstract class SwiftBlock implements Serializable {

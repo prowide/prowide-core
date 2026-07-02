@@ -1,13 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.com/schemas/abstract-swift-message-v3.schema.json",
-  "title": "AbstractSwiftMessage – Prowide Core (v3)",
+  "$id": "https://example.com/schemas/abstract-swift-message-v4.schema.json",
+  "title": "AbstractSwiftMessage – Prowide Core (v4)",
   "type": "object",
   "additionalProperties": false,
 
-  "required": ["uuid", "identifier", "message", "direction"],
+  "required": ["schemaVersion", "uuid", "identifier", "message", "direction"],
 
   "properties": {
+    "schemaVersion": { "type": "integer", "const": 4 },
     "uuid":        { "type": "string" },
     "id":          { "type": ["integer", "null"] },
     "identifier":  { "type": "string" },
@@ -85,7 +86,7 @@
       "additionalProperties": false,
       "properties": {
         "year":       { "type": "integer" },
-        "month":      { "type": "integer", "minimum": 0, "maximum": 11 },
+        "month":      { "type": "integer", "minimum": 1, "maximum": 12 },
         "dayOfMonth": { "type": "integer", "minimum": 1, "maximum": 31 },
         "hourOfDay":  { "type": "integer", "minimum": 0, "maximum": 23 },
         "minute":     { "type": "integer", "minimum": 0, "maximum": 59 },

@@ -24,7 +24,6 @@ import java.util.List;
  * The BBAN is the last part of the IBAN when used for international funds transfers.
  * Every country has it's specific BBAN format and length depending on it's own standards.
  *
- * @author psantamarina
  * @since 7.9.7
  */
 public class BbanStructureDTO {
@@ -57,7 +56,7 @@ public class BbanStructureDTO {
     }
 
     /**
-     * Gets country code.
+     * Gets the country code.
      *
      * @return the country code
      */
@@ -66,9 +65,9 @@ public class BbanStructureDTO {
     }
 
     /**
-     * Sets country code.
+     * Sets the country code.
      *
-     * @param country_coode the character type
+     * @param country_coode the country code to set
      */
     public void setCountry_coode(String country_coode) {
         this.country_code = country_coode;

@@ -170,9 +170,8 @@ Sequence J (O)<ul><li class="field">Field 15 J (M)</li>
 <li class="field">Field 29 Q (O) (repetitive)</li>
 <li class="field">Field 14 R (O)</li>
 <li class="field">Field 14 Q (O)</li>
-<li class="fieldset">
-Fieldset 16
- (O)<ul><li>FieldsetItem 16 D (O)</li><li>FieldsetItem 16 W (O)</li></ul></li><li class="field">Field 14 B (O)</li>
+<li class="field">Field 16 D,W (O)</li>
+<li class="field">Field 14 B (O)</li>
 <li class="field">Field 19 C (O)</li>
 <li class="sequence">
 Sequence J1 (O) (repetitive)<ul><li class="field">Field 30 I (M)</li>
@@ -202,7 +201,7 @@ Sequence _L1 (O) (repetitive)<ul><li class="field">Field 30 F (M)</li>
 <li class="field">Field 53 A,J (O)</li>
 <li class="field">Field 86 A,J (O)</li>
 <li class="field">Field 56 A,J (O)</li>
-<li class="field">Field 57 A,J (O)</li>
+<li class="field">Field 57 A,J (M)</li>
 </ul></li>
 <li class="sequence">
 Sequence M (O)<ul><li class="field">Field 15 M (M)</li>
@@ -1910,6 +1909,42 @@ public class MT306 extends AbstractMT implements Serializable {
 	}
 	
 	/**
+	 * Iterates through block4 fields and return the first one whose name matches 16D, 
+	 * or null if none is found.
+	 * The first occurrence of field 16D at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field16D object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field16D getField16D() {
+		final Tag t = tag("16D");
+		if (t != null) {
+			return new Field16D(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Iterates through block4 fields and return the first one whose name matches 16W, 
+	 * or null if none is found.
+	 * The first occurrence of field 16W at MT306 is expected to be the only one.
+	 * 
+	 * @return a Field16W object or null if the field is not found
+	 * @see SwiftTagListBlock#getTagByName(String)
+	 * @throws IllegalStateException if SwiftMessage object is not initialized
+	 */
+	public Field16W getField16W() {
+		final Tag t = tag("16W");
+		if (t != null) {
+			return new Field16W(t.getValue());
+		} else {
+			return null;
+		}
+	}
+	
+	/**
 	 * Iterates through block4 fields and return the first one whose name matches 14B, 
 	 * or null if none is found.
 	 * The first occurrence of field 14B at MT306 is expected to be the only one.
@@ -2960,46 +2995,6 @@ public class MT306 extends AbstractMT implements Serializable {
 		if (tags != null && tags.length > 0) {
             for (Tag tag : tags) {
                 result.add(new Field29Q(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 16D, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 16D at MT306 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field16D objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field16D> getField16D() {
-		final List<Field16D> result = new ArrayList<>();
-		final Tag[] tags = tags("16D");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field16D(tag.getValue()));
-            }
-		}
-		return result;
-	}
-	
-	/**
-	 * Iterates through block4 fields and return all occurrences of fields whose names matches 16W, 
-	 * or <code>Collections.emptyList()</code> if none is found.
-	 * Multiple occurrences of field 16W at MT306 are expected at one sequence or across several sequences.
-	 * 
-	 * @return a List of Field16W objects or <code>Collections.emptyList()</code> if none is not found
-	 * @see SwiftTagListBlock#getTagsByName(String)
-	 * @throws IllegalStateException if SwiftMessage object is not initialized
-	 */
-	public List<Field16W> getField16W() {
-		final List<Field16W> result = new ArrayList<>();
-		final Tag[] tags = tags("16W");
-		if (tags != null && tags.length > 0) {
-            for (Tag tag : tags) {
-                result.add(new Field16W(tag.getValue()));
             }
 		}
 		return result;

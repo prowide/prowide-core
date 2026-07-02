@@ -21,7 +21,6 @@ import com.google.gson.annotations.SerializedName;
 /**
  * The bban structure entry.
  *
- * @author psantamarina
  * @since 7.9.7
  */
 public class BbanStructureEntryDTO {

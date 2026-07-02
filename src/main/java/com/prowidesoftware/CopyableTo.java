@@ -20,7 +20,6 @@ package com.prowidesoftware;
  * Implementors of this interface define copyTo(...) which is a deep copy of the current object.
  *
  * @param <T> the type of target
- * @author mgriffa
  * @since 7.8
  */
 public interface CopyableTo<T> {

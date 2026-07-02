@@ -27,7 +27,6 @@ import org.apache.commons.lang3.Validate;
  * change or add new values. This can be particularly helpful when the application is not running on
  * the latest Java version and a currency change or addition has not yet been updated in the used JRE.
  *
- * @author sebastian
  * @since 7.9.2
  */
 public final class IsoUtils {

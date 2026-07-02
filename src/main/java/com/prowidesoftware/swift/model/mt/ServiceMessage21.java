@@ -204,7 +204,7 @@ public class ServiceMessage21 extends AbstractMT {
     /**
      * Returns the error line present in NAK messages in field 405
      *
-     * @return error code found or null if the error code field is not present
+     * @return error line found or null if field 405 is not present
      */
     public String getErrorLine() {
         Field405 f = getField405();
@@ -213,7 +213,7 @@ public class ServiceMessage21 extends AbstractMT {
     }
 
     /**
-     * Local date time of the submitting user message on to the SWIFT network
+     * Local date and time when the submitting user message was sent onto the SWIFT network.
      *
      * @since 8.0.3
      */

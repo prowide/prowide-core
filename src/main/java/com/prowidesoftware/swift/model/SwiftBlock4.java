@@ -33,7 +33,6 @@ import org.apache.commons.lang3.Validate;
  * tags and its format representation, which is variable
  * length and requires use of CRLF as a field delimiter.<br>
  *
- * @author sebastian
  * @since 4.0
  */
 public class SwiftBlock4 extends SwiftTagListBlock implements Serializable {

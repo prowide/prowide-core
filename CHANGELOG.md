@@ -1,6 +1,13 @@
 # Prowide Core - CHANGELOG
 
-### 9.6.7 - April 2026
+### 9.6.8 - July 2026
+  * (PW-3185) Fix: `MtSwiftMessage.toJson()` now uses 1-based months (January=1) for Calendar fields and emits a `schemaVersion` marker; `fromJson()` reads both new and legacy (0-based) payloads transparently
+  * Fix: `SwiftTagListBlock.getFieldsByNumber(int)` no longer throws `IllegalArgumentException` when a matching tag cannot be converted into a `Field`; such tags are now logged and skipped, consistently with the name-based lookups
+  * Fix: Fields definitions alignment: `Field30I` and `Field30K` component 2 made optional (and `Field30K` validation pattern updated to `<DATE4>[/<DATE4>]`), `Field39M` validation pattern updated to `<CC>`, and `Field56B` name & address component made optional
+  * Fix: Minor changes in MT message structures from SRU2025 schema: MT306, MT340, MT500-MT502, MT504, MT508, MT510, MT513-MT515, MT518, MT519, MT524, MT527, MT530, MT535-MT538, MT540-MT548, MT558, MT564-MT566, MT575, MT578, MT586, MT600, MT601, MT671
+  * Feat: Completed and consolidated the field labels across all language bundles (de, en, es, fr, it, ru), filling in missing translations and replacing redundant message-specific entries with generic field names
+
+#### 9.6.7 - April 2026
   * Fix: Replaced `@OrderColumn` with `@OrderBy("creationDate ASC")` on `statusTrail`, `notes`, and `revisions` to prevent data loss caused by `sort_key` corruption under concurrent access. Existing `sort_key` columns must be made nullable or dropped.
   * Feat: Improved performance of `SwiftParseUtils.getLines()` by replacing `BufferedReader` with direct string index parsing
   * Feat: `MtSwiftMessage` created from ACK (service 21) followed by MT with block 2 Output now extracts the message type and metadata from the appended MT instead of defaulting to ACK
