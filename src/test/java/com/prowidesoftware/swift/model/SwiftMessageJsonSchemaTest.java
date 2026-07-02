@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.networknt.schema.Error;
 import com.networknt.schema.InputFormat;
-import com.networknt.schema.Schema;
-import com.networknt.schema.SchemaRegistry;
-import com.networknt.schema.SpecificationVersion;
+import com.networknt.schema.JsonSchema;
+import com.networknt.schema.JsonSchemaFactory;
+import com.networknt.schema.SpecVersion;
+import com.networknt.schema.ValidationMessage;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT103;
 import com.prowidesoftware.swift.model.mt.mt1xx.MT199;
 import com.prowidesoftware.swift.model.mt.mt2xx.MT202;
@@ -22,7 +22,7 @@ import com.prowidesoftware.swift.model.mt.mt7xx.MT720;
 import com.prowidesoftware.swift.model.mt.mt7xx.MT767;
 import com.prowidesoftware.swift.model.mt.mt9xx.MT950;
 import java.io.InputStream;
-import java.util.List;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 public class SwiftMessageJsonSchemaTest {
@@ -35,11 +35,11 @@ public class SwiftMessageJsonSchemaTest {
             }
             JsonNode schemaNode = mapper.readTree(in);
 
-            SchemaRegistry schemaRegistry = SchemaRegistry.withDefaultDialect(SpecificationVersion.DRAFT_2020_12);
-            Schema schema = schemaRegistry.getSchema(schemaNode);
+            JsonSchemaFactory factory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V202012);
+            JsonSchema schema = factory.getSchema(schemaNode);
             schema.initializeValidators();
 
-            List<Error> errors = schema.validate(jsonMsg, InputFormat.JSON);
+            Set<ValidationMessage> errors = schema.validate(jsonMsg, InputFormat.JSON);
             return errors.isEmpty();
         }
     }
