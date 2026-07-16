@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-#### 10.3.16 - SNAPSHOT
+#### 10.3.16 - July 2026
   * (PW-3251) Feat: Added `FileFormat.MX_UNWRAPPED` to identify MX payloads where the Header and Document arrive as sibling root elements with no enclosing envelope
 
 #### 10.3.15 - July 2026
