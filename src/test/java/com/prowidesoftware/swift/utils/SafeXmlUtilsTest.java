@@ -92,6 +92,19 @@ class SafeXmlUtilsTest {
     }
 
     /**
+     * Verifies the reader has the entity size limits actually set to unlimited. Unlike the parse tests
+     * below, this fails on every JDK if the fix is reverted (on JDK 11 the {@code totalEntitySizeLimit}
+     * default is 50,000,000, not 0), so it guards the fix on the JDK 11/17/21 the project builds and tests
+     * with — where the tightened JDK 24 defaults do not apply.
+     */
+    @Test
+    void testReaderAppliesUnlimitedEntitySizeLimits() throws Exception {
+        org.xml.sax.XMLReader reader = SafeXmlUtils.reader(true, null);
+        assertEquals("0", reader.getProperty("http://www.oracle.com/xml/jaxp/properties/totalEntitySizeLimit"));
+        assertEquals("0", reader.getProperty("http://www.oracle.com/xml/jaxp/properties/maxGeneralEntitySizeLimit"));
+    }
+
+    /**
      * A large entity-heavy document parses through the DOM builder (JDK 24+ entity size limits lifted).
      */
     @Test

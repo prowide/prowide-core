@@ -344,6 +344,27 @@ tasks.register('testOn21', Test) {
     }
 }
 
+// Runs the suite on a Java 25 toolchain to verify the Java 11 artifacts execute correctly on Java 25.
+// Needed to catch JDK-version behavior changes (e.g. JDK 24 tightened the JAXP entity size limits) that
+// cannot manifest on the Java 11/17/21 the build otherwise uses. JDK 25 must be available to the Gradle
+// toolchain (CI passes -Porg.gradle.java.installations.paths=/pw/dev/jdk25).
+tasks.register('testOn25', Test) {
+    description = 'Runs tests using a Java 25 toolchain to verify compatibility'
+    group = 'verification'
+    useJUnitPlatform()
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    reports {
+        html.required = true
+        html.outputLocation = layout.buildDirectory.dir("reports/tests/testOn25")
+    }
+    binaryResultsDirectory = layout.buildDirectory.dir("test-results/testOn25")
+    dependsOn testClasses
+}
+
 jacocoTestReport {
     reports {
         xml.required.set(true)
