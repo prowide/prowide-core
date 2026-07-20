@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 10.3.17 - SNAPSHOT
+  * Fix: large XML documents with many escaped characters (e.g. camt/pacs statements) no longer fail to parse on Java 24 and newer JVMs
+
 #### 10.3.16 - July 2026
   * (PW-3251) Feat: Added `FileFormat.MX_UNWRAPPED` to identify MX payloads where the Header and Document arrive as sibling root elements with no enclosing envelope
 

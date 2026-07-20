@@ -56,6 +56,31 @@ public class SafeXmlUtils {
 
     private static final String FEATURE_IGNORE_PROPERTY = "safeXmlUtils.ignore";
 
+    /**
+     * JAXP limit property bounding the size of a single general entity. JDK 24 changed its default from
+     * unlimited (0) to 100,000 (JDK-8343006), which makes parsing large documents that carry many
+     * predefined entity references (e.g. {@code &amp;}, {@code &lt;}, {@code &gt;} in narrative fields of
+     * a camt/pacs statement) fail with JAXP00010003. All the parsers built here already disable DTDs, so
+     * no custom entities can be declared and only the predefined entities may appear, each expanding 1:1
+     * with no amplification; restoring the unlimited value is therefore safe and keeps the parsing
+     * behavior stable across JDK 11/17/21/24/25.
+     */
+    private static final String MAX_GENERAL_ENTITY_SIZE_LIMIT =
+            "http://www.oracle.com/xml/jaxp/properties/maxGeneralEntitySizeLimit";
+
+    /**
+     * JAXP limit property bounding the accumulated size of all entities. Must be lifted together with
+     * {@link #MAX_GENERAL_ENTITY_SIZE_LIMIT}, otherwise a large document trips this one instead
+     * (JAXP00010004). See {@link #MAX_GENERAL_ENTITY_SIZE_LIMIT} for the safety rationale.
+     */
+    private static final String TOTAL_ENTITY_SIZE_LIMIT =
+            "http://www.oracle.com/xml/jaxp/properties/totalEntitySizeLimit";
+
+    /**
+     * Value meaning "no limit" for the entity size limit properties above.
+     */
+    private static final String UNLIMITED = "0";
+
     private SafeXmlUtils() {
         throw new AssertionError();
     }
@@ -103,6 +128,9 @@ public class SafeXmlUtils {
 
             // set parameter
             dbf.setNamespaceAware(namespaceAware);
+
+            // restore unlimited entity size limits (see MAX_GENERAL_ENTITY_SIZE_LIMIT)
+            applyEntitySizeLimits(dbf);
 
             return dbf.newDocumentBuilder();
 
@@ -185,6 +213,9 @@ public class SafeXmlUtils {
                 spf.setFeature(feature, false);
             }
 
+            // restore unlimited entity size limits (see MAX_GENERAL_ENTITY_SIZE_LIMIT)
+            applyEntitySizeLimits(reader);
+
             return reader;
 
         } catch (ParserConfigurationException | SAXException e) {
@@ -209,6 +240,9 @@ public class SafeXmlUtils {
         if (applyFeature(property)) {
             xif.setProperty(property, false);
         }
+
+        // restore unlimited entity size limits (see MAX_GENERAL_ENTITY_SIZE_LIMIT)
+        applyEntitySizeLimits(xif);
 
         return xif;
     }
@@ -295,6 +329,58 @@ public class SafeXmlUtils {
         } catch (SAXNotRecognizedException | SAXNotSupportedException e) {
             throw logAndCreateException(e, feature, Validator.class.getName());
         }
+    }
+
+    /**
+     * Sets the entity size limit properties to unlimited on a DOM factory, honoring the
+     * {@value #FEATURE_IGNORE_PROPERTY} opt-out and tolerating processors that do not recognize them.
+     */
+    private static void applyEntitySizeLimits(final DocumentBuilderFactory dbf) {
+        for (final String property : new String[] {MAX_GENERAL_ENTITY_SIZE_LIMIT, TOTAL_ENTITY_SIZE_LIMIT}) {
+            if (applyFeature(property)) {
+                try {
+                    dbf.setAttribute(property, UNLIMITED);
+                } catch (final IllegalArgumentException e) {
+                    logUnsupportedLimit(property, e);
+                }
+            }
+        }
+    }
+
+    /**
+     * Sets the entity size limit properties to unlimited on a SAX reader, honoring the
+     * {@value #FEATURE_IGNORE_PROPERTY} opt-out and tolerating processors that do not recognize them.
+     */
+    private static void applyEntitySizeLimits(final XMLReader reader) {
+        for (final String property : new String[] {MAX_GENERAL_ENTITY_SIZE_LIMIT, TOTAL_ENTITY_SIZE_LIMIT}) {
+            if (applyFeature(property)) {
+                try {
+                    reader.setProperty(property, UNLIMITED);
+                } catch (final SAXNotRecognizedException | SAXNotSupportedException e) {
+                    logUnsupportedLimit(property, e);
+                }
+            }
+        }
+    }
+
+    /**
+     * Sets the entity size limit properties to unlimited on a StAX factory, honoring the
+     * {@value #FEATURE_IGNORE_PROPERTY} opt-out and tolerating processors that do not recognize them.
+     */
+    private static void applyEntitySizeLimits(final XMLInputFactory xif) {
+        for (final String property : new String[] {MAX_GENERAL_ENTITY_SIZE_LIMIT, TOTAL_ENTITY_SIZE_LIMIT}) {
+            if (applyFeature(property)) {
+                try {
+                    xif.setProperty(property, UNLIMITED);
+                } catch (final IllegalArgumentException e) {
+                    logUnsupportedLimit(property, e);
+                }
+            }
+        }
+    }
+
+    private static void logUnsupportedLimit(final String property, final Exception e) {
+        log.log(Level.FINE, e, () -> "XML processor does not support the entity size limit property " + property);
     }
 
     private static boolean applyFeature(final String feature) {
