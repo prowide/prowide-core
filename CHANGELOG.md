@@ -1,10 +1,10 @@
 # Prowide Core - CHANGELOG
 
-### 10.4.3 - SNAPSHOT
+### 10.4.3 - July 2026
   * (PW-3251) Feat: Added `FileFormat.MX_UNWRAPPED` to identify MX payloads where the Header and Document arrive as sibling root elements with no enclosing envelope
   * Fix: large XML documents with many escaped characters (e.g. camt/pacs statements) no longer fail to parse on Java 24 and newer JVMs
-  * feat: Completed and consolidated the field labels across all language bundles (de, en, es, fr, it, ru), filling in missing translations and replacing redundant message-specific entries with generic field names
   * Fix: `SwiftTagListBlock.getFieldsByNumber(int)` no longer throws `IllegalArgumentException` when a matching tag cannot be converted into a `Field`; such tags are now logged and skipped, consistently with the name-based lookups
+  * Feat: Completed and consolidated the field labels across all language bundles (de, en, es, fr, it, ru), filling in missing translations and replacing redundant message-specific entries with generic field names
 
 ### 10.4.2 - June 2026
   * Fix: Corrected Field 69G structure per SRU2026 specs update
