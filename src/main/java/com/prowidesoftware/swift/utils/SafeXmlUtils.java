@@ -40,6 +40,12 @@ import org.xml.sax.XMLReader;
  * When the dependencies cannot be changed, you can ignore the error by adding a pw-swift-core.properties file in the
  * application classpath with a safeXmlUtils.ignore=featureName,featureName,featureName property. This will prevent the
  * indicated features to be applied.
+ * <p>
+ * Since 10.3.17 the DOM, SAX and StAX parsers also restore the JDK entity size limits
+ * (jdk.xml.maxGeneralEntitySizeLimit and jdk.xml.totalEntitySizeLimit) to unlimited, so large documents with many
+ * escaped characters keep parsing on JDK 24+ (JDK-8343006 lowered the general entity limit to 100,000). These limit
+ * properties participate in the same safeXmlUtils.ignore opt-out: listing them keeps the JDK-default limits in place.
+ * The restore is applied only while DTD blocking is active, so it never widens the entity-expansion DoS surface.
  *
  * @since 8.0.5
  */
@@ -48,6 +54,36 @@ public class SafeXmlUtils {
             java.util.logging.Logger.getLogger(SafeXmlUtils.class.getName());
 
     private static final String FEATURE_IGNORE_PROPERTY = "safeXmlUtils.ignore";
+
+    /** Xerces feature that blocks DTDs, and therefore any custom (internal or external) entity declaration. */
+    private static final String DISALLOW_DOCTYPE_FEATURE = "http://apache.org/xml/features/disallow-doctype-decl";
+
+    /**
+     * JAXP limit property bounding the size of a single general entity. JDK 24 changed its default from
+     * unlimited (0) to 100,000 (JDK-8343006), which makes parsing large documents that carry many
+     * predefined entity references (e.g. {@code &amp;}, {@code &lt;}, {@code &gt;} in narrative fields of
+     * a camt/pacs statement) fail with JAXP00010003. The parsers built here disable DTDs, so no custom
+     * entities can be declared and only the predefined entities may appear, each expanding 1:1 with no
+     * amplification; restoring the unlimited value is therefore safe and keeps the parsing behavior stable
+     * across JDK 11/17/21/24/25. To keep that rationale sound even when DTD blocking is switched off via
+     * {@value #FEATURE_IGNORE_PROPERTY}, the restore is applied only while DTD blocking is actually active
+     * (see {@link #applyEntitySizeLimits(boolean, LimitSetter)}).
+     */
+    private static final String MAX_GENERAL_ENTITY_SIZE_LIMIT =
+            "http://www.oracle.com/xml/jaxp/properties/maxGeneralEntitySizeLimit";
+
+    /**
+     * JAXP limit property bounding the accumulated size of all entities. Must be lifted together with
+     * {@link #MAX_GENERAL_ENTITY_SIZE_LIMIT}, otherwise a large document trips this one instead
+     * (JAXP00010004). See {@link #MAX_GENERAL_ENTITY_SIZE_LIMIT} for the safety rationale.
+     */
+    private static final String TOTAL_ENTITY_SIZE_LIMIT =
+            "http://www.oracle.com/xml/jaxp/properties/totalEntitySizeLimit";
+
+    /**
+     * Value meaning "no limit" for the entity size limit properties above.
+     */
+    private static final String UNLIMITED = "0";
 
     private SafeXmlUtils() {
         throw new AssertionError();
@@ -97,6 +133,9 @@ public class SafeXmlUtils {
             // set parameter
             dbf.setNamespaceAware(namespaceAware);
 
+            // restore unlimited entity size limits, only while DTD blocking is active (see javadoc)
+            applyEntitySizeLimits(applyFeature(DISALLOW_DOCTYPE_FEATURE), dbf::setAttribute);
+
             return dbf.newDocumentBuilder();
 
         } catch (ParserConfigurationException e) {
@@ -141,7 +180,7 @@ public class SafeXmlUtils {
             }
 
             // Xerces 2 only - http://xerces.apache.org/xerces-j/features.html#external-general-entities
-            feature = "http://apache.org/xml/features/disallow-doctype-decl";
+            feature = DISALLOW_DOCTYPE_FEATURE;
             if (applyFeature(feature)) {
                 spf.setFeature(feature, true);
             }
@@ -155,28 +194,32 @@ public class SafeXmlUtils {
             SAXParser saxParser = spf.newSAXParser();
             XMLReader reader = saxParser.getXMLReader();
 
-            // Using the XMLReader's setFeature
+            // Set the features on the reader itself: the factory is already built, so changing it here
+            // would not propagate to this reader. These reinforce the factory settings applied above.
 
-            feature = "http://apache.org/xml/features/disallow-doctype-decl";
+            feature = DISALLOW_DOCTYPE_FEATURE;
             if (applyFeature(feature)) {
-                spf.setFeature(feature, true);
+                reader.setFeature(feature, true);
             }
 
             // This may not be strictly required as DTDs shouldn't be allowed at all, per previous line.
             feature = "http://apache.org/xml/features/nonvalidating/load-external-dtd";
             if (applyFeature(feature)) {
-                spf.setFeature(feature, false);
+                reader.setFeature(feature, false);
             }
 
             feature = "http://xml.org/sax/features/external-general-entities";
             if (applyFeature(feature)) {
-                spf.setFeature(feature, false);
+                reader.setFeature(feature, false);
             }
 
             feature = "http://xml.org/sax/features/external-parameter-entities";
             if (applyFeature(feature)) {
-                spf.setFeature(feature, false);
+                reader.setFeature(feature, false);
             }
+
+            // restore unlimited entity size limits, only while DTD blocking is active (see javadoc)
+            applyEntitySizeLimits(applyFeature(DISALLOW_DOCTYPE_FEATURE), reader::setProperty);
 
             return reader;
 
@@ -203,6 +246,9 @@ public class SafeXmlUtils {
             xif.setProperty(property, false);
         }
 
+        // restore unlimited entity size limits, only while DTD support is disabled (see javadoc)
+        applyEntitySizeLimits(applyFeature(XMLInputFactory.SUPPORT_DTD), xif::setProperty);
+
         return xif;
     }
 
@@ -228,6 +274,48 @@ public class SafeXmlUtils {
 
         } catch (TransformerConfigurationException e) {
             throw logAndCreateException(e, feature, Transformer.class.getName());
+        }
+    }
+
+    /**
+     * Applies a single JAXP limit property. The concrete call differs per parser API
+     * ({@code DocumentBuilderFactory.setAttribute}, {@code XMLReader.setProperty},
+     * {@code XMLInputFactory.setProperty}), each of which may throw a checked or unchecked exception.
+     */
+    @FunctionalInterface
+    private interface LimitSetter {
+        void set(String property, String value) throws Exception;
+    }
+
+    /**
+     * Restores the JAXP entity size limits to unlimited (0), reverting the tighter JDK 24+ defaults so that
+     * large entity-bearing documents keep parsing across JDK versions. Honors the
+     * {@value #FEATURE_IGNORE_PROPERTY} opt-out per property and tolerates processors that do not recognize
+     * the properties (unsupported ones are logged at FINE and skipped).
+     *
+     * <p>The restore is applied only when {@code dtdBlockingActive} is true, i.e. when DTDs are actually
+     * being blocked for this parser. When a deployment turns DTD blocking off through
+     * {@value #FEATURE_IGNORE_PROPERTY}, the JDK entity size limits are left untouched so they still act as a
+     * backstop against DTD-defined entity-expansion (billion laughs) memory DoS.
+     *
+     * @param dtdBlockingActive whether DTD blocking is in effect for the parser being configured
+     * @param setter            the parser-specific property setter
+     */
+    private static void applyEntitySizeLimits(final boolean dtdBlockingActive, final LimitSetter setter) {
+        if (!dtdBlockingActive) {
+            return;
+        }
+        for (final String property : new String[] {MAX_GENERAL_ENTITY_SIZE_LIMIT, TOTAL_ENTITY_SIZE_LIMIT}) {
+            if (applyFeature(property)) {
+                try {
+                    setter.set(property, UNLIMITED);
+                } catch (final Exception e) {
+                    log.log(
+                            Level.FINE,
+                            e,
+                            () -> "XML processor does not support the entity size limit property " + property);
+                }
+            }
         }
     }
 
