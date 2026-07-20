@@ -18,8 +18,11 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.DefaultHandler;
 
 class SafeXmlUtilsTest {
 
@@ -69,6 +72,72 @@ class SafeXmlUtilsTest {
     @Test
     void testTransformer() {
         assertDoesNotThrow(SafeXmlUtils::transformer);
+    }
+
+    /**
+     * Builds a large dummy XML document carrying more than 100,000 predefined entity references. JDK 24
+     * lowered the default {@code jdk.xml.maxGeneralEntitySizeLimit} to 100,000, so before the fix this
+     * trips JAXP00010003 / JAXP00010004 and the parse fails; it stands in for any large document whose
+     * text content escapes {@code &}, {@code <} and {@code >}.
+     */
+    private static String largeEntityHeavyXml() {
+        // 3 entity references per item x 40,000 items = 120,000 references (> the 100,000 limit)
+        StringBuilder sb = new StringBuilder(4 * 1024 * 1024);
+        sb.append("<root>");
+        for (int i = 0; i < 40_000; i++) {
+            sb.append("<item><note>a &amp; b &lt; c &gt; d</note></item>");
+        }
+        sb.append("</root>");
+        return sb.toString();
+    }
+
+    /**
+     * Verifies the reader has the entity size limits actually set to unlimited. Unlike the parse tests
+     * below, this fails on every JDK if the fix is reverted (on JDK 11 the {@code totalEntitySizeLimit}
+     * default is 50,000,000, not 0), so it guards the fix on the JDK 11/17/21 the project builds and tests
+     * with — where the tightened JDK 24 defaults do not apply.
+     */
+    @Test
+    void testReaderAppliesUnlimitedEntitySizeLimits() throws Exception {
+        org.xml.sax.XMLReader reader = SafeXmlUtils.reader(true, null);
+        assertEquals("0", reader.getProperty("http://www.oracle.com/xml/jaxp/properties/totalEntitySizeLimit"));
+        assertEquals("0", reader.getProperty("http://www.oracle.com/xml/jaxp/properties/maxGeneralEntitySizeLimit"));
+    }
+
+    /**
+     * A large entity-heavy document parses through the DOM builder (JDK 24+ entity size limits lifted).
+     */
+    @Test
+    void testDocumentBuilderParsesLargeEntityHeavyDocument() {
+        String xml = largeEntityHeavyXml();
+        assertDoesNotThrow(() -> SafeXmlUtils.documentBuilder(true).parse(new InputSource(new StringReader(xml))));
+    }
+
+    /**
+     * A large entity-heavy document parses through the SAX reader (JDK 24+ entity size limits lifted).
+     */
+    @Test
+    void testReaderParsesLargeEntityHeavyDocument() {
+        String xml = largeEntityHeavyXml();
+        assertDoesNotThrow(() -> {
+            XMLReader reader = SafeXmlUtils.reader(true, null);
+            reader.setContentHandler(new DefaultHandler());
+            reader.parse(new InputSource(new StringReader(xml)));
+        });
+    }
+
+    /**
+     * A large entity-heavy document parses through the StAX reader (JDK 24+ entity size limits lifted).
+     */
+    @Test
+    void testInputFactoryParsesLargeEntityHeavyDocument() {
+        String xml = largeEntityHeavyXml();
+        assertDoesNotThrow(() -> {
+            XMLStreamReader reader = SafeXmlUtils.inputFactory().createXMLStreamReader(new StringReader(xml));
+            while (reader.hasNext()) {
+                reader.next();
+            }
+        });
     }
 
     /**
