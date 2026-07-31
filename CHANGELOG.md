@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+### 10.4.4 - SNAPSHOT
+  * (GH-327) Fix: Field 44J serialization now adds the mandatory starting slash in the narrative line when the narrative component is set without it
+
 ### 10.4.3 - July 2026
   * (PW-3251) Feat: Added `FileFormat.MX_UNWRAPPED` to identify MX payloads where the Header and Document arrive as sibling root elements with no enclosing envelope
   * Fix: large XML documents with many escaped characters (e.g. camt/pacs statements) no longer fail to parse on Java 24 and newer JVMs
