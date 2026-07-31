@@ -177,14 +177,6 @@ public class Field44J extends Field implements Serializable {
         if (getComponent2() != null) {
             result.append("/").append(getComponent2());
         }
-        if (getComponent3() != null) {
-            result.append(com.prowidesoftware.swift.io.writer.FINWriterVisitor.SWIFT_EOL);
-            if (!getComponent3().startsWith("/")) {
-                // the narrative line starts with a mandatory slash, add it when missing
-                result.append("/");
-            }
-            result.append(getComponent3());
-        }
         return result.toString();
     }
 
