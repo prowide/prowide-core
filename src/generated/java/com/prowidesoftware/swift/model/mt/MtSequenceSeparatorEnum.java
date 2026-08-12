@@ -1,5 +1,5 @@
 /*
-* Copyright 2006-2025 Prowide
+* Copyright 2006 Prowide
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -227,19 +227,19 @@ public enum MtSequenceSeparatorEnum {
     MT696(SequenceStyle.Type.CUSTOM),
     MT698(SequenceStyle.Type.CUSTOM),
     MT699(SequenceStyle.Type.CUSTOM),
-    MT700(SequenceStyle.Type.CUSTOM),
+    MT700(SequenceStyle.Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL),
     MT701(SequenceStyle.Type.CUSTOM),
-    MT705(SequenceStyle.Type.CUSTOM),
-    MT707(SequenceStyle.Type.CUSTOM),
+    MT705(SequenceStyle.Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL),
+    MT707(SequenceStyle.Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL),
     MT708(SequenceStyle.Type.CUSTOM),
-    MT710(SequenceStyle.Type.CUSTOM),
+    MT710(SequenceStyle.Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL),
     MT711(SequenceStyle.Type.CUSTOM),
-    MT720(SequenceStyle.Type.CUSTOM),
+    MT720(SequenceStyle.Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL),
     MT721(SequenceStyle.Type.CUSTOM),
     MT730(SequenceStyle.Type.CUSTOM),
     MT732(SequenceStyle.Type.CUSTOM),
     MT734(SequenceStyle.Type.CUSTOM),
-    MT740(SequenceStyle.Type.CUSTOM),
+    MT740(SequenceStyle.Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL),
     MT742(SequenceStyle.Type.CUSTOM),
     MT744(SequenceStyle.Type.CUSTOM),
     MT747(SequenceStyle.Type.CUSTOM),
@@ -250,12 +250,12 @@ public enum MtSequenceSeparatorEnum {
     MT759(SequenceStyle.Type.CUSTOM),
     MT760(SequenceStyle.Type.SPLIT_BY_15),
     MT761(SequenceStyle.Type.CUSTOM),
-    MT765(SequenceStyle.Type.CUSTOM),
+    MT765(SequenceStyle.Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL),
     MT767(SequenceStyle.Type.SPLIT_BY_15),
     MT768(SequenceStyle.Type.CUSTOM),
     MT769(SequenceStyle.Type.CUSTOM),
     MT775(SequenceStyle.Type.CUSTOM),
-    MT785(SequenceStyle.Type.CUSTOM),
+    MT785(SequenceStyle.Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL),
     MT786(SequenceStyle.Type.CUSTOM),
     MT787(SequenceStyle.Type.CUSTOM),
     MT790(SequenceStyle.Type.CUSTOM),

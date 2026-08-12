@@ -2763,11 +2763,21 @@ public class MT360 extends AbstractMT implements Serializable {
 	 * If block 4 is empty this method returns null.
 	 *
 	 * @return the found sequence or an empty sequence if none is found
+     *
+     * <p>This sequence does not have unique delimiters, they are shared with another sequence within this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
+     *
 	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
 	 */
+	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
 	public SequenceB1 getSequenceB1() {
-		return getSequenceB1(super.getSwiftMessageNotNullOrException().getBlock4());
+		final SwiftTagListBlock block4 = super.getSwiftMessageNotNullOrException().getBlock4();
+		if (block4 == null || block4.isEmpty()) {
+			return null;
+		}
+		final SequenceB1 result = getSequenceB1(getSequenceB());
+		return result != null ? result : new SequenceB1();
 	}
 	
 	/**
@@ -2981,11 +2991,21 @@ public class MT360 extends AbstractMT implements Serializable {
 	 * If block 4 is empty this method returns null.
 	 *
 	 * @return the found sequence or an empty sequence if none is found
+     *
+     * <p>This sequence does not have unique delimiters, they are shared with another sequence within this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
+     *
 	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
 	 */
+	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
 	public SequenceC1 getSequenceC1() {
-		return getSequenceC1(super.getSwiftMessageNotNullOrException().getBlock4());
+		final SwiftTagListBlock block4 = super.getSwiftMessageNotNullOrException().getBlock4();
+		if (block4 == null || block4.isEmpty()) {
+			return null;
+		}
+		final SequenceC1 result = getSequenceC1(getSequenceC());
+		return result != null ? result : new SequenceC1();
 	}
 	
 	/**
@@ -3096,11 +3116,21 @@ public class MT360 extends AbstractMT implements Serializable {
 	 * If block 4 is empty this method returns null.
 	 *
 	 * @return the found sequence or an empty sequence if none is found
+     *
+     * <p>This sequence does not have unique delimiters, they are shared with another sequence within this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
+     *
 	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
 	 */
+	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
 	public SequenceC2 getSequenceC2() {
-		return getSequenceC2(super.getSwiftMessageNotNullOrException().getBlock4());
+		final SwiftTagListBlock block4 = super.getSwiftMessageNotNullOrException().getBlock4();
+		if (block4 == null || block4.isEmpty()) {
+			return null;
+		}
+		final SequenceC2 result = getSequenceC2(getSequenceC());
+		return result != null ? result : new SequenceC2();
 	}
 	
 	/**
@@ -3417,11 +3447,21 @@ public class MT360 extends AbstractMT implements Serializable {
 	 * If block 4 is empty this method returns null.
 	 *
 	 * @return the found sequence or an empty sequence if none is found
+     *
+     * <p>This sequence does not have unique delimiters, they are shared with another sequence within this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
+     *
 	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
 	 */
+	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
 	public SequenceE1 getSequenceE1() {
-		return getSequenceE1(super.getSwiftMessageNotNullOrException().getBlock4());
+		final SwiftTagListBlock block4 = super.getSwiftMessageNotNullOrException().getBlock4();
+		if (block4 == null || block4.isEmpty()) {
+			return null;
+		}
+		final SequenceE1 result = getSequenceE1(getSequenceE());
+		return result != null ? result : new SequenceE1();
 	}
 	
 	/**
@@ -3635,11 +3675,21 @@ public class MT360 extends AbstractMT implements Serializable {
 	 * If block 4 is empty this method returns null.
 	 *
 	 * @return the found sequence or an empty sequence if none is found
+     *
+     * <p>This sequence does not have unique delimiters, they are shared with another sequence within this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
+     *
 	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
 	 */
+	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
 	public SequenceF1 getSequenceF1() {
-		return getSequenceF1(super.getSwiftMessageNotNullOrException().getBlock4());
+		final SwiftTagListBlock block4 = super.getSwiftMessageNotNullOrException().getBlock4();
+		if (block4 == null || block4.isEmpty()) {
+			return null;
+		}
+		final SequenceF1 result = getSequenceF1(getSequenceF());
+		return result != null ? result : new SequenceF1();
 	}
 	
 	/**
@@ -3750,11 +3800,21 @@ public class MT360 extends AbstractMT implements Serializable {
 	 * If block 4 is empty this method returns null.
 	 *
 	 * @return the found sequence or an empty sequence if none is found
+     *
+     * <p>This sequence does not have unique delimiters, they are shared with another sequence within this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
+     *
 	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
 	 */
+	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
 	public SequenceF2 getSequenceF2() {
-		return getSequenceF2(super.getSwiftMessageNotNullOrException().getBlock4());
+		final SwiftTagListBlock block4 = super.getSwiftMessageNotNullOrException().getBlock4();
+		if (block4 == null || block4.isEmpty()) {
+			return null;
+		}
+		final SequenceF2 result = getSequenceF2(getSequenceF());
+		return result != null ? result : new SequenceF2();
 	}
 	
 	/**
