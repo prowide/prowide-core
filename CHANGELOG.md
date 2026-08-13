@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+### 10.4.4 - SNAPSHOT
+  * (GH-338) Fix: no-arg getters of subsequences whose delimiters are shared with another sequence in the same message are now resolved within their parent sequence instead of the whole block 4; this corrects `MT760.getSequenceC1()/getSequenceC2()/getSequenceC3()` and `MT767.getSequenceC1()` returning the content of the homonymous subsequence in sequence B, and the same in `MT360`/`MT361` for `getSequenceE1()`, `getSequenceF1()` and `getSequenceF2()`. Subsequences with non-unique delimiters are now flagged with `@NonUniqueSeparator`; all other sequences keep the previous block 4 resolution unchanged
+
 ### 10.4.3 - July 2026
   * (PW-3251) Feat: Added `FileFormat.MX_UNWRAPPED` to identify MX payloads where the Header and Document arrive as sibling root elements with no enclosing envelope
   * Fix: large XML documents with many escaped characters (e.g. camt/pacs statements) no longer fail to parse on Java 24 and newer JVMs
