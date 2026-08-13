@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 10.3.18 - SNAPSHOT
+  * (GH-338) Fix: no-arg getters of subsequences whose delimiters are shared with another sequence in the same message are now resolved within their parent sequence instead of the whole block 4; this corrects `MT360`/`MT361` `getSequenceE1()`, `getSequenceF1()` and `getSequenceF2()` returning the content of the homonymous subsequence in sequences B/C. Subsequences with non-unique delimiters are now flagged with `@NonUniqueSeparator`; all other sequences keep the previous block 4 resolution unchanged
+
 #### 10.3.17 - July 2026
   * (GH-327) Fix: Field 44J serialization now adds the mandatory starting slash in the narrative line when the narrative component is set without it
   * Fix: large XML documents with many escaped characters (e.g. camt/pacs statements) no longer fail to parse on Java 24 and newer JVMs

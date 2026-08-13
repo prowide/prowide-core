@@ -20,8 +20,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * This annotation identifies elements (16R/S sequences at the moment)
- * which separator is shared with other sequences within the same message.
+ * This annotation identifies elements (16R/S sequences, and sequences delimited by their first and last
+ * mandatory field) which separator is shared with other sequences within the same message.
  * Special care must be taken when dealing with these sequences.
  *
  * @since 7.8.1
