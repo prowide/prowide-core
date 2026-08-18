@@ -1,5 +1,8 @@
 # Prowide Core - CHANGELOG
 
+#### 10.3.19 - SNAPSHOT
+  * (PW-3433) Fix: `OptionJPartyField.getValueByCodeword` no longer shifts the codeword/value pairs that follow a codeword with a blank value (for example "/CITY/" followed by "/USFW/021000018" returned "USFW" for CITY and null for USFW); a codeword present with a blank value now returns an empty string
+
 #### 10.3.18 - August 2026
   * (GH-338) Fix: no-arg getters of subsequences with delimiters shared by another sequence in the same message are now resolved within their parent sequence, not the whole block 4; fixes `MT360`/`MT361` `getSequenceE1()`, `getSequenceF1()` and `getSequenceF2()` returning sequence B/C content. Affected subsequences are flagged with `@NonUniqueSeparator`
 
