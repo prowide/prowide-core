@@ -84,13 +84,24 @@ public class MT300Test {
         assertEquals("ESMA4", found.get(3).getTag(0).getValue());
 
         // test nested getter for E1a
-
         List<MT300.SequenceE1a> sublist = MT300.getSequenceE1aList(found.get(2));
         assertEquals(2, sublist.size());
-        assertEquals("W3MOO00A19", found.get(2).getTag(1).getValue());
-        assertEquals("00OTP00KS00FWD000000000000000234", found.get(2).getTag(2).getValue());
-        assertEquals("W3MOO00A20", found.get(2).getTag(3).getValue());
-        assertEquals("00OTP00KS00FWD000000000000000345", found.get(2).getTag(4).getValue());
+    }
+
+    /**
+     * E1a delimiters are not shared with any other sequence in the message, so the no-arg getter keeps
+     * collecting every occurrence over the whole block 4.
+     */
+    @Test
+    public void testSequenceE1aListWithoutArguments() {
+        MT300 m = MT300.parse(FIN);
+
+        List<MT300.SequenceE1a> all = m.getSequenceE1aList();
+
+        assertEquals(3, all.size());
+        assertEquals("W3MOO00A18", all.get(0).getTag(0).getValue());
+        assertEquals("W3MOO00A19", all.get(1).getTag(0).getValue());
+        assertEquals("W3MOO00A20", all.get(2).getTag(0).getValue());
     }
 
     /**

@@ -18,7 +18,7 @@ pipeline {
         stage('Build') {
             steps {
                 catchError(buildResult: 'FAILURE') {
-                    sh 'java -version'
+                    sh './gradlew --no-daemon --version'
                     sh './gradlew clean build --no-daemon --max-workers 2'
                 }
             }
