@@ -2,6 +2,7 @@
 
 #### 10.3.19 - SNAPSHOT
   * (PW-3433) Fix: `OptionJPartyField.getValueByCodeword` no longer shifts the codeword/value pairs that follow a codeword with a blank value (for example "/CITY/" followed by "/USFW/021000018" returned "USFW" for CITY and null for USFW); a codeword present with a blank value now returns an empty string
+  * (GH-341) Fix: `SwiftMessageUtils.money` revised for category 7: amount added for MT744, MT760, MT765 and MT786; changed to field 32B for MT750 and MT752, and to 34B for MT769; removed for MT707
 
 #### 10.3.18 - August 2026
   * (GH-338) Fix: no-arg getters of subsequences with delimiters shared by another sequence in the same message are now resolved within their parent sequence, not the whole block 4; fixes `MT360`/`MT361` `getSequenceE1()`, `getSequenceF1()` and `getSequenceF2()` returning sequence B/C content. Affected subsequences are flagged with `@NonUniqueSeparator`
