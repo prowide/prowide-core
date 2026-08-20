@@ -358,6 +358,43 @@ public class SwiftMessageUtilsTest {
     }
 
     @Test
+    public void testMoneyMT760SequenceC() throws IOException {
+        // when the optional sequence C (local undertaking details) also contains a 32B, the main
+        // amount is still the undertaking amount in the first 32B occurrence (sequence B)
+        final String fin = "{1:F01AAAAUS33AXXX0000000000}{2:I760BBBBUS33XXXXN}{4:\n"
+                + ":15A:\n"
+                + ":27:1/1\n"
+                + ":22A:ISSU\n"
+                + ":15B:\n"
+                + ":20:FOO\n"
+                + ":30:250820\n"
+                + ":22D:DGAR\n"
+                + ":40C:NONE\n"
+                + ":23B:FIXD\n"
+                + ":35G:If things happen\n"
+                + ":50:The applicant\n"
+                + ":52D:The issuer\n"
+                + ":59:The beneficiary\n"
+                + ":32B:USD5000,\n"
+                + ":77U:The terms and conditions\n"
+                + ":45L:The underlying transaction\n"
+                + ":15C:\n"
+                + ":22D:DGAR\n"
+                + ":40C:NONE\n"
+                + ":23B:FIXD\n"
+                + ":35G:If local things happen\n"
+                + ":50:The applicant\n"
+                + ":59:The local beneficiary\n"
+                + ":32B:EUR9999,\n"
+                + ":77L:The local terms and conditions\n"
+                + "-}";
+        Money money = SwiftMessageUtils.money(SwiftMessage.parse(fin));
+        assertNotNull(money);
+        assertEquals("USD", money.getCurrency());
+        assertEquals(new BigDecimal("5000"), money.getAmount());
+    }
+
+    @Test
     public void testMoneyMT765() throws IOException {
         // the main amount is the demand amount in field 32B
         final String fin = "{1:F01AAAAUS33AXXX0000000000}{2:I765BBBBUS33XXXXN}{4:\n"
@@ -387,6 +424,35 @@ public class SwiftMessageUtilsTest {
         assertNotNull(money);
         assertEquals("USD", money.getCurrency());
         assertEquals(new BigDecimal("1500"), money.getAmount());
+    }
+
+    @Test
+    public void testMoneyMT769WithoutAmountOutstanding() throws IOException {
+        // when the optional 34B amount outstanding is absent there is no main amount, the
+        // amount of charges in fields 32a must never be used as a fallback
+        final String fin = "{1:F01AAAAUS33AXXX0000000000}{2:I769BBBBUS33XXXXN}{4:\n"
+                + ":20:FOO\n"
+                + ":21:BAR\n"
+                + ":32B:USD10,\n"
+                + ":33B:USD500,\n"
+                + "-}";
+        assertNull(SwiftMessageUtils.money(SwiftMessage.parse(fin)));
+    }
+
+    @Test
+    public void testMoneyMT747() throws IOException {
+        // regression guard for the 34B group: MT747 main amount remains the 34B decrease of
+        // documentary credit amount
+        final String fin = "{1:F01AAAAUS33AXXX0000000000}{2:I747BBBBUS33XXXXN}{4:\n"
+                + ":20:FOO\n"
+                + ":21:BAR\n"
+                + ":30:250820\n"
+                + ":34B:USD777,77\n"
+                + "-}";
+        Money money = SwiftMessageUtils.money(SwiftMessage.parse(fin));
+        assertNotNull(money);
+        assertEquals("USD", money.getCurrency());
+        assertEquals(new BigDecimal("777.77"), money.getAmount());
     }
 
     @Test
