@@ -3,6 +3,7 @@
 ### 10.4.4 - SNAPSHOT
   * (GH-338) Fix: no-arg getters of subsequences with delimiters shared by another sequence in the same message are now resolved within their parent sequence, not the whole block 4; fixes `MT360`/`MT361` `getSequenceE1()`, `getSequenceF1()` and `getSequenceF2()` returning sequence B/C content. Affected subsequences are flagged with `@NonUniqueSeparator`
   * (GH-327) Fix: Field 44J serialization now adds the mandatory starting slash in the narrative line when the narrative component is set without it
+  * (PW-3433) Fix: `OptionJPartyField.getValueByCodeword` no longer shifts the codeword/value pairs that follow a codeword with a blank value (for example "/CITY/" followed by "/CTRY/US" returned "CTRY" for CITY and null for CTRY); a codeword present with a blank value now returns an empty string
   * Fix: large XML documents with many escaped characters (e.g. camt/pacs statements) no longer fail to parse on Java 24 and newer JVMs
   * Chore: no-arg getters of sequences with a non-unique 16R/S delimiter are now generated with the same parent sequence scoping, replacing the hand-written resolvers in `SequenceUtils`, which are now deprecated
 
