@@ -37,6 +37,7 @@ public interface SchemeConstantsD {
     String DIST = "DIST";
     String DDTE = "DDTE";
     String DFON = "DFON";
+    String DIGPAYSETT = "DIGPAYSETT";
     String DEAL = "DEAL";
     String DEBT = "DEBT";
     String DBNM = "DBNM";
@@ -59,6 +60,7 @@ public interface SchemeConstantsD {
     String DEDI = "DEDI";
     String DSPL = "DSPL";
     String DEVI = "DEVI";
+    String DUTR = "DUTR";
     String DEEM = "DEEM";
     String DSBT = "DSBT";
     String DSSE = "DSSE";
@@ -83,10 +85,12 @@ public interface SchemeConstantsD {
     String DEQ = "DEQ";
     String DES = "DES";
     String DISPAR = "DISPAR";
+    String DPU = "DPU";
+    String DAP = "DAP";
     String DELETE = "DELETE";
     String DIFF = "DIFF";
-    String DGAR = "DGAR";
     String DOCR = "DOCR";
+    String DGAR = "DGAR";
     String DAYS = "DAYS";
     String DEPU = "DEPU";
     String DPAY = "DPAY";

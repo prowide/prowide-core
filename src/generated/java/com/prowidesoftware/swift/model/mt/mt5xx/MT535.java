@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2025 Prowide
+ * Copyright 2006 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -166,7 +166,7 @@ Fieldset 19
 
  *
  * <p>
- * This source code is specific to release <strong>SRU 2025</strong>
+ * This source code is specific to release <strong>SRU 2026</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
  */
@@ -175,7 +175,7 @@ public class MT535 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.
 	 */
-	public static final int SRU = 2025;
+	public static final int SRU = 2026;
 	private static final long serialVersionUID = 1L;
 	private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(MT535.class.getName());
 	
@@ -1510,7 +1510,7 @@ public class MT535 extends AbstractMT implements Serializable {
     public SequenceA getSequenceGENL() {
         return getSequenceA();
     }
-	
+
 	/**
 	 * Get the single occurrence of SequenceA delimited by 16R/16S the value of SequenceA#START_END_16RS.
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
@@ -2381,9 +2381,8 @@ public class MT535 extends AbstractMT implements Serializable {
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
-     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-     * present inside its parent sequences.
-     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     * <p>This sequence does not have a unique 16R/S delimiter, it is shared with another sequence in this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
      *
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceB1b1#START_END_16RS
@@ -2391,15 +2390,18 @@ public class MT535 extends AbstractMT implements Serializable {
 	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_16RS)
 	public List<SequenceB1b1> getSequenceB1b1List() {
-  	    /*
-		 * The delimiter BREAK is not unique across all sequences, in this MT.
-		 * The usual generated API for accessing this can not be used for sequence B1b1.
-		 * So we call a special method to resolve this situation until we find a better approach.
+		/*
+		 * The delimiter BREAK is not unique across all sequences, so the sequences are resolved
+		 * within every occurrence of their parent SequenceB1b instead of over the whole block 4
 		 */
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT535GetSequenceB1b1List_sru2025(this);
+		final List<SequenceB1b1> result = new ArrayList<>();
+		for (final SequenceB1b parent : getSequenceB1bList()) {
+			result.addAll(getSequenceB1b1List(parent));
+		}
+		return result;
 	}
 
 
@@ -2408,9 +2410,8 @@ public class MT535 extends AbstractMT implements Serializable {
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
-     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-     * present inside its parent sequences.
-     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     * <p>This sequence does not have a unique 16R/S delimiter, it is shared with another sequence in this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
      *
 	 * @see SequenceB1b1#START_END_16RS
 	 * @param parentSequence a not null parent sequence to find SequenceB1b1 within it
@@ -2532,9 +2533,8 @@ public class MT535 extends AbstractMT implements Serializable {
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
-     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-     * present inside its parent sequences.
-     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     * <p>This sequence does not have a unique 16R/S delimiter, it is shared with another sequence in this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
      *
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceB1c#START_END_16RS
@@ -2542,15 +2542,18 @@ public class MT535 extends AbstractMT implements Serializable {
 	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_16RS)
 	public List<SequenceB1c> getSequenceB1cList() {
-  	    /*
-		 * The delimiter BREAK is not unique across all sequences, in this MT.
-		 * The usual generated API for accessing this can not be used for sequence B1c.
-		 * So we call a special method to resolve this situation until we find a better approach.
+		/*
+		 * The delimiter BREAK is not unique across all sequences, so the sequences are resolved
+		 * within every occurrence of their parent SequenceB1 instead of over the whole block 4
 		 */
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT535GetSequenceB1cList_sru2025(this);
+		final List<SequenceB1c> result = new ArrayList<>();
+		for (final SequenceB1 parent : getSequenceB1List()) {
+			result.addAll(getSequenceB1cList(parent));
+		}
+		return result;
 	}
 
 
@@ -2559,9 +2562,8 @@ public class MT535 extends AbstractMT implements Serializable {
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
-     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-     * present inside its parent sequences.
-     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     * <p>This sequence does not have a unique 16R/S delimiter, it is shared with another sequence in this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
      *
 	 * @see SequenceB1c#START_END_16RS
 	 * @param parentSequence a not null parent sequence to find SequenceB1c within it

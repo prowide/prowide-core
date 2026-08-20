@@ -111,8 +111,9 @@ public interface SchemeConstantsR {
     String RETURN = "RETURN";
     String RETD = "RETD";
     String REFE = "REFE";
-    String REQISSUE = "REQISSUE";
     String REQAMEND = "REQAMEND";
+    String REXTMATU = "REXTMATU";
+    String REQISSUE = "REQISSUE";
     String REIMBURS = "REIMBURS";
     String REQFINAN = "REQFINAN";
     String RETN = "RETN";

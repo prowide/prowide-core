@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,17 +41,17 @@ public @interface ProwideDeprecated {
      * Scheduled year for entering phase 2 of deprecation
      * @return year
      */
-    TargetYear phase2() default TargetYear.SRU2026;
+    TargetYear phase2() default TargetYear.SRU2027;
 
     /**
      * Scheduled year for entering phase 3 of deprecation
      * @return year
      */
-    TargetYear phase3() default TargetYear.SRU2027;
+    TargetYear phase3() default TargetYear.SRU2028;
 
     /**
      * Scheduled year for entering phase 4 of deprecation
      * @return year
      */
-    TargetYear phase4() default TargetYear.SRU2028;
+    TargetYear phase4() default TargetYear.SRU2029;
 }
