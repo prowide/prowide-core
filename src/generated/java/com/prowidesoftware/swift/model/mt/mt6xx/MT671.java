@@ -1314,9 +1314,8 @@ public class MT671 extends AbstractMT implements Serializable {
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
-     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-     * present inside its parent sequences.
-     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     * <p>This sequence does not have a unique 16R/S delimiter, it is shared with another sequence in this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
      *
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceB2#START_END_16RS
@@ -1324,15 +1323,18 @@ public class MT671 extends AbstractMT implements Serializable {
 	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_16RS)
 	public List<SequenceB2> getSequenceB2List() {
-  	    /*
-		 * The delimiter OTHRDET is not unique across all sequences, in this MT.
-		 * The usual generated API for accessing this can not be used for sequence B2.
-		 * So we call a special method to resolve this situation until we find a better approach.
+		/*
+		 * The delimiter OTHRDET is not unique across all sequences, so the sequences are resolved
+		 * within every occurrence of their parent SequenceB instead of over the whole block 4
 		 */
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT671GetSequenceB2List_sru2026(this);
+		final List<SequenceB2> result = new ArrayList<>();
+		for (final SequenceB parent : getSequenceBList()) {
+			result.addAll(getSequenceB2List(parent));
+		}
+		return result;
 	}
 
 
@@ -1341,9 +1343,8 @@ public class MT671 extends AbstractMT implements Serializable {
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
-     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-     * present inside its parent sequences.
-     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     * <p>This sequence does not have a unique 16R/S delimiter, it is shared with another sequence in this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
      *
 	 * @see SequenceB2#START_END_16RS
 	 * @param parentSequence a not null parent sequence to find SequenceB2 within it

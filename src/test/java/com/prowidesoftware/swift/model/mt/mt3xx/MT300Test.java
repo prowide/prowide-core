@@ -103,20 +103,4 @@ public class MT300Test {
         assertEquals("W3MOO00A19", all.get(1).getTag(0).getValue());
         assertEquals("W3MOO00A20", all.get(2).getTag(0).getValue());
     }
-
-    /**
-     * E1a delimiters are not shared with any other sequence in the message, so the no-arg getter keeps
-     * collecting every occurrence over the whole block 4.
-     */
-    @Test
-    public void testSequenceE1aListWithoutArguments() {
-        MT300 m = MT300.parse(FIN);
-
-        List<MT300.SequenceE1a> all = m.getSequenceE1aList();
-
-        assertEquals(3, all.size());
-        assertEquals("W3MOO00A18", all.get(0).getTag(0).getValue());
-        assertEquals("W3MOO00A19", all.get(1).getTag(0).getValue());
-        assertEquals("W3MOO00A20", all.get(2).getTag(0).getValue());
-    }
 }
