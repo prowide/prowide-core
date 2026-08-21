@@ -1,5 +1,9 @@
 # Prowide Core - CHANGELOG
 
+#### 10.3.20 - SNAPSHOT
+  * Fix: the message nested in the block 4 of an MT021, MT056 or MT096 is no longer truncated at the first closing brace, so these messages are parsed and written back intact
+  * Feat: `SwiftParser.parseBlock3` and `SwiftParser.parseBlock5` also accept the block content without the block identifier, as it is found in the nested blocks of an MT021 or MT096
+
 #### 10.3.19 - August 2026
   * (PW-3433) Fix: `OptionJPartyField.getValueByCodeword` no longer shifts the codeword/value pairs that follow a codeword with a blank value (for example "/CITY/" followed by "/USFW/021000018" returned "USFW" for CITY and null for USFW); a codeword present with a blank value now returns an empty string
   * (GH-341) Fix: `SwiftMessageUtils.money` revised for category 7: amount added for MT744, MT760, MT765 and MT786; changed to field 32B for MT750 and MT752, and to 34B for MT769; removed for MT707
