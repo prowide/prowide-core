@@ -21,7 +21,11 @@ import com.prowidesoftware.swift.utils.Lib;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -39,6 +43,26 @@ public class SwiftParser {
 
     private static final transient java.util.logging.Logger log =
             java.util.logging.Logger.getLogger(SwiftParser.class.getName());
+
+    /**
+     * Names of the tags that convey nested blocks within a tag list block, and whose value is therefore read
+     * balancing the curly braces instead of ending at the first closing brace.
+     *
+     * <p>These are the only nested block definitions in the standard:
+     * <ul>
+     * <li>the block identifiers 1 to 5, used by the retrieved message of the MT021 (conveyed as the block 1, 2 and 3
+     * headers, the block 4 text and the block 5 trailers) and by the copied message of the MT096 (conveyed as a
+     * complete block 1 to 5 message)</li>
+     * <li>the field 270 of the MT056, where every login attempt embeds a login block and an optional login result,
+     * each one made of a block 1 and a block 4</li>
+     * </ul>
+     *
+     * <p>Any other tag keeps the historical reading, ending at the first closing brace. This is relevant for
+     * malformed content such as a service message error code that is not properly closed before the next field.
+     */
+    private static final Set<String> NESTED_BLOCK_TAG_NAMES =
+            Collections.unmodifiableSet(new HashSet<>(Arrays.asList("1", "2", "3", "4", "5", "270")));
+
     /**
      * Errors found while parsing the message.
      */
@@ -156,27 +180,48 @@ public class SwiftParser {
     /**
      * Parses a string containing an MT message block 3 content
      *
-     * @param s block content starting with "{3:" and ending with "}"
+     * @param s block content starting with "{3:" and ending with "}", or the block tags alone, without the block
+     *          identifier, as they are found nested in the block 4 of an MT021 or MT096
      * @return content parsed into a block 3 or an empty block 3 if string cannot be parsed
      * @since 7.8.6
      */
     public static SwiftBlock3 parseBlock3(String s) {
         SwiftBlock3 b3 = new SwiftBlock3();
         SwiftParser parser = new SwiftParser();
-        return (SwiftBlock3) parser.consumeTagListBlock(b3, s);
+        return (SwiftBlock3) parser.consumeTagListBlock(b3, withBlockIdentifier(s, '3'));
     }
 
     /**
      * Parses a string containing an MT message block 5 content
      *
-     * @param s block content starting with "{5:" and ending with "}"
+     * @param s block content starting with "{5:" and ending with "}", or the block tags alone, without the block
+     *          identifier, as they are found nested in the block 4 of an MT021 or MT096
      * @return content parsed into a block 5 or an empty block 5 if string cannot be parsed
      * @since 7.8.6
      */
     public static SwiftBlock5 parseBlock5(String s) {
         SwiftBlock5 b5 = new SwiftBlock5();
         SwiftParser parser = new SwiftParser();
-        return (SwiftBlock5) parser.consumeTagListBlock(b5, s);
+        return (SwiftBlock5) parser.consumeTagListBlock(b5, withBlockIdentifier(s, '5'));
+    }
+
+    /**
+     * Prepends the block identifier to a tag list block content when it is not present, leaving the content
+     * untouched otherwise.
+     *
+     * <p>This makes the block content of a nested block, as returned by the value of the tags 3 and 5 in the block 4
+     * of an MT021 or MT096, acceptable where the block identifier is expected.
+     *
+     * @param s               the block content, with or without the enclosing braces and the block identifier
+     * @param blockIdentifier the block identifier, for example '3' or '5'
+     * @return the block content prefixed by the block identifier
+     */
+    private static String withBlockIdentifier(final String s, final char blockIdentifier) {
+        final String prefix = blockIdentifier + ":";
+        if (s.startsWith(prefix) || s.startsWith("{" + prefix)) {
+            return s;
+        }
+        return prefix + s;
     }
 
     /**
@@ -526,6 +571,38 @@ public class SwiftParser {
     }
 
     /**
+     * Finds the end of a tag within a tag list block content.
+     *
+     * <p>For the tag names in {@link #NESTED_BLOCK_TAG_NAMES} the closing brace is located balancing the
+     * intermediate curly braces, so that the nested blocks are preserved in the tag value. For any other tag name
+     * the first closing brace ends the tag.
+     *
+     * @param data  the tag list block content, without the block identifier
+     * @param start the position of the tag name, meaning right after the tag opening brace
+     * @return the position of the tag closing brace, or -1 if the tag is not closed
+     */
+    private int findEndOfTagInTagListBlock(final String data, final int start) {
+        final int separator = data.indexOf(':', start);
+        if (separator >= 0 && NESTED_BLOCK_TAG_NAMES.contains(data.substring(start, separator))) {
+            int balance = 0;
+            for (int i = start; i < data.length(); i++) {
+                final char c = data.charAt(i);
+                if (c == '{') {
+                    balance++;
+                } else if (c == '}') {
+                    if (balance == 0) {
+                        return i;
+                    }
+                    balance--;
+                }
+            }
+            // the tag is not closed, same as for any other tag it is left for the caller to discard
+            return -1;
+        }
+        return data.indexOf('}', start);
+    }
+
+    /**
      * consumes a tag list block (i.e: block 3, block 5 or user defined block)
      *
      * @param b the block to set up tags into
@@ -547,8 +624,8 @@ public class SwiftParser {
             for (int i = 0; i < data.length(); i++) {
                 final char c = data.charAt(i);
                 if (c == '{') {
-                    final int end = data.indexOf('}', i);
-                    if (end >= 0 && data.length() > end) {
+                    final int end = findEndOfTagInTagListBlock(data, i + 1);
+                    if (end >= 0) {
 
                         final String inner = data.substring(i + 1, end);
                         // Seek the cursor to last 'processed' position
