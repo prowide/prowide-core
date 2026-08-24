@@ -92,6 +92,36 @@ public class MT537Test {
     }
 
     /**
+     * The static getSequenceC2aList must find C2a when the given parent is the direct enclosing
+     * sequence C2, without requiring the full parent chain up to sequence C to be present
+     */
+    @Test
+    public void testC2a_withSequenceC2AsParent() {
+        MT537.SequenceC2 c2 = MT537.SequenceC2.newInstance(new SwiftTagListBlock()
+                .append(Field22H.tag(":REDE//DELI"))
+                .append(MT537.SequenceC2a.newInstance(Field95C.tag(":DEAG"))));
+
+        List<MT537.SequenceC2a> found = MT537.getSequenceC2aList(c2);
+
+        assertEquals(1, found.size());
+        assertEquals(":DEAG", found.get(0).getTagByName("95C").getValue());
+    }
+
+    /**
+     * The static getSequenceC2aList must also work when the given parent is the sequence C
+     */
+    @Test
+    public void testC2a_withSequenceCAsParent() {
+        MT537.SequenceC c = MT537.SequenceC.newInstance(
+                MT537.SequenceC2.newInstance(MT537.SequenceC2a.newInstance(Field95C.tag(":DEAG"))));
+
+        List<MT537.SequenceC2a> found = MT537.getSequenceC2aList(c);
+
+        assertEquals(1, found.size());
+        assertEquals(":DEAG", found.get(0).getTagByName("95C").getValue());
+    }
+
+    /**
      * B2 and D1a1B1 have the same delimiter
      */
     @Test
