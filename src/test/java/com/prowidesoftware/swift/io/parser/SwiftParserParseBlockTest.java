@@ -21,11 +21,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import com.prowidesoftware.swift.model.SwiftBlock3;
 import com.prowidesoftware.swift.model.SwiftBlock4;
 import com.prowidesoftware.swift.model.SwiftBlock5;
-import com.prowidesoftware.swift.model.SwiftMessage;
 import org.junit.jupiter.api.Test;
 
 /**
  * Test cases for the parseBlock methods in the parser implementation
+ *
+ * @see SwiftParserNestedBlockTest
+ * @see SwiftParserNestedMessageTest
  */
 public class SwiftParserParseBlockTest {
 
@@ -162,45 +164,5 @@ public class SwiftParserParseBlockTest {
         assertEquals(0, SwiftParser.parseBlock5("").size());
         assertEquals(0, SwiftParser.parseBlock5("{5:}").size());
         assertEquals(0, SwiftParser.parseBlock5("5:").size());
-    }
-
-    /**
-     * Test parsing nested blocks as tags
-     *
-     * @see SwiftParserNestedBlockTest
-     * @see SwiftParserNestedMessageTest
-     */
-    @Test
-    public void testNestedBlocks() throws Exception {
-        String fin =
-                "{1:F01OURSGB33AXXX0000000000}{2:O0961625170421ABLRXXXXGXXX00000000001704201625N}{3:{103:CLH}{108:SWIFTBICAXXX0000890}}{4:{1:F01PTY1US33AXXX0000000000}{2:I300PTY2GB33AXXXU3003}{3:{103:ABC}}{4:\r\n"
-                        + ":15A:\r\n"
-                        + ":20:R317703\r\n"
-                        + ":22A:NEWT\r\n"
-                        + "-}{5:{CHK:73AC90A7A3F1}{SYS:1309041018SMAIBE22AXXX0246001570}}}";
-
-        SwiftMessage sm = SwiftMessage.parse(fin);
-        assertEquals("096", sm.getType());
-
-        final SwiftBlock4 nested = sm.getBlock4();
-        assertNotNull(nested);
-        assertEquals(5, nested.size());
-        assertEquals("F01PTY1US33AXXX0000000000", nested.getTagValue("1"));
-        assertEquals("I300PTY2GB33AXXXU3003", nested.getTagValue("2"));
-        assertEquals("{103:ABC}", nested.getTagValue("3"));
-        assertEquals("\r\n" + ":15A:\r\n" + ":20:R317703\r\n" + ":22A:NEWT\r\n" + "-", nested.getTagValue("4"));
-        assertEquals("{CHK:73AC90A7A3F1}{SYS:1309041018SMAIBE22AXXX0246001570}", nested.getTagValue("5"));
-
-        SwiftMessage mt = new SwiftMessage();
-        mt.addBlock(SwiftParser.parseBlock1(nested.getTagValue("1")));
-        mt.addBlock(SwiftParser.parseBlock2(nested.getTagValue("2")));
-        mt.addBlock(SwiftParser.parseBlock3(nested.getTagValue("3")));
-        mt.addBlock(SwiftParser.parseBlock4(nested.getTagValue("4")));
-        mt.addBlock(SwiftParser.parseBlock5(nested.getTagValue("5")));
-        assertNotNull(mt.getBlock1());
-        assertNotNull(mt.getBlock2());
-        assertEquals(1, mt.getBlock3().size());
-        assertEquals(3, mt.getBlock4().size());
-        assertEquals(2, mt.getBlock5().size());
     }
 }
