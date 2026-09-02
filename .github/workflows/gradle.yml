@@ -40,6 +40,8 @@ jobs:
       # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
+        with:
+          cache-provider: basic  # MIT provider; the v6 default 'enhanced' is proprietary and paid for private repos
 
       - name: Build with Gradle Wrapper
         run: ./gradlew build
@@ -65,4 +67,5 @@ jobs:
       - name: Generate and submit dependency graph
         uses: gradle/actions/dependency-submission@v6
         with:
+          cache-provider: basic  # MIT provider; the v6 default 'enhanced' is proprietary and paid for private repos
           dependency-graph-exclude-projects: ':buildSrc'
