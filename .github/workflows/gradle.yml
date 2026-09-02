@@ -4,7 +4,7 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "main", "java8-maintenance", "SRU2025" ]
+    branches: [ "main", "SRU2026", "SRU2025-java8-maintenance", "SRU2026-java8-maintenance" ]
 #  pull_request:
 #    branches: [ "main" ]
 
@@ -20,17 +20,18 @@ jobs:
       - uses: actions/checkout@v7
 
       # Set the JDK 11 for the latest code branch (Prowide Core v10)
+      # Suffix match so every SRU<year>-java8-maintenance branch is covered, not one hardcoded name.
       - name: Set up JDK 11
-        if: github.ref != 'refs/heads/java8-maintenance' && github.head_ref != 'java8-maintenance'
-        uses: actions/setup-java@v4
+        if: ${{ !endsWith(github.head_ref || github.ref_name, 'java8-maintenance') }}
+        uses: actions/setup-java@v6
         with:
           java-version: '11'
           distribution: 'temurin'
 
-      # Set the JDK 8 for the legacy code branch
+      # Set the JDK 8 for the legacy code branches
       - name: Set up JDK 8
-        if: github.ref == 'refs/heads/java8-maintenance' || github.head_ref == 'java8-maintenance'
-        uses: actions/setup-java@v4
+        if: ${{ endsWith(github.head_ref || github.ref_name, 'java8-maintenance') }}
+        uses: actions/setup-java@v6
         with:
           java-version: '8'
           distribution: 'temurin'
@@ -38,13 +39,13 @@ jobs:
       # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
       # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
 
       - name: Build with Gradle Wrapper
         run: ./gradlew build
 
   # This job generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
-  # We only do it for the SRU2024_v10 branch to avoid spamming the Dependabot alerts for the legacy Java 8 code.
+  # We only run it on the default branch to avoid spamming the Dependabot alerts for the maintenance branches.
   dependency-submission:
     if: github.ref == 'refs/heads/main' || github.head_ref == 'main'
     runs-on: ubuntu-latest
@@ -54,7 +55,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Set up JDK 11
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           java-version: '11'
           distribution: 'temurin'
@@ -62,6 +63,6 @@ jobs:
       # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
       # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
       - name: Generate and submit dependency graph
-        uses: gradle/actions/dependency-submission@v4
+        uses: gradle/actions/dependency-submission@v6
         with:
           dependency-graph-exclude-projects: ':buildSrc'
