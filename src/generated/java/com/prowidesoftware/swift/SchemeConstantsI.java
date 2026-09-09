@@ -67,8 +67,8 @@ public interface SchemeConstantsI {
     String ITYP = "ITYP";
     String INPE = "INPE";
     String IRID = "IRID";
-    String IRREVOCABLE = "IRREVOCABLE";
     String IRREVOCABLE_TRANSFERABLE = "IRREVOCABLE_TRANSFERABLE";
+    String IRREVOCABLE = "IRREVOCABLE";
     String INSU = "INSU";
     String ISSUANCE = "ISSUANCE";
     String ISSAMEND = "ISSAMEND";

@@ -83,6 +83,7 @@ public interface SchemeConstantsT {
     String TAXR = "TAXR";
     String TXDF = "TXDF";
     String TPDT = "TPDT";
+    String TOSA = "TOSA";
     String TAXB = "TAXB";
     String TDMT = "TDMT";
     String TAGT = "TAGT";
@@ -99,7 +100,8 @@ public interface SchemeConstantsT {
     String TXPR = "TXPR";
     String TRDP = "TRDP";
     String TEMP = "TEMP";
-    String TAXVODET = "TAXVODET";
+    String TAXDODET = "TAXDODET";
+    String TARE = "TARE";
     String TAVO = "TAVO";
     String TPRI = "TPRI";
     String TVRC = "TVRC";
@@ -121,6 +123,7 @@ public interface SchemeConstantsT {
     String TARG = "TARG";
     String TAXA = "TAXA";
     String TAXI = "TAXI";
+    String TAXVODET = "TAXVODET";
     String TBAC = "TBAC";
     String TBAS = "TBAS";
     String TBAT = "TBAT";
