@@ -62,10 +62,17 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
+      # Generates and submits a dependency graph, enabling Dependabot Alerts for the dependencies of the published artifact.
       # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
+      #
+      # Only the main source set's compile and runtime classpaths are reported, which is exactly what ships in the
+      # published jar. Test-only dependencies (testImplementation) and buildscript/plugin dependencies (axion-release,
+      # spotless, quality plugin) are deliberately left out: they never reach library consumers, and reporting them
+      # produces Dependabot alerts (and downstream Vanta findings) for CVEs in build/test tooling that we cannot act on
+      # from this repo. Direct test dependencies are still kept current by Dependabot version updates (dependabot.yml).
       - name: Generate and submit dependency graph
         uses: gradle/actions/dependency-submission@v6
         with:
           cache-provider: basic  # MIT provider; the v6 default 'enhanced' is proprietary and paid for private repos
           dependency-graph-exclude-projects: ':buildSrc'
+          dependency-graph-include-configurations: '(compile|runtime)Classpath'
