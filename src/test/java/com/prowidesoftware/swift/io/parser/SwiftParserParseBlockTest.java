@@ -18,13 +18,16 @@ package com.prowidesoftware.swift.io.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import com.prowidesoftware.swift.model.SwiftBlock3;
 import com.prowidesoftware.swift.model.SwiftBlock4;
-import com.prowidesoftware.swift.model.SwiftMessage;
-import org.junit.jupiter.api.Disabled;
+import com.prowidesoftware.swift.model.SwiftBlock5;
 import org.junit.jupiter.api.Test;
 
 /**
  * Test cases for the parseBlock methods in the parser implementation
+ *
+ * @see SwiftParserNestedBlockTest
+ * @see SwiftParserNestedMessageTest
  */
 public class SwiftParserParseBlockTest {
 
@@ -95,50 +98,71 @@ public class SwiftParserParseBlockTest {
         assertEquals(6, b4.size());
     }
 
-    /**
-     * Test parsing nested blocks as tags
-     */
-    @Disabled
     @Test
-    public void testNestedBlocks() throws Exception {
-        String fin =
-                "{1:F01OURSGB33AXXX0000000000}{2:O0961625170421ABLRXXXXGXXX00000000001704201625N}{3:{103:CLH}{108:SWIFTBICAXXX0000890}}{4:{1:F01PTY1US33AXXX0000000000}{2:I300PTY2GB33AXXXU3003}{3:{103:ABC}}{4:\n"
-                        + ":15A:\n"
-                        + ":20:R317703\n"
-                        + ":22A:NEWT\n"
-                        + "-}{5:{CHK:73AC90A7A3F1}{SYS:1309041018SMAIBE22AXXX0246001570}}}";
+    public void testParseBlock3WithBlockIdentifierAndBrackets() {
+        SwiftBlock3 b3 = SwiftParser.parseBlock3("{3:{103:CLH}{108:MUR123}}");
+        assertEquals(2, b3.size());
+        assertEquals("CLH", b3.getTagValue("103"));
+        assertEquals("MUR123", b3.getTagValue("108"));
+    }
 
-        // parse with SwiftMessage
-        SwiftMessage sm = SwiftMessage.parse(fin);
-        if (sm.isType(96)) {
-            SwiftBlock4 nested = sm.getBlock4();
-            SwiftMessage mt = new SwiftMessage();
-            if (nested.getTagByNumber(1) != null) {
-                mt.addBlock(SwiftParser.parseBlock1(nested.getTagByNumber(1).getValue()));
-            }
-            if (nested.getTagByNumber(2) != null) {
-                mt.addBlock(SwiftParser.parseBlock2(nested.getTagByNumber(2).getValue()));
-            }
-            if (nested.getTagByNumber(3) != null) {
-                // System.out.println(nested.getTagByNumber(3).getValue());
-                mt.addBlock(SwiftParser.parseBlock3(nested.getTagByNumber(3).getValue()));
-            }
-            if (nested.getTagByNumber(4) != null) {
-                mt.addBlock(SwiftParser.parseBlock4(nested.getTagByNumber(4).getValue()));
-            }
-            if (nested.getTagByNumber(5) != null) {
-                mt.addBlock(SwiftParser.parseBlock5(nested.getTagByNumber(5).getValue()));
-            }
-            assertNotNull(mt.getBlock1());
-            assertNotNull(mt.getBlock2());
-            assertNotNull(mt.getBlock3());
-            assertNotNull(mt.getBlock4());
-            assertNotNull(mt.getBlock5());
-            assertEquals("F01PTY1US33AXXX0000000000", nested.getTagValue("1"));
-            assertEquals("I300PTY2GB33AXXXU3003", nested.getTagValue("2"));
-            assertEquals("{103:ABC}", nested.getTagValue("3"));
-            assertEquals("\\n" + ":15A:\\n" + ":20:R317703\\n" + ":22A:NEWT\\n" + "-", nested.getTagValue("4"));
-            assertEquals("{CHK:73AC90A7A3F1}{SYS:1309041018SMAIBE22AXXX0246001570}", nested.getTagValue("5"));
-        }
+    @Test
+    public void testParseBlock3WithBlockIdentifierWithoutBrackets() {
+        SwiftBlock3 b3 = SwiftParser.parseBlock3("3:{103:CLH}{108:MUR123}");
+        assertEquals(2, b3.size());
+        assertEquals("CLH", b3.getTagValue("103"));
+        assertEquals("MUR123", b3.getTagValue("108"));
+    }
+
+    /**
+     * This is the form of the nested block 3 within the block 4 of an MT021 or MT096, as returned by the tag value
+     */
+    @Test
+    public void testParseBlock3WithoutBlockIdentifier() {
+        SwiftBlock3 b3 = SwiftParser.parseBlock3("{103:CLH}{108:MUR123}");
+        assertEquals(2, b3.size());
+        assertEquals("CLH", b3.getTagValue("103"));
+        assertEquals("MUR123", b3.getTagValue("108"));
+    }
+
+    @Test
+    public void testParseBlock3Empty() {
+        assertEquals(0, SwiftParser.parseBlock3("").size());
+        assertEquals(0, SwiftParser.parseBlock3("{3:}").size());
+        assertEquals(0, SwiftParser.parseBlock3("3:").size());
+    }
+
+    @Test
+    public void testParseBlock5WithBlockIdentifierAndBrackets() {
+        SwiftBlock5 b5 = SwiftParser.parseBlock5("{5:{CHK:73AC90A7A3F1}{SYS:1309041018SMAIBE22AXXX0246001570}}");
+        assertEquals(2, b5.size());
+        assertEquals("73AC90A7A3F1", b5.getTagValue("CHK"));
+        assertEquals("1309041018SMAIBE22AXXX0246001570", b5.getTagValue("SYS"));
+    }
+
+    @Test
+    public void testParseBlock5WithBlockIdentifierWithoutBrackets() {
+        SwiftBlock5 b5 = SwiftParser.parseBlock5("5:{CHK:73AC90A7A3F1}{SYS:1309041018SMAIBE22AXXX0246001570}");
+        assertEquals(2, b5.size());
+        assertEquals("73AC90A7A3F1", b5.getTagValue("CHK"));
+        assertEquals("1309041018SMAIBE22AXXX0246001570", b5.getTagValue("SYS"));
+    }
+
+    /**
+     * This is the form of the nested block 5 within the block 4 of an MT021 or MT096, as returned by the tag value
+     */
+    @Test
+    public void testParseBlock5WithoutBlockIdentifier() {
+        SwiftBlock5 b5 = SwiftParser.parseBlock5("{CHK:73AC90A7A3F1}{SYS:1309041018SMAIBE22AXXX0246001570}");
+        assertEquals(2, b5.size());
+        assertEquals("73AC90A7A3F1", b5.getTagValue("CHK"));
+        assertEquals("1309041018SMAIBE22AXXX0246001570", b5.getTagValue("SYS"));
+    }
+
+    @Test
+    public void testParseBlock5Empty() {
+        assertEquals(0, SwiftParser.parseBlock5("").size());
+        assertEquals(0, SwiftParser.parseBlock5("{5:}").size());
+        assertEquals(0, SwiftParser.parseBlock5("5:").size());
     }
 }
