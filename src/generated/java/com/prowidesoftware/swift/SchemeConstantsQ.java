@@ -17,12 +17,14 @@ import com.prowidesoftware.Generated;
 public interface SchemeConstantsQ {
 
     String QREG = "QREG";
+    String QEMT = "QEMT";
     String QSEC = "QSEC";
     String QFIN = "QFIN";
     String QTSO = "QTSO";
     String QINT = "QINT";
     String QCAS = "QCAS";
     String QINS = "QINS";
+    String QCLA = "QCLA";
     String QAGE = "QAGE";
     String QALL = "QALL";
     String QCAN = "QCAN";

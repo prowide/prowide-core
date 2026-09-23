@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,8 @@ package com.prowidesoftware.deprecation;
  * @since 7.8.1
  */
 public enum TargetYear {
-    SRU2026,
     SRU2027,
-    SRU2028;
+    SRU2028,
+    SRU2029,
+    SRU2030
 }

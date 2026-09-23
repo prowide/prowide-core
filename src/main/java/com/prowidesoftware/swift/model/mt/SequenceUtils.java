@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2025 Prowide
+ * Copyright 20062026 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@ package com.prowidesoftware.swift.model.mt;
 
 import static com.prowidesoftware.swift.model.SwiftMessageUtils.join;
 
+import com.prowidesoftware.deprecation.ProwideDeprecated;
+import com.prowidesoftware.deprecation.TargetYear;
 import com.prowidesoftware.swift.model.SwiftTagListBlock;
 import com.prowidesoftware.swift.model.field.Field16R;
 import com.prowidesoftware.swift.model.field.Field16S;
@@ -45,7 +47,12 @@ public class SequenceUtils {
         throw new AssertionError();
     }
 
-    public static List<MT535.SequenceB1b1> resolveMT535GetSequenceB1b1List_sru2025(final MT535 mt) {
+    /**
+     * @deprecated the generated {@link MT535#getSequenceB1b1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT535.SequenceB1b1> resolveMT535GetSequenceB1b1List_sru2026(final MT535 mt) {
         final List<MT535.SequenceB1b1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceB1bList(), MT535.SequenceB1b1.START_END_16RS)) {
@@ -56,7 +63,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT535.SequenceB1c> resolveMT535GetSequenceB1cList_sru2025(final MT535 mt) {
+    /**
+     * @deprecated the generated {@link MT535#getSequenceB1cList()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT535.SequenceB1c> resolveMT535GetSequenceB1cList_sru2026(final MT535 mt) {
         final List<MT535.SequenceB1c> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceB1List(), MT535.SequenceB1c.START_END_16RS)) {
@@ -67,7 +79,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT536.SequenceA1> resolveMT536GetSequenceA1List_sru2025(final MT536 mt) {
+    /**
+     * @deprecated the generated {@link MT536#getSequenceA1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT536.SequenceA1> resolveMT536GetSequenceA1List_sru2026(final MT536 mt) {
         final List<MT536.SequenceA1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceA(), MT536.SequenceA1.START_END_16RS)) {
@@ -78,7 +95,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT536.SequenceB1a1> resolveMT536GetSequenceB1a1List_sru2025(final MT536 mt) {
+    /**
+     * @deprecated the generated {@link MT536#getSequenceB1a1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT536.SequenceB1a1> resolveMT536GetSequenceB1a1List_sru2026(final MT536 mt) {
         final List<MT536.SequenceB1a1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceB1aList(), MT536.SequenceB1a1.START_END_16RS)) {
@@ -89,7 +111,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT537.SequenceA1> resolveMT537GetSequenceA1List_sru2025(final MT537 mt) {
+    /**
+     * @deprecated the generated {@link MT537#getSequenceA1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceA1> resolveMT537GetSequenceA1List_sru2026(final MT537 mt) {
         final List<MT537.SequenceA1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceA(), MT537.SequenceA1.START_END_16RS)) {
@@ -100,14 +127,14 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT537.SequenceB> resolveMT537GetSequenceBList_sru2025(final MT537 mt) {
-        return resolveMT537GetSequenceBList_sru2025(mt.getSwiftMessage().getBlock4());
+    public static List<MT537.SequenceB> resolveMT537GetSequenceBList_sru2026(final MT537 mt) {
+        return resolveMT537GetSequenceBList_sru2026(mt.getSwiftMessage().getBlock4());
     }
 
     /**
      * Custom heuristic to deal with B delimiter "STAT" overlapping C3 and D1a1B1a delimiters
      */
-    public static List<MT537.SequenceB> resolveMT537GetSequenceBList_sru2025(final SwiftTagListBlock mt /* block 4 */) {
+    public static List<MT537.SequenceB> resolveMT537GetSequenceBList_sru2026(final SwiftTagListBlock mt /* block 4 */) {
         Objects.requireNonNull(mt);
         final List<SequenceB> result = new ArrayList<>();
 
@@ -130,7 +157,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT537.SequenceB1> resolveMT537GetSequenceB1List_sru2025(final MT537 mt) {
+    /**
+     * @deprecated the generated {@link MT537#getSequenceB1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceB1> resolveMT537GetSequenceB1List_sru2026(final MT537 mt) {
         final List<MT537.SequenceB1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceBList(), MT537.SequenceB1.START_END_16RS)) {
@@ -141,7 +173,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT537.SequenceB2> resolveMT537GetSequenceB2List_sru2025(final MT537 mt) {
+    /**
+     * @deprecated the generated {@link MT537#getSequenceB2List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceB2> resolveMT537GetSequenceB2List_sru2026(final MT537 mt) {
         final List<MT537.SequenceB2> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceBList(), MT537.SequenceB2.START_END_16RS)) {
@@ -152,7 +189,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT537.SequenceB2a> resolveMT537GetSequenceB2aList_sru2025(final MT537 mt) {
+    /**
+     * @deprecated the generated {@link MT537#getSequenceB2aList()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceB2a> resolveMT537GetSequenceB2aList_sru2026(final MT537 mt) {
         final List<MT537.SequenceB2a> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceB2List(), MT537.SequenceB2a.START_END_16RS)) {
@@ -163,7 +205,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT537.SequenceB2b> resolveMT537GetSequenceB2bList_sru2025(final MT537 mt) {
+    /**
+     * @deprecated the generated {@link MT537#getSequenceB2bList()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceB2b> resolveMT537GetSequenceB2bList_sru2026(final MT537 mt) {
         final List<MT537.SequenceB2b> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceB2List(), MT537.SequenceB2b.START_END_16RS)) {
@@ -174,7 +221,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT537.SequenceB2b1> resolveMT537GetSequenceB2b1List_sru2025(final MT537 mt) {
+    /**
+     * @deprecated the generated {@link MT537#getSequenceB2b1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceB2b1> resolveMT537GetSequenceB2b1List_sru2026(final MT537 mt) {
         final List<MT537.SequenceB2b1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceB2bList(), MT537.SequenceB2b1.START_END_16RS)) {
@@ -185,7 +237,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT537.SequenceC1> resolveMT537GetSequenceC1List_sru2025(final MT537 mt) {
+    /**
+     * @deprecated the generated {@link MT537#getSequenceC1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceC1> resolveMT537GetSequenceC1List_sru2026(final MT537 mt) {
         final List<MT537.SequenceC1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceCList(), MT537.SequenceC1.START_END_16RS)) {
@@ -196,7 +253,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT537.SequenceC2> resolveMT537GetSequenceC2List_sru2025(final MT537 mt) {
+    /**
+     * @deprecated the generated {@link MT537#getSequenceC2List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceC2> resolveMT537GetSequenceC2List_sru2026(final MT537 mt) {
         final List<MT537.SequenceC2> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceCList(), MT537.SequenceC2.START_END_16RS)) {
@@ -207,7 +269,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT537.SequenceC2a> resolveMT537GetSequenceC2aList_sru2025(final MT537 mt) {
+    /**
+     * @deprecated the generated {@link MT537#getSequenceC2aList()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceC2a> resolveMT537GetSequenceC2aList_sru2026(final MT537 mt) {
         final List<MT537.SequenceC2a> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceC2List(), MT537.SequenceC2a.START_END_16RS)) {
@@ -218,7 +285,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT537.SequenceC3> resolveMT537GetSequenceC3List_sru2025(final MT537 mt) {
+    /**
+     * @deprecated the generated {@link MT537#getSequenceC3List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceC3> resolveMT537GetSequenceC3List_sru2026(final MT537 mt) {
         final List<MT537.SequenceC3> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceCList(), MT537.SequenceC3.START_END_16RS)) {
@@ -229,7 +301,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT537.SequenceC3a> resolveMT537GetSequenceC3aList_sru2025(final MT537 mt) {
+    /**
+     * @deprecated the generated {@link MT537#getSequenceC3aList()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceC3a> resolveMT537GetSequenceC3aList_sru2026(final MT537 mt) {
         final List<MT537.SequenceC3a> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceC3List(), MT537.SequenceC3a.START_END_16RS)) {
@@ -244,8 +321,11 @@ public class SequenceUtils {
      * The delimiter TRAN is not unique across all sequences, in this MT.
      * The usual generated API for accessing this can not be used for sequence D1a1B1.
      * So we call a special method to resolve this situation until we find a better approach.
+     * @deprecated the generated {@link MT537#getSequenceD1a1B1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
      */
-    public static List<MT537.SequenceD1a1B1> resolveMT537GetSequenceD1a1B1List_sru2025(final MT537 mt) {
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceD1a1B1> resolveMT537GetSequenceD1a1B1List_sru2026(final MT537 mt) {
         final List<MT537.SequenceD1a1B1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceD1a1BList(), MT537.SequenceD1a1B1.START_END_16RS)) {
@@ -260,8 +340,11 @@ public class SequenceUtils {
      * The delimiter STAT is not unique across all sequences, in this MT.
      * The usual generated API for accessing this can not be used for sequence D1a1B1a.
      * So we call a special method to resolve this situation until we find a better approach.
+     * @deprecated the generated {@link MT537#getSequenceD1a1B1aList()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
      */
-    public static List<MT537.SequenceD1a1B1a> resolveMT537GetSequenceD1a1B1aList_sru2025(final MT537 mt) {
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceD1a1B1a> resolveMT537GetSequenceD1a1B1aList_sru2026(final MT537 mt) {
         final List<MT537.SequenceD1a1B1a> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceD1a1B1List(), MT537.SequenceD1a1B1a.START_END_16RS)) {
@@ -276,8 +359,11 @@ public class SequenceUtils {
      * The delimiter REAS is not unique across all sequences, in this MT.
      * The usual generated API for accessing this can not be used for sequence D1a1B1a1.
      * So we call a special method to resolve this situation until we find a better approach.
+     * @deprecated the generated {@link MT537#getSequenceD1a1B1a1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
      */
-    public static List<MT537.SequenceD1a1B1a1> resolveMT537GetSequenceD1a1B1a1List_sru2025(final MT537 mt) {
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceD1a1B1a1> resolveMT537GetSequenceD1a1B1a1List_sru2026(final MT537 mt) {
         final List<MT537.SequenceD1a1B1a1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceD1a1B1aList(), MT537.SequenceD1a1B1a1.START_END_16RS)) {
@@ -288,7 +374,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT538.SequenceA1> resolveMT538GetSequenceA1List_sru2025(final MT538 mt) {
+    /**
+     * @deprecated the generated {@link MT538#getSequenceA1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT538.SequenceA1> resolveMT538GetSequenceA1List_sru2026(final MT538 mt) {
         final List<MT538.SequenceA1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceA(), MT538.SequenceA1.START_END_16RS)) {
@@ -299,7 +390,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT538.SequenceB2a1> resolveMT538GetSequenceB2a1List_sru2025(final MT538 mt) {
+    /**
+     * @deprecated the generated {@link MT538#getSequenceB2a1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT538.SequenceB2a1> resolveMT538GetSequenceB2a1List_sru2026(final MT538 mt) {
         final List<MT538.SequenceB2a1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceB2aList(), MT538.SequenceB2a1.START_END_16RS)) {
@@ -310,7 +406,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT548.SequenceA2> resolveMT548GetSequenceA2List_sru2025(final MT548 mt) {
+    /**
+     * @deprecated the generated {@link MT548#getSequenceA2List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT548.SequenceA2> resolveMT548GetSequenceA2List_sru2026(final MT548 mt) {
         final List<MT548.SequenceA2> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceA(), MT548.SequenceA2.START_END_16RS)) {
@@ -321,7 +422,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT548.SequenceA2a> resolveMT548GetSequenceA2aList_sru2025(final MT548 mt) {
+    /**
+     * @deprecated the generated {@link MT548#getSequenceA2aList()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT548.SequenceA2a> resolveMT548GetSequenceA2aList_sru2026(final MT548 mt) {
         final List<MT548.SequenceA2a> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceA2List(), MT548.SequenceA2a.START_END_16RS)) {
@@ -336,8 +442,11 @@ public class SequenceUtils {
      * The delimiter STAT is not unique across all sequences, in this MT.
      * The usual generated API for accessing this can not be used for sequence C1a1B1a.
      * So we call a special method to resolve this situation until we find a better approach.
+     * @deprecated the generated {@link MT548#getSequenceC1a1B1aList()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
      */
-    public static List<MT548.SequenceC1a1B1a> resolveMT548GetSequenceC1a1B1aList_sru2025(final MT548 mt) {
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT548.SequenceC1a1B1a> resolveMT548GetSequenceC1a1B1aList_sru2026(final MT548 mt) {
         final List<MT548.SequenceC1a1B1a> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceC1a1B1List(), MT548.SequenceC1a1B1a.START_END_16RS)) {
@@ -352,8 +461,11 @@ public class SequenceUtils {
      * The delimiter REAS is not unique across all sequences, in this MT.
      * The usual generated API for accessing this can not be used for sequence C1a1B1a1.
      * So we call a special method to resolve this situation until we find a better approach.
+     * @deprecated the generated {@link MT548#getSequenceC1a1B1a1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
      */
-    public static List<MT548.SequenceC1a1B1a1> resolveMT548GetSequenceC1a1B1a1List_sru2025(final MT548 mt) {
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT548.SequenceC1a1B1a1> resolveMT548GetSequenceC1a1B1a1List_sru2026(final MT548 mt) {
         final List<MT548.SequenceC1a1B1a1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceC1a1B1aList(), MT548.SequenceC1a1B1a1.START_END_16RS)) {
@@ -364,7 +476,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static MT564.SequenceB1 resolveMT564GetSequenceB1_sru2025(final MT564 mt) {
+    /**
+     * @deprecated the generated {@link MT564#getSequenceB1()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static MT564.SequenceB1 resolveMT564GetSequenceB1_sru2026(final MT564 mt) {
         Objects.requireNonNull(mt);
         final MT564.SequenceB1 result = MT564.SequenceB1.newInstance();
         // we just get the first subblock
@@ -372,7 +489,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT564.SequenceE1a> resolveMT564GetSequenceE1aList_sru2025(final MT564 mt) {
+    /**
+     * @deprecated the generated {@link MT564#getSequenceE1aList()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT564.SequenceE1a> resolveMT564GetSequenceE1aList_sru2026(final MT564 mt) {
         final List<MT564.SequenceE1a> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceE1List(), MT564.SequenceE1a.START_END_16RS)) {
@@ -383,7 +505,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static MT566.SequenceB1 resolveMT566GetSequenceB1_sru2025(final MT566 mt) {
+    /**
+     * @deprecated the generated {@link MT566#getSequenceB1()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static MT566.SequenceB1 resolveMT566GetSequenceB1_sru2026(final MT566 mt) {
         Objects.requireNonNull(mt);
         final MT566.SequenceB1 result = MT566.SequenceB1.newInstance();
         // we just get the first subblock
@@ -391,7 +518,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT566.SequenceD1a> resolveMT566GetSequenceD1aList_sru2025(final MT566 mt) {
+    /**
+     * @deprecated the generated {@link MT566#getSequenceD1aList()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT566.SequenceD1a> resolveMT566GetSequenceD1aList_sru2026(final MT566 mt) {
         final List<MT566.SequenceD1a> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceD1List(), MT566.SequenceD1a.START_END_16RS)) {
@@ -402,7 +534,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT575.SequenceA1> resolveMT575GetSequenceA1List_sru2025(final MT575 mt) {
+    /**
+     * @deprecated the generated {@link MT575#getSequenceA1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT575.SequenceA1> resolveMT575GetSequenceA1List_sru2026(final MT575 mt) {
         final List<MT575.SequenceA1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceA(), MT575.SequenceA1.START_END_16RS)) {
@@ -413,7 +550,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT575.SequenceB1a1> resolveMT575GetSequenceB1a1List_sru2025(final MT575 mt) {
+    /**
+     * @deprecated the generated {@link MT575#getSequenceB1a1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT575.SequenceB1a1> resolveMT575GetSequenceB1a1List_sru2026(final MT575 mt) {
         final List<MT575.SequenceB1a1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceB1aList(), MT575.SequenceB1a1.START_END_16RS)) {
@@ -424,7 +566,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT575.SequenceB1a4> resolveMT575GetSequenceB1a4List_sru2025(final MT575 mt) {
+    /**
+     * @deprecated the generated {@link MT575#getSequenceB1a4List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT575.SequenceB1a4> resolveMT575GetSequenceB1a4List_sru2026(final MT575 mt) {
         final List<MT575.SequenceB1a4> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceB1aList(), MT575.SequenceB1a4.START_END_16RS)) {
@@ -435,7 +582,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT575.SequenceC1> resolveMT575GetSequenceC1List_sru2025(final MT575 mt) {
+    /**
+     * @deprecated the generated {@link MT575#getSequenceC1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT575.SequenceC1> resolveMT575GetSequenceC1List_sru2026(final MT575 mt) {
         final List<MT575.SequenceC1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceCList(), MT575.SequenceC1.START_END_16RS)) {
@@ -446,7 +598,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT575.SequenceC2a> resolveMT575GetSequenceC2aList_sru2025(final MT575 mt) {
+    /**
+     * @deprecated the generated {@link MT575#getSequenceC2aList()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT575.SequenceC2a> resolveMT575GetSequenceC2aList_sru2026(final MT575 mt) {
         final List<MT575.SequenceC2a> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceC2List(), MT575.SequenceC2a.START_END_16RS)) {
@@ -457,7 +614,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT576.SequenceA1> resolveMT576GetSequenceA1List_sru2025(final MT576 mt) {
+    /**
+     * @deprecated the generated {@link MT576#getSequenceA1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT576.SequenceA1> resolveMT576GetSequenceA1List_sru2026(final MT576 mt) {
         final List<MT576.SequenceA1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceA(), MT576.SequenceA1.START_END_16RS)) {
@@ -468,7 +630,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT576.SequenceB2a> resolveMT576GetSequenceB2aList_sru2025(final MT576 mt) {
+    /**
+     * @deprecated the generated {@link MT576#getSequenceB2aList()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT576.SequenceB2a> resolveMT576GetSequenceB2aList_sru2026(final MT576 mt) {
         final List<MT576.SequenceB2a> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceB2List(), MT576.SequenceB2a.START_END_16RS)) {
@@ -479,7 +646,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT586.SequenceA1> resolveMT586GetSequenceA1List_sru2025(final MT586 mt) {
+    /**
+     * @deprecated the generated {@link MT586#getSequenceA1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT586.SequenceA1> resolveMT586GetSequenceA1List_sru2026(final MT586 mt) {
         final List<MT586.SequenceA1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceA(), MT586.SequenceA1.START_END_16RS)) {
@@ -490,7 +662,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT586.SequenceB1> resolveMT586GetSequenceB1List_sru2025(final MT586 mt) {
+    /**
+     * @deprecated the generated {@link MT586#getSequenceB1List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT586.SequenceB1> resolveMT586GetSequenceB1List_sru2026(final MT586 mt) {
         final List<MT586.SequenceB1> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceBList(), MT586.SequenceB1.START_END_16RS)) {
@@ -501,7 +678,12 @@ public class SequenceUtils {
         return result;
     }
 
-    public static List<MT670.SequenceB2> resolveMT670GetSequenceB2List_sru2025(final MT670 mt) {
+    /**
+     * @deprecated the generated {@link MT670#getSequenceB2List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT670.SequenceB2> resolveMT670GetSequenceB2List_sru2026(final MT670 mt) {
         final List<MT670.SequenceB2> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceBList(), MT670.SequenceB2.START_END_16RS)) {
@@ -512,14 +694,19 @@ public class SequenceUtils {
         return result;
     }
 
-    public static MT670.SequenceC resolveMT670GetSequenceC_sru2025(final MT670 mt) {
+    public static MT670.SequenceC resolveMT670GetSequenceC_sru2026(final MT670 mt) {
         Objects.requireNonNull(mt);
         final MT670.SequenceC result = MT670.SequenceC.newInstance();
         result.clear().append(getMT670_1_C(mt.getSwiftMessage().getBlock4(), MT670.SequenceB.START_END_16RS));
         return result;
     }
 
-    public static List<MT671.SequenceB2> resolveMT671GetSequenceB2List_sru2025(final MT671 mt) {
+    /**
+     * @deprecated the generated {@link MT671#getSequenceB2List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT671.SequenceB2> resolveMT671GetSequenceB2List_sru2026(final MT671 mt) {
         final List<MT671.SequenceB2> result = new ArrayList<>();
         for (final SwiftTagListBlock seq :
                 resolveNotUniqueSeparator(mt.getSequenceBList(), MT671.SequenceB2.START_END_16RS)) {
@@ -530,10 +717,138 @@ public class SequenceUtils {
         return result;
     }
 
-    public static MT671.SequenceC resolveMT671GetSequenceC_sru2025(final MT671 mt) {
+    public static MT671.SequenceC resolveMT671GetSequenceC_sru2026(final MT671 mt) {
         Objects.requireNonNull(mt);
         final MT671.SequenceC result = MT671.SequenceC.newInstance();
         result.clear().append(getMT670_1_C(mt.getSwiftMessage().getBlock4(), MT671.SequenceB.START_END_16RS));
+        return result;
+    }
+
+    /**
+     * @deprecated the generated {@link MT513#getSequenceC2()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static MT513.SequenceC2 resolveMT513GetSequenceC2_sru2026(final MT513 mt) {
+        Objects.requireNonNull(mt);
+        final MT513.SequenceC2 result = MT513.SequenceC2.newInstance();
+        result.clear().append(mt.getSequenceC().getSubBlock(MT513.SequenceC2.START_END_16RS));
+        return result;
+    }
+
+    /**
+     * @deprecated the generated {@link MT513#getSequenceD4()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static MT513.SequenceD4 resolveMT513GetSequenceD4_sru2026(final MT513 mt) {
+        Objects.requireNonNull(mt);
+        final MT513.SequenceD4 result = MT513.SequenceD4.newInstance();
+        result.clear().append(mt.getSequenceD().getSubBlock(MT513.SequenceD4.START_END_16RS));
+        return result;
+    }
+
+    /**
+     * @deprecated the generated {@link MT514#getSequenceB1()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static MT514.SequenceB1 resolveMT514GetSequenceB1_sru2026(final MT514 mt) {
+        Objects.requireNonNull(mt);
+        final MT514.SequenceB1 result = MT514.SequenceB1.newInstance();
+        result.clear().append(mt.getSequenceB().getSubBlock(MT514.SequenceB1.START_END_16RS));
+        return result;
+    }
+
+    /**
+     * @deprecated the generated {@link MT514#getSequenceC4()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static MT514.SequenceC4 resolveMT514GetSequenceC4_sru2026(final MT514 mt) {
+        Objects.requireNonNull(mt);
+        final MT514.SequenceC4 result = MT514.SequenceC4.newInstance();
+        result.clear().append(mt.getSequenceC().getSubBlock(MT514.SequenceC4.START_END_16RS));
+        return result;
+    }
+
+    /**
+     * @deprecated the generated {@link MT515#getSequenceC1()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static MT515.SequenceC1 resolveMT515GetSequenceC1_sru2026(final MT515 mt) {
+        Objects.requireNonNull(mt);
+        final MT515.SequenceC1 result = MT515.SequenceC1.newInstance();
+        result.clear().append(mt.getSequenceC().getSubBlock(MT515.SequenceC1.START_END_16RS));
+        return result;
+    }
+
+    /**
+     * @deprecated the generated {@link MT515#getSequenceD4()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static MT515.SequenceD4 resolveMT515GetSequenceD4_sru2026(final MT515 mt) {
+        Objects.requireNonNull(mt);
+        final MT515.SequenceD4 result = MT515.SequenceD4.newInstance();
+        result.clear().append(mt.getSequenceD().getSubBlock(MT515.SequenceD4.START_END_16RS));
+        return result;
+    }
+
+    /**
+     * @deprecated the generated {@link MT518#getSequenceB1()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static MT518.SequenceB1 resolveMT518GetSequenceB1_sru2026(final MT518 mt) {
+        Objects.requireNonNull(mt);
+        final MT518.SequenceB1 result = MT518.SequenceB1.newInstance();
+        result.clear().append(mt.getSequenceB().getSubBlock(MT518.SequenceB1.START_END_16RS));
+        return result;
+    }
+
+    /**
+     * @deprecated the generated {@link MT518#getSequenceC4()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static MT518.SequenceC4 resolveMT518GetSequenceC4_sru2026(final MT518 mt) {
+        Objects.requireNonNull(mt);
+        final MT518.SequenceC4 result = MT518.SequenceC4.newInstance();
+        result.clear().append(mt.getSequenceC().getSubBlock(MT518.SequenceC4.START_END_16RS));
+        return result;
+    }
+
+    /**
+     * @deprecated the generated {@link MT537#getSequenceB2b2List()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceB2b2> resolveMT537GetSequenceB2b2List_sru2026(final MT537 mt) {
+        final List<MT537.SequenceB2b2> result = new ArrayList<>();
+        for (final SwiftTagListBlock seq :
+                resolveNotUniqueSeparator(mt.getSequenceB2bList(), MT537.SequenceB2b2.START_END_16RS)) {
+            final MT537.SequenceB2b2 s = MT537.SequenceB2b2.newInstance();
+            s.clear().append(seq);
+            result.add(s);
+        }
+        return result;
+    }
+
+    /**
+     * @deprecated the generated {@link MT537#getSequenceC2bList()} now resolves the sequence scoped to its parent, this manual resolver is no longer used by the generated code
+     */
+    @Deprecated
+    @ProwideDeprecated(phase2 = TargetYear.SRU2027)
+    public static List<MT537.SequenceC2b> resolveMT537GetSequenceC2bList_sru2026(final MT537 mt) {
+        final List<MT537.SequenceC2b> result = new ArrayList<>();
+        for (final SwiftTagListBlock seq :
+                resolveNotUniqueSeparator(mt.getSequenceC2List(), MT537.SequenceC2b.START_END_16RS)) {
+            final MT537.SequenceC2b s = MT537.SequenceC2b.newInstance();
+            s.clear().append(seq);
+            result.add(s);
+        }
         return result;
     }
 

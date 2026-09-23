@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2023 Prowide
+ * Copyright 2006 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,21 +44,30 @@ public class OptionJPartyFieldTest {
     }
 
     @Test
+    public void testGetValueByCodewordCTRY() {
+        TestPartyField f = new TestPartyField("/ABIC/CHASUS33/NAME/CHASE HQ/CITY/NEW YORK/CTRY/US");
+        assertEquals("CHASUS33", f.getValueByCodeword(Codeword.ABIC));
+        assertEquals("CHASE HQ", f.getValueByCodeword(Codeword.NAME));
+        assertEquals("NEW YORK", f.getValueByCodeword(Codeword.CITY));
+        assertEquals("US", f.getValueByCodeword(Codeword.CTRY));
+    }
+
+    @Test
     public void testGetValueByCodewordBlankValue() {
         // a codeword with blank value must not shift the following codeword/value pairs
-        TestPartyField f = new TestPartyField("/ABIC/CHASUS33\n/NAME/CHASE\n/CITY/\n/USFW/123456789");
+        TestPartyField f = new TestPartyField("/ABIC/CHASUS33\n/NAME/CHASE\n/CITY/\n/CTRY/US");
         assertEquals("CHASUS33", f.getValueByCodeword(Codeword.ABIC));
         assertEquals("CHASE", f.getValueByCodeword(Codeword.NAME));
         assertEquals("", f.getValueByCodeword(Codeword.CITY));
-        assertEquals("123456789", f.getValueByCodeword(Codeword.USFW));
+        assertEquals("US", f.getValueByCodeword(Codeword.CTRY));
     }
 
     @Test
     public void testGetValueByCodewordBlankValueSameLine() {
-        TestPartyField f = new TestPartyField("/NAME/SOME BANK/CITY//USFW/123456789");
+        TestPartyField f = new TestPartyField("/NAME/SOME BANK/CITY//CTRY/DE");
         assertEquals("SOME BANK", f.getValueByCodeword(Codeword.NAME));
         assertEquals("", f.getValueByCodeword(Codeword.CITY));
-        assertEquals("123456789", f.getValueByCodeword(Codeword.USFW));
+        assertEquals("DE", f.getValueByCodeword(Codeword.CTRY));
     }
 
     @Test
@@ -66,7 +75,7 @@ public class OptionJPartyFieldTest {
         TestPartyField f = new TestPartyField("/NAME/SOME BANK\n/CITY/");
         assertEquals("SOME BANK", f.getValueByCodeword(Codeword.NAME));
         assertEquals("", f.getValueByCodeword(Codeword.CITY));
-        assertNull(f.getValueByCodeword(Codeword.USFW));
+        assertNull(f.getValueByCodeword(Codeword.CTRY));
 
         // an unterminated trailing codeword (no closing slash) has no value
         TestPartyField g = new TestPartyField("/NAME/SOME BANK\n/CITY");

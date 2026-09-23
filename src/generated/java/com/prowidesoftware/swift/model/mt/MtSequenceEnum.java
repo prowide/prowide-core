@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 /**
 * Enumeration representing all possible sequence paths for each MT (Message Type) schema.
 * Each constant in this enumeration corresponds to a specific MT schema, identified by its
-* sequence paths as a comma-separated string (CSV) for SRU 2025.
+* sequence paths as a comma-separated string (CSV) for SRU 2026.
 *
 * <p>For example, the MT508 message type may have sequence paths such as "A", "A/A1", "B", "B/B1", and "C",
 * which would be represented as the CSV string "A,A/A1,B,B/B1,C".
