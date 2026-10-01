@@ -15,7 +15,9 @@
  */
 package com.prowidesoftware.swift.utils;
 
+import java.io.IOException;
 import java.util.*;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -26,6 +28,9 @@ import org.apache.commons.lang3.Validate;
  * <p>The list of valid currency and country codes can be manipulated after initialization in order to
  * change or add new values. This can be particularly helpful when the application is not running on
  * the latest Java version and a currency change or addition has not yet been updated in the used JRE.
+ *
+ * <p>The ISO 3166-1 country names are also available, by alpha-2, alpha-3 or numeric code, with
+ * {@link #getCountryName(String)}.
  *
  * @since 7.9.2
  */
@@ -98,6 +103,94 @@ public final class IsoUtils {
 
     private boolean isUserAssignedCountryCode(String code) {
         return code.charAt(0) == 'X' && Character.isUpperCase(code.charAt(1));
+    }
+
+    /**
+     * Gets the English short name of a country from its ISO 3166-1 code.
+     *
+     * <p>The parameter can be the alpha-2 code (US), the alpha-3 code (USA) or the numeric code (840). The lookup is
+     * case-insensitive, ignores surrounding whitespace, accepts a numeric code with fewer or more leading zeros than
+     * the three digits of the ISO code (28 or 0028 for Antigua and Barbuda, whose ISO numeric code is 028), and does
+     * not depend on the default locale.
+     *
+     * <p>The names are the English short names of the officially assigned codes, in the comma-inverted form of the
+     * ISO 3166-1 lists (for example "Bolivia, Plurinational State of"). This catalog is independent of the country
+     * codes list: a code added with {@link #addCountry(String)} has no name, and the user assigned codes (the XA to
+     * XZ range) have no name either.
+     *
+     * @param code an alpha-2, alpha-3 or numeric ISO 3166-1 country code
+     * @return the English short name of the country, or null if the parameter is null, blank or not an officially
+     * assigned code
+     * @since 10.3.20
+     */
+    public String getCountryName(String code) {
+        if (code == null) {
+            return null;
+        }
+        String key = code.trim().toUpperCase(Locale.ROOT);
+        if (isAsciiDigits(key)) {
+            String digits = stripLeadingZeros(key);
+            if (digits.length() > 3) {
+                return null;
+            }
+            key = "000".substring(digits.length()) + digits;
+        }
+        return CountryNames.BY_CODE.get(key);
+    }
+
+    private static boolean isAsciiDigits(String s) {
+        if (s.isEmpty()) {
+            return false;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c < '0' || c > '9') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static String stripLeadingZeros(String digits) {
+        int i = 0;
+        while (i < digits.length() && digits.charAt(i) == '0') {
+            i++;
+        }
+        return digits.substring(i);
+    }
+
+    /**
+     * Lazily loaded ISO 3166-1 names, keyed by the alpha-2, alpha-3 and numeric codes.
+     *
+     * <p>The data comes from the IsoCountries.txt resource, one country per line as alpha-2;alpha-3;numeric;name,
+     * with lines starting with # ignored.
+     */
+    private static final class CountryNames {
+        private static final Map<String, String> BY_CODE = load();
+
+        private static Map<String, String> load() {
+            Map<String, String> map = new HashMap<>();
+            try {
+                String content = Lib.readResource("IsoCountries.txt", "UTF-8", IsoUtils.class);
+                for (String line : content.split("\\R")) {
+                    if (line.isEmpty() || line.charAt(0) == '#') {
+                        continue;
+                    }
+                    String[] fields = line.split(";", 4);
+                    if (fields.length == 4) {
+                        map.put(fields[0], fields[3]);
+                        map.put(fields[1], fields[3]);
+                        map.put(fields[2], fields[3]);
+                    }
+                }
+            } catch (IOException e) {
+                log.log(Level.SEVERE, "Could not load the ISO 3166-1 country names", e);
+            }
+            if (map.isEmpty()) {
+                log.severe("The ISO 3166-1 country names resource IsoCountries.txt is missing or empty");
+            }
+            return map;
+        }
     }
 
     /**
