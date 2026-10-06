@@ -100,6 +100,32 @@ public class IsoUtilsTest {
     }
 
     @Test
+    public void testIsUserAssignedCountryCode() {
+        for (char c = 'A'; c <= 'Z'; c++) {
+            assertTrue(IsoUtils.getInstance().isUserAssignedCountryCode("X" + c), "X" + c);
+        }
+        assertFalse(IsoUtils.getInstance().isUserAssignedCountryCode(null));
+        assertFalse(IsoUtils.getInstance().isUserAssignedCountryCode(""));
+        assertFalse(IsoUtils.getInstance().isUserAssignedCountryCode("X"));
+        assertFalse(IsoUtils.getInstance().isUserAssignedCountryCode("XXX"));
+        assertFalse(IsoUtils.getInstance().isUserAssignedCountryCode("xx"));
+        assertFalse(IsoUtils.getInstance().isUserAssignedCountryCode("Xx"));
+        assertFalse(IsoUtils.getInstance().isUserAssignedCountryCode("X1"));
+        assertFalse(IsoUtils.getInstance().isUserAssignedCountryCode("FR"));
+        assertFalse(IsoUtils.getInstance().isUserAssignedCountryCode("AA"));
+        assertFalse(IsoUtils.getInstance().isUserAssignedCountryCode("QM"));
+        assertFalse(IsoUtils.getInstance().isUserAssignedCountryCode("ZZ"));
+    }
+
+    /** Only the A-Z range follows the X, an upper case letter of another alphabet is not a user assigned code */
+    @Test
+    public void testUserAssignedCountryCodeIsAsciiOnly() {
+        assertFalse(IsoUtils.getInstance().isUserAssignedCountryCode("XЖ"));
+        assertFalse(IsoUtils.getInstance().isValidISOCountry("XЖ"));
+        assertFalse(IsoUtils.getInstance().isValidISOCountry("XÉ"));
+    }
+
+    @Test
     public void testAddCountry_1() {
         Assertions.assertThrows(
                 IllegalArgumentException.class, () -> IsoUtils.getInstance().addCountry(null));

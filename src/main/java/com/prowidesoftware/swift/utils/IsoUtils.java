@@ -101,8 +101,21 @@ public final class IsoUtils {
         return false;
     }
 
-    private boolean isUserAssignedCountryCode(String code) {
-        return code.charAt(0) == 'X' && Character.isUpperCase(code.charAt(1));
+    /**
+     * Checks if the country code belongs to the ISO 3166-1 user assigned range XA to XZ, for example XK or XX.
+     *
+     * <p>These codes are accepted by {@link #isValidISOCountry(String)} regardless of the country codes list. The other
+     * ISO 3166-1 user assigned codes (AA, QM to QZ and ZZ) are not part of this range.
+     *
+     * @param countryCode a two letters capitalized country code, example: XK
+     * @return true if the parameter is an X followed by a letter in the A-Z range, false otherwise, including null
+     * @since 10.3.20
+     */
+    public boolean isUserAssignedCountryCode(String countryCode) {
+        return StringUtils.length(countryCode) == 2
+                && countryCode.charAt(0) == 'X'
+                && countryCode.charAt(1) >= 'A'
+                && countryCode.charAt(1) <= 'Z';
     }
 
     /**
