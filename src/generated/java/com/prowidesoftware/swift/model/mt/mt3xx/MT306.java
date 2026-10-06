@@ -195,7 +195,7 @@ Sequence K (O)<ul><li class="field">Field 15 K (M)</li>
 Sequence L (O)<ul><li class="field">Field 15 L (M)</li>
 <li class="field">Field 18 A (M)</li>
 <li class="sequence">
-Sequence _L1 (O) (repetitive)<ul><li class="field">Field 30 F (M)</li>
+Sequence _L1 (M) (repetitive)<ul><li class="field">Field 30 F (M)</li>
 <li class="field">Field 32 H (M)</li>
 </ul></li>
 <li class="field">Field 53 A,J (O)</li>

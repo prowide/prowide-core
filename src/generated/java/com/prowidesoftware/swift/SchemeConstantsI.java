@@ -28,10 +28,6 @@ public interface SchemeConstantsI {
     String INTE = "INTE";
     String ICM_ACT = "ICM/ACT";
     String INT1 = "INT1";
-    String INSI = "INSI";
-    String INSF = "INSF";
-    String INCH = "INCH";
-    String INVA = "INVA";
     String ISSU = "ISSU";
     String INDC = "INDC";
     String INST = "INST";
@@ -109,6 +105,7 @@ public interface SchemeConstantsI {
     String INTD = "INTD";
     String INTL = "INTL";
     String INTV = "INTV";
+    String INVA = "INVA";
     String INVB = "INVB";
     String INVL = "INVL";
     String INVN = "INVN";

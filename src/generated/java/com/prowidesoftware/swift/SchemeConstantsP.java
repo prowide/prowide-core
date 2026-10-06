@@ -120,8 +120,8 @@ public interface SchemeConstantsP {
     String POIL = "POIL";
     String PHYSICAL = "PHYSICAL";
     String PUT = "PUT";
-    String PMTH = "PMTH";
     String PRCD = "PRCD";
+    String PMTH = "PMTH";
     String PREVINST = "PREVINST";
     String PREDENOT = "PREDENOT";
     String PERF = "PERF";

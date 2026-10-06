@@ -57,7 +57,6 @@ public interface SchemeConstantsC {
     String CORRSELLER = "CORRSELLER";
     String CSHPRTY = "CSHPRTY";
     String CNTR = "CNTR";
-    String COLN = "COLN";
     String COUP = "COUP";
     String CADETL = "CADETL";
     String CERT = "CERT";
@@ -254,6 +253,7 @@ public interface SchemeConstantsC {
     String CMIS = "CMIS";
     String CMON = "CMON";
     String CNCB = "CNCB";
+    String COLN = "COLN";
     String COMB = "COMB";
     String COMC = "COMC";
     String COMU = "COMU";

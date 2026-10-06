@@ -221,6 +221,7 @@ public enum FieldEnum {
     F29U,
     F29Q,
     F29W,
+    F29Z,
     F30F,
     F30G,
     F30H,

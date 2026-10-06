@@ -103,11 +103,11 @@ Sequence C (O)<ul><li class="field">Field 15 C (M)</li>
 <li class="sequence">
 Sequence D (O)<ul><li class="field">Field 15 D (M)</li>
 <li class="sequence">
-Sequence D1 (O) (repetitive)<ul><li class="field">Field 17 A (M)</li>
+Sequence D1 (M) (repetitive)<ul><li class="field">Field 17 A (M)</li>
 <li class="field">Field 32 B (M)</li>
 <li class="field">Field 53 A,D,J (O)</li>
 <li class="field">Field 56 A,D,J (O)</li>
-<li class="field">Field 57 A,D,J (O)</li>
+<li class="field">Field 57 A,D,J (M)</li>
 <li class="field">Field 58 A,D,J (O)</li>
 </ul></li>
 <li class="field">Field 16 A (M)</li>
@@ -3159,15 +3159,15 @@ public class MT300 extends AbstractMT implements Serializable {
 		public static final String[] START = { "17A"   } ;
 
 		/**
-		 * Last mandatory tag name of the sequence: <em>"32B"  </em>
+		 * Last mandatory tag name of the sequence: <em>"57A", "57D", "57J"  </em>
 		 * Array format is for cases when more than one letter options is allowed
 		 */
-		protected static final String[] END = { "32B"   };
+		protected static final String[] END = { "57A", "57D", "57J"   };
 
 		/**
 		 * List of optional tags after the last mandatory tag.
 		 */
-		protected static final String[] TAIL = new String[]{ "53A", "53D", "53J", "56A", "56D", "56J", "57A", "57D", "57J", "58A", "58D", "58J"   };
+		protected static final String[] TAIL = new String[]{ "58A", "58D", "58J"   };
 
 		/**
 		 * Same as {@link #newInstance(int, int, Tag...)} using zero for the indexes.

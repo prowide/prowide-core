@@ -1,5 +1,12 @@
 # Prowide Core - CHANGELOG
 
+### 10.4.5 - SNAPSHOT
+  * Fix: MT420 sequence `Loop1` renamed to `A`, as named in the format specification. `MT420.Loop1` is now `MT420.SequenceA` and `getLoop1List()` is now `getSequenceAList()`; `MtSequenceEnum.MT420` reports `A` and `B` instead of `B` alone
+  * Fix: in MT300 subsequence D1, field 57a is mandatory and the subsequence itself is mandatory within sequence D. `MT300.SequenceD1` is now delimited by 17A..57a with 58a as the only optional tail, where it previously ended at 32B and took 53a, 56a, 57a and 58a as tail
+  * Fix: MT306 subsequence L1 and MT320 subsequence I1 are mandatory within their parent sequence, and the 20C/20U Transaction Reference fieldset item of MT548 is not repetitive; the three corrections are reflected in the message javadoc, the generated accessors are unchanged
+  * Feat: `FieldEnum` includes `F29Z`, for field 29Z Bank/Customer Contact, added to the standard in SR2026
+  * Chore: scheme constants regenerated. Adds `QAIS`, `QFOR` and `QRET`, from the qualifier list of field 36B/36D in MT567, which previously had none declared. Removes `AMAM`, `AMTL`, `FRWD`, `INCH`, `INSF`, `INSI`, `NELI` and `STLD`: their only source was field 23E in sequence B of MT416, which listed the full generic instruction codes instead of the NACC, NPAY and OTHR the specification allows there
+
 ### 10.4.4 - August 2026
   * (PW-3433) Fix: `OptionJPartyField.getValueByCodeword` no longer shifts the codeword/value pairs that follow a codeword with a blank value (for example "/CITY/" followed by "/CTRY/US" returned "CTRY" for CITY and null for CTRY); a codeword present with a blank value now returns an empty string
   * (GH-341) Feat: `SwiftMessageUtils.money` revised for category 7: amount added for MT744, MT760, MT765 and MT786; changed to field 32B for MT750 and MT752, and to 34B for MT769; removed for MT707
