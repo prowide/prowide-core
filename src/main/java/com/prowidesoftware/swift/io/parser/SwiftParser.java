@@ -21,6 +21,9 @@ import com.prowidesoftware.swift.utils.Lib;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
@@ -57,7 +60,8 @@ public class SwiftParser {
      * <p>Any other tag keeps the historical reading, ending at the first closing brace. This is relevant for
      * malformed content such as a service message error code that is not properly closed before the next field.
      */
-    private static final Set<String> NESTED_BLOCK_TAG_NAMES = Set.of("1", "2", "3", "4", "5", "270");
+    private static final Set<String> NESTED_BLOCK_TAG_NAMES =
+            Collections.unmodifiableSet(new HashSet<>(Arrays.asList("1", "2", "3", "4", "5", "270")));
 
     /**
      * The only nested block that is a text block, and therefore ends at its end of block mark instead of at a

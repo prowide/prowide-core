@@ -1,77 +1,53 @@
 # Prowide Core - CHANGELOG
 
-#### 10.3.20 - October 2026
+### 9.6.9 - October 2026
+  * (PW-3433) Fix: `OptionJPartyField.getValueByCodeword` no longer shifts the codeword/value pairs that follow a codeword with a blank value (for example "/CITY/" followed by "/USFW/021000018" returned "USFW" for CITY and null for USFW); a codeword present with a blank value now returns an empty string
+  * (PW-3251) Feat: Added `FileFormat.MX_UNWRAPPED` to identify MX payloads where the Header and Document arrive as sibling root elements with no enclosing envelope
+  * (GH-341) Fix: `SwiftMessageUtils.money` revised for category 7: amount added for MT744, MT760, MT765 and MT786; changed to field 32B for MT750 and MT752, and to 34B for MT769; removed for MT707
+  * (GH-338) Fix: no-arg getters of subsequences with delimiters shared by another sequence in the same message are now resolved within their parent sequence, not the whole block 4; fixes `MT360`/`MT361` `getSequenceE1()`, `getSequenceF1()` and `getSequenceF2()` returning sequence B/C content. Affected subsequences are flagged with `@NonUniqueSeparator`
+  * (GH-327) Fix: Field 44J serialization now adds the mandatory starting slash in the narrative line when the narrative component is set without it
   * Fix: in MT300 subsequence D1 field 57a is mandatory, so the sequence is delimited by 17A..57a with 58a as the only optional tail; scheme constants drop eight codes that MT416 field 23E no longer admits
   * Fix: the message nested in the block 4 of the system messages MT021, MT056 and MT096 is no longer truncated at the first closing brace, so these messages are parsed and written back intact; the tag value is read balancing the curly braces for the tag names where SWIFT defines nested blocks (the block identifiers 1 to 5 and the field 270), while any other tag keeps the historical reading, ending at the first closing brace
+  * Fix: large XML documents with many escaped characters (e.g. camt/pacs statements) no longer fail to parse on Java 24 and newer JVMs
   * Feat: `SwiftParser.parseBlock3` and `SwiftParser.parseBlock5` also accept the block content without the block identifier, as it is found in the nested blocks of an MT021 or MT096, and return an empty block for a null content
   * Feat: new `IsoUtils#getCountryName(code)` with the ISO 3166-1 English short name of a country, looked up by its alpha-2, alpha-3 or numeric code
   * Feat: `IsoUtils#isUserAssignedCountryCode(code)` is now public, for the ISO 3166-1 user assigned range XA to XZ; it no longer accepts an upper case letter of another alphabet after the X, so `isValidISOCountry` rejects codes such as "XЖ"
   * Chore: the `creationUser` mapping in `SwiftMessageStatusInfo`, `SwiftMessageNote` and `SwiftMessageRevision` declares length 100 instead of 40, to fit usernames such as e-mail addresses
 
-#### 10.3.19 - August 2026
-  * (PW-3433) Fix: `OptionJPartyField.getValueByCodeword` no longer shifts the codeword/value pairs that follow a codeword with a blank value (for example "/CITY/" followed by "/USFW/021000018" returned "USFW" for CITY and null for USFW); a codeword present with a blank value now returns an empty string
-  * (GH-341) Fix: `SwiftMessageUtils.money` revised for category 7: amount added for MT744, MT760, MT765 and MT786; changed to field 32B for MT750 and MT752, and to 34B for MT769; removed for MT707
-
-#### 10.3.18 - August 2026
-  * (GH-338) Fix: no-arg getters of subsequences with delimiters shared by another sequence in the same message are now resolved within their parent sequence, not the whole block 4; fixes `MT360`/`MT361` `getSequenceE1()`, `getSequenceF1()` and `getSequenceF2()` returning sequence B/C content. Affected subsequences are flagged with `@NonUniqueSeparator`
-
-#### 10.3.17 - July 2026
-  * (GH-327) Fix: Field 44J serialization now adds the mandatory starting slash in the narrative line when the narrative component is set without it
-  * Fix: large XML documents with many escaped characters (e.g. camt/pacs statements) no longer fail to parse on Java 24 and newer JVMs
-
-#### 10.3.16 - July 2026
-  * (PW-3251) Feat: Added `FileFormat.MX_UNWRAPPED` to identify MX payloads where the Header and Document arrive as sibling root elements with no enclosing envelope
-
-#### 10.3.15 - July 2026
-  * feat: Completed and consolidated the field labels across all language bundles (de, en, es, fr, it, ru), filling in missing translations and replacing redundant message-specific entries with generic field names
+#### 9.6.8 - July 2026
+  * (PW-3185) Fix: `MtSwiftMessage.toJson()` now uses 1-based months (January=1) for Calendar fields and emits a `schemaVersion` marker; `fromJson()` reads both new and legacy (0-based) payloads transparently
   * Fix: `SwiftTagListBlock.getFieldsByNumber(int)` no longer throws `IllegalArgumentException` when a matching tag cannot be converted into a `Field`; such tags are now logged and skipped, consistently with the name-based lookups
-
-#### 10.3.14 - May 2026
   * Fix: Fields definitions alignment: `Field30I` and `Field30K` component 2 made optional (and `Field30K` validation pattern updated to `<DATE4>[/<DATE4>]`), `Field39M` validation pattern updated to `<CC>`, and `Field56B` name & address component made optional
   * Fix: Minor changes in MT message structures from SRU2025 schema: MT306, MT340, MT500-MT502, MT504, MT508, MT510, MT513-MT515, MT518, MT519, MT524, MT527, MT530, MT535-MT538, MT540-MT548, MT558, MT564-MT566, MT575, MT578, MT586, MT600, MT601, MT671
+  * Feat: Completed and consolidated the field labels across all language bundles (de, en, es, fr, it, ru), filling in missing translations and replacing redundant message-specific entries with generic field names
 
-#### 10.3.13 - May 2026
-  * (PW-3185) `MtSwiftMessage.toJson()` now uses 1-based months (January=1) for Calendar fields and emits a `schemaVersion` marker. `fromJson()` reads both new and legacy (0-based) payloads transparently
-  * Migrated XML escape/unescape from deprecated `org.apache.commons.lang3.StringEscapeUtils` to `org.apache.commons.text.StringEscapeUtils`. Adds new runtime dependency on `org.apache.commons:commons-text:1.15.0`
-  * Updated gson from 2.13.2 to 2.14.0
-
-#### 10.3.12 - March 2026
-  * Fix: Replaced `@OrderColumn` with `@OrderBy("creationDate ASC")` on `statusTrail`, `notes`, and `revisions` to prevent data loss caused by `sort_key` corruption under concurrent access. Existing `sort_key` columns must be made nullable or dropped
+#### 9.6.7 - April 2026
+  * Fix: Replaced `@OrderColumn` with `@OrderBy("creationDate ASC")` on `statusTrail`, `notes`, and `revisions` to prevent data loss caused by `sort_key` corruption under concurrent access. Existing `sort_key` columns must be made nullable or dropped.
   * Feat: Improved performance of `SwiftParseUtils.getLines()` by replacing `BufferedReader` with direct string index parsing
-
-#### 10.3.11 - March 2026
   * Feat: `MtSwiftMessage` created from ACK (service 21) followed by MT with block 2 Output now extracts the message type and metadata from the appended MT instead of defaulting to ACK
-
-#### 10.3.10 - March 2026
   * Migrated deprecated `StringUtils` methods to `Strings.CS` equivalents (equals, startsWith, endsWith, contains, replace, indexOf, lastIndexOf, remove, removeEnd)
   * (PW-3126) Fixed DN to BIC extraction in `DistinguishedName` to include the branch code from the `ou` component
   * (PW-3123) Feat: Added `checksum()` and `checksumBody()` default methods to `MessageMetadataStrategy` (useful for duplicate detection)
   * (PW-3123) Feat: Made `SwiftMessageUtils.md5()` public for checksum computation in custom implementations
-
-#### 10.3.9 - February 2026
   * Deprecated `Field.validatorPattern()` - validation patterns moved to Integrator's `FieldPatternRegistry`
-  * Updated MT message structures from schema regeneration (MT081, MT513-MT543, MT586, MT920, MT942) 
-
-#### 10.3.8 - January 2026
+  * Updated MT message structures from schema regeneration (MT081, MT513-MT543, MT586, MT920, MT942)
   * (PW-2967) Fixed Field95D component label from "Legal Entity Identifier" to "Digital Ledger Identifier" to match XSD schema
   * Feat: `MtSwiftMessage` now automatically extracts and persists UETR from block 3 field 121 during message parsing
   * Fix: Added missing `uetr` field to `AbstractSwiftMessage` `copyTo()`, `equals()`, and `hashCode()` methods
-  * Updated apache-commons-lang3 from 3.17.0 to 3.20.0
-  * Updated gson from 2.11.0 to 2.13.2
 
-#### 10.3.7 - November 2025
+#### 9.6.6 - November 2025
   * fix: `MT544-547` Field19 NTWK Option as per SRU2025 UG
   * (PW-2907) Fixed format for Field 31W from DATE4 to DATE2
 
-#### 10.3.6 - August 2025
+#### 9.6.5 - August 2025
   * feat: Enhanced SwiftParser for edge cases avoiding OutOfBoundsException when parsing messages with empty blocks
   * fix: `LogicalTerminalAddress` sender LT "X" is now the default instead of "A" for load balancing by Messaging Interface
 
-#### 10.3.5 - September 2025
+#### 9.6.4 - September 2025
   * feat: Enhanced SwiftParser for edge cases avoiding OutOfBoundsException when parsing messages with empty blocks
   * (PW-2613) Updated the Field70 codeword splitting logic to allow / as trailing chars
 
-#### 10.3.4 - July 2025
+#### 9.6.3 - July 2025
   * (PW-2594) Fixed format for Fields 60, 62, 64, and 65 to ensure the DC component is mandatory.
   * (PW-2541) Updated the narrative resolver, format field 70 (used in field 70), to allow multiple lines and using // as codeword separator (/CODEWORD1/text///CODEWORD2/text) 
   * Fix: Enhanced the Xml parsing logic to escape/unescape `<` and `>` characters in the XML content
@@ -81,7 +57,7 @@
   * Feat: Enhanced the `SwiftMessageComparator` to allow less strict comparison regarding Block2's Sender Input Time and Receiver Output Time
   * Feat: Added xsd for validating the result for AbstractMt.xml() output
 
-#### 10.3.3 - July 2025
+#### 9.6.2 - July 2025
   * (PW-2541) Updated the narrative resolver, format field 70 (used in field 70), to allow multiple lines and using // as codeword separator (/CODEWORD1/text///CODEWORD2/text)
   * Fix: Adding a new entry to SchemeConstantsR class
   * Fix: Enhanced the Xml parsing logic to escape/unescape `<` and `>` characters in the XML content
@@ -91,115 +67,124 @@
   * Feat: Enhanced the `SwiftMessageComparator` to allow less strict comparison regarding Block2's Sender Input Time and Receiver Output Time
   * Feat: Added xsd for validating the result for AbstractMt.xml() output
 
-#### 10.3.2 - June 2025
+#### 9.6.1 - June 2025
   * Fix: Updated components for Field 13W
-
-#### 10.3.1 - June 2025
   * (PW-2055) Fixed the default message metadata extraction for ACK/NAK to set the service message block 1 BIC as receiver, not as sender
   * (PW-2055) Enhanced the `SwiftMessageUtils` extractors to support the service 21 message type (ACK/NAK)
   * Fix: Enhanced the `DefaultMtMetadataStrategy` to prevent NPE when the message headers are malformed
 
-#### 10.3.0 - May 2025
+#### 9.6.0 - June 2025
   * SWIFT Standard release update 2025 (live 22 November 2025)
   * Yearly revision of the deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
   * Dependency update: commons-lang3 -> 3.17.0
   * Dependency update: gson -> 2.13.1
-  * Changed field 70 narrative resolver to use the free format parser, code/narrative appearing anywhere, not just at the beginning of a line
   * (PW-2371) Added a `uetr` field in the `AbstractSwiftMessage` to store the message's unique end-to-end transaction reference (UETR)
 
-#### 10.2.6 - April 2025
+#### 9.5.8 - June 2024
+  * Fix: Enhanced the `DefaultMtMetadataStrategy` to prevent NPE when the message headers are malformed
+  * Feat: Added an XSD for validating the Prowide Core proprietary XML version for MT messages generated by the `xml()` method for the `AbstractMT` and subclasses
+  * Feat: Added JSON schemas for the Prowide Core proprietary JSON version for MT messages generated by the `toJson()` method for the `SwiftMessage` and `MtSwiftMessage` classes
+  * Feat: Enhanced the `SwiftMessageComparator` to allow less strict comparison regarding Block2's Sender Input Time and Receiver Output Time
+  * Feat: Added xsd for validating the result for AbstractMt.xml() output
+  * Fix: Updated components for Field 13W
+
+#### 9.5.7 - May 2025
+  * (PW-2055) Fixed the default message metadata extraction for ACK/NAK to set the service message block 1 BIC as receiver, not as sender
+  * (PW-2055) Enhanced the `SwiftMessageUtils` extractors to support the service 21 message type (ACK/NAK)
+  * Fix: Enhanced the `DefaultMtMetadataStrategy` to prevent NPE when the message headers are malformed
+  * Changed field 70 narrative resolver to use the free format parser, code/narrative appearing anywhere, not just at the beginning of a line
+
+#### 9.5.6 - April 2025
   * (CU-86b49rvw4) Updated label for Fields 14[P,Q,R]/16W/29[Q,W]
   * (PW-2239) BIC Branch check for all upper and lower case
   * (PW-2239) Notify Test and Training BIC usage in DN.
 
-#### 10.2.5 - December 2024
+#### 9.5.5 - December 2024
   * Update apache-commons-lang3 from 3.14.0 to 3.17.0 fixing derived apache-text dependency vulnerabilities 
   * Minor thread safety fix in the `PropertyLoaded` class, used by the `SafeXmlUtils`
   * Gradle wrapper update to 8.12
 
-#### 10.2.4 - November 2024
+#### 9.5.4 - November 2024
   * Rolling back SHA-256 checksum algorithm to MD5 in the MT message model
 
-#### 10.2.3 - November 2024
+#### 9.5.3 - November 2024
   * (PW-2040) Updated the BBAN validation data file to the IBAN REGISTRY Jul 2024 release 
   * (PW-2006) Fixed `getMUR` and `setMUR` in `SwiftMessage` to prioritize field 108 in block 4 over block 3 for system messages (category 0)
   * Added new `MtSequenceEnum` with all the available inner sequences of specific MT schemas
   * Added `isSystemMessage()` to SwiftMessage to check if the message is a category 0 message (010. 011, etc...)
+  * Added new `MtSequenceEnum` with all the available inner sequences of specific MT schemas
 
-#### 10.2.2 - October 2024
+#### 9.5.2 - October 2024
   * Added new `FieldEnum` with all the available field names
   * Code security improvements as per CodeQL recommendations
 
-#### 10.2.1 - June 2024
+#### 9.5.1 - June 2024
   * (PW-1913) Added IBAN validation for Egypt local account structure
   * Restore deprecated method in MT210 class
 
-#### 10.2.0 - May 2024
+#### 9.5.0 - May 2024
   * SWIFT Standard release update 2024 (live 16 November 2025)
   * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
-  * Dependency update: commons-lang3 -> 3.14.0
-  * Dependency update: gson -> 2.11.0
+  * Dependency update: commons-lang3 -> 3.14.0'
+  * Dependency update: gson -> 2.11.0'
 
-#### 10.1.15 - May 2024
+#### 9.4.16 - May 2024
   * (PW-1862) Added NarrativeFragment class for detailed line information in StructuredNarrative fragments
   * Fixed SwiftMessage getPDE(): return empty value instead of null when codeword exists and has no value
   * Added isPercentage() helper method to field 37K
 
-#### 10.1.14 - March 2024
+#### 9.4.15 - March 2024
   * (PW-1812) Updated the narrative resolver, format 2 (used in field 72 for example), to allow empty values as part of the narrative fragment
   * Updated validators for BIC, country, and currency constraints to utilize keywords for i18n-compatible messages
   * Deprecated unnecessary methods in the SafeXmlUtils class
 
-#### 10.1.13 - December 2023
+#### 9.4.14 - December 2023
   * (PW-1718) Changed the getComponentLabel(component) in Field59F to be dynamic based on the line identifiers (similar to existing API in Field50F)
 
-#### 10.1.12 - November 2023
+#### 9.4.13 - November 2023
   * (PW-1697) Fixed validation/parse pattern in field 29O
   * (PW-1697) MT306 changes in field 30I
   * Added DistinguishedName with Builder in order to encapsulate the BIC branch name logic 
 
-#### 10.1.11 - November 2023
+#### 9.4.12 - November 2023
   * (PW-1697) Fixed validation pattern in fields 14[H,K,L,M,N,O] and 29J
 
-#### 10.1.10 - November 2023
+#### 9.4.11 - November 2023
   * (PW-1695) Fixed a stack overflow in the fields fromJson implementation when a malformed JSON input contains empty field names
   * (PW-1688) Added missing field labels for SRU2023 changes in the pw_swift_*.properties file
 
-#### 10.1.9 - October 2023
+#### 9.4.10 - October 2023
   * (PW-1675) update to Field 31R to support also two date components as requested by SCORE messages
   * Added 36B and 36D getters to MT543
 
-#### 10.1.8 - October 2023
+#### 9.4.9 - October 2023
   * (PW-1659) Field 24G deprecated Name and Address for Narrative
 
-#### 10.1.7 - October 2023
+#### 9.4.8 - October 2023
   * Added default methods for sender, receiver, and identifier extraction to the MessageExtractionStrategy
   * Added JSON to the `FileFormat` enumeration
 
-#### 10.1.6 - September 2023
+#### 9.4.7 - September 2023
   * (PW-1478) Fixed Field 44J parse and getValue to enable proper data preservation when the field contains multiline content
 
-#### 10.1.5 - September 2023
+#### 9.4.6 - September 2023
   * Added support for an optional `pw-swift-core.properties` to customize the behavior of the SafeXmlUtils class
 
-#### 10.1.4 - September 2023
+#### 9.4.5 - August 2023
   * (PW-1478) Field 44J parse and getValue fix
 
-#### 10.1.3 - August 2023
+#### 9.4.4 - August 2023
   * (PW-1478) Field 44J format fixed to allow multiline
 
-#### 10.1.2 - August 2023
+#### 9.4.3 - July 2023
   * (PW-1461) Remove deprecation of field 31R model since is it used back in SRU2023
   * (PW-1405) Trim original String payload when creating an AbstractSwiftMessage
 
-#### 10.1.1 - July 2023
+#### 9.4.2 - June 2023
   * (GH-163) Remove unnecessary padding in sender and receiver in AbstractMT#creeate(number, sender, receiver) method
   * (PW-1323) Fixing getValue method for pattern issue in Field44J
 
-#### 10.1.0 - June 2023
-  * Migration to Java 11
-  * Migration to Jakarta EE 10
-  * (PW-1323) Fixing getValue method for pattern issue in Field44J
+#### 9.4.1 - June 2023
   * (PW-1323) Fixing missing pattern issue in Field44J
 
 #### 9.4.0 - May 2023
