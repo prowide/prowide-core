@@ -163,7 +163,7 @@ Fieldset 19
 Sequence C1a1B - Related Transaction (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 20
- (M) (repetitive)<ul><li>FieldsetItem 20 C (M)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C,U (O) (repetitive)</li></ul></li><li class="sequence">
+ (M) (repetitive)<ul><li>FieldsetItem 20 C (M)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C (O)</li><li>FieldsetItem 20 C,U (O)</li></ul></li><li class="sequence">
 Sequence C1a1B1 - Transaction Details (O)<ul><li class="field">Field 16 R (M)</li>
 <li class="fieldset">
 Fieldset 22

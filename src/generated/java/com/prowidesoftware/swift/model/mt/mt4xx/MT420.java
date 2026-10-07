@@ -43,7 +43,7 @@ import java.io.IOException;
  *
  <div class="scheme"><ul>
 <li class="sequence">
-Sequence Loop1 (M) (repetitive)<ul><li class="field">Field 20  (M)</li>
+Sequence A (M) (repetitive)<ul><li class="field">Field 20  (M)</li>
 <li class="field">Field 21  (M)</li>
 <li class="field">Field 32 A,B,K (M)</li>
 </ul></li>
@@ -531,15 +531,15 @@ public class MT420 extends AbstractMT implements Serializable {
 	
 
 	/**
-	 * Class to model Sequence "Loop1" in MT 420.
+	 * Class to model Sequence "A" in MT 420.
 	 */
-	public static class Loop1 extends SwiftTagListBlock {
+	public static class SequenceA extends SwiftTagListBlock {
 		private static final long serialVersionUID = 1L;
 		
 		/**
 		 * Constructs an empty sequence.
 		 */
-	    private Loop1() {
+	    private SequenceA() {
 			super(new ArrayList<>());
 		}
 
@@ -547,7 +547,7 @@ public class MT420 extends AbstractMT implements Serializable {
 		 * Creates a sequence with the given content.
 		 * @see SwiftTagListBlock
 		 */
-		private Loop1(final SwiftTagListBlock content) {
+		private SequenceA(final SwiftTagListBlock content) {
 			super(content.getTags());
 		}
 
@@ -574,7 +574,7 @@ public class MT420 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static Loop1 newInstance(final Tag... tags) {
+		public static SequenceA newInstance(final Tag... tags) {
 			return newInstance(0, 0, tags);
 		}
 
@@ -589,8 +589,8 @@ public class MT420 extends AbstractMT implements Serializable {
 		 * @return a new instance of the sequence, initialized with the parameter tags
 		 */
 		@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-		public static Loop1 newInstance(final int start, final int end, final Tag... tags) {
-			final Loop1 result = new Loop1();
+		public static SequenceA newInstance(final int start, final int end, final Tag... tags) {
+			final SequenceA result = new SequenceA();
 			result.append(new Tag(START[start], ""));
 			if (tags != null && tags.length > 0) {
 				for (final Tag t : tags) {
@@ -602,7 +602,7 @@ public class MT420 extends AbstractMT implements Serializable {
 		}
 	}
 	/**
-	 * Get the list of Loop1 delimited by leading tag and end, with an optional tail.
+	 * Get the list of SequenceA delimited by leading tag and end, with an optional tail.
 	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
 	 *
@@ -610,28 +610,28 @@ public class MT420 extends AbstractMT implements Serializable {
 	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
 	 */
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public List<Loop1> getLoop1List() {
-		return getLoop1List(super.getSwiftMessageNotNullOrException().getBlock4());
+	public List<SequenceA> getSequenceAList() {
+		return getSequenceAList(super.getSwiftMessageNotNullOrException().getBlock4());
 	}
 	
 	/**
-	 * Get the list of Loop1 delimited by leading tag and end, with an optional tail.
+	 * Get the list of SequenceA delimited by leading tag and end, with an optional tail.
 	 * The presence of this method indicates that this sequence can occur more than once according to the Standard.
 	 * If message is empty or no sequences are found <em>an empty list</em> is returned.
 	 *
 	 * @see SwiftTagListBlock#getSubBlocksDelimitedWithOptionalTail(String[], String[], String[])
-	 * @param parentSequence a not null parent sequence to find Loop1 within it
+	 * @param parentSequence a not null parent sequence to find SequenceA within it
 	 * @return the found sequences or an empty list if none is found or parent sequence is null
 	 * @since 7.7
 	 */
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
-	public static List<Loop1> getLoop1List(final SwiftTagListBlock parentSequence) {
+	public static List<SequenceA> getSequenceAList(final SwiftTagListBlock parentSequence) {
 	    if (parentSequence != null) {
-            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocksDelimitedWithOptionalTail(Loop1.START, Loop1.END, Loop1.TAIL);
+            final List<SwiftTagListBlock> blocks = parentSequence.getSubBlocksDelimitedWithOptionalTail(SequenceA.START, SequenceA.END, SequenceA.TAIL);
             if (blocks != null && !blocks.isEmpty()) {
-                final List<Loop1> result = new ArrayList<>(blocks.size());
+                final List<SequenceA> result = new ArrayList<>(blocks.size());
                 for (final SwiftTagListBlock b : blocks) {
-                    result.add(new Loop1(b));
+                    result.add(new SequenceA(b));
                 }
                 return result;
             }

@@ -30,7 +30,6 @@ public interface SchemeConstantsD {
     String D = "D";
     String DPLO = "DPLO";
     String DAAC = "DAAC";
-    String DRAW = "DRAW";
     String DENO = "DENO";
     String DBIR = "DBIR";
     String DOMI = "DOMI";
@@ -146,6 +145,7 @@ public interface SchemeConstantsD {
     String DPRG = "DPRG";
     String DQUA = "DQUA";
     String DR01 = "DR01";
+    String DRAW = "DRAW";
     String DRCA = "DRCA";
     String DRCT = "DRCT";
     String DREP = "DREP";
