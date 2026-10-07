@@ -1,11 +1,16 @@
 # Prowide Core - CHANGELOG
 
 ### 10.4.5 - SNAPSHOT
-  * Fix: MT420 sequence `Loop1` renamed to `A`, as named in the format specification. `MT420.Loop1` is now `MT420.SequenceA` and `getLoop1List()` is now `getSequenceAList()`; `MtSequenceEnum.MT420` reports `A` and `B` instead of `B` alone
-  * Fix: in MT300 subsequence D1, field 57a is mandatory and the subsequence itself is mandatory within sequence D. `MT300.SequenceD1` is now delimited by 17A..57a with 58a as the only optional tail, where it previously ended at 32B and took 53a, 56a, 57a and 58a as tail
+  * Fix: the message nested in the block 4 of the system messages MT021, MT056 and MT096 is no longer truncated at the first closing brace, so these messages are parsed and written back intact; the tag value is read balancing the curly braces for the tag names where SWIFT defines nested blocks (the block identifiers 1 to 5 and the field 270), while any other tag keeps the historical reading, ending at the first closing brace
+  * Fix: MT300 subsequence D1, field 57a is mandatory and the subsequence itself is mandatory within sequence D. `MT300.SequenceD1` is now delimited by 17A..57a with 58a as the only optional tail, where it previously ended at 32B and took 53a, 56a, 57a and 58a as tail
   * Fix: MT306 subsequence L1 and MT320 subsequence I1 are mandatory within their parent sequence, and the 20C/20U Transaction Reference fieldset item of MT548 is not repetitive; the three corrections are reflected in the message javadoc, the generated accessors are unchanged
-  * Feat: `FieldEnum` includes `F29Z`, for field 29Z Bank/Customer Contact, added to the standard in SR2026
+  * Fix: MT420 sequence `Loop1` renamed to `A`, as named in the format specification. `MT420.Loop1` is now `MT420.SequenceA` and `getLoop1List()` is now `getSequenceAList()`; `MtSequenceEnum.MT420` reports `A` and `B` instead of `B` alone
+  * Fix: `FieldEnum` includes `F29Z`, for field 29Z Bank/Customer Contact, added to the standard in SRU2026
+  * Feat: `SwiftParser.parseBlock3` and `SwiftParser.parseBlock5` also accept the block content without the block identifier, as it is found in the nested blocks of an MT021 or MT096, and return an empty block for a null content
+  * Feat: new `IsoUtils#getCountryName(code)` with the ISO 3166-1 English short name of a country, looked up by its alpha-2, alpha-3 or numeric code
+  * Feat: `IsoUtils#isUserAssignedCountryCode(code)` is now public, for the ISO 3166-1 user assigned range XA to XZ; it no longer accepts an upper case letter of another alphabet after the X, so `isValidISOCountry` rejects codes such as "XЖ"
   * Chore: scheme constants regenerated. Adds `QAIS`, `QFOR` and `QRET`, from the qualifier list of field 36B/36D in MT567, which previously had none declared. Removes `AMAM`, `AMTL`, `FRWD`, `INCH`, `INSF`, `INSI`, `NELI` and `STLD`: their only source was field 23E in sequence B of MT416, which listed the full generic instruction codes instead of the NACC, NPAY and OTHR the specification allows there
+  * Chore: the `creationUser` mapping in `SwiftMessageStatusInfo`, `SwiftMessageNote` and `SwiftMessageRevision` declares length 100 instead of 40, to fit usernames such as e-mail addresses
 
 ### 10.4.4 - August 2026
   * (PW-3433) Fix: `OptionJPartyField.getValueByCodeword` no longer shifts the codeword/value pairs that follow a codeword with a blank value (for example "/CITY/" followed by "/CTRY/US" returned "CTRY" for CITY and null for CTRY); a codeword present with a blank value now returns an empty string
