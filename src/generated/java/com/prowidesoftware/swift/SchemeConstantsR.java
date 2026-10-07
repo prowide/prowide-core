@@ -27,7 +27,6 @@ public interface SchemeConstantsR {
     String RECP = "RECP";
     String REAS = "REAS";
     String RVAL = "RVAL";
-    String REVO = "REVO";
     String REGDET = "REGDET";
     String REGI = "REGI";
     String RREG = "RREG";
@@ -86,6 +85,7 @@ public interface SchemeConstantsR {
     String RALA = "RALA";
     String RDTE = "RDTE";
     String REVR = "REVR";
+    String REVO = "REVO";
     String RINR = "RINR";
     String RMDR = "RMDR";
     String RDDT = "RDDT";
@@ -111,8 +111,9 @@ public interface SchemeConstantsR {
     String RETURN = "RETURN";
     String RETD = "RETD";
     String REFE = "REFE";
-    String REQISSUE = "REQISSUE";
     String REQAMEND = "REQAMEND";
+    String REXTMATU = "REXTMATU";
+    String REQISSUE = "REQISSUE";
     String REIMBURS = "REIMBURS";
     String REQFINAN = "REQFINAN";
     String RETN = "RETN";

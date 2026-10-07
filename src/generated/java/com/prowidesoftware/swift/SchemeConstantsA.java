@@ -83,6 +83,7 @@ public interface SchemeConstantsA {
     String ADVD = "ADVD";
     String ALAM = "ALAM";
     String ADEX = "ADEX";
+    String ARRE = "ARRE";
     String AREV = "AREV";
     String ACCTINFO = "ACCTINFO";
     String ACIN = "ACIN";
@@ -92,7 +93,6 @@ public interface SchemeConstantsA {
     String ADSR = "ADSR";
     String APLI = "APLI";
     String ADDB = "ADDB";
-    String ARRE = "ARRE";
     String ADJS = "ADJS";
     String ACCT = "ACCT";
     String ACTINFO = "ACTINFO";

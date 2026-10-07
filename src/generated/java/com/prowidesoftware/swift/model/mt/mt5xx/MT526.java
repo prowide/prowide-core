@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2025 Prowide
+ * Copyright 2006 Prowide
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,8 +65,11 @@ Sequence B (M) (repetitive)<ul><li class="field">Field 35 B (M)</li>
  * This source code is specific to release <strong>SRU 2025</strong>
  * <p>
  * For additional resources check <a href="https://www.prowidesoftware.com/resources">https://www.prowidesoftware.com/resources</a>
+ *
+ * @deprecated MT526 was retired from the SWIFT standard in SRU after 2025. This class is kept for backward compatibility only and will not be updated.
  */
 @Generated
+@Deprecated
 public class MT526 extends AbstractMT implements Serializable {
 	/**
 	 * Constant identifying the SRU to which this class belongs to.

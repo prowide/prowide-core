@@ -51,7 +51,6 @@ public interface SchemeConstantsN {
     String NCOM = "NCOM";
     String NBON = "NBON";
     String NTWK = "NTWK";
-    String NTWKFEE = "NTWKFEE";
     String NBLT = "NBLT";
     String NDOM = "NDOM";
     String NPLI = "NPLI";
@@ -62,6 +61,7 @@ public interface SchemeConstantsN {
     String NSER = "NSER";
     String NELP = "NELP";
     String NSIS = "NSIS";
+    String NOTA = "NOTA";
     String NTAX = "NTAX";
     String NDIP = "NDIP";
     String NICK = "NICK";
@@ -148,6 +148,7 @@ public interface SchemeConstantsN {
     String NSTP = "NSTP";
     String NSYN = "NSYN";
     String NTBK = "NTBK";
+    String NTWKFEE = "NTWKFEE";
     String NUND = "NUND";
 
 }

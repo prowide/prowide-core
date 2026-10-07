@@ -36,8 +36,8 @@ public interface SchemeConstantsU {
     String UNDL = "UNDL";
     String UNALL = "UNALL";
     String UDTP = "UDTP";
-    String UCPURR_LATEST_VERSION = "UCPURR_LATEST_VERSION";
     String UCP_LATEST_VERSION = "UCP_LATEST_VERSION";
+    String UCPURR_LATEST_VERSION = "UCPURR_LATEST_VERSION";
     String URR_LATEST_VERSION = "URR_LATEST_VERSION";
     String UNDK = "UNDK";
     String UCPR = "UCPR";
