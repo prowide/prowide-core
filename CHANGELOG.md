@@ -6,6 +6,7 @@
   * Feat: `SwiftParser.parseBlock3` and `SwiftParser.parseBlock5` also accept the block content without the block identifier, as it is found in the nested blocks of an MT021 or MT096, and return an empty block for a null content
   * Feat: new `IsoUtils#getCountryName(code)` with the ISO 3166-1 English short name of a country, looked up by its alpha-2, alpha-3 or numeric code
   * Feat: `IsoUtils#isUserAssignedCountryCode(code)` is now public, for the ISO 3166-1 user assigned range XA to XZ; it no longer accepts an upper case letter of another alphabet after the X, so `isValidISOCountry` rejects codes such as "XЖ"
+  * Chore: the `creationUser` mapping in `SwiftMessageStatusInfo`, `SwiftMessageNote` and `SwiftMessageRevision` declares length 100 instead of 40, to fit usernames such as e-mail addresses
 
 #### 10.3.19 - August 2026
   * (PW-3433) Fix: `OptionJPartyField.getValueByCodeword` no longer shifts the codeword/value pairs that follow a codeword with a blank value (for example "/CITY/" followed by "/USFW/021000018" returned "USFW" for CITY and null for USFW); a codeword present with a blank value now returns an empty string
