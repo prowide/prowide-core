@@ -66,6 +66,33 @@ public class Field44JTest extends AbstractFieldTest {
     }
 
     @Test
+    public void testGetValueFromSetters() {
+        f = new Field44J();
+        f.setCountryCode("US");
+        f.setCountrySubDivision("NY");
+        f.setNarrative("narrative");
+        // the mandatory starting slash in the narrative line is added when missing
+        assertEquals("US/NY\r\n/narrative", f.getValue());
+    }
+
+    @Test
+    public void testGetValueFromSettersNarrativeWithSlash() {
+        f = new Field44J();
+        f.setCountryCode("US");
+        f.setCountrySubDivision("NY");
+        f.setNarrative("/narrative");
+        assertEquals("US/NY\r\n/narrative", f.getValue());
+    }
+
+    @Test
+    public void testGetValueFromSettersWithoutSubDivision() {
+        f = new Field44J();
+        f.setCountryCode("US");
+        f.setNarrative("narrative");
+        assertEquals("US\r\n/narrative", f.getValue());
+    }
+
+    @Test
     public void testGetValue2() {
         f = new Field44J("NL/foo bar");
         assertEquals("NL/foo bar", f.getValue());

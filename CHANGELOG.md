@@ -1,6 +1,20 @@
 # Prowide Core - CHANGELOG
 
-### 9.6.8 - July 2026
+### 9.6.9 - October 2026
+  * (PW-3433) Fix: `OptionJPartyField.getValueByCodeword` no longer shifts the codeword/value pairs that follow a codeword with a blank value (for example "/CITY/" followed by "/USFW/021000018" returned "USFW" for CITY and null for USFW); a codeword present with a blank value now returns an empty string
+  * (PW-3251) Feat: Added `FileFormat.MX_UNWRAPPED` to identify MX payloads where the Header and Document arrive as sibling root elements with no enclosing envelope
+  * (GH-341) Fix: `SwiftMessageUtils.money` revised for category 7: amount added for MT744, MT760, MT765 and MT786; changed to field 32B for MT750 and MT752, and to 34B for MT769; removed for MT707
+  * (GH-338) Fix: no-arg getters of subsequences with delimiters shared by another sequence in the same message are now resolved within their parent sequence, not the whole block 4; fixes `MT360`/`MT361` `getSequenceE1()`, `getSequenceF1()` and `getSequenceF2()` returning sequence B/C content. Affected subsequences are flagged with `@NonUniqueSeparator`
+  * (GH-327) Fix: Field 44J serialization now adds the mandatory starting slash in the narrative line when the narrative component is set without it
+  * Fix: in MT300 subsequence D1 field 57a is mandatory, so the sequence is delimited by 17A..57a with 58a as the only optional tail; scheme constants drop eight codes that MT416 field 23E no longer admits
+  * Fix: the message nested in the block 4 of the system messages MT021, MT056 and MT096 is no longer truncated at the first closing brace, so these messages are parsed and written back intact; the tag value is read balancing the curly braces for the tag names where SWIFT defines nested blocks (the block identifiers 1 to 5 and the field 270), while any other tag keeps the historical reading, ending at the first closing brace
+  * Fix: large XML documents with many escaped characters (e.g. camt/pacs statements) no longer fail to parse on Java 24 and newer JVMs
+  * Feat: `SwiftParser.parseBlock3` and `SwiftParser.parseBlock5` also accept the block content without the block identifier, as it is found in the nested blocks of an MT021 or MT096, and return an empty block for a null content
+  * Feat: new `IsoUtils#getCountryName(code)` with the ISO 3166-1 English short name of a country, looked up by its alpha-2, alpha-3 or numeric code
+  * Feat: `IsoUtils#isUserAssignedCountryCode(code)` is now public, for the ISO 3166-1 user assigned range XA to XZ; it no longer accepts an upper case letter of another alphabet after the X, so `isValidISOCountry` rejects codes such as "XЖ"
+  * Chore: the `creationUser` mapping in `SwiftMessageStatusInfo`, `SwiftMessageNote` and `SwiftMessageRevision` declares length 100 instead of 40, to fit usernames such as e-mail addresses
+
+#### 9.6.8 - July 2026
   * (PW-3185) Fix: `MtSwiftMessage.toJson()` now uses 1-based months (January=1) for Calendar fields and emits a `schemaVersion` marker; `fromJson()` reads both new and legacy (0-based) payloads transparently
   * Fix: `SwiftTagListBlock.getFieldsByNumber(int)` no longer throws `IllegalArgumentException` when a matching tag cannot be converted into a `Field`; such tags are now logged and skipped, consistently with the name-based lookups
   * Fix: Fields definitions alignment: `Field30I` and `Field30K` component 2 made optional (and `Field30K` validation pattern updated to `<DATE4>[/<DATE4>]`), `Field39M` validation pattern updated to `<CC>`, and `Field56B` name & address component made optional
