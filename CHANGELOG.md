@@ -1,6 +1,11 @@
 # Prowide Core - CHANGELOG
 
 #### 10.3.20 - SNAPSHOT
+  * Fix: in MT300 subsequence D1 field 57a is mandatory, so the sequence is delimited by 17A..57a with 58a as the only optional tail; scheme constants drop eight codes that MT416 field 23E no longer admits
+  * Fix: the message nested in the block 4 of the system messages MT021, MT056 and MT096 is no longer truncated at the first closing brace, so these messages are parsed and written back intact; the tag value is read balancing the curly braces for the tag names where SWIFT defines nested blocks (the block identifiers 1 to 5 and the field 270), while any other tag keeps the historical reading, ending at the first closing brace
+  * Feat: `SwiftParser.parseBlock3` and `SwiftParser.parseBlock5` also accept the block content without the block identifier, as it is found in the nested blocks of an MT021 or MT096, and return an empty block for a null content
+  * Feat: new `IsoUtils#getCountryName(code)` with the ISO 3166-1 English short name of a country, looked up by its alpha-2, alpha-3 or numeric code
+  * Feat: `IsoUtils#isUserAssignedCountryCode(code)` is now public, for the ISO 3166-1 user assigned range XA to XZ; it no longer accepts an upper case letter of another alphabet after the X, so `isValidISOCountry` rejects codes such as "XЖ"
   * Chore: the `creationUser` mapping in `SwiftMessageStatusInfo`, `SwiftMessageNote` and `SwiftMessageRevision` declares length 100 instead of 40, to fit usernames such as e-mail addresses
 
 #### 10.3.19 - August 2026
