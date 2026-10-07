@@ -1188,11 +1188,21 @@ public class MT767 extends AbstractMT implements Serializable {
 	 * If block 4 is empty this method returns null.
 	 *
 	 * @return the found sequence or an empty sequence if none is found
+     *
+     * <p>This sequence does not have unique delimiters, they are shared with another sequence within this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
+     *
 	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
 	 */
+	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
 	public SequenceB1 getSequenceB1() {
-		return getSequenceB1(super.getSwiftMessageNotNullOrException().getBlock4());
+		final SwiftTagListBlock block4 = super.getSwiftMessageNotNullOrException().getBlock4();
+		if (block4 == null || block4.isEmpty()) {
+			return null;
+		}
+		final SequenceB1 result = getSequenceB1(getSequenceB());
+		return result != null ? result : new SequenceB1();
 	}
 	
 	/**
@@ -1406,11 +1416,21 @@ public class MT767 extends AbstractMT implements Serializable {
 	 * If block 4 is empty this method returns null.
 	 *
 	 * @return the found sequence or an empty sequence if none is found
+     *
+     * <p>This sequence does not have unique delimiters, they are shared with another sequence within this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
+     *
 	 * @see SwiftTagListBlock#getSubBlockDelimitedWithOptionalTail(String[], String[], String[])
 	 */
+	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_FIXED_WITH_OPTIONAL_TAIL)
 	public SequenceC1 getSequenceC1() {
-		return getSequenceC1(super.getSwiftMessageNotNullOrException().getBlock4());
+		final SwiftTagListBlock block4 = super.getSwiftMessageNotNullOrException().getBlock4();
+		if (block4 == null || block4.isEmpty()) {
+			return null;
+		}
+		final SequenceC1 result = getSequenceC1(getSequenceC());
+		return result != null ? result : new SequenceC1();
 	}
 	
 	/**

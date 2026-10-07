@@ -37,9 +37,6 @@ public interface SchemeConstantsF {
     String FXORDER = "FXORDER";
     String FXTR = "FXTR";
     String FXOR = "FXOR";
-    String FROZ = "FROZ";
-    String FRAU = "FRAU";
-    String FRWD = "FRWD";
     String FIAC = "FIAC";
     String FIAN = "FIAN";
     String FCOU = "FCOU";
@@ -114,9 +111,11 @@ public interface SchemeConstantsF {
     String FRAC = "FRAC";
     String FRAN = "FRAN";
     String FRAP = "FRAP";
+    String FRAU = "FRAU";
     String FRCL = "FRCL";
     String FREE = "FREE";
     String FREN = "FREN";
+    String FROZ = "FROZ";
     String FSSN = "FSSN";
     String FSSY = "FSSY";
     String FTIN = "FTIN";

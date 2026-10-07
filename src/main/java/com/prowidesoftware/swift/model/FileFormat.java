@@ -45,7 +45,15 @@ public enum FileFormat {
     /**
      * Prowide default JSON formats for both MT and MX
      */
-    JSON("json");
+    JSON("json"),
+    /**
+     * MX payload with the AppHdr (Header) and Document as sibling root elements, not enclosed in any envelope.
+     * This lenient form is identified and normalized using {@code MxParseUtils.identifyMessage} and
+     * {@code MxParseUtils.wrapIfAppHdrRoot} in prowide-iso20022.
+     *
+     * @since 10.3.16
+     */
+    MX_UNWRAPPED("xml");
 
     private final String extension;
 

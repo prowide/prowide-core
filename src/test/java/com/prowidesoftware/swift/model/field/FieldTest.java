@@ -159,6 +159,12 @@ public class FieldTest {
     }
 
     @Test
+    public void testLabel58AinMT710() {
+        // no field58A[710].name entry exists, so it falls back to the generic letter option field58a[710].name
+        assertEquals("Requested Confirmation Party", Field.getLabel("58A", "710", null, new Locale("en")));
+    }
+
+    @Test
     // TODO add API for partyfields structure like field 83J
     public void testGetValueByCodewordWorkaround() {
         final Field83J f = new Field83J("/ACCT/006-6005XXXXXX\n/NAME/JF ASIAN TOTAL RETURN BOND FUND");

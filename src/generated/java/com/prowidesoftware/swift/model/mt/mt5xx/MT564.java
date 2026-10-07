@@ -2655,9 +2655,8 @@ public class MT564 extends AbstractMT implements Serializable {
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * @return the found sequence or an empty sequence if none is found
      *
-     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-     * present inside its parent sequences.
-     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     * <p>This sequence does not have a unique 16R/S delimiter, it is shared with another sequence in this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
      *
 	 * @see SequenceB1#START_END_16RS
 	 */
@@ -2665,13 +2664,13 @@ public class MT564 extends AbstractMT implements Serializable {
 	@SequenceStyle(Type.GENERATED_16RS)
 	public SequenceB1 getSequenceB1() {
 		/*
-		 * The delimiter FIA is not unique across all sequences, this api can not be resolved without considering nested sequences
-		 * In Sequence B1
+		 * The delimiter FIA is not unique across all sequences, so the sequence is resolved
+		 * within its parent SequenceB instead of over the whole block 4
 		 */
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT564GetSequenceB1_sru2026(this);
+		return getSequenceB1(getSequenceB());
 	}
 
 
@@ -3513,9 +3512,8 @@ public class MT564 extends AbstractMT implements Serializable {
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
-     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-     * present inside its parent sequences.
-     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     * <p>This sequence does not have a unique 16R/S delimiter, it is shared with another sequence in this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
      *
      * @return the found sequences or an empty list if none is found
 	 * @see SequenceE1a#START_END_16RS
@@ -3523,15 +3521,18 @@ public class MT564 extends AbstractMT implements Serializable {
 	@NonUniqueSeparator
 	@SequenceStyle(Type.GENERATED_16RS)
 	public List<SequenceE1a> getSequenceE1aList() {
-  	    /*
-		 * The delimiter FIA is not unique across all sequences, in this MT.
-		 * The usual generated API for accessing this can not be used for sequence E1a.
-		 * So we call a special method to resolve this situation until we find a better approach.
+		/*
+		 * The delimiter FIA is not unique across all sequences, so the sequences are resolved
+		 * within every occurrence of their parent SequenceE1 instead of over the whole block 4
 		 */
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT564GetSequenceE1aList_sru2026(this);
+		final List<SequenceE1a> result = new ArrayList<>();
+		for (final SequenceE1 parent : getSequenceE1List()) {
+			result.addAll(getSequenceE1aList(parent));
+		}
+		return result;
 	}
 
 
@@ -3540,9 +3541,8 @@ public class MT564 extends AbstractMT implements Serializable {
 	 *
 	 * <p>The presence of this method indicates that this sequence can occur more than once according to the Standard.
      *
-     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-     * present inside its parent sequences.
-     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     * <p>This sequence does not have a unique 16R/S delimiter, it is shared with another sequence in this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
      *
 	 * @see SequenceE1a#START_END_16RS
 	 * @param parentSequence a not null parent sequence to find SequenceE1a within it

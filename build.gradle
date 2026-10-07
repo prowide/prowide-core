@@ -34,8 +34,8 @@ scmVersion {
         versionSeparator = '-'
     }
 }
-//project.version = "${SRU}-${scmVersion.version}"
-project.version = "SRU2026-9.7.0"
+project.version = "${SRU}-${scmVersion.version}"
+//project.version = "SRU2026-9.7.1"
 
 java {
     toolchain {
@@ -66,12 +66,13 @@ dependencies {
     testImplementation 'javax.validation:validation-api:2.0.1.Final'
     testImplementation 'javax.persistence:javax.persistence-api:2.2'
     testImplementation 'com.networknt:json-schema-validator:1.5.8'
+    testImplementation platform('com.fasterxml.jackson:jackson-bom:2.22.3') // override transitive Jackson from json-schema-validator (GHSA-7hhh-6rmp-j9qf, GHSA-p6pp-m3f8-5c89, GHSA-cxp5-3px4-pw24, GHSA-wv8q-qhhj-9h54)
     testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
     testImplementation 'org.junit.platform:junit-platform-launcher:1.11.4'
-    testImplementation 'org.assertj:assertj-core:3.27.6'
-    testImplementation 'org.xmlunit:xmlunit-core:2.12.0'
-    testImplementation 'org.xmlunit:xmlunit-matchers:2.12.0'
-    testImplementation 'org.xmlunit:xmlunit-assertj:2.12.0'
+    testImplementation 'org.assertj:assertj-core:3.27.7'
+    testImplementation 'org.xmlunit:xmlunit-core:2.14.0'
+    testImplementation 'org.xmlunit:xmlunit-matchers:2.14.0'
+    testImplementation 'org.xmlunit:xmlunit-assertj:2.14.0'
 }
 
 sourceSets.named('main') {
@@ -345,6 +346,28 @@ tasks.register('testOn21', Test) {
         languageVersion = JavaLanguageVersion.of(21)
     }
     jvmArgs addOpensJvmArgs
+}
+
+// Runs the suite on a Java 25 toolchain to verify the Java 8 artifacts execute correctly on Java 25.
+// Needed to catch JDK-version behavior changes (e.g. JDK 24 tightened the JAXP entity size limits) that
+// cannot manifest on the Java 8/17/21 the build otherwise uses. JDK 25 must be available to the Gradle
+// toolchain (CI passes -Porg.gradle.java.installations.paths=/pw/dev/jdk25).
+tasks.register('testOn25', Test) {
+    description = 'Runs tests using a Java 25 toolchain to verify compatibility'
+    group = 'verification'
+    useJUnitPlatform()
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+    jvmArgs addOpensJvmArgs
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    reports {
+        html.required = true
+        html.outputLocation = layout.buildDirectory.dir("reports/tests/testOn25")
+    }
+    binaryResultsDirectory = layout.buildDirectory.dir("test-results/testOn25")
+    dependsOn testClasses
 }
 
 jacocoTestReport {

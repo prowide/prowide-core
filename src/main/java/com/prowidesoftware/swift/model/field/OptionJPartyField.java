@@ -248,8 +248,12 @@ public abstract class OptionJPartyField extends Field {
      * be followed by a value. Breaking lines are ignored, meaning both codewords and values split along lines will be
      * joined before processing.
      *
+     * <p>If the codeword is present but its value is blank (for example "/CITY/") an empty string is returned, and
+     * the following codeword/value pairs are not affected.
+     *
      * @param codeword a valid codeword to search
-     * @return found value following the codeword or null if the codeword or its value are not found
+     * @return found value following the codeword, empty if the codeword is present with a blank value, or null if
+     * the codeword or its following value are not found
      * @since 7.11.0
      */
     public String getValueByCodeword(Codeword codeword) {
@@ -258,13 +262,17 @@ public abstract class OptionJPartyField extends Field {
             return null;
         }
         String join = Strings.CS.replace(Strings.CS.replace(getComponent1(), "\r", ""), "\n", "");
-        final String[] tokens = StringUtils.split(join, "/");
+        final String[] tokens = StringUtils.splitPreserveAllTokens(join, "/");
         for (int i = 0; i < tokens.length; i++) {
             final String code = tokens[i];
+            if (StringUtils.isEmpty(code)) {
+                // empty tokens produced by leading, trailing or consecutive slashes are not codewords
+                continue;
+            }
             if (!Strings.CS.equals(code, Codeword.NETS.name()) && !Strings.CS.equals(code, Codeword.SSIS.name())) {
                 i++;
-                if (i < tokens.length && Strings.CS.equals(code, codeword.name())) {
-                    return tokens[i];
+                if (Strings.CS.equals(code, codeword.name())) {
+                    return i < tokens.length ? tokens[i] : null;
                 }
             }
         }

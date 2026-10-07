@@ -128,7 +128,7 @@ Sequence H (O)<ul><li class="field">Field 15 H (M)</li>
 Sequence I (O)<ul><li class="field">Field 15 I (M)</li>
 <li class="field">Field 18 A (M)</li>
 <li class="sequence">
-Sequence _I1 (O) (repetitive)<ul><li class="field">Field 30 F (M)</li>
+Sequence _I1 (M) (repetitive)<ul><li class="field">Field 30 F (M)</li>
 <li class="field">Field 32 H (M)</li>
 </ul></li>
 <li class="field">Field 53 A,D,J (O)</li>

@@ -2102,9 +2102,8 @@ public class MT515 extends AbstractMT implements Serializable {
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * @return the found sequence or an empty sequence if none is found
      *
-     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-     * present inside its parent sequences.
-     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     * <p>This sequence does not have a unique 16R/S delimiter, it is shared with another sequence in this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
      *
 	 * @see SequenceC1#START_END_16RS
 	 */
@@ -2112,13 +2111,13 @@ public class MT515 extends AbstractMT implements Serializable {
 	@SequenceStyle(Type.GENERATED_16RS)
 	public SequenceC1 getSequenceC1() {
 		/*
-		 * The delimiter DIGPAYSETT is not unique across all sequences, this api can not be resolved without considering nested sequences
-		 * In Sequence C1
+		 * The delimiter DIGPAYSETT is not unique across all sequences, so the sequence is resolved
+		 * within its parent SequenceC instead of over the whole block 4
 		 */
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT515GetSequenceC1_sru2026(this);
+		return getSequenceC1(getSequenceC());
 	}
 
 
@@ -3108,9 +3107,8 @@ public class MT515 extends AbstractMT implements Serializable {
 	 * The presence of this method indicates that this sequence can occur only once according to the Standard.
 	 * @return the found sequence or an empty sequence if none is found
      *
-     * <p>This sequence does not have a unique 16R/S delimiter. In order to be uniquely identified it must be
-     * present inside its parent sequences.
-     * @see com.prowidesoftware.swift.model.mt.SequenceUtils
+     * <p>This sequence does not have a unique 16R/S delimiter, it is shared with another sequence in this
+     * message. It is therefore resolved within its parent sequence instead of over the whole block 4.
      *
 	 * @see SequenceD4#START_END_16RS
 	 */
@@ -3118,13 +3116,13 @@ public class MT515 extends AbstractMT implements Serializable {
 	@SequenceStyle(Type.GENERATED_16RS)
 	public SequenceD4 getSequenceD4() {
 		/*
-		 * The delimiter DIGPAYSETT is not unique across all sequences, this api can not be resolved without considering nested sequences
-		 * In Sequence D4
+		 * The delimiter DIGPAYSETT is not unique across all sequences, so the sequence is resolved
+		 * within its parent SequenceD instead of over the whole block 4
 		 */
 		if (this.getSwiftMessage() == null) {
 			return null;
 		}
-		return com.prowidesoftware.swift.model.mt.SequenceUtils.resolveMT515GetSequenceD4_sru2026(this);
+		return getSequenceD4(getSequenceD());
 	}
 
 

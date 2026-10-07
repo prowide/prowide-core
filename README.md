@@ -1,4 +1,4 @@
-![alt tag](https://www.prowidesoftware.com/img/logo/horizontal/500x142.png)
+![Prowide](https://www.prowidesoftware.com/assets/logo.png)
 
 
 **Prowide Core** is an open source Java framework for managing SWIFT FIN messages.

@@ -52,6 +52,36 @@ public class OptionJPartyFieldTest {
         assertEquals("US", f.getValueByCodeword(Codeword.CTRY));
     }
 
+    @Test
+    public void testGetValueByCodewordBlankValue() {
+        // a codeword with blank value must not shift the following codeword/value pairs
+        TestPartyField f = new TestPartyField("/ABIC/CHASUS33\n/NAME/CHASE\n/CITY/\n/CTRY/US");
+        assertEquals("CHASUS33", f.getValueByCodeword(Codeword.ABIC));
+        assertEquals("CHASE", f.getValueByCodeword(Codeword.NAME));
+        assertEquals("", f.getValueByCodeword(Codeword.CITY));
+        assertEquals("US", f.getValueByCodeword(Codeword.CTRY));
+    }
+
+    @Test
+    public void testGetValueByCodewordBlankValueSameLine() {
+        TestPartyField f = new TestPartyField("/NAME/SOME BANK/CITY//CTRY/DE");
+        assertEquals("SOME BANK", f.getValueByCodeword(Codeword.NAME));
+        assertEquals("", f.getValueByCodeword(Codeword.CITY));
+        assertEquals("DE", f.getValueByCodeword(Codeword.CTRY));
+    }
+
+    @Test
+    public void testGetValueByCodewordBlankValueAtEnd() {
+        TestPartyField f = new TestPartyField("/NAME/SOME BANK\n/CITY/");
+        assertEquals("SOME BANK", f.getValueByCodeword(Codeword.NAME));
+        assertEquals("", f.getValueByCodeword(Codeword.CITY));
+        assertNull(f.getValueByCodeword(Codeword.CTRY));
+
+        // an unterminated trailing codeword (no closing slash) has no value
+        TestPartyField g = new TestPartyField("/NAME/SOME BANK\n/CITY");
+        assertNull(g.getValueByCodeword(Codeword.CITY));
+    }
+
     private static class TestPartyField extends OptionJPartyField {
 
         TestPartyField(String value) {

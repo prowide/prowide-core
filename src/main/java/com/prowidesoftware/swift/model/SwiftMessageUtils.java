@@ -745,7 +745,7 @@ public class SwiftMessageUtils {
             return Money.of(b4.getFieldByName("32A"));
         } else if (m.isType(
                 191, 291, 300, 304, 305, 320, 391, 491, 591, 691, 791, 891, 991, 340, 341, 350, 360, 361, 364, 365, 620,
-                700, 705, 710, 720, 732, 740, 742, 756)) {
+                700, 705, 710, 720, 732, 740, 742, 750, 752, 756, 760, 765, 786)) {
             return Money.of(b4.getFieldByName("32B"));
         } else if (m.isType(
                 321, 370, 508, 509, 535, 536, 537, 540, 541, 542, 543, 544, 545, 546, 547, 548, 558, 559, 569, 574, 575,
@@ -753,7 +753,7 @@ public class SwiftMessageUtils {
             return Money.of(b4.getFieldByName("19A"));
         } else if (m.isType(330, 362)) {
             return Money.of(b4.getFieldByName("32H"));
-        } else if (m.isType(306, 581, 707, 747)) {
+        } else if (m.isType(306, 581, 747, 769)) {
             return Money.of(b4.getFieldByName("34B"));
         } else if (m.isType(380, 381, 505, 564, 566, 567)) {
             return Money.of(b4.getFieldByName("19B"));
@@ -776,12 +776,8 @@ public class SwiftMessageUtils {
             return Money.ofAny(b4, "32A", "32B", "32K");
         } else if (m.isType(430)) {
             return Money.ofAny(b4, "33A", "33K", "32A", "32K");
-        } else if (m.isType(750)) {
-            return Money.ofAny(b4, "34B", "32B");
-        } else if (m.isType(752)) {
-            return Money.ofAny(b4, "33A", "33B", "32B");
-        } else if (m.isType(769)) {
-            return Money.ofAny(b4, "32B", "32D", "33B", "34B");
+        } else if (m.isType(744)) {
+            return Money.ofAny(b4, "34A", "34B");
         } else if (m.isType(940, 950, 970)) {
             return Money.ofAny(b4, "62F", "62M");
         } else if (m.isType(101, 201, 203, 204, 207, 210)) {

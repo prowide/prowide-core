@@ -45,8 +45,6 @@ public interface SchemeConstantsA {
     String ADVC = "ADVC";
     String ADTX = "ADTX";
     String AGRE = "AGRE";
-    String AMAM = "AMAM";
-    String AMTL = "AMTL";
     String ADMT = "ADMT";
     String ACOW = "ACOW";
     String ADDRESS = "ADDRESS";
