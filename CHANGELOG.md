@@ -1,6 +1,6 @@
 # Prowide Core - CHANGELOG
 
-### 10.4.5 - SNAPSHOT
+### 10.4.5 - October 2026
   * Fix: the message nested in the block 4 of the system messages MT021, MT056 and MT096 is no longer truncated at the first closing brace, so these messages are parsed and written back intact; the tag value is read balancing the curly braces for the tag names where SWIFT defines nested blocks (the block identifiers 1 to 5 and the field 270), while any other tag keeps the historical reading, ending at the first closing brace
   * Fix: MT300 subsequence D1, field 57a is mandatory and the subsequence itself is mandatory within sequence D. `MT300.SequenceD1` is now delimited by 17A..57a with 58a as the only optional tail, where it previously ended at 32B and took 53a, 56a, 57a and 58a as tail
   * Fix: MT306 subsequence L1 and MT320 subsequence I1 are mandatory within their parent sequence, and the 20C/20U Transaction Reference fieldset item of MT548 is not repetitive; the three corrections are reflected in the message javadoc, the generated accessors are unchanged
