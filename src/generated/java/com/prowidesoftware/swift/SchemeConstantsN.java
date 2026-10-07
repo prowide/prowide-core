@@ -33,10 +33,8 @@ public interface SchemeConstantsN {
     String NEXT = "NEXT";
     String NETT = "NETT";
     String NETPOS = "NETPOS";
-    String NELI = "NELI";
-    String NMAT = "NMAT";
-    String NPAY = "NPAY";
     String NACC = "NACC";
+    String NPAY = "NPAY";
     String NOMI = "NOMI";
     String NATO = "NATO";
     String NWFC = "NWFC";
@@ -44,6 +42,7 @@ public interface SchemeConstantsN {
     String NAVD = "NAVD";
     String NRAD = "NRAD";
     String NAFI = "NAFI";
+    String NMAT = "NMAT";
     String NAVR = "NAVR";
     String NEWA = "NEWA";
     String NOTE = "NOTE";

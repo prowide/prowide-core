@@ -30,14 +30,13 @@ public interface SchemeConstantsS {
     String SETT = "SETT";
     String STRT = "STRT";
     String SELL = "SELL";
-    String STOP = "STOP";
-    String STLD = "STLD";
     String SNUM = "SNUM";
     String SIZE = "SIZE";
     String SHAR = "SHAR";
     String SECO = "SECO";
     String SHIP = "SHIP";
     String SHAI = "SHAI";
+    String STOP = "STOP";
     String STBR = "STBR";
     String SETG = "SETG";
     String STAM = "STAM";
