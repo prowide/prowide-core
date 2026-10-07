@@ -65,7 +65,7 @@ public enum MtSequenceEnum {
     MT380("A,A/A1,B,B/B1,B/B2,C"),
     MT381("A,A/A1,B,B/B1,B/B2,C"),
     MT416("A,B,B/B1,B/B2"),
-    MT420("B"),
+    MT420("A,B"),
     MT430("A,B,B/B1"),
     MT500("A,A/A1,B,B/B1,B/B2,C,C/C1,C/C2,D,E"),
     MT501("A,A/A1,B,B/B1,B/B2,C,C/C1,C/C2,D,E"),
