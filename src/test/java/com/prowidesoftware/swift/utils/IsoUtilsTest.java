@@ -287,6 +287,10 @@ public class IsoUtilsTest {
     @Test
     public void testEveryJdkCountryHasAName() {
         for (String alpha2 : Locale.getISOCountries()) {
+            if ("AN".equals(alpha2)) {
+                // Netherlands Antilles, withdrawn from ISO 3166-1 in 2010, still listed by the Java 8 locale data
+                continue;
+            }
             String name = IsoUtils.getInstance().getCountryName(alpha2);
             assertNotNull(name, alpha2);
             assertFalse(name.isEmpty(), alpha2);

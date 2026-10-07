@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.networknt.schema.Error;
 import com.networknt.schema.InputFormat;
-import com.networknt.schema.Schema;
-import com.networknt.schema.SchemaRegistry;
-import com.networknt.schema.SpecificationVersion;
+import com.networknt.schema.JsonSchema;
+import com.networknt.schema.JsonSchemaFactory;
+import com.networknt.schema.SpecVersion;
+import com.networknt.schema.ValidationMessage;
 import java.io.InputStream;
-import java.util.List;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 public class MtSwiftMessageJsonSchemaTest {
@@ -24,11 +24,11 @@ public class MtSwiftMessageJsonSchemaTest {
             }
             JsonNode schemaNode = mapper.readTree(in);
 
-            SchemaRegistry schemaRegistry = SchemaRegistry.withDefaultDialect(SpecificationVersion.DRAFT_2020_12);
-            Schema schema = schemaRegistry.getSchema(schemaNode);
+            JsonSchemaFactory factory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V202012);
+            JsonSchema schema = factory.getSchema(schemaNode);
             schema.initializeValidators();
 
-            List<Error> errors = schema.validate(jsonMsg, InputFormat.JSON);
+            Set<ValidationMessage> errors = schema.validate(jsonMsg, InputFormat.JSON);
             return errors.isEmpty();
         }
     }
