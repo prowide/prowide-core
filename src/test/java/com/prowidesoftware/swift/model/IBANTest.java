@@ -297,6 +297,7 @@ public class IBANTest {
         assertIbanOk("GL8964710001000206"); // Greenland
         assertIbanOk("GR1601101250000000012300695"); // Greece
         assertIbanOk("GT82TRAJ01020000001210029690"); // Guatemala
+        assertIbanOk("HN88CABF00000000000250005469"); // Honduras
         assertIbanOk("HR1210010051863000160"); // Croatia
         assertIbanOk("HU42117730161111101800000000"); // Hungary
         assertIbanOk("IE29AIBK93115212345678"); // Ireland
