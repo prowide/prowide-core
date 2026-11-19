@@ -12,6 +12,9 @@
   * Chore: scheme constants regenerated. Adds `QAIS`, `QFOR` and `QRET`, from the qualifier list of field 36B/36D in MT567, which previously had none declared. Removes `AMAM`, `AMTL`, `FRWD`, `INCH`, `INSF`, `INSI`, `NELI` and `STLD`: their only source was field 23E in sequence B of MT416, which listed the full generic instruction codes instead of the NACC, NPAY and OTHR the specification allows there
   * Chore: the `creationUser` mapping in `SwiftMessageStatusInfo`, `SwiftMessageNote` and `SwiftMessageRevision` declares length 100 instead of 40, to fit usernames such as e-mail addresses
 
+  SRU2026 note: the SWIFT Standards release 2026 go-live was postponed by Swift from 14 November 2026 to 12 June 2027. This SRU2026 line is the distribution for that go-live, with the SRU2026 deprecation schedule; the SRU2025 line remains the version to use in production until 12 June 2027.
+  SRU2025-10.3.20 carries the same parser, IsoUtils and persistence changes as this version, without the SRU2026 model revision.
+
 ### 10.4.4 - August 2026
   * (PW-3433) Fix: `OptionJPartyField.getValueByCodeword` no longer shifts the codeword/value pairs that follow a codeword with a blank value (for example "/CITY/" followed by "/CTRY/US" returned "CTRY" for CITY and null for CTRY); a codeword present with a blank value now returns an empty string
   * (GH-341) Feat: `SwiftMessageUtils.money` revised for category 7: amount added for MT744, MT760, MT765 and MT786; changed to field 32B for MT750 and MT752, and to 34B for MT769; removed for MT707
@@ -35,7 +38,7 @@
   * Fix: `SwiftTagListBlock.getFieldsByNumber(int)` no longer throws `IllegalArgumentException` when a matching tag cannot be converted into a `Field`; such tags are now logged and skipped, consistently with the name-based lookups
 
 ### 10.4.0 - May 2026
-  * SWIFT Standard release update 2026 (live 14 November 2026)
+  * SWIFT Standard release update 2026 (planned for 14 November 2026, postponed by Swift and revised in 10.4.5)
   * Yearly revision of deprecation phase (see https://dev.prowidesoftware.com/SRU2024/getting-started/deprecation/)
   * `DeprecationUtils` runtime flags now use the JVM system property `PW_DEPRECATED` (also still honored as OS env var); removes the illegal-reflective-access warning.
   * Localized label files (`pw_swift_labels_de/es/fr/it/ru.properties`) aligned with the English baseline; missing keys appended with the English value as a fallback pending translation
